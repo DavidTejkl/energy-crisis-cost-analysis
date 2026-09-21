@@ -1,4 +1,4 @@
-# Project brief — P1 Energy-Finance Nexus
+# Project brief — P1 Energy Crisis Cost Analysis
 
 ## SCENARIO (fictional, stated once)
 - Model company: energy-intensive Czech firm with a three-shift operation and lower weekend load.
