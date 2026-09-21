@@ -1,0 +1,26 @@
+# Data — rebuilt by scripts
+data/**
+!data/*/
+!data/*/.gitkeep
+
+# Private local workspace (own private repo)
+.claude/
+
+# Power BI — commit PBIP only
+*.pbix
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Secrets & local
+.env
+.env.*
+
+# OS
+Thumbs.db
+.DS_Store
