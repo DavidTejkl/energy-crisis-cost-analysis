@@ -16,13 +16,33 @@
 ## Data sources (2020–2024)
 | Source | What | Granularity | Status |
 |--------|------|-------------|--------|
-| OTE-ČR day-ahead market | price EUR/MWh, volume | hourly | to download |
+| OTE-ČR day-ahead market | price EUR/MWh, volume | hourly | source verified |
 | ČNB exchange rates | EUR/CZK | ČNB working days | source verified |
 | ČNB 2-week repo rate | policy interest rate, context for CZK and cost of money | validity periods | source verified |
 | ERÚ price decisions | distribution, system services, POZE, tax | validity periods | to collect into `config/` |
 | Own generator | company load profile | hourly | SIMULATED |
 
 ### Source details
+**OTE-ČR day-ahead market** — yearly market report, one zip per year:
+`https://www.ote-cr.cz/pubweb/attachments/62_162/YYYY/Rocni_zprava_o_trhu_YYYY_V2.zip`
+(listed on `https://www.ote-cr.cz/cs/statistika/rocni-zprava?date=YYYY-01-01`)
+- V2 = final monthly settlement (V0 daily, V1 monthly evaluation) → use V2.
+- The zip holds one Excel file: `.xls` for 2020–2023, `.xlsx` for 2024 → reading needs both
+  `xlrd` and `openpyxl`.
+- Sheet `DT ČR`, header on row 6 (`header=5`), hourly block in the left columns; the same sheet
+  has daily, weekly and monthly summaries further right → select columns by name.
+- Columns: `Den` (date), `Hodina` (1–24, 1–23 or 1–25), `Marginální cena ČR (EUR/MWh)` = price,
+  `Množství - vč. Exp a Imp (MWh)` = volume. `Saldo DT (MWh)` exists from 2021 only → columns
+  shift, never select by position. 2024 header names contain line breaks → normalise whitespace.
+- Also contains `Marginální cena ČR (Kč/MWh)` and `Kurz Kč/EUR (ČNB)`: OTE labels the CZK price as
+  informative only → not used; CZK is computed from the ČNB source (ADR-001), OTE CZK serves as a cross-check.
+- `Hodina` is the sequential hour of the delivery day, not the clock hour: spring DST day has
+  hours 1–23, autumn DST day has hours 1–25.
+- Test download 2026-09-22, all five years: 43,848 hourly rows in 1,827 days
+  (8,784 / 8,760 / 8,760 / 8,760 / 8,784), one 23-hour and one 25-hour day per year on the last
+  Sunday of March / October, 0 duplicate day+hour, 0 missing prices, 609 negative-price hours
+  (119 / 33 / 8 / 134 / 315), price range −138.75 to 871.00 EUR/MWh.
+
 **ČNB EUR/CZK** — one text file per year:
 `https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/rok.txt?rok=YYYY`
 - Pipe-separated, date `DD.MM.YYYY`, decimal comma, value = CZK per 1 EUR (column `1 EUR`).
