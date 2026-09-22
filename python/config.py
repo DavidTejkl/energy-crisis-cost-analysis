@@ -16,6 +16,22 @@ CONFIG_DIR = PROJECT_ROOT / "config"  # ERÚ tariffs with validity periods
 START_DATE = "2020-01-01"
 END_DATE = "2024-12-31"
 
+YEARS = [2020, 2021, 2022, 2023, 2024]
+
+# OTE yearly market report, version V2 = final monthly settlement (see docs/01_project_brief.md).
+OTE_URL = "https://www.ote-cr.cz/pubweb/attachments/62_162/{year}/Rocni_zprava_o_trhu_{year}_V2.zip"
+OTE_BRONZE_DIR = BRONZE_DIR / "ote"
+
+# ČNB EUR/CZK rates, one text file per year. 2019 is included because 1 January 2020 has no
+# ČNB rate and is filled from the last 2019 working day (ADR-001).
+CNB_FX_URL = ("https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/"
+              "kurzy-devizoveho-trhu/rok.txt?rok={year}")
+CNB_FX_YEARS = [2019] + YEARS
+
+# ČNB 2-week repo rate, full history in one file (ADR-002).
+CNB_REPO_URL = "https://www.cnb.cz/cs/casto-kladene-dotazy/.galleries/vyvoj_repo_historie.txt"
+CNB_BRONZE_DIR = BRONZE_DIR / "cnb"
+
 # Market hours are in Czech local time, so daylight saving days have 23 or 25 hours.
 TIMEZONE = "Europe/Prague"
 
