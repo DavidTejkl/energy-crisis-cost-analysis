@@ -76,6 +76,9 @@ def fill_fx_gaps(fx):
     # Carry the last known rate/source_date forward into every gap (weekend, holiday).
     fx["rate_czk_per_eur"] = fx["rate_czk_per_eur"].ffill()
     fx["source_date"] = fx["source_date"].ffill()
+    # The column started as None, so pandas stored it as plain objects; convert it back to a
+    # real date type, otherwise the CSV gets "00:00:00" on every source_date.
+    fx["source_date"] = pd.to_datetime(fx["source_date"])
 
     return fx[fx["full_date"] >= START_DATE].reset_index(drop=True)
 
@@ -143,11 +146,15 @@ def build_dim_hour():
     return dim_hour
 
 
-def add_price_czk(prices, fx_filled):
-    """Add price_czk_mwh to the price table by joining in the daily EUR/CZK rate."""
-    prices = prices.merge(fx_filled[["full_date", "rate_czk_per_eur"]], on="full_date", how="left")
-    prices["price_czk_mwh"] = prices["price_eur_mwh"] * prices["rate_czk_per_eur"]
-    return prices.drop(columns=["rate_czk_per_eur"])
+def add_date_key(df):
+    """Replace full_date with date_key (YYYYMMDD), the key that links a fact table to dim_date.
+
+    The date itself lives only in dim_date; facts carry just the key (docs/data_model.md).
+    price_czk_mwh is not stored: it is computed in SQL from fact_fx, so the rate lives in one place.
+    """
+    df = df.copy()
+    df.insert(0, "date_key", df["full_date"].dt.strftime("%Y%m%d").astype(int))
+    return df.drop(columns=["full_date"])
 
 
 def read_all_ote_prices():
@@ -191,14 +198,16 @@ if __name__ == "__main__":
     print("\ndim_hour rows:", len(dim_hour))
     print(dim_hour)
 
-    prices_czk = add_price_czk(prices, fx_filled)
-    print("\nprices_czk rows:", len(prices_czk))
-    print("missing price_czk_mwh:", prices_czk["price_czk_mwh"].isna().sum())
-    print(prices_czk.head(3))
+    fact_prices = add_date_key(prices)
+    fact_fx = add_date_key(fx_filled)
+    # Every fact date_key must exist in dim_date, otherwise the foreign key in SQL will fail.
+    print("\nprice date_keys missing in dim_date:", (~fact_prices["date_key"].isin(dim_date["date_key"])).sum())
+    print("fx date_keys missing in dim_date:", (~fact_fx["date_key"].isin(dim_date["date_key"])).sum())
+    print(fact_prices.head(3))
 
     SILVER_DIR.mkdir(parents=True, exist_ok=True)
-    prices_czk.to_csv(SILVER_DIR / "fact_energy_prices.csv", index=False)
-    fx_filled.to_csv(SILVER_DIR / "fact_fx.csv", index=False)
+    fact_prices.to_csv(SILVER_DIR / "fact_energy_prices.csv", index=False)
+    fact_fx.to_csv(SILVER_DIR / "fact_fx.csv", index=False)
     repo.to_csv(SILVER_DIR / "repo_rate.csv", index=False)
     dim_date.to_csv(SILVER_DIR / "dim_date.csv", index=False)
     dim_hour.to_csv(SILVER_DIR / "dim_hour.csv", index=False)
