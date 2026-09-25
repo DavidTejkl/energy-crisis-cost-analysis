@@ -110,9 +110,13 @@ one carried forward under the weekend/holiday fill rule — see `is_actual_rate`
 | Column             | Format             | Description                                                                     |
 | ------------------ | ------------------ | ------------------------------------------------------------------------------- |
 | `date_key`         | integer (YYYYMMDD) | primary key and foreign key to `dim_date`                                       |
-| `rate_czk_per_eur` | decimal            | exchange rate — CZK per 1 EUR                                                   |
+| `rate_czk_per_eur` | DECIMAL(5,3)       | exchange rate — CZK per 1 EUR; must be > 0 (CHECK)                              |
 | `is_actual_rate`   | 0/1                | 1 = ČNB actually published a rate for this day, 0 = carried forward (fill rule) |
 | `source_date`      | Date               | where the displayed value actually comes from — if `is_actual_rate = 1`, equals the date of this row; if `is_actual_rate = 0`, the date of the last previously published rate. Never NULL (decision 2026-09-23: always populated, to avoid NULL handling in queries). Plain date, not a key: for 1 Jan 2020 it is 2019-12-31, which is outside `dim_date`. |
+
+Type note: ČNB publishes the rate with up to 3 decimals; 2020–2024 range is 23.275 to 27.81.
+`(5,3)` holds up to 99.999. A rate can never be zero or negative, so a CHECK > 0 is safe here
+(unlike electricity prices).
 
 ## 5. repo_rate (validity-period table)
 
@@ -140,4 +144,9 @@ first period starts on 2019-05-03, before `dim_date` begins.
 | --------------- | ------- | ----------------------------------------------------------------------------------- |
 | `valid_from`    | Date    | primary key — start of validity (source column `PLATNA_OD`, `YYYYMMDD` text in the source) |
 | `valid_to`      | Date    | end of validity — one day before the next row's `valid_from` (computed in `python/02_transform.py`); for the last row, set to the last `dim_date` day (2024-12-31), to avoid NULL |
-| `repo_rate_pct` | decimal | repo rate in % (source column `CNB_REPO_SAZBA_V_%`)                                 |
+| `repo_rate_pct` | DECIMAL(4,2) | repo rate in % (source column `CNB_REPO_SAZBA_V_%`)                            |
+
+Type note: ČNB repo rate has at most 2 decimals; 2020–2024 range is 0.25 to 7.00. `(4,2)` holds
+−99.99 to 99.99. No CHECK on the sign: central banks can set negative rates (e.g. ECB deposit rate
+−0.50 % in 2019–2022), so a negative value is a valid outcome, not an error. A CHECK
+`valid_from <= valid_to` rejects a period that ends before it starts (a one-day period is allowed).
