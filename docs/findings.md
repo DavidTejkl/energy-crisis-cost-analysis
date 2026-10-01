@@ -22,3 +22,15 @@ Labels: FACT = read from a query output, with the query named.
   (`count_of_hours` per `year` and `price_band`, bands from `docs/kpi_definitions.md`)
 - **FACT:** Negative-price hours dropped to 8 in 2022 and rose to 315 in 2024, the most of all five years.
   (same query, band `negative`)
+
+## 1.4 Price changes (`sql/06_query_price_changes.sql`)
+
+- **FACT:** The largest day-to-day rise of the daily average price was on 11 Jul 2022: +6,844 CZK/MWh
+  (2,265 → 9,109). The largest drop was on 1 Oct 2022: −5,266 CZK/MWh (8,697 → 3,430).
+  (`absolute_change`, max and min)
+- **FACT:** 18 of the 20 largest daily rises in 2022 fell on a Monday, so the day-to-day change mostly shows
+  the weekly pattern (cheap weekend, rebound on Monday) at a very high price level, not separate market events.
+  (`absolute_change` of 2022, top 20, counted by `dim_date.weekday_num`)
+- **Method note:** `pct_change` is NULL when the previous day's price is ≤ 0 (5 days), because dividing by
+  a negative price flips the sign (e.g. 22 Mar 2020: −0.98 EUR/MWh on a Sunday with 11 negative hours,
+  confirmed in the raw OTE file). Changes are therefore compared in CZK.
