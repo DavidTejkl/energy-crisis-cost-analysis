@@ -34,3 +34,15 @@ Labels: FACT = read from a query output, with the query named.
 - **Method note:** `pct_change` is NULL when the previous day's price is ≤ 0 (5 days), because dividing by
   a negative price flips the sign (e.g. 22 Mar 2020: −0.98 EUR/MWh on a Sunday with 11 negative hours,
   confirmed in the raw OTE file). Changes are therefore compared in CZK.
+
+## 1.5 Top hours and days (`sql/07_query_top_hours.sql`)
+
+- **FACT:** The most expensive hour of 2024 (12 Dec 2024, hour 18: 21,171 CZK/MWh) was almost as high as the
+  most expensive hour of the crisis (29 Aug 2022, hour 20: 21,422 CZK/MWh). The most expensive day of 2024
+  averaged 9,035 CZK/MWh, about half of the 2022 peak day (26 Aug 2022: 17,325 CZK/MWh).
+  (`price_czk_mwh` and `avg_price_czk`, rank 1 per year)
+- **FACT:** All 5 most expensive days of 2022 fell within one week, 24–31 Aug 2022 (15,535 – 17,325 CZK/MWh).
+  (`avg_price_czk`, rank 1–5 of 2022)
+- **FINDING:** 2022 was a long period of very high prices; the 2024 peak was a short shock of a few hours
+  (low wind and solar output, see the DQ report). Single-hour spikes at crisis level are still possible after
+  the crisis, so spot price risk did not disappear with it.
