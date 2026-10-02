@@ -51,7 +51,7 @@ python/    01_extract · 02_transform · 03_load · config.py (paths and constan
 sql/       01–03 database, tables, views · 04–07 analysis queries · 91 data quality tests
 docs/      brief, data model, KPI definitions, data quality report, findings, decisions (ADRs)
 config/    regulated price components with validity periods (next version)
-data/      bronze (raw) · silver (cleaned) · gold — rebuilt by the scripts, not stored in git
+data/      bronze (raw) · silver (cleaned) — rebuilt by the scripts, not stored in git · gold (next version)
 powerbi/   Power BI report as PBIP (next version)
 ```
 
@@ -69,7 +69,7 @@ ODBC Driver 17 for SQL Server, `sqlcmd`.
 ```bash
 # 1. Python environment
 py -m venv .venv
-.venv\Scripts\activate
+source .venv/Scripts/activate    # Git Bash; in PowerShell: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
 # 2. Download and clean the data

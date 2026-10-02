@@ -5,7 +5,7 @@
 ## SCENARIO (fictional, stated once)
 - Model company: energy-intensive Czech firm with a three-shift operation and lower weekend load.
 - Load profile: SIMULATED hourly profile (`is_simulated = 1`) — real load curves are trade secrets.
-  Method documented in `docs/methodology.md`.
+  Method will be documented in `docs/methodology.md` (next version).
 - Stakeholders: CFO (cost and budget risk), energy purchasing (fix now or wait?).
 - Decision: how much of next year's volume to fix in advance.
 

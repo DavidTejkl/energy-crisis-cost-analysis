@@ -6,7 +6,7 @@
 
 - Modelová firma: energeticky náročná česká firma s třísměnným provozem a nižším odběrem o víkendech.
 - Odběrový profil: SIMULOVANÝ hodinový profil (`is_simulated = 1`) — skutečné odběrové křivky jsou obchodní
-  tajemství. Metoda je popsaná v `docs/methodology.md`.
+  tajemství. Metoda bude popsaná v `docs/methodology.md` (další verze).
 - Komu analýza slouží: finanční ředitel (náklady a riziko rozpočtu), nákup energií (zafixovat teď, nebo počkat?).
 - Rozhodnutí: jakou část spotřeby na příští rok zafixovat dopředu.
 

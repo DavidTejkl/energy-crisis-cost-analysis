@@ -57,7 +57,7 @@ python/    01_extract · 02_transform · 03_load · config.py (cesty a konstanty
 sql/       01–03 databáze, tabulky, pohledy · 04–07 analytické dotazy · 91 testy kvality dat
 docs/      zadání, datový model, definice KPI, report kvality dat, nálezy, rozhodnutí (ADR)
 config/    regulované složky ceny s obdobím platnosti (další verze)
-data/      bronze (surová) · silver (vyčištěná) · gold — vytváří je skripty, v gitu nejsou
+data/      bronze (surová) · silver (vyčištěná) — vytváří je skripty, v gitu nejsou · gold (další verze)
 powerbi/   report Power BI ve formátu PBIP (další verze)
 ```
 
@@ -77,7 +77,7 @@ ODBC Driver 17 for SQL Server, `sqlcmd`.
 ```bash
 # 1. Prostředí Pythonu
 py -m venv .venv
-.venv\Scripts\activate
+source .venv/Scripts/activate    # Git Bash; v PowerShellu: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
 # 2. Stažení a vyčištění dat
