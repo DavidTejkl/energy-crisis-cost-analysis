@@ -1,5 +1,7 @@
 # Project brief — P1 Energy Crisis Cost Analysis
 
+**English** · [Čeština](01_project_brief_cz.md)
+
 ## SCENARIO (fictional, stated once)
 - Model company: energy-intensive Czech firm with a three-shift operation and lower weekend load.
 - Load profile: SIMULATED hourly profile (`is_simulated = 1`) — real load curves are trade secrets.
