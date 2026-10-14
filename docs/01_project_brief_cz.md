@@ -5,6 +5,7 @@
 ## SCÉNÁŘ (fiktivní, uvedený jednou)
 
 - Modelová firma: energeticky náročná česká firma s třísměnným provozem a nižším odběrem o víkendech.
+- Připojení: distribuční oblast ČEZ Distribuce, vysoké napětí (VN, 22 kV), ceny bez DPH (ADR-005).
 - Odběrový profil: SIMULOVANÝ hodinový profil (`is_simulated = 1`) — skutečné odběrové křivky jsou obchodní
   tajemství. Metoda bude popsaná v `docs/methodology.md` (další verze).
 - Komu analýza slouží: finanční ředitel (náklady a riziko rozpočtu), nákup energií (zafixovat teď, nebo počkat?).

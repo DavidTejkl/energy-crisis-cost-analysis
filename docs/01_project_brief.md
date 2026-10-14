@@ -4,6 +4,7 @@
 
 ## SCENARIO (fictional, stated once)
 - Model company: energy-intensive Czech firm with a three-shift operation and lower weekend load.
+- Connection: ČEZ Distribuce area, high voltage (VN, 22 kV); prices without VAT (ADR-005).
 - Load profile: SIMULATED hourly profile (`is_simulated = 1`) — real load curves are trade secrets.
   Method will be documented in `docs/methodology.md` (next version).
 - Stakeholders: CFO (cost and budget risk), energy purchasing (fix now or wait?).
