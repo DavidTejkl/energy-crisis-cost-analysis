@@ -6,6 +6,7 @@ GO
 -- Safe to rerun: the table is dropped and recreated, so definition changes apply - data is reloaded from the folder data/silver files
 DROP TABLE IF EXISTS dbo.fact_energy_prices;
 DROP TABLE IF EXISTS dbo.fact_fx;
+DROP TABLE IF EXISTS dbo.fact_load;
 DROP TABLE IF EXISTS dbo.dim_date;
 DROP TABLE IF EXISTS dbo.dim_hour;
 DROP TABLE IF EXISTS dbo.repo_rate;
@@ -69,5 +70,17 @@ CREATE TABLE dbo.repo_rate(
 	CONSTRAINT pk_repo_rate PRIMARY KEY (valid_from),
 	CONSTRAINT ck_repo_rate_repo_period CHECK (valid_from <= valid_to));
 
+-- Creating sixth table of our project fact_load - fact table which contains simulated data of our fictional industry company and their load of electricity - according to the document data_model.md
+CREATE TABLE dbo.fact_load(
+	date_key int NOT NULL,
+	hour_of_day int NOT NULL,
+	load_mwh DECIMAL(5,3) NOT NULL,
+	is_simulated bit NOT NULL,
+	CONSTRAINT pk_fact_load PRIMARY KEY (date_key,hour_of_day),
+	CONSTRAINT ck_fact_load_hour_of_day CHECK (hour_of_day BETWEEN 1 AND 25),
+	CONSTRAINT ck_fact_load_load_mwh CHECK (load_mwh >= 0),
+	CONSTRAINT ck_fact_load_is_simulated CHECK (is_simulated = 1),
+	CONSTRAINT fk_fact_load_date_key FOREIGN KEY (date_key) REFERENCES dbo.dim_date (date_key),
+	CONSTRAINT fk_fact_load_hour_of_day FOREIGN KEY (hour_of_day) REFERENCES dbo.dim_hour (hour_of_day));
 
 

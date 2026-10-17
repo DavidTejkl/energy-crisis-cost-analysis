@@ -8,7 +8,7 @@ from config import CONNECTION_STRING, SILVER_DIR
 
 # Load order: dimensions before facts, because the foreign keys in the facts
 # only accept date_key / hour_of_day values that already exist in the dimensions.
-TABLES = ["dim_date", "dim_hour", "repo_rate", "fact_energy_prices", "fact_fx"]
+TABLES = ["dim_date", "dim_hour", "repo_rate", "fact_energy_prices", "fact_fx", "fact_load"]
 
 
 def clear_tables(cursor):
