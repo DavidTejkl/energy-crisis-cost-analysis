@@ -4,10 +4,12 @@
 
 ## SCÉNÁŘ (fiktivní, uvedený jednou)
 
-- Modelová firma: energeticky náročná česká firma s třísměnným provozem a nižším odběrem o víkendech.
+- Modelová firma: energeticky náročná česká firma s nepřetržitým vysokoteplotním procesem (pece jedou 24/7
+  celý rok), drcením a mletím ve třech směnách od neděle 22:00 do pátku 22:00 (v zimě dvě směny)
+  a expedicí / kancelářemi v ranní směně ve všední dny; zhruba 28 GWh ročně (PŘEDPOKLAD).
 - Připojení: distribuční oblast ČEZ Distribuce, vysoké napětí (VN, 22 kV), ceny bez DPH (ADR-005).
 - Odběrový profil: SIMULOVANÝ hodinový profil (`is_simulated = 1`) — skutečné odběrové křivky jsou obchodní
-  tajemství. Metoda bude popsaná v `docs/methodology.md` (další verze).
+  tajemství. Metoda: [`docs/methodology.md`](methodology.md) (anglicky).
 - Komu analýza slouží: finanční ředitel (náklady a riziko rozpočtu), nákup energií (zafixovat teď, nebo počkat?).
 - Rozhodnutí: jakou část spotřeby na příští rok zafixovat dopředu.
 

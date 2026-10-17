@@ -3,10 +3,12 @@
 **English** · [Čeština](01_project_brief_cz.md)
 
 ## SCENARIO (fictional, stated once)
-- Model company: energy-intensive Czech firm with a three-shift operation and lower weekend load.
+- Model company: energy-intensive Czech firm with a continuous high-temperature process (kilns run 24/7,
+  all year), crushing and milling in three shifts from Sunday 22:00 to Friday 22:00 (two shifts in winter)
+  and dispatch / offices on the weekday morning shift; about 28 GWh per year (ASSUMPTION).
 - Connection: ČEZ Distribuce area, high voltage (VN, 22 kV); prices without VAT (ADR-005).
 - Load profile: SIMULATED hourly profile (`is_simulated = 1`) — real load curves are trade secrets.
-  Method will be documented in `docs/methodology.md` (next version).
+  Method: [`docs/methodology.md`](methodology.md).
 - Stakeholders: CFO (cost and budget risk), energy purchasing (fix now or wait?).
 - Decision: how much of next year's volume to fix in advance.
 

@@ -50,7 +50,7 @@ analysis (T-SQL)   →  view vw_energy_prices_czk + queries sql/04–07
 python/    01_extract · 02_transform · 03_load · config.py (paths and constants)
 sql/       01–03 database, tables, views · 04–07 analysis queries · 91 data quality tests
 docs/      brief, data model, KPI definitions, data quality report, findings, decisions (ADRs)
-config/    regulated price components with validity periods (next version)
+config/    regulated price components with validity periods (ERÚ, 2020–2024)
 data/      bronze (raw) · silver (cleaned) — rebuilt by the scripts, not stored in git · gold (next version)
 powerbi/   Power BI report as PBIP (next version)
 ```

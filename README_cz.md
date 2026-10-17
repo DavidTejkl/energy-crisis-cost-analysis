@@ -56,7 +56,7 @@ analýza (T-SQL)       →  pohled vw_energy_prices_czk + dotazy sql/04–07
 python/    01_extract · 02_transform · 03_load · config.py (cesty a konstanty)
 sql/       01–03 databáze, tabulky, pohledy · 04–07 analytické dotazy · 91 testy kvality dat
 docs/      zadání, datový model, definice KPI, report kvality dat, nálezy, rozhodnutí (ADR)
-config/    regulované složky ceny s obdobím platnosti (další verze)
+config/    regulované složky ceny s obdobím platnosti (ERÚ, 2020–2024)
 data/      bronze (surová) · silver (vyčištěná) — vytváří je skripty, v gitu nejsou · gold (další verze)
 powerbi/   report Power BI ve formátu PBIP (další verze)
 ```
