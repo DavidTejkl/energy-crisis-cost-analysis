@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS dbo.fact_load;
 DROP TABLE IF EXISTS dbo.dim_date;
 DROP TABLE IF EXISTS dbo.dim_hour;
 DROP TABLE IF EXISTS dbo.repo_rate;
+DROP TABLE IF EXISTS dbo.regulated_price;
 
 -- Creating first table of our project dimension Date - according to the document data_model.md
 CREATE TABLE dbo.dim_date (
@@ -82,5 +83,21 @@ CREATE TABLE dbo.fact_load(
 	CONSTRAINT ck_fact_load_is_simulated CHECK (is_simulated = 1),
 	CONSTRAINT fk_fact_load_date_key FOREIGN KEY (date_key) REFERENCES dbo.dim_date (date_key),
 	CONSTRAINT fk_fact_load_hour_of_day FOREIGN KEY (hour_of_day) REFERENCES dbo.dim_hour (hour_of_day));
+
+-- Creating seventh table of our project regulated_price - non fact, non dimension table but period table - according to the document data_model.md
+CREATE TABLE dbo.regulated_price(
+	component NVARCHAR(25) NOT NULL,
+	value DECIMAL(9,2) NOT NULL,
+	unit NVARCHAR(25) NOT NULL,
+	valid_from DATE NOT NULL,
+	valid_to DATE NOT NULL,
+	source NVARCHAR(70) NOT NULL,
+	CONSTRAINT pk_regulated_price PRIMARY KEY (valid_from,component),
+	CONSTRAINT ck_regulated_price_date_period CHECK (valid_from <= valid_to),
+	CONSTRAINT ck_regulated_price_value CHECK (value >= 0),
+	CONSTRAINT ck_regulated_price_unit CHECK (unit IN ('CZK/MWh','CZK/MW/month','CZK/supply_point/month')));
+
+
+
 
 

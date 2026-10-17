@@ -4,11 +4,11 @@
 import pandas as pd
 import pyodbc
 
-from config import CONNECTION_STRING, SILVER_DIR
+from config import CONFIG_DIR, CONNECTION_STRING, SILVER_DIR
 
 # Load order: dimensions before facts, because the foreign keys in the facts
 # only accept date_key / hour_of_day values that already exist in the dimensions.
-TABLES = ["dim_date", "dim_hour", "repo_rate", "fact_energy_prices", "fact_fx", "fact_load"]
+TABLES = ["dim_date", "dim_hour", "repo_rate", "regulated_price", "fact_energy_prices", "fact_fx", "fact_load"]
 
 
 def clear_tables(cursor):
@@ -21,7 +21,11 @@ def clear_tables(cursor):
 
 def load_table(cursor, table_name):
     """Insert all rows of data/silver/<table_name>.csv into the table of the same name."""
-    df = pd.read_csv(SILVER_DIR / f"{table_name}.csv")
+    # ERÚ prices are typed by hand into config/ (reference data), not produced by the transform.
+    if table_name == "regulated_price":
+        df = pd.read_csv(CONFIG_DIR / "tariffs.csv")
+    else:
+        df = pd.read_csv(SILVER_DIR / f"{table_name}.csv")
 
     columns = ", ".join(df.columns)
     placeholders = ", ".join(["?"] * len(df.columns))
