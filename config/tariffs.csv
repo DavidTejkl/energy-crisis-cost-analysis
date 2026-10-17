@@ -1,4 +1,37 @@
 component,value,unit,valid_from,valid_to,source
+reserved_capacity_yearly,177031,CZK/MW/month,2020-01-01,2020-12-31,ERU 5/2019 point 4.17
+network_use,66.79,CZK/MWh,2020-01-01,2020-12-31,ERU 5/2019 point 4.38
+system_services,77.12,CZK/MWh,2020-01-01,2020-12-31,ERU 5/2019 point 3.1 a)
+poze_per_mw,57674.52,CZK/MW/month,2020-01-01,2020-12-31,ERU 5/2019 point 5.1 a)
+poze_cap,495,CZK/MWh,2020-01-01,2020-12-31,ERU 5/2019 point 5.4
+ote_imbalance_settlement,1.62,CZK/supply_point/month,2020-01-01,2020-12-31,ERU 5/2019 point 6.2 a)
+ote_res_admin,1.07,CZK/supply_point/month,2020-01-01,2020-12-31,ERU 5/2019 point 6.2 b)
+electricity_tax,28.30,CZK/MWh,2020-01-01,2020-12-31,Act No. 261/2007 Coll._Part 47_Section 6(2)
+reserved_capacity_yearly,176388,CZK/MW/month,2021-01-01,2021-12-31,ERU 9/2020 point 4.17
+network_use,59.54,CZK/MWh,2021-01-01,2021-12-31,ERU 9/2020 point 4.39
+system_services,93.30,CZK/MWh,2021-01-01,2021-12-31,ERU 9/2020 point 3.1 a)
+poze_per_mw,65510.69,CZK/MW/month,2021-01-01,2021-12-31,ERU 9/2020 point 5.1 a)
+poze_cap,495,CZK/MWh,2021-01-01,2021-12-31,ERU 9/2020 point 5.4
+ote_imbalance_settlement,1.00,CZK/supply_point/month,2021-01-01,2021-12-31,ERU 9/2020 point 6.2 a)
+ote_res_admin,0.52,CZK/supply_point/month,2021-01-01,2021-12-31,ERU 9/2020 point 6.2 b)
+electricity_tax,28.30,CZK/MWh,2021-01-01,2021-12-31,Act No. 261/2007 Coll._Part 47_Section 6(2)
+reserved_capacity_yearly,172735,CZK/MW/month,2022-01-01,2022-12-31,ERU 8/2021 point 4.16
+network_use,83.12,CZK/MWh,2022-01-01,2022-12-31,ERU 8/2021 point 4.40
+system_services,113.53,CZK/MWh,2022-01-01,2022-12-31,ERU 8/2021 point 3.1.1
+poze_per_mw,51463.94,CZK/MW/month,2022-01-01,2022-09-30,ERU 8/2021 point 5.1.1
+poze_per_mw,0,CZK/MW/month,2022-10-01,2022-12-31,ERU 8/2022 point 5.1.1
+poze_cap,495,CZK/MWh,2022-01-01,2022-12-31,ERU 8/2021 point 5.3
+ote_imbalance_settlement,1.36,CZK/supply_point/month,2022-01-01,2022-12-31,ERU 8/2021 point 6.2.1
+ote_res_admin,0.45,CZK/supply_point/month,2022-01-01,2022-12-31,ERU 8/2021 point 6.2.2
+electricity_tax,28.30,CZK/MWh,2022-01-01,2022-12-31,Act No. 261/2007 Coll._Part 47_Section 6(2)
+reserved_capacity_yearly,172735,CZK/MW/month,2023-01-01,2023-12-31,ERU 13/2022 point 4.16
+network_use,83.77,CZK/MWh,2023-01-01,2023-12-31,ERU 13/2022 point 4.40
+system_services,113.53,CZK/MWh,2023-01-01,2023-12-31,ERU 13/2022 point 3.1.1
+poze_per_mw,0,CZK/MW/month,2023-01-01,2023-12-31,ERU 13/2022 point 5.1.1
+poze_cap,495,CZK/MWh,2023-01-01,2023-12-31,ERU 13/2022 point 5.3
+ote_imbalance_settlement,1.04,CZK/supply_point/month,2023-01-01,2023-12-31,ERU 13/2022 point 6.2.1
+ote_res_admin,0.00,CZK/supply_point/month,2023-01-01,2023-12-31,ERU 13/2022 point 6.2.2
+electricity_tax,28.30,CZK/MWh,2023-01-01,2023-12-31,Act No. 261/2007 Coll._Part 47_Section 6(2)
 reserved_capacity_yearly,204788,CZK/MW/month,2024-01-01,2024-12-31,ERU 5/2023 point 4.16
 network_use,188.16,CZK/MWh,2024-01-01,2024-12-31,ERU 5/2023 point 4.40
 system_services,212.82,CZK/MWh,2024-01-01,2024-12-31,ERU 5/2023 point 3.1.1
