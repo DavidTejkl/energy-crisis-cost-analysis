@@ -69,3 +69,18 @@ reserved capacity 5 MW, POZE, OTE fees), ČEZ Distribuce, VN, **without VAT and 
   came after the prices had already fallen.
 - **FACT:** POZE was always cheaper by reserved capacity than by consumption (0 of 60 months chose the per-MWh
   cap): a continuous process uses many MWh per reserved MW.
+
+## 2.6 Peak vs offpeak (`sql/09_query_peak_offpeak.sql`)
+
+Peak = Monday–Friday 08:00–20:00 (`hour_of_day` 9–20), the market definition of the peak load product; every other
+hour is offpeak. ASSUMPTION: weekday public holidays count as peak (no holiday flag in `dim_date`). Simple averages
+of market prices (every hour has the same weight, as in a market product).
+
+- **FACT:** the peak/offpeak spread rose from **12.53 EUR/MWh in 2020 to 60.04 EUR/MWh in 2022** (4.8×), then
+  21.82 (2023) and 14.89 (2024). In CZK: 330.09 → 1,471.75 → 526.54 → 374.52 CZK/MWh.
+- **FACT:** in relative terms the peak premium fell: peak was 43 % above offpeak in 2020, 38 % in 2021, 27 % in
+  2022, 23 % in 2023 and 19 % in 2024. The spread grew in 2022 because the whole price level rose, not because
+  daytime hours became relatively more expensive.
+- **FINDING (SIMULATED load):** the company runs its crushing and offices in daytime shifts, so the absolute spread
+  is the price of its schedule; this is why its load-weighted price is above the market average (+17.29 EUR/MWh in
+  2022). The split into price, volume and load-profile effects follows in 2.7.
