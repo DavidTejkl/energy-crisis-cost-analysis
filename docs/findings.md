@@ -46,3 +46,26 @@ Labels: FACT = read from a query output, with the query named.
 - **FINDING:** 2022 was a long period of very high prices; the 2024 peak was a short shock of a few hours
   (low wind and solar output, see the DQ report). Single-hour spikes at crisis level are still possible after
   the crisis, so spot price risk did not disappear with it.
+
+## 2.5 All-in price per month (`sql/08_query_allin_price.sql`)
+
+All-in = power from the day-ahead market + regulated components (network use, system services, electricity tax,
+reserved capacity 5 MW, POZE, OTE fees), ČEZ Distribuce, VN, **without VAT and without a supplier margin**
+(ADR-005). Load is **SIMULATED** (28 GWh/year, `docs/methodology.md`); prices and tariffs are FACT.
+
+- **FINDING (SIMULATED load):** the all-in price rose from **1.62 CZK/kWh in 2020 to 7.19 CZK/kWh in 2022**
+  (4.4×), then 3.15 (2023) and 3.38 (2024). With almost the same volume (27.95–28.05 GWh), the yearly cost went
+  from 45.5 m CZK (2020) to 200.9 m CZK (2022).
+- **FINDING (SIMULATED load):** the power price drove the crisis: power was 58 % of the all-in cost in 2020 and
+  91 % in 2022. The most expensive month was August 2022 (12.75 CZK/kWh all-in, power 12,084 CZK/MWh).
+- **FINDING (SIMULATED load):** 2024 was more expensive than 2023 (3.38 vs 3.15 CZK/kWh) although power was
+  cheaper (2,266 vs 2,550 CZK/MWh): the regulated part grew (network use 2.2×, system services 1.9× vs 2023,
+  POZE back after being 0 from October 2022 to December 2023).
+- **FINDING (SIMULATED load):** the company pays more than the market average because it uses more power in
+  the expensive daytime hours: January 2020 load-weighted power price 1,148.10 vs simple average 1,054.47 CZK/MWh.
+- **FACT:** the 2023 state price cap (5,000 CZK/MWh, applied to the monthly weighted power price, ADR-005) never
+  binds: the most expensive month of 2023 was January at 3,572.47 CZK/MWh. In 2022, when no cap existed,
+  6 months were above 5,000 CZK/MWh (highest August 2022, 12,084). For a company buying at spot prices, the cap
+  came after the prices had already fallen.
+- **FACT:** POZE was always cheaper by reserved capacity than by consumption (0 of 60 months chose the per-MWh
+  cap): a continuous process uses many MWh per reserved MW.
