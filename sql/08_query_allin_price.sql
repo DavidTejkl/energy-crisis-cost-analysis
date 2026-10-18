@@ -19,6 +19,11 @@
 -- ERU price decisions. The choice needs the monthly load, so it is made in the final SELECT.
 -- POZE was 0 from October 2022 to December 2023 (paid by the state).
 
+-- Part 3c: the 2023 price cap (5,000 CZK/MWh on the monthly weighted power price, ADR-005) never
+-- binds: highest 2023 month = January, 3,572.47 CZK/MWh. No cap column is needed.
+
+-- Part 3d: total cost = power + all regulated components; all-in price per kWh = total / load / 1000.
+
 USE [EnergyCrisisCostAnalysis]
 GO 
 
@@ -62,9 +67,10 @@ WITH
 	FROM [dbo].[dim_date] d
 	JOIN [dbo].[regulated_price] rp ON d.full_date BETWEEN rp.valid_from AND rp.valid_to
 	WHERE d.day_of_month = 1 AND rp.component IN ('reserved_capacity_yearly', 'ote_imbalance_settlement', 'ote_res_admin', 'poze_per_mw', 'poze_cap')
-	GROUP BY d.year,d.month )
+	GROUP BY d.year,d.month),
 
-SELECT 
+	monthly_cost AS (
+	SELECT 
 		mp.year,
 		mp.month,
 		mp.load_mwh,
@@ -79,7 +85,16 @@ SELECT
 			THEN mf.poze_capacity_czk
 			ELSE mf.poze_cap_czk_mwh * mp.load_mwh
 			END AS poze_czk
-FROM monthly_power mp 
-JOIN monthly_regulated mr ON mp.year = mr.year AND mp.month = mr.month
-JOIN monthly_fixed mf ON mp.year = mf.year AND mp.month = mf.month
-ORDER BY mp.year,mp.month
+		FROM monthly_power mp 
+		JOIN monthly_regulated mr ON mp.year = mr.year AND mp.month = mr.month
+		JOIN monthly_fixed mf ON mp.year = mf.year AND mp.month = mf.month)
+
+SELECT 
+		*,
+		power_cost_czk + electricity_tax_czk + network_use_czk + system_services_czk + reserved_capacity_czk + ote_fees_czk + poze_czk AS total_cost_czk,
+		(power_cost_czk + electricity_tax_czk + network_use_czk + system_services_czk + reserved_capacity_czk + ote_fees_czk + poze_czk) / NULLIF(load_mwh,0) / 1000 AS allin_price_czk_kwh
+FROM monthly_cost
+ORDER BY year,month
+
+
+
