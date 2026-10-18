@@ -1,28 +1,47 @@
 -- Business question: what did electricity really cost the company per MWh, month by month?
 -- One row per month (60 rows for 2020-2024). Load is SIMULATED (fact_load, docs/methodology.md).
+-- CZ: Byznys otázka: kolik firmu elektřina skutečně stála za MWh, měsíc po měsíci?
+-- Jeden řádek na měsíc (60 řádků za 2020-2024). Odběr je SIMULOVANÝ (fact_load, docs/methodology.md).
 
 -- Part 1: power (market) cost. Load and price are joined on date_key AND hour_of_day (both
 -- hourly), cost = SUM(load x price) hour by hour.
 -- Monthly power price = cost / load (volume-weighted), not AVG of hourly prices: 
 -- the company uses more power in the expensive daytime hours, so a simple average would understate its cost
 -- (January 2020: 1,148.10 weighted vs 1,054.47 simple average CZK/MWh).
+-- CZ: Část 1: silová (tržní) elektřina. Odběr a cena se spojují přes date_key A hour_of_day (obojí
+-- po hodinách), náklad = SUM(odběr x cena) hodinu po hodině.
+-- Měsíční cena silové elektřiny = náklad / odběr (vážená objemem), ne AVG hodinových cen:
+-- firma odebírá víc v drahých denních hodinách, takže prostý průměr by její náklad podhodnotil
+-- (leden 2020: 1 148,10 vážená vs. 1 054,47 prostý průměr CZK/MWh).
 
 -- Part 2: regulated components paid per MWh (network use, system services, electricity tax).
 -- regulated_price has validity periods, so it is joined to days with BETWEEN; it is summed in its
 -- own CTE, because joining it to the power CTE would repeat each hour 3 times (once per component).
+-- CZ: Část 2: regulované složky placené za MWh (použití sítě, systémové služby, daň z elektřiny).
+-- regulated_price má období platnosti, proto se ke dnům připojuje přes BETWEEN; sčítá se ve vlastním
+-- CTE, protože připojení k CTE silové elektřiny by každou hodinu zopakovalo 3x (jednou za každou složku).
 
 -- Part 3a: fixed monthly charges (reserved capacity 5 MW = scenario ASSUMPTION, docs/methodology.md;
 -- two OTE fees per supply point). They do not depend on load, so they are joined to one day per
 -- month (day_of_month = 1), never to hours or days, which would add the charge 744 or 31 times.
+-- CZ: Část 3a: pevné měsíční poplatky (rezervovaný příkon 5 MW = PŘEDPOKLAD scénáře, docs/methodology.md;
+-- dva poplatky OTE za odběrné místo). Nezávisí na odběru, proto se připojují k jednomu dni v měsíci
+-- (day_of_month = 1), nikdy k hodinám nebo dnům, což by poplatek přičetlo 744krát nebo 31krát.
 
 -- Part 3b: POZE = the lower of (rate per MW x reserved MW) and (cap per MWh x monthly load), per
 -- ERU price decisions. The choice needs the monthly load, so it is made in the final SELECT.
 -- POZE was 0 from October 2022 to December 2023 (paid by the state).
+-- CZ: Část 3b: POZE = nižší z (sazba za MW x rezervované MW) a (strop za MWh x měsíční odběr), podle
+-- cenových rozhodnutí ERÚ. Výběr potřebuje měsíční odběr, proto se dělá ve finálním SELECTu.
+-- POZE byla od října 2022 do prosince 2023 nulová (platil ji stát).
 
 -- Part 3c: the 2023 price cap (5,000 CZK/MWh on the monthly weighted power price, ADR-005) never
 -- binds: highest 2023 month = January, 3,572.47 CZK/MWh. No cap column is needed.
+-- CZ: Část 3c: cenový strop 2023 (5 000 CZK/MWh na měsíční váženou cenu silové elektřiny, ADR-005)
+-- nikdy nezabral: nejdražší měsíc 2023 = leden, 3 572,47 CZK/MWh. Sloupec pro strop není potřeba.
 
 -- Part 3d: total cost = power + all regulated components; all-in price per kWh = total / load / 1000.
+-- CZ: Část 3d: celkový náklad = silová elektřina + všechny regulované složky; all-in cena za kWh = náklad / odběr / 1000.
 
 USE [EnergyCrisisCostAnalysis]
 GO 

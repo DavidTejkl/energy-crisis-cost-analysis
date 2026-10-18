@@ -5,6 +5,13 @@
 -- The first day (2020-01-01) has no previous day, so its change is NULL.
 -- pct_change is NULL when yesterday's price is <= 0: dividing by a negative price flips the sign
 -- (5 days in 2020-2024). Shocks are judged by absolute_change, which is always valid.
+-- CZ: Byznys otázka: kdy přišly velké cenové šoky a jak velké byly?
+-- Jeden řádek na den (1 827 řádků za 2020-2024).
+-- Denní cena = prostý průměr hodin (base cena dne), stejně jako v dotazu 04.
+-- Změna = dnešní cena minus včerejší cena, v CZK/MWh a v %.
+-- První den (2020-01-01) nemá předchozí den, proto je jeho změna NULL.
+-- pct_change je NULL, když je včerejší cena <= 0: dělení zápornou cenou otočí znaménko
+-- (5 dní v 2020-2024). Šoky se posuzují podle absolute_change, která platí vždy.
 
 USE EnergyCrisisCostAnalysis
 GO

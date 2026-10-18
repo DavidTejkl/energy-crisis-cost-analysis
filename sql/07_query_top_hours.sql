@@ -6,6 +6,14 @@
 -- The rank is filtered outside the CTE because a window function cannot be used in WHERE.
 -- Part 2: top 5 days per year (25 rows). Daily price = simple average of the hours, same as in
 -- queries 04 and 06; it is computed in its own CTE first, then ranked in a second CTE.
+-- CZ: Byznys otázka: které hodiny byly v každém roce nejdražší a jak vysoko cena vyšla?
+-- Průměr skryje extrémy; nejdražší hodiny ukazují, kolik mohl stát nezajištěný nákup na spotu za jednu hodinu.
+-- Top 5 hodin za rok (25 řádků za 2020-2024), cena v CZK/MWh z vw_energy_prices_czk.
+-- RANK začíná každý rok znovu (PARTITION BY year); stejné ceny dostanou stejné pořadí, takže shoda
+-- na 5. místě by pro daný rok vrátila víc než 5 řádků.
+-- Pořadí se filtruje mimo CTE, protože okenní funkci nelze použít ve WHERE.
+-- Část 2: top 5 dní za rok (25 řádků). Denní cena = prostý průměr hodin, stejně jako v dotazech
+-- 04 a 06; nejdřív se spočítá ve vlastním CTE, pak se seřadí ve druhém CTE.
 
 USE EnergyCrisisCostAnalysis
 GO

@@ -2,6 +2,10 @@
 -- and how did the mix change during the 2021-2023 energy crisis?
 -- Bands and thresholds (CZK/MWh) are defined in docs/kpi_definitions.md,
 -- fixed for all years so the years can be compared on the same scale.
+-- CZ: Byznys otázka: kolik hodin za rok spadlo do každého cenového pásma
+-- a jak se jejich poměr změnil během energetické krize 2021-2023?
+-- Pásma a hranice (CZK/MWh) jsou definované v docs/kpi_definitions.md,
+-- stejné pro všechny roky, aby šly roky porovnat na stejné stupnici.
 
 USE EnergyCrisisCostAnalysis
 GO

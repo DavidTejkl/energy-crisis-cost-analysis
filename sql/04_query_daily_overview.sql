@@ -3,6 +3,11 @@
 -- avg prices = simple average of the hours (base price of the day)
 -- traded_value_czk = sum of volume * price, total value traded on the day
 -- hours_in_day is 23 or 25 on DST days, so volume is lower/higher on those days
+-- CZ: Byznys otázka: jak se v čase měnila denní cena elektřiny a kurz EUR/CZK?
+-- Jeden řádek na den (1 827 řádků za 2020-2024).
+-- průměrné ceny = prostý průměr hodin (base cena dne)
+-- traded_value_czk = součet objem * cena, celková zobchodovaná hodnota za den
+-- hours_in_day je 23 nebo 25 ve dnech změny času, proto je objem v těch dnech nižší/vyšší
 
 USE [EnergyCrisisCostAnalysis]
 GO

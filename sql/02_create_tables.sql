@@ -1,9 +1,11 @@
 -- ** This file is made for creating every table which we will need in our project - dim_date, dim_hour, fact_energy_prices, fact_fx, repo_rate **
+-- CZ: ** Tento soubor vytváří všechny tabulky, které v projektu potřebujeme - dim_date, dim_hour, fact_energy_prices, fact_fx, repo_rate **
 
 USE [EnergyCrisisCostAnalysis]
 GO
 
 -- Safe to rerun: the table is dropped and recreated, so definition changes apply - data is reloaded from the folder data/silver files
+-- CZ: Lze spustit opakovaně: tabulka se smaže a vytvoří znovu, takže se projeví změny definice - data se znovu nahrají ze souborů ve složce data/silver
 DROP TABLE IF EXISTS dbo.fact_energy_prices;
 DROP TABLE IF EXISTS dbo.fact_fx;
 DROP TABLE IF EXISTS dbo.fact_load;
@@ -13,6 +15,7 @@ DROP TABLE IF EXISTS dbo.repo_rate;
 DROP TABLE IF EXISTS dbo.regulated_price;
 
 -- Creating first table of our project dimension Date - according to the document data_model.md
+-- CZ: Vytvoření první tabulky projektu, dimenze Datum - podle dokumentu data_model.md
 CREATE TABLE dbo.dim_date (
 	date_key int NOT NULL,
 	full_date date NOT NULL,
@@ -35,6 +38,7 @@ CREATE TABLE dbo.dim_date (
 	'Středa','Čtvrtek','Pátek','Sobota','Neděle')));
 
 -- Creating second table of our project dimension Hour - according to the document data_model.md
+-- CZ: Vytvoření druhé tabulky projektu, dimenze Hodina - podle dokumentu data_model.md
 CREATE TABLE dbo.dim_hour(
 	hour_of_day int NOT NULL,
 	time_of_day nvarchar(10) NOT NULL,
@@ -43,6 +47,7 @@ CREATE TABLE dbo.dim_hour(
 	CONSTRAINT ck_dim_hour_time_of_day CHECK (time_of_day IN ('ráno','dopoledne','odpoledne','večer','noc')));
 
 -- Creating third table of our project fact Energy prices - the main table in our star schema - according to the document data_model.md
+-- CZ: Vytvoření třetí tabulky projektu, fakt Ceny energie - hlavní tabulka naší hvězdicové struktury - podle dokumentu data_model.md
 CREATE TABLE dbo.fact_energy_prices(
     date_key int NOT NULL,
     hour_of_day int NOT NULL,
@@ -54,6 +59,7 @@ CREATE TABLE dbo.fact_energy_prices(
 	CONSTRAINT fk_fact_energy_prices_hour_of_day FOREIGN KEY (hour_of_day) REFERENCES dbo.dim_hour (hour_of_day));
 
 -- Creating fourth table of our project fact_fx - according to the document data_model.md
+-- CZ: Vytvoření čtvrté tabulky projektu fact_fx - podle dokumentu data_model.md
 CREATE TABLE dbo.fact_fx(
 	date_key int NOT NULL,
 	rate_czk_per_eur DECIMAL(5,3) NOT NULL,
@@ -64,6 +70,7 @@ CREATE TABLE dbo.fact_fx(
 	CONSTRAINT ck_fact_fx_rate_czk_per_eur CHECK (rate_czk_per_eur > 0));
 
 -- Creating fifth table of our project repo_rate - non fact, non dimension table but period table - according to the document data_model.md
+-- CZ: Vytvoření páté tabulky projektu repo_rate - není faktová ani dimenzní, je to tabulka s obdobími platnosti - podle dokumentu data_model.md
 CREATE TABLE dbo.repo_rate(
 	valid_from DATE NOT NULL,
 	valid_to DATE NOT NULL,
@@ -72,6 +79,7 @@ CREATE TABLE dbo.repo_rate(
 	CONSTRAINT ck_repo_rate_repo_period CHECK (valid_from <= valid_to));
 
 -- Creating sixth table of our project fact_load - fact table which contains simulated data of our fictional industry company and their load of electricity - according to the document data_model.md
+-- CZ: Vytvoření šesté tabulky projektu fact_load - faktová tabulka se simulovanými daty o odběru elektřiny naší fiktivní průmyslové firmy - podle dokumentu data_model.md
 CREATE TABLE dbo.fact_load(
 	date_key int NOT NULL,
 	hour_of_day int NOT NULL,
@@ -85,6 +93,7 @@ CREATE TABLE dbo.fact_load(
 	CONSTRAINT fk_fact_load_hour_of_day FOREIGN KEY (hour_of_day) REFERENCES dbo.dim_hour (hour_of_day));
 
 -- Creating seventh table of our project regulated_price - non fact, non dimension table but period table - according to the document data_model.md
+-- CZ: Vytvoření sedmé tabulky projektu regulated_price - není faktová ani dimenzní, je to tabulka s obdobími platnosti - podle dokumentu data_model.md
 CREATE TABLE dbo.regulated_price(
 	component NVARCHAR(25) NOT NULL,
 	value DECIMAL(9,2) NOT NULL,

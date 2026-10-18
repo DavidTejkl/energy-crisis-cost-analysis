@@ -2,13 +2,22 @@
 -- Business question: what did each hour of electricity cost in CZK/MWh? 
 -- The CFO's budget is in CZK, but OTE publishes prices in EUR, 
 -- so every later analysis (price bands, price shocks, top hours) needs the CZK price.
+-- CZ: ** VIEW S CENAMI ENERGIE V CZK/MWH **
+-- Byznys otázka: kolik stála každá hodina elektřiny v CZK/MWh?
+-- Rozpočet finančního ředitele je v korunách, ale OTE zveřejňuje ceny v EUR,
+-- proto každá další analýza (cenová pásma, cenové šoky, nejdražší hodiny) potřebuje cenu v CZK.
 
 -- Why a view and not a stored column: the exchange rate lives only in fact_fx. 
 -- If a rate is ever corrected, the CZK price updates automatically.
+-- CZ: Proč view a ne uložený sloupec: kurz je uložený jen ve fact_fx.
+-- Když se kurz někdy opraví, cena v CZK se přepočítá automaticky.
 
 -- Why LEFT JOIN: fact_fx has a rate for every calendar day (ADR-001),
 -- so INNER JOIN would return the same 43,848 rows. 
 -- LEFT JOIN is safer: if a rate were ever missing, the hour would show NULL instead of disappearing.
+-- CZ: Proč LEFT JOIN: fact_fx má kurz pro každý kalendářní den (ADR-001),
+-- takže INNER JOIN by vrátil stejných 43 848 řádků.
+-- LEFT JOIN je bezpečnější: kdyby kurz někdy chyběl, hodina by ukázala NULL, místo aby zmizela.
 
 
 USE EnergyCrisisCostAnalysis

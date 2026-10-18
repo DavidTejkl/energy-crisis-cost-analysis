@@ -2,15 +2,21 @@
 -- Data quality checks for all 5 tables. Every check returns numbers next to the expected value;
 -- results are written up in docs/data_quality_report.md.
 -- Expected values come from the source profiling (docs/01_project_brief.md).
+-- CZ: Byznys otázka: dá se nahraným datům věřit dřív, než nad nimi poběží jakákoli analýza nákladů?
+-- Kontroly kvality dat pro všech 5 tabulek. Každá kontrola vrací čísla vedle očekávané hodnoty;
+-- výsledky jsou sepsané v docs/data_quality_report.md.
+-- Očekávané hodnoty pocházejí z profilování zdroje (docs/01_project_brief.md).
 
 USE [EnergyCrisisCostAnalysis];
 SET NOCOUNT ON;
 
 -- =====================================================================
 -- fact_energy_prices  (grain: one delivery day + one hour of that day)
+-- CZ: fact_energy_prices  (grain: jeden den dodávky + jedna hodina toho dne)
 -- =====================================================================
 
 -- P01 Volume: rows per year (expected 8,784 / 8,760 / 8,760 / 8,760 / 8,784 = 43,848)
+-- CZ: P01 Objem: řádky za rok (očekáváno 8 784 / 8 760 / 8 760 / 8 760 / 8 784 = 43 848)
 SELECT 'P01 rows per year' AS check_id, d.year, COUNT(*) AS row_count
 FROM dbo.fact_energy_prices AS p
 JOIN dbo.dim_date AS d ON d.date_key = p.date_key
@@ -18,6 +24,7 @@ GROUP BY d.year
 ORDER BY d.year;
 
 -- P02 Coverage: how many days have 23 / 24 / 25 hours (expected 5 / 1,817 / 5)
+-- CZ: P02 Pokrytí: kolik dní má 23 / 24 / 25 hodin (očekáváno 5 / 1 817 / 5)
 WITH hours_per_day AS (
     SELECT date_key, COUNT(*) AS hours_in_day
     FROM dbo.fact_energy_prices
@@ -29,6 +36,7 @@ GROUP BY hours_in_day
 ORDER BY hours_in_day;
 
 -- P03 DST days: every non-24-hour day must be the last Sunday of March (23 h) or October (25 h)
+-- CZ: P03 Dny změny času: každý den, který nemá 24 hodin, musí být poslední neděle března (23 h) nebo října (25 h)
 WITH hours_per_day AS (
     SELECT date_key, COUNT(*) AS hours_in_day
     FROM dbo.fact_energy_prices
@@ -45,6 +53,8 @@ ORDER BY d.full_date;
 
 -- P04 Gaps inside a day: hours must run 1..n without holes (expected 0 days with a gap)
 -- A day has no gap when its first hour is 1 and its last hour equals the number of hours.
+-- CZ: P04 Mezery uvnitř dne: hodiny musí jít 1..n bez děr (očekáváno 0 dní s mezerou)
+-- Den nemá mezeru, když je jeho první hodina 1 a poslední hodina se rovná počtu hodin.
 WITH day_hours AS (
     SELECT date_key, MIN(hour_of_day) AS first_hour, MAX(hour_of_day) AS last_hour, COUNT(*) AS hours_in_day
     FROM dbo.fact_energy_prices
@@ -55,12 +65,14 @@ FROM day_hours
 WHERE first_hour <> 1 OR last_hour <> hours_in_day;
 
 -- P05 Calendar days without any price row (expected 0)
+-- CZ: P05 Kalendářní dny bez jakéhokoli řádku s cenou (očekáváno 0)
 SELECT 'P05 dim_date days without prices' AS check_id, COUNT(*) AS day_count
 FROM dbo.dim_date AS d
 LEFT JOIN dbo.fact_energy_prices AS p ON p.date_key = d.date_key
 WHERE p.date_key IS NULL;
 
 -- P06 Grain uniqueness: duplicate date_key + hour_of_day (expected 0; the PK also enforces it)
+-- CZ: P06 Jedinečnost grainu: duplicitní date_key + hour_of_day (očekáváno 0; vynucuje to i PK)
 SELECT 'P06 duplicate grain keys' AS check_id, COUNT(*) AS duplicate_count
 FROM (
     SELECT date_key, hour_of_day
@@ -70,6 +82,7 @@ FROM (
 ) AS dup;
 
 -- P07 Completeness: NULL price or volume (expected 0 / 0)
+-- CZ: P07 Úplnost: NULL cena nebo objem (očekáváno 0 / 0)
 SELECT 'P07 NULL values' AS check_id,
        SUM(CASE WHEN price_eur_mwh IS NULL THEN 1 ELSE 0 END) AS null_price,
        SUM(CASE WHEN volume_mwh IS NULL THEN 1 ELSE 0 END) AS null_volume
@@ -77,6 +90,8 @@ FROM dbo.fact_energy_prices;
 
 -- P08 Validity: price range and prices outside the sanity range -500 .. 5,000 EUR/MWh (expected 0)
 -- Volume must be positive: the market always clears some volume.
+-- CZ: P08 Platnost: rozsah cen a ceny mimo rozumný rozsah -500 .. 5 000 EUR/MWh (očekáváno 0)
+-- Objem musí být kladný: trh vždy zobchoduje nějaký objem.
 SELECT 'P08 ranges' AS check_id,
        MIN(price_eur_mwh) AS min_price, MAX(price_eur_mwh) AS max_price,
        SUM(CASE WHEN price_eur_mwh < -500 OR price_eur_mwh > 5000 THEN 1 ELSE 0 END) AS price_out_of_range,
@@ -85,6 +100,7 @@ SELECT 'P08 ranges' AS check_id,
 FROM dbo.fact_energy_prices;
 
 -- P09 Negative prices per year (expected 119 / 33 / 8 / 134 / 315 = 609) - valid market outcome, not an error
+-- CZ: P09 Záporné ceny za rok (očekáváno 119 / 33 / 8 / 134 / 315 = 609) - platný výsledek trhu, ne chyba
 SELECT 'P09 negative price hours' AS check_id, d.year,
        SUM(CASE WHEN p.price_eur_mwh < 0 THEN 1 ELSE 0 END) AS negative_hours,
        SUM(CASE WHEN p.price_eur_mwh = 0 THEN 1 ELSE 0 END) AS zero_hours
@@ -94,6 +110,7 @@ GROUP BY d.year
 ORDER BY d.year;
 
 -- P10 Referential integrity: fact keys missing in the dimensions (expected 0 / 0; the FKs also enforce it)
+-- CZ: P10 Referenční integrita: klíče faktu chybějící v dimenzích (očekáváno 0 / 0; vynucují to i FK)
 SELECT 'P10 orphan keys' AS check_id,
        SUM(CASE WHEN d.date_key IS NULL THEN 1 ELSE 0 END) AS orphan_date_key,
        SUM(CASE WHEN h.hour_of_day IS NULL THEN 1 ELSE 0 END) AS orphan_hour
@@ -102,6 +119,7 @@ LEFT JOIN dbo.dim_date AS d ON d.date_key = p.date_key
 LEFT JOIN dbo.dim_hour AS h ON h.hour_of_day = p.hour_of_day;
 
 -- P11 Distribution: yearly price statistics - the crisis should be visible, not hidden by an error
+-- CZ: P11 Rozdělení: roční statistiky cen - krize má být vidět, ne schovaná za chybou
 SELECT 'P11 price by year' AS check_id, d.year,
        MIN(p.price_eur_mwh) AS min_price,
        CAST(AVG(p.price_eur_mwh) AS DECIMAL(7,2)) AS avg_price,
@@ -113,6 +131,7 @@ GROUP BY d.year
 ORDER BY d.year;
 
 -- P12 Outliers: the 5 most expensive hours - must match known crisis dates (August 2022)
+-- CZ: P12 Odlehlé hodnoty: 5 nejdražších hodin - musí odpovídat známým datům krize (srpen 2022)
 SELECT TOP (5) 'P12 top prices' AS check_id, d.full_date, p.hour_of_day, p.price_eur_mwh
 FROM dbo.fact_energy_prices AS p
 JOIN dbo.dim_date AS d ON d.date_key = p.date_key
@@ -120,10 +139,13 @@ ORDER BY p.price_eur_mwh DESC, d.full_date;
 
 -- =====================================================================
 -- fact_fx  (grain: one calendar day; weekends and holidays forward-filled, ADR-001)
+-- CZ: fact_fx  (grain: jeden kalendářní den; víkendy a svátky doplněné dopředu, ADR-001)
 -- =====================================================================
 
 -- F01 Volume and coverage: one row per calendar day, actual vs filled rates
 -- (expected 1,827 rows, 1,257 actual ČNB rates, 570 filled days)
+-- CZ: F01 Objem a pokrytí: jeden řádek na kalendářní den, skutečné vs. doplněné kurzy
+-- (očekáváno 1 827 řádků, 1 257 skutečných kurzů ČNB, 570 doplněných dní)
 SELECT 'F01 rows' AS check_id,
        COUNT(*) AS row_count,
        SUM(CASE WHEN is_actual_rate = 1 THEN 1 ELSE 0 END) AS actual_rates,
@@ -131,6 +153,7 @@ SELECT 'F01 rows' AS check_id,
 FROM dbo.fact_fx;
 
 -- F02 Calendar days without a rate (expected 0)
+-- CZ: F02 Kalendářní dny bez kurzu (očekáváno 0)
 SELECT 'F02 dim_date days without rate' AS check_id, COUNT(*) AS day_count
 FROM dbo.dim_date AS d
 LEFT JOIN dbo.fact_fx AS f ON f.date_key = d.date_key
@@ -139,6 +162,9 @@ WHERE f.date_key IS NULL;
 -- F03 Fill rule consistency (expected 0 / 0 / 0):
 -- an actual rate comes from its own day, a filled rate from an earlier day, never more than 4 days back
 -- (4 days = the longest ČNB gap around Easter or Christmas).
+-- CZ: F03 Konzistence pravidla doplnění (očekáváno 0 / 0 / 0):
+-- skutečný kurz pochází z vlastního dne, doplněný kurz z dřívějšího dne, nikdy víc než 4 dny zpět
+-- (4 dny = nejdelší mezera ČNB kolem Velikonoc nebo Vánoc).
 SELECT 'F03 fill rule' AS check_id,
        SUM(CASE WHEN f.is_actual_rate = 1 AND f.source_date <> d.full_date THEN 1 ELSE 0 END) AS actual_wrong_source,
        SUM(CASE WHEN f.is_actual_rate = 0 AND f.source_date >= d.full_date THEN 1 ELSE 0 END) AS filled_not_earlier,
@@ -148,6 +174,7 @@ FROM dbo.fact_fx AS f
 JOIN dbo.dim_date AS d ON d.date_key = f.date_key;
 
 -- F04 Filled days by weekday: weekends dominate, weekday fills are public holidays
+-- CZ: F04 Doplněné dny podle dne v týdnu: převažují víkendy, doplnění ve všední den jsou státní svátky
 SELECT 'F04 filled days by weekday' AS check_id, d.weekday_num, COUNT(*) AS filled_days
 FROM dbo.fact_fx AS f
 JOIN dbo.dim_date AS d ON d.date_key = f.date_key
@@ -156,12 +183,14 @@ GROUP BY d.weekday_num
 ORDER BY d.weekday_num;
 
 -- F05 Actual rates on weekends (expected 0 - ČNB does not publish on Saturday or Sunday)
+-- CZ: F05 Skutečné kurzy o víkendu (očekáváno 0 - ČNB v sobotu a neděli kurz nevyhlašuje)
 SELECT 'F05 actual rate on weekend' AS check_id, COUNT(*) AS row_count
 FROM dbo.fact_fx AS f
 JOIN dbo.dim_date AS d ON d.date_key = f.date_key
 WHERE f.is_actual_rate = 1 AND d.is_weekend = 1;
 
 -- F06 Ranges and NULLs per year (plausible EUR/CZK band 20 - 30)
+-- CZ: F06 Rozsahy a NULL za rok (věrohodné pásmo EUR/CZK 20 - 30)
 SELECT 'F06 rate by year' AS check_id, d.year,
        MIN(f.rate_czk_per_eur) AS min_rate,
        CAST(AVG(f.rate_czk_per_eur) AS DECIMAL(5,3)) AS avg_rate,
@@ -174,6 +203,7 @@ GROUP BY d.year
 ORDER BY d.year;
 
 -- F07 Jumps: largest day-to-day change of the actual rates (a jump over 3 % would suggest a parsing error)
+-- CZ: F07 Skoky: největší změna skutečného kurzu mezi dny (skok přes 3 % by naznačoval chybu při čtení)
 WITH actual AS (
     SELECT source_date, rate_czk_per_eur,
            LAG(rate_czk_per_eur) OVER (ORDER BY source_date) AS prev_rate
@@ -187,6 +217,7 @@ WHERE prev_rate IS NOT NULL
 ORDER BY ABS(rate_czk_per_eur - prev_rate) DESC;
 
 -- F08 Cross-check with the ČNB 2022 file anomaly: rates around 2 March 2022 (repeated header row in bronze)
+-- CZ: F08 Křížová kontrola s anomálií v souboru ČNB 2022: kurzy kolem 2. března 2022 (opakovaný řádek záhlaví v bronze)
 SELECT 'F08 rates around 2022-03-02' AS check_id, d.full_date, f.rate_czk_per_eur, f.is_actual_rate, f.source_date
 FROM dbo.fact_fx AS f
 JOIN dbo.dim_date AS d ON d.date_key = f.date_key
@@ -195,15 +226,18 @@ ORDER BY d.full_date;
 
 -- =====================================================================
 -- repo_rate  (grain: one validity period of the ČNB 2-week repo rate)
+-- CZ: repo_rate  (grain: jedno období platnosti dvoutýdenní repo sazby ČNB)
 -- =====================================================================
 
 -- R01 Volume and span (expected 22 periods, 2019-05-03 to 2024-12-31)
+-- CZ: R01 Objem a rozsah (očekáváno 22 období, 2019-05-03 až 2024-12-31)
 SELECT 'R01 periods' AS check_id, COUNT(*) AS period_count,
        MIN(valid_from) AS first_from, MAX(valid_to) AS last_to,
        MIN(repo_rate_pct) AS min_rate, MAX(repo_rate_pct) AS max_rate
 FROM dbo.repo_rate;
 
 -- R02 Gaps and overlaps: each period must start the day after the previous one ends (expected 0 / 0)
+-- CZ: R02 Mezery a překryvy: každé období musí začít den po skončení předchozího (očekáváno 0 / 0)
 WITH ordered AS (
     SELECT valid_from, valid_to,
            LAG(valid_to) OVER (ORDER BY valid_from) AS prev_to
@@ -216,6 +250,7 @@ FROM ordered
 WHERE prev_to IS NOT NULL;
 
 -- R03 Coverage: calendar days with no valid repo rate or more than one (expected 0 / 0)
+-- CZ: R03 Pokrytí: kalendářní dny bez platné repo sazby nebo s více než jednou (očekáváno 0 / 0)
 WITH rate_per_day AS (
     SELECT d.date_key, COUNT(r.valid_from) AS rate_count
     FROM dbo.dim_date AS d
@@ -229,15 +264,18 @@ FROM rate_per_day;
 
 -- =====================================================================
 -- dim_date and dim_hour
+-- CZ: dim_date a dim_hour
 -- =====================================================================
 
 -- D01 dim_date: every calendar day 2020-01-01 .. 2024-12-31 exactly once (expected 1,827 rows = 1,827 days)
+-- CZ: D01 dim_date: každý kalendářní den 2020-01-01 .. 2024-12-31 právě jednou (očekáváno 1 827 řádků = 1 827 dní)
 SELECT 'D01 dim_date span' AS check_id, COUNT(*) AS row_count,
        MIN(full_date) AS first_date, MAX(full_date) AS last_date,
        DATEDIFF(day, MIN(full_date), MAX(full_date)) + 1 AS calendar_days
 FROM dbo.dim_date;
 
 -- D02 dim_date: derived columns agree with full_date (expected 0 for each)
+-- CZ: D02 dim_date: odvozené sloupce odpovídají full_date (očekáváno 0 u každého)
 SELECT 'D02 dim_date consistency' AS check_id,
        SUM(CASE WHEN date_key <> YEAR(full_date) * 10000 + MONTH(full_date) * 100 + DAY(full_date) THEN 1 ELSE 0 END) AS wrong_key,
        SUM(CASE WHEN year <> YEAR(full_date) OR month <> MONTH(full_date) OR day_of_month <> DAY(full_date) THEN 1 ELSE 0 END) AS wrong_parts,
@@ -247,11 +285,13 @@ SELECT 'D02 dim_date consistency' AS check_id,
 FROM dbo.dim_date;
 
 -- D03 dim_date: weekday_num against a known Monday (2020-01-06); 1 = Monday .. 7 = Sunday (expected 0)
+-- CZ: D03 dim_date: weekday_num proti známému pondělí (2020-01-06); 1 = pondělí .. 7 = neděle (očekáváno 0)
 SELECT 'D03 dim_date weekday' AS check_id,
        SUM(CASE WHEN weekday_num <> (DATEDIFF(day, '2020-01-06', full_date) % 7 + 7) % 7 + 1 THEN 1 ELSE 0 END) AS wrong_weekday
 FROM dbo.dim_date;
 
 -- D04 dim_hour: hours 1..25 exactly once, label per time of day
+-- CZ: D04 dim_hour: hodiny 1..25 právě jednou, popisek podle části dne
 SELECT 'D04 dim_hour' AS check_id, time_of_day, COUNT(*) AS hour_count,
        MIN(hour_of_day) AS first_hour, MAX(hour_of_day) AS last_hour
 FROM dbo.dim_hour
