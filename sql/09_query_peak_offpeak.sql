@@ -42,9 +42,12 @@ ORDER BY d.year,peak_offpeak;
 
 
 SELECT	d.year,
-		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) AS peak_avg,
-		AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS offpeak_avg,
-		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) - AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS spread_eur
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) AS peak_avg_eur_mwh,
+		AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS offpeak_avg_eur_mwh,
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) - AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS spread_eur_mwh,
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_czk_mwh END) AS peak_avg_czk_mwh,
+		AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_czk_mwh END) AS offpeak_avg_czk_mwh,
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_czk_mwh END) - AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_czk_mwh END) AS spread_czk_mwh
 FROM vw_energy_prices_czk ep
 JOIN dim_date d ON ep.date_key = d.date_key
 GROUP BY d.year
