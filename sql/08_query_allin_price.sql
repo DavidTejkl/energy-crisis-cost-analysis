@@ -11,8 +11,14 @@
 -- regulated_price has validity periods, so it is joined to days with BETWEEN; it is summed in its
 -- own CTE, because joining it to the power CTE would repeat each hour 3 times (once per component).
 
+-- Part 3a: fixed monthly charges (reserved capacity 5 MW = scenario ASSUMPTION, docs/methodology.md;
+-- two OTE fees per supply point). They do not depend on load, so they are joined to one day per
+-- month (day_of_month = 1), never to hours or days, which would add the charge 744 or 31 times.
+
 USE [EnergyCrisisCostAnalysis]
 GO 
+
+DECLARE @reserved_mw DECIMAL(4,1) = 5;
 
 WITH 
 	monthly_power AS (
@@ -39,8 +45,18 @@ WITH
 	JOIN [dbo].[dim_date] d ON l.date_key = d.date_key 
 	JOIN [dbo].[regulated_price] rp ON d.full_date BETWEEN rp.valid_from AND rp.valid_to
 	WHERE rp.component IN ('network_use', 'system_services', 'electricity_tax')
-	GROUP BY d.year,d.month
-	)
+	GROUP BY d.year,d.month),
+
+	monthly_fixed AS (
+	SELECT 
+			d.year,
+			d.month,
+			SUM(CASE WHEN rp.component = 'reserved_capacity_yearly' THEN rp.value * @reserved_mw END) AS reserved_capacity_czk,
+			SUM(CASE WHEN rp.component IN ('ote_imbalance_settlement', 'ote_res_admin') THEN rp.value END) AS ote_fees_czk 
+	FROM [dbo].[dim_date] d
+	JOIN [dbo].[regulated_price] rp ON d.full_date BETWEEN rp.valid_from AND rp.valid_to
+	WHERE d.day_of_month = 1 AND rp.component IN ('reserved_capacity_yearly', 'ote_imbalance_settlement', 'ote_res_admin')
+	GROUP BY d.year,d.month )
 
 SELECT 
 		mp.year,
@@ -50,7 +66,10 @@ SELECT
 		mp.power_price_czk_mwh,
 		mr.electricity_tax_czk,
 		mr.network_use_czk,
-		mr.system_services_czk
+		mr.system_services_czk,
+		mf.reserved_capacity_czk,
+		mf.ote_fees_czk
 FROM monthly_power mp 
 JOIN monthly_regulated mr ON mp.year = mr.year AND mp.month = mr.month
+JOIN monthly_fixed mf ON mp.year = mf.year AND mp.month = mf.month
 ORDER BY mp.year,mp.month
