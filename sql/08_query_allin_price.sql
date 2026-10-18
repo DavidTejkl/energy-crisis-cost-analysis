@@ -15,6 +15,10 @@
 -- two OTE fees per supply point). They do not depend on load, so they are joined to one day per
 -- month (day_of_month = 1), never to hours or days, which would add the charge 744 or 31 times.
 
+-- Part 3b: POZE = the lower of (rate per MW x reserved MW) and (cap per MWh x monthly load), per
+-- ERU price decisions. The choice needs the monthly load, so it is made in the final SELECT.
+-- POZE was 0 from October 2022 to December 2023 (paid by the state).
+
 USE [EnergyCrisisCostAnalysis]
 GO 
 
@@ -52,10 +56,12 @@ WITH
 			d.year,
 			d.month,
 			SUM(CASE WHEN rp.component = 'reserved_capacity_yearly' THEN rp.value * @reserved_mw END) AS reserved_capacity_czk,
-			SUM(CASE WHEN rp.component IN ('ote_imbalance_settlement', 'ote_res_admin') THEN rp.value END) AS ote_fees_czk 
+			SUM(CASE WHEN rp.component IN ('ote_imbalance_settlement', 'ote_res_admin') THEN rp.value END) AS ote_fees_czk,
+			SUM(CASE WHEN rp.component = 'poze_per_mw' THEN rp.value * @reserved_mw END) AS poze_capacity_czk,
+			SUM(CASE WHEN rp.component = 'poze_cap' THEN rp.value END) AS poze_cap_czk_mwh
 	FROM [dbo].[dim_date] d
 	JOIN [dbo].[regulated_price] rp ON d.full_date BETWEEN rp.valid_from AND rp.valid_to
-	WHERE d.day_of_month = 1 AND rp.component IN ('reserved_capacity_yearly', 'ote_imbalance_settlement', 'ote_res_admin')
+	WHERE d.day_of_month = 1 AND rp.component IN ('reserved_capacity_yearly', 'ote_imbalance_settlement', 'ote_res_admin', 'poze_per_mw', 'poze_cap')
 	GROUP BY d.year,d.month )
 
 SELECT 
@@ -68,7 +74,11 @@ SELECT
 		mr.network_use_czk,
 		mr.system_services_czk,
 		mf.reserved_capacity_czk,
-		mf.ote_fees_czk
+		mf.ote_fees_czk,
+		CASE WHEN mf.poze_capacity_czk < mf.poze_cap_czk_mwh * mp.load_mwh
+			THEN mf.poze_capacity_czk
+			ELSE mf.poze_cap_czk_mwh * mp.load_mwh
+			END AS poze_czk
 FROM monthly_power mp 
 JOIN monthly_regulated mr ON mp.year = mr.year AND mp.month = mr.month
 JOIN monthly_fixed mf ON mp.year = mf.year AND mp.month = mf.month
