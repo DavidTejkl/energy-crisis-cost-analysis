@@ -37,5 +37,15 @@ JOIN dim_date d ON ep.date_key = d.date_key
 GROUP BY d.year,CASE 
 			WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN 'peak'
 			ELSE 'offpeak' END 
-ORDER BY d.year,peak_offpeak
+ORDER BY d.year,peak_offpeak;
 
+
+
+SELECT	d.year,
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) AS peak_avg,
+		AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS offpeak_avg,
+		AVG(CASE WHEN hour_of_day BETWEEN 9 AND 20 AND is_weekend=0 THEN price_eur_mwh END) - AVG(CASE WHEN hour_of_day NOT BETWEEN 9 AND 20 OR is_weekend=1 THEN price_eur_mwh END) AS spread_eur
+FROM vw_energy_prices_czk ep
+JOIN dim_date d ON ep.date_key = d.date_key
+GROUP BY d.year
+ORDER BY d.year
