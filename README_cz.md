@@ -38,8 +38,10 @@ odpovídá krok za krokem: od surových veřejných dat přes hvězdicové sché
 - 43 848 hodinových cen v 1 827 dnech. Dny se změnou letního času mají 23 nebo 25 hodin.
 - Kurz pro víkendy a svátky se doplňuje z posledního pracovního dne ČNB
   ([ADR-001](docs/decisions/ADR-001-eur-czk-fill-rule.md)); každý doplněný řádek je označený.
-- Odběrový profil firmy bude **simulovaný** (skutečné odběrové křivky jsou obchodní tajemství) a tak bude
-  i všude označený.
+- Kurzy jsou ověřené proti **REST API ČNB** (JSON) v 6 okrajových dnech: 6 ze 6 sedí
+  ([podrobnosti](#kontrola-proti-rest-api-čnb)).
+- Odběrový profil firmy je **simulovaný** (skutečné odběrové křivky jsou obchodní tajemství) a všude tak
+  označený ([docs/methodology.md](docs/methodology.md)).
 - Data nejsou uložená v repozitáři. Skripty je stahují přímo z OTE a ČNB, takže složky `data/` jsou prázdné,
   dokud skripty nespustíte.
 
@@ -48,14 +50,18 @@ odpovídá krok za krokem: od surových veřejných dat přes hvězdicové sché
 ```
 stažení (Python)      →  data/bronze   surové soubory, nikdy se neupravují
 čištění (Python)      →  data/silver   vyčištěné CSV, jeden soubor na tabulku
-nahrání (Python)      →  SQL Server    hvězdicové schéma: fact_energy_prices, fact_fx, dim_date, dim_hour, repo_rate
-analýza (T-SQL)       →  pohled vw_energy_prices_czk + dotazy sql/04–07
+nahrání (Python)      →  SQL Server    hvězdicové schéma: fact_energy_prices, fact_fx, fact_load, dim_date,
+                                       dim_hour, repo_rate, regulated_price
+analýza (T-SQL)       →  pohled vw_energy_prices_czk + dotazy sql/04–09
+kontrola (Python)     →  REST API ČNB  ověření kurzů v okrajových dnech
 ```
 
 ```
-python/    01_extract · 02_transform · 03_load · config.py (cesty a konstanty)
-sql/       01–03 databáze, tabulky, pohledy · 04–07 analytické dotazy · 91 testy kvality dat
-docs/      zadání, datový model, definice KPI, report kvality dat, nálezy, rozhodnutí (ADR)
+python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
+           config.py (cesty a konstanty)
+sql/       01–03 databáze, tabulky, pohledy · 04–09 analytické dotazy · 91 testy kvality dat
+docs/      zadání, datový model, definice KPI, metodika simulovaného odběru, report kvality dat, nálezy,
+           rozhodnutí (ADR)
 config/    regulované složky ceny s obdobím platnosti (ERÚ, 2020–2024)
 data/      bronze (surová) · silver (vyčištěná) — vytváří je skripty, v gitu nejsou · gold (další verze)
 powerbi/   report Power BI ve formátu PBIP (další verze)
@@ -83,6 +89,7 @@ pip install -r requirements.txt
 # 2. Stažení a vyčištění dat
 py python/01_extract.py          # surové soubory do data/bronze (druhé spuštění už stažené soubory přeskočí)
 py python/02_transform.py        # vyčištěné CSV do data/silver
+py python/04_generate_load_profile.py   # SIMULOVANÝ hodinový odběr modelové firmy do data/silver
 
 # 3. Databáze a nahrání dat
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/01_create_database.sql
@@ -92,11 +99,14 @@ py python/03_load.py             # kompletní nové nahrání v jedné transakci
 # 4. Pohled, kontroly kvality dat a analýza
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/03_create_views.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/91_dq_tests.sql
-sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # dotazy 05–09 stejně
+
+# 5. Volitelně: ověření kurzů proti REST API ČNB (potřebuje internet)
+py python/05_check_fx_api.py     # 6 okrajových dnů, pro každý vypíše OK / DIFFERENCE
 ```
 
-Očekávané počty řádků po nahrání: `dim_date` 1 827 · `dim_hour` 25 · `repo_rate` 22 ·
-`fact_energy_prices` 43 848 · `fact_fx` 1 827.
+Očekávané počty řádků po nahrání: `dim_date` 1 827 · `dim_hour` 25 · `repo_rate` 22 · `regulated_price` 41 ·
+`fact_energy_prices` 43 848 · `fact_fx` 1 827 · `fact_load` 43 848.
 
 ## Hlavní zjištění (tržní ceny, verze 1)
 
@@ -123,6 +133,33 @@ cena denního trhu dosáhla 936 EUR/MWh; český a německý trh jsou propojené
 a v datech zůstává — odlehlé hodnoty se ověřují proti zdroji, ne mažou.
 
 ![Surový soubor OTE, 12. 12. 2024](docs/screenshots/bronze_ote_2024-12-12_price_peak_excel.png)
+
+### Kontrola proti REST API ČNB
+
+Pipeline stahuje od ČNB jeden textový soubor za každý rok. Aby bylo jisté, že stažení i čištění jsou správně,
+[python/05_check_fx_api.py](python/05_check_fx_api.py) se zeptá REST API ČNB (JSON) na 6 okrajových dnů
+a s vyčištěnými daty porovná kurz i datum, ze kterého kurz pochází:
+
+```
+Silver EUR/CZK vs ČNB REST API:
+  2020-01-01: silver 25.41 from 2019-12-31 | API 25.41 from 2019-12-31 -> OK
+  2020-01-02: silver 25.41 from 2020-01-02 | API 25.41 from 2020-01-02 -> OK
+  2022-03-02: silver 25.865 from 2022-03-02 | API 25.865 from 2022-03-02 -> OK
+  2022-03-05: silver 25.735 from 2022-03-04 | API 25.735 from 2022-03-04 -> OK
+  2020-03-16: silver 26.96 from 2020-03-16 | API 26.96 from 2020-03-16 -> OK
+  2024-12-31: silver 25.185 from 2024-12-31 | API 25.185 from 2024-12-31 -> OK
+6 of 6 days match.
+```
+
+- **Dny jsou vybrané podle rizika, ne náhodně:** státní svátek doplněný posledním kurzem roku 2019, běžný
+  pracovní den, 2. březen 2022 (soubor ČNB tam opakuje hlavičku a sloupce se posunou), sobota, největší denní
+  skok kurzu za celé období (16. březen 2020) a poslední den období.
+- **Vyzkoušejte v prohlížeči:** [odpověď API pro sobotu 5. března 2022](https://api.cnb.cz/cnbapi/exrates/daily?date=2022-03-05&lang=EN)
+  vrátí kurz EUR s `"validFor": "2022-03-04"`. ČNB o víkendu kurz nevyhlašuje, sobota proto dostane páteční
+  kurz — přesně podle pravidla doplnění z [ADR-001](docs/decisions/ADR-001-eur-czk-fill-rule.md).
+- **Kontrola umí selhat:** na úmyslně chybném kurzu (+0,01 Kč) ohlásila `DIFFERENCE`.
+- **Proč je API jen kontrola:** roční soubory potřebují na celé období 6 dotazů, jeden dotaz na den by jich
+  potřeboval 1 827.
 
 ## Omezení
 

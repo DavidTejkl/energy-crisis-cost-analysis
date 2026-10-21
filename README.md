@@ -33,7 +33,10 @@ from raw public data to a SQL Server star schema and analysis queries.
 - 43,848 hourly prices in 1,827 days. Days with a daylight-saving change have 23 or 25 hours.
 - Weekend and holiday exchange rates are filled from the last ČNB working day
   ([ADR-001](docs/decisions/ADR-001-eur-czk-fill-rule.md)); every filled row is flagged.
-- The company's load profile will be **simulated** (real load curves are trade secrets) and labelled as such.
+- The exchange rates are cross-checked against the **ČNB REST API** (JSON) for 6 edge-case days: 6 of 6 match
+  ([details](#cross-check-against-the-čnb-rest-api)).
+- The company's load profile is **simulated** (real load curves are trade secrets) and labelled as such
+  ([docs/methodology.md](docs/methodology.md)).
 - The data is not stored in this repository. The scripts download it from OTE and ČNB, so the `data/` folders
   are empty until you run them.
 
@@ -42,14 +45,18 @@ from raw public data to a SQL Server star schema and analysis queries.
 ```
 download (Python)  →  data/bronze   raw files, never edited
 transform (Python) →  data/silver   cleaned CSV, one file per table
-load (Python)      →  SQL Server    star schema: fact_energy_prices, fact_fx, dim_date, dim_hour, repo_rate
-analysis (T-SQL)   →  view vw_energy_prices_czk + queries sql/04–07
+load (Python)      →  SQL Server    star schema: fact_energy_prices, fact_fx, fact_load, dim_date, dim_hour,
+                                    repo_rate, regulated_price
+analysis (T-SQL)   →  view vw_energy_prices_czk + queries sql/04–09
+check (Python)     →  ČNB REST API  exchange rates cross-checked for edge-case days
 ```
 
 ```
-python/    01_extract · 02_transform · 03_load · config.py (paths and constants)
-sql/       01–03 database, tables, views · 04–07 analysis queries · 91 data quality tests
-docs/      brief, data model, KPI definitions, data quality report, findings, decisions (ADRs)
+python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
+           config.py (paths and constants)
+sql/       01–03 database, tables, views · 04–09 analysis queries · 91 data quality tests
+docs/      brief, data model, KPI definitions, methodology of the simulated load, data quality report,
+           findings, decisions (ADRs)
 config/    regulated price components with validity periods (ERÚ, 2020–2024)
 data/      bronze (raw) · silver (cleaned) — rebuilt by the scripts, not stored in git · gold (next version)
 powerbi/   Power BI report as PBIP (next version)
@@ -75,6 +82,7 @@ pip install -r requirements.txt
 # 2. Download and clean the data
 py python/01_extract.py          # raw files into data/bronze (a second run skips existing files)
 py python/02_transform.py        # cleaned CSV into data/silver
+py python/04_generate_load_profile.py   # SIMULATED hourly load of the model company into data/silver
 
 # 3. Database and load
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/01_create_database.sql
@@ -84,11 +92,14 @@ py python/03_load.py             # full reload in one transaction
 # 4. View, data quality checks and analysis
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/03_create_views.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/91_dq_tests.sql
-sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # queries 05–09 run the same way
+
+# 5. Optional: cross-check the exchange rates against the ČNB REST API (needs internet)
+py python/05_check_fx_api.py     # 6 edge-case days, prints OK / DIFFERENCE per day
 ```
 
-Expected row counts after the load: `dim_date` 1,827 · `dim_hour` 25 · `repo_rate` 22 ·
-`fact_energy_prices` 43,848 · `fact_fx` 1,827.
+Expected row counts after the load: `dim_date` 1,827 · `dim_hour` 25 · `repo_rate` 22 · `regulated_price` 41 ·
+`fact_energy_prices` 43,848 · `fact_fx` 1,827 · `fact_load` 43,848.
 
 ## Key findings (market prices, version 1)
 
@@ -114,6 +125,33 @@ in Germany, where the day-ahead price reached 936 EUR/MWh; the Czech and German 
 The value is a real market price and stays in the data — outliers are verified against the source, not removed.
 
 ![Raw OTE file, 12 Dec 2024](docs/screenshots/bronze_ote_2024-12-12_price_peak_excel.png)
+
+### Cross-check against the ČNB REST API
+
+The pipeline downloads one ČNB text file per year. To prove that the download and the cleaning are right,
+[python/05_check_fx_api.py](python/05_check_fx_api.py) asks the ČNB REST API (JSON) for 6 edge-case days and
+compares both the rate and the date the rate comes from with the cleaned data:
+
+```
+Silver EUR/CZK vs ČNB REST API:
+  2020-01-01: silver 25.41 from 2019-12-31 | API 25.41 from 2019-12-31 -> OK
+  2020-01-02: silver 25.41 from 2020-01-02 | API 25.41 from 2020-01-02 -> OK
+  2022-03-02: silver 25.865 from 2022-03-02 | API 25.865 from 2022-03-02 -> OK
+  2022-03-05: silver 25.735 from 2022-03-04 | API 25.735 from 2022-03-04 -> OK
+  2020-03-16: silver 26.96 from 2020-03-16 | API 26.96 from 2020-03-16 -> OK
+  2024-12-31: silver 25.185 from 2024-12-31 | API 25.185 from 2024-12-31 -> OK
+6 of 6 days match.
+```
+
+- **The days are chosen by risk, not at random:** a public holiday filled from the last 2019 rate, a normal
+  working day, 2 March 2022 (the ČNB file repeats its header there and the columns shift), a Saturday,
+  the largest daily jump of the period (16 March 2020) and the last day of the period.
+- **Try it in the browser:** [the API answer for Saturday 5 March 2022](https://api.cnb.cz/cnbapi/exrates/daily?date=2022-03-05&lang=EN)
+  returns the EUR rate with `"validFor": "2022-03-04"`. ČNB publishes no weekend rates, so Saturday gets
+  Friday's rate — exactly the fill rule of [ADR-001](docs/decisions/ADR-001-eur-czk-fill-rule.md).
+- **The check can fail:** run on a deliberately wrong rate (+0.01 CZK), it reported `DIFFERENCE`.
+- **Why the API is only a check:** the yearly files need 6 requests for the whole period, one API call per day
+  would need 1,827.
 
 ## Limits
 
