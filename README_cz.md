@@ -7,6 +7,8 @@ přestože zobchodované množství vzrostlo jen o 8 %. Téměř celý nárůst 
 
 ` · Python (pandas, requests, pyodbc)`
 
+` · REST API (JSON, ověření kurzů ČNB)`
+
 ` · SQL Server / T-SQL (hvězdicové schéma, testy kvality dat`)
 
 ` · Power BI (dashboardy, vizualizace, report)`

@@ -5,7 +5,7 @@
 **In 2022 the electricity traded on the Czech day-ahead market was worth 7.5 times more than in 2020,
 while the traded volume grew by only 8 % — the price did almost all of it.**
 
-`Python (pandas, requests, pyodbc)` · `SQL Server / T-SQL` · `star schema` · `data quality tests` · `Power BI`
+`Python (pandas, requests, pyodbc)` · `REST API (JSON)` · `SQL Server / T-SQL` · `star schema` · `data quality tests` · `Power BI`
 
 How much did the 2021–2023 energy crisis cost a Czech company, what drove the cost (market price, volume,
 load shape, EUR/CZK) and could it have been hedged? This repository answers that question step by step,
