@@ -32,6 +32,13 @@ CNB_FX_YEARS = [2019] + YEARS
 CNB_REPO_URL = "https://www.cnb.cz/cs/casto-kladene-dotazy/.galleries/vyvoj_repo_historie.txt"
 CNB_BRONZE_DIR = BRONZE_DIR / "cnb"
 
+# ČNB REST API (JSON), used only to cross-check the silver EUR/CZK rates for a few days.
+# The pipeline itself reads the yearly files above, because one file per year is fewer requests.
+CNB_API_URL = "https://api.cnb.cz/cnbapi/exrates/daily"
+# Check days: a holiday filled from 2019, a normal day, the 2022 header anomaly, a Saturday,
+# the largest FX jump and the last day of the period.
+FX_API_CHECK_DATES = ["2020-01-01", "2020-01-02", "2022-03-02", "2022-03-05", "2020-03-16", "2024-12-31"]
+
 # Market hours are in Czech local time, so daylight saving days have 23 or 25 hours.
 TIMEZONE = "Europe/Prague"
 
