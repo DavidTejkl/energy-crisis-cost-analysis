@@ -84,3 +84,25 @@ of market prices (every hour has the same weight, as in a market product).
 - **FINDING (SIMULATED load):** the company runs its crushing and offices in daytime shifts, so the absolute spread
   is the price of its schedule; this is why its load-weighted price is above the market average (+17.29 EUR/MWh in
   2022). The split into price, volume and load-profile effects follows in 2.7.
+
+## 2.7 Cost variance split (`sql/10_query_variance_split.sql`)
+
+Method ADR-004: year-over-year change of the power (commodity) cost in EUR, split in a fixed order into volume
+`(V1 − V0) × Pw0`, market price `V1 × (Pb1 − Pb0)` and load profile `V1 × (S1 − S0)`. Load is SIMULATED, market
+prices are real OTE data. Check: the three effects sum to the total change in every year (difference ≤ 0.03 EUR,
+DECIMAL rounding of `Pw`).
+
+| Change | Total (EUR) | Volume | Market price | Load profile |
+|---|---:|---:|---:|---:|
+| 2020 → 2021 | +1,976,267 | −2,052 | +1,876,652 | +101,667 |
+| 2021 → 2022 | +4,418,085 | −4,286 | +4,102,833 | +319,538 |
+| 2022 → 2023 | −4,427,762 | −1,194 | −4,098,657 | −327,911 |
+| 2023 → 2024 | −442,638 | +11,073 | −439,875 | −13,836 |
+
+- **FINDING:** the market price drove the cost: 95.0 % of the change in 2021, 92.9 % in 2022, 92.6 % in 2023 and
+  99.4 % in 2024. The market price effect uses real OTE prices (FACT); its size depends on the simulated volume.
+- **FINDING (SIMULATED load):** the load profile added **+319,538 EUR in 2022** (7.2 % of the increase) and
+  returned −327,911 EUR in 2023. The company's profile did not change; the effect comes from the market's hourly
+  price pattern, which made the company's daytime hours relatively more expensive when the whole price level rose.
+- **FINDING (SIMULATED load):** the volume effect is small (−4,286 to +11,073 EUR), because the simulated company
+  takes about 28 GWh every year. With a real load profile this effect would carry production changes.
