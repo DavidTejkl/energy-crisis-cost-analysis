@@ -99,10 +99,17 @@ DECIMAL rounding of `Pw`).
 | 2022 → 2023 | −4,427,762 | −1,194 | −4,098,657 | −327,911 |
 | 2023 → 2024 | −442,638 | +11,073 | −439,875 | −13,836 |
 
-- **FINDING:** the market price drove the cost: 95.0 % of the change in 2021, 92.9 % in 2022, 92.6 % in 2023 and
-  99.4 % in 2024. The market price effect uses real OTE prices (FACT); its size depends on the simulated volume.
-- **FINDING (SIMULATED load):** the load profile added **+319,538 EUR in 2022** (7.2 % of the increase) and
-  returned −327,911 EUR in 2023. The company's profile did not change; the effect comes from the market's hourly
-  price pattern, which made the company's daytime hours relatively more expensive when the whole price level rose.
-- **FINDING (SIMULATED load):** the volume effect is small (−4,286 to +11,073 EUR), because the simulated company
-  takes about 28 GWh every year. With a real load profile this effect would carry production changes.
+- **FINDING (SIMULATED load):** the price of the company's daytime schedule tripled in the crisis. The load profile
+  premium `S` rose from +2.23 EUR/MWh (2020) and +5.86 (2021) to **+17.29 EUR/MWh in 2022**, then 5.56 (2023) and
+  5.06 (2024). Over the whole year 2022 this is **483,333 EUR** above the cost of the same volume taken evenly in
+  every hour (`C − V × Pb`: 62,491 / 164,030 / 483,333 / 155,343 / 142,087 EUR in 2020–2024, about 5–6.5 % of the
+  power cost every year).
+- **FINDING (SIMULATED load):** the load profile is the part of the cost the company can influence; the market price
+  is not. The profile itself did not change between years: the premium grew because the market's hourly price
+  pattern made daytime hours more expensive when the whole price level rose. The yearly premium is the upper limit of
+  what moving shifts to night and weekend hours could save.
+- **FINDING:** the market price explains 93–99 % of every yearly change (95.0 / 92.9 / 92.6 / 99.4 %). With a
+  simulated volume of about 28 GWh every year this is expected, not a discovery: the volume effect stays between
+  −4,286 and +11,073 EUR. With real company data the same query would separate production changes from market moves.
+- **To be tested in 2.9:** a base load hedge fixes a price for the same power in every hour, close to `Pb`. It does
+  not cover the load profile premium `S`, so part of the cost would stay exposed even at 100 % fixed volume.
