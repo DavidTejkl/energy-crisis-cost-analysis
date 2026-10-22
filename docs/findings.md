@@ -113,3 +113,25 @@ DECIMAL rounding of `Pw`).
   −4,286 and +11,073 EUR. With real company data the same query would separate production changes from market moves.
 - **To be tested in 2.9:** a base load hedge fixes a price for the same power in every hour, close to `Pb`. It does
   not cover the load profile premium `S`, so part of the cost would stay exposed even at 100 % fixed volume.
+
+## 2.8 EUR/CZK effect (`sql/11_query_fx_effect.sql`)
+
+Method ADR-006: year-over-year change of the power cost in CZK, split into commodity `(C_eur1 − C_eur0) × R0` and
+exchange rate `C_eur1 × (R1 − R0)`, where `R = C_czk / C_eur` is the cost-weighted rate. Load is SIMULATED, prices
+and ČNB rates are real data. Check: the two effects sum to the total change (difference ≤ 2.05 CZK, DECIMAL rounding
+of `R`); `C_czk` over 5 years = 419,457,499 CZK = power cost of query 08.
+
+| Change | Total (CZK) | Commodity | Exchange rate |
+|---|---:|---:|---:|
+| 2020 → 2021 | +49,581,580 | +52,180,598 | −2,599,020 |
+| 2021 → 2022 | +105,823,772 | +112,802,613 | −6,978,840 |
+| 2022 → 2023 | −110,696,659 | −108,873,893 | −1,822,768 |
+| 2023 → 2024 | −7,703,937 | −10,612,537 | +2,908,602 |
+
+- **FACT:** direction from data (resolves open decision 3): the cost-weighted rate fell from 26.40 CZK/EUR (2020)
+  to 25.53 (2021), 24.59 (2022) and 23.98 (2023), then rose to 25.13 (2024). The koruna strengthened during the
+  crisis and weakened in 2024.
+- **FINDING (SIMULATED load):** the stronger koruna lowered the CZK cost by **6.98 m CZK in 2022**, which offset only
+  **6.2 %** of the commodity increase (+112.80 m CZK). The rate softened the crisis, it did not stop it.
+- **FINDING (SIMULATED load):** in 2024 the weaker koruna worked the other way: +2.91 m CZK, eating 27 % of the
+  commodity saving (−10.61 m CZK).
