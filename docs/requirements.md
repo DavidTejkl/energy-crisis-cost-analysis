@@ -1,6 +1,6 @@
 # Requirements — Power BI report
 
-Version 1 (draft, step 4.0a). Scenario and business questions: [01_project_brief.md](01_project_brief.md).
+Version 1 (step 4.0a). Scenario and business questions: [01_project_brief.md](01_project_brief.md).
 The model company and its load are SCENARIO / SIMULATED; market prices, exchange rates and regulated prices are real data.
 
 ## Stakeholders
@@ -69,6 +69,22 @@ off-peak hours equal all hours of the year (2022: 3,120 + 5,640 = 8,760).
 | market context for questions 2 and 4 | US-06.1 | `sql/05_query_price_bands.sql`, `sql/07_query_top_hours.sql` | 1 Market |
 | market context for questions 2 and 4 | US-06.2 | `sql/09_query_peak_offpeak.sql` | 1 Market |
 
-## Open (next version)
+## Priorities (MoSCoW)
 
-- Priorities (MoSCoW) and what the report will not do.
+| User story | Priority | Reason |
+|---|---|---|
+| US-01 total cost | Must | business question 1, the base of every other page |
+| US-02 why the cost changed | Must | business question 2 |
+| US-04 hedging slider | Must | business question 4 = the main decision of the brief |
+| US-05 load profile premium | Must | own finding: the part of the cost the company can influence, not removed even by a 100 % hedge |
+| US-03 exchange rate effect | Should | business question 3, but a small effect (6.2 % of the 2022 commodity increase) |
+| US-06.1 price bands and top hours | Should | market context for the other pages |
+| US-06.2 peak vs off-peak | Could | overlaps with US-05 |
+
+## Out of scope (Won't)
+
+- Price forecasts: the report evaluates the past; no forward price history is available (ADR-003).
+- Real data of a specific company: the load is simulated and every page says so.
+- Invoicing and VAT: prices without VAT and without a supplier margin (ADR-005).
+- Data after 2024: the project period is 2020–2024.
+- Live refresh: the data are historical, the report is not refreshed automatically.
