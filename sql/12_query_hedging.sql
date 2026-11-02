@@ -31,10 +31,18 @@ SELECT	0.50
 SELECT	0.75
 		UNION ALL
 SELECT	1.00
-				)
-		
+				),
+
+-- PXE CZ CAL base, last trade of the prior year, ADR-003
+pxe_prices AS (
+SELECT	2022 AS year, 221.88 AS pxe_price_eur_mwh
+		UNION ALL
+SELECT	2023, 241.98
+		UNION ALL
+SELECT	2024, 99.03 )
+
 SELECT
-		year,
+		hp.year,
 		s.hedge_share,
 		hp.spot_cost_eur,
 		hp.hedge_price_eur_mwh,
@@ -42,8 +50,11 @@ SELECT
 		spot_cost_eur + hedge_share * volume_mwh * (hedge_price_eur_mwh - market_price_eur_mwh) AS hedged_cost_eur,
 		hedge_share * volume_mwh * hedge_price_eur_mwh AS fixed_part_eur,
 		(spot_cost_eur + hedge_share * volume_mwh * (hedge_price_eur_mwh - market_price_eur_mwh)) -
-		(hedge_share * volume_mwh * hedge_price_eur_mwh) AS  spot_part_eur
-FROM with_hedge_price hp 
-CROSS JOIN hedge_shares s 
+		(hedge_share * volume_mwh * hedge_price_eur_mwh) AS  spot_part_eur,
+		px.pxe_price_eur_mwh,
+		spot_cost_eur + hedge_share * volume_mwh * (pxe_price_eur_mwh - market_price_eur_mwh) AS hedged_cost_pxe_eur
+FROM with_hedge_price hp
+CROSS JOIN hedge_shares s
+LEFT JOIN pxe_prices px ON hp.year = px.year
 WHERE hedge_price_eur_mwh IS NOT NULL
-ORDER BY year,hedge_share
+ORDER BY hp.year,hedge_share
