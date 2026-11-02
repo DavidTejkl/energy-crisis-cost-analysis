@@ -38,8 +38,10 @@ jobs:
       - name: Generate the simulated load profile
         run: python python/04_generate_load_profile.py
 
+      # git on Windows checks the file out with CRLF line endings; tr removes the \r so sha256sum
+      # reads the file names correctly.
       - name: Compare silver files with the reference checksums
-        run: sha256sum -c tests/silver_checksums.sha256
+        run: tr -d '\r' < tests/silver_checksums.sha256 | sha256sum -c
 
       - name: Cross-check exchange rates against the ČNB REST API
         run: python python/05_check_fx_api.py
