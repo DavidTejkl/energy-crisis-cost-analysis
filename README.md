@@ -66,7 +66,7 @@ powerbi/   Power BI report as PBIP (next version)
 - KPI definitions (price bands): [docs/kpi_definitions.md](docs/kpi_definitions.md)
 - Pipeline: incremental load (watermark = highest key already loaded, a second run inserts 0 rows), every run
   logged in `etl_run_log`, pass/fail DQ checks stored in `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
-- Data quality checks (27 tests) and results: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
+- Data quality checks (31 tests) and results: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
   [docs/data_quality_report.md](docs/data_quality_report.md)
 - Decisions: [docs/decisions/](docs/decisions/)
 

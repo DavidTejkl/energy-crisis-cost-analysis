@@ -93,19 +93,22 @@ valid data and stay unchanged. Outliers are verified against the source, not rem
 
 ## Run 2 — 2026-11-02 (results stored in `dq_results`, step 3.4)
 
-From this run on, the 14 checks with a pass/fail rule write one row each into `dq_results`
+From this run on, the 18 checks with a pass/fail rule write one row each into `dq_results`
 (`sql/90_etl_infrastructure.sql`) with the same `run_at`; the descriptive checks (counts per year,
 statistics, top values) are still only displayed. The last result set of the script lists the stored rows.
 
 | Status | Checks |
 |---|---|
-| PASS (0 failed rows) | P04, P05, P06, P07, P08, P10, F02, F03, F05, R02, R03, D02, D03 |
+| PASS (0 failed rows) | P04, P05, P06, P07, P08, P10, F02, F03, F05, R02, R03, D02, D03, L01, L02, G01, G02 |
 | WARN | P09 negative price hours: 609 (valid market outcome, kept on purpose) |
 | FAIL | none |
 
 Negative test: inside a transaction one weekday was marked as weekend in `dim_date` and one Saturday rate
 in `fact_fx` was marked as an actual ČNB rate; the script stored FAIL for D02, F03 and F05 (1 row each).
-After ROLLBACK the data and `dq_results` were unchanged.
+After ROLLBACK the data and `dq_results` were unchanged. New checks for the two phase 2 tables: L01 load and
+price hours on the same grain, L02 load labelled as simulated, G01 every regulated component priced exactly once
+per day, G02 eight components. Their negative test (one load hour deleted, one validity period extended by a day)
+stored FAIL for L01 and G01 (1 row each).
 
 Show the latest run:
 

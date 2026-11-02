@@ -73,7 +73,7 @@ powerbi/   report Power BI ve formátu PBIP (další verze)
 - Definice KPI (cenová pásma): [docs/kpi_definitions.md](docs/kpi_definitions.md)
 - Pipeline: inkrementální nahrání (watermark = nejvyšší už nahraný klíč, druhý běh vloží 0 řádků), každý běh
   zapsaný v `etl_run_log`, kontroly kvality s pravidlem pass/fail uložené v `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
-- Kontroly kvality dat (27 testů) a jejich výsledky: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
+- Kontroly kvality dat (31 testů) a jejich výsledky: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
   [docs/data_quality_report.md](docs/data_quality_report.md)
 - Rozhodnutí: [docs/decisions/](docs/decisions/)
 

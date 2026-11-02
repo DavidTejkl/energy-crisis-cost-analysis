@@ -1,11 +1,11 @@
 -- Business question: can the loaded data be trusted before any cost analysis runs on it?
--- Data quality checks for all 5 tables. Every check returns numbers next to the expected value;
+-- Data quality checks for all 7 tables. Every check returns numbers next to the expected value;
 -- results are written up in docs/data_quality_report.md.
 -- Expected values come from the source profiling (docs/01_project_brief.md).
 -- Checks with a pass/fail rule (expected 0) are stored in dq_results (sql/90_etl_infrastructure.sql),
 -- one row per check with the same run_at, and listed at the end; descriptive checks are only displayed.
 -- CZ: Byznys otázka: dá se nahraným datům věřit dřív, než nad nimi poběží jakákoli analýza nákladů?
--- Kontroly kvality dat pro všech 5 tabulek. Každá kontrola vrací čísla vedle očekávané hodnoty;
+-- Kontroly kvality dat pro všech 7 tabulek. Každá kontrola vrací čísla vedle očekávané hodnoty;
 -- výsledky jsou sepsané v docs/data_quality_report.md.
 -- Očekávané hodnoty pocházejí z profilování zdroje (docs/01_project_brief.md).
 -- Kontroly s pravidlem pass/fail (očekáváno 0) se ukládají do dq_results (sql/90_etl_infrastructure.sql),
@@ -384,6 +384,80 @@ SELECT 'D04 dim_hour' AS check_id, time_of_day, COUNT(*) AS hour_count,
 FROM dbo.dim_hour
 GROUP BY time_of_day
 ORDER BY MIN(hour_of_day);
+
+-- =====================================================================
+-- fact_load (SIMULATED, grain: delivery day + hour) and regulated_price (grain: component + validity period)
+-- CZ: fact_load (SIMULOVANÝ, grain: den dodávky + hodina) a regulated_price (grain: složka + období platnosti)
+-- =====================================================================
+
+-- L01 Same grain as the prices: every price hour has a load and every load hour has a price (expected 0).
+-- The cost is load x price per hour, so a missing hour on either side would silently drop cost.
+-- CZ: L01 Stejný grain jako ceny: každá hodina s cenou má odběr a každá hodina s odběrem má cenu (očekáváno 0).
+-- CZ: Náklad je odběr x cena po hodinách, takže chybějící hodina na kterékoli straně by tiše ubrala náklad.
+WITH price_without_load AS (
+    SELECT COUNT(*) AS row_count
+    FROM dbo.fact_energy_prices AS p
+    LEFT JOIN dbo.fact_load AS l ON l.date_key = p.date_key AND l.hour_of_day = p.hour_of_day
+    WHERE l.date_key IS NULL
+),
+load_without_price AS (
+    SELECT COUNT(*) AS row_count
+    FROM dbo.fact_load AS l
+    LEFT JOIN dbo.fact_energy_prices AS p ON p.date_key = l.date_key AND p.hour_of_day = l.hour_of_day
+    WHERE p.date_key IS NULL
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'L01', 'load and price hours not matching', a.row_count + b.row_count,
+       CASE WHEN a.row_count + b.row_count = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM price_without_load AS a
+CROSS JOIN load_without_price AS b;
+
+-- L02 Every load row is labelled as simulated and has a load of 0 or more (expected 0)
+-- CZ: L02 Každý řádek odběru je označený jako simulovaný a má odběr 0 nebo víc (očekáváno 0)
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN is_simulated <> 1 OR load_mwh < 0 THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.fact_load
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'L02', 'load not simulated or negative', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
+
+-- G01 Every component has exactly one valid price on every calendar day (expected 0 of 1,827 x 8 pairs).
+-- A gap would leave a day without a regulated charge, an overlap would charge it twice.
+-- CZ: G01 Každá složka má každý kalendářní den právě jednu platnou cenu (očekáváno 0 z 1 827 x 8 dvojic).
+-- CZ: Mezera by nechala den bez regulované platby, překryv by ji započítal dvakrát.
+WITH components AS (
+    SELECT DISTINCT component
+    FROM dbo.regulated_price
+),
+coverage AS (
+    SELECT d.date_key, c.component, COUNT(r.component) AS period_count
+    FROM dbo.dim_date AS d
+    CROSS JOIN components AS c
+    LEFT JOIN dbo.regulated_price AS r
+        ON r.component = c.component AND d.full_date BETWEEN r.valid_from AND r.valid_to
+    GROUP BY d.date_key, c.component
+),
+result AS (
+    SELECT COALESCE(SUM(CASE WHEN period_count <> 1 THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM coverage
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'G01', 'component-days without exactly one price', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
+
+-- G02 Number of components (expected 8, config/tariffs.csv); failed_rows = how far the count is from 8
+-- CZ: G02 Počet složek (očekáváno 8, config/tariffs.csv); failed_rows = o kolik se počet liší od 8
+WITH result AS (
+    SELECT ABS(COUNT(DISTINCT component) - 8) AS failed_rows
+    FROM dbo.regulated_price
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'G02', 'number of components not 8', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- =====================================================================
 -- Stored results of this run (expected: every check PASS, only P09 WARN with 609 rows)
