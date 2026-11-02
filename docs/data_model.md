@@ -214,3 +214,40 @@ components start. `valid_to` is not part of the key: component + start already i
 
 Data check (2026-10-17): every component covers every day 2020–2024 exactly once (0 days without a
 price, 0 days with two prices). Table name and exact SQL types are set in step 2.4.
+
+## 8. Pipeline tables (`sql/90_etl_infrastructure.sql`)
+
+Not part of the star schema: they describe the pipeline, not the business. Created only if missing (no DROP), so
+a rebuild of the model keeps their history. No foreign keys to the model: a failed run must be logged even when
+the model tables are empty. The last loaded day of a fact table is read as `MAX(date_key)` from the table itself,
+so no separate watermark table is kept.
+
+### etl_run_log
+
+Grain: one row = one load of one table in one run. Primary key `run_id` (IDENTITY): a run has no natural key,
+two runs can start in the same second.
+
+| Column          | Format    | Description                                                       |
+| --------------- | --------- | ----------------------------------------------------------------- |
+| `run_id`        | int       | sequence number assigned by SQL Server                            |
+| `script_name`   | text      | e.g. `03_load.py`                                                 |
+| `table_name`    | text      | loaded table; NULL for a step without a table                     |
+| `started_at`    | datetime  | start of the step                                                 |
+| `finished_at`   | datetime  | end of the step; NULL while running or after a crash              |
+| `rows_inserted` | int       | rows inserted, ≥ 0                                                |
+| `rows_updated`  | int       | rows updated, ≥ 0                                                 |
+| `status`        | text      | `RUNNING`, `OK` or `FAIL`                                         |
+| `error_message` | text      | error text when `FAIL`                                            |
+
+### dq_results
+
+Grain: one row = one data quality test in one run. Primary key `dq_result_id` (IDENTITY).
+
+| Column         | Format   | Description                                                         |
+| -------------- | -------- | ------------------------------------------------------------------- |
+| `dq_result_id` | int      | sequence number assigned by SQL Server                              |
+| `run_at`       | datetime | time of the DQ run                                                  |
+| `test_id`      | text     | test number as in `sql/91_dq_tests.sql`, e.g. `P05`                 |
+| `test_name`    | text     | short description                                                   |
+| `failed_rows`  | int      | rows breaking the rule, ≥ 0                                         |
+| `status`       | text     | `PASS`, `WARN` (valid value flagged on purpose) or `FAIL`           |
