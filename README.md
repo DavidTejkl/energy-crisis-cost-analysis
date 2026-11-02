@@ -54,7 +54,7 @@ check (Python)     →  ČNB REST API  exchange rates cross-checked for edge-cas
 ```
 python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
            config.py (paths and constants)
-sql/       01–03 database, tables, views · 04–09 analysis queries · 91 data quality tests
+sql/       01–03 database, tables, views · 04–12 analysis queries · 90 pipeline log tables · 91 data quality tests
 docs/      brief, data model, KPI definitions, methodology of the simulated load, data quality report,
            findings, decisions (ADRs)
 config/    regulated price components with validity periods (ERÚ, 2020–2024)
@@ -64,6 +64,8 @@ powerbi/   Power BI report as PBIP (next version)
 
 - Data model with the grain of every table: [docs/data_model.md](docs/data_model.md)
 - KPI definitions (price bands): [docs/kpi_definitions.md](docs/kpi_definitions.md)
+- Pipeline: incremental load (watermark = highest key already loaded, a second run inserts 0 rows), every run
+  logged in `etl_run_log`, pass/fail DQ checks stored in `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
 - Data quality checks (27 tests) and results: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
   [docs/data_quality_report.md](docs/data_quality_report.md)
 - Decisions: [docs/decisions/](docs/decisions/)
@@ -87,12 +89,13 @@ py python/04_generate_load_profile.py   # SIMULATED hourly load of the model com
 # 3. Database and load
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/01_create_database.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/02_create_tables.sql
-py python/03_load.py             # full reload in one transaction
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/90_etl_infrastructure.sql   # run log + DQ results tables (kept on rebuild)
+py python/03_load.py             # incremental: inserts only rows newer than the table holds, logs every run
 
 # 4. View, data quality checks and analysis
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/03_create_views.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/91_dq_tests.sql
-sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # queries 05–09 run the same way
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # queries 05–12 run the same way
 
 # 5. Optional: cross-check the exchange rates against the ČNB REST API (needs internet)
 py python/05_check_fx_api.py     # 6 edge-case days, prints OK / DIFFERENCE per day

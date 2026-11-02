@@ -61,7 +61,7 @@ kontrola (Python)     →  REST API ČNB  ověření kurzů v okrajových dnech
 ```
 python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
            config.py (cesty a konstanty)
-sql/       01–03 databáze, tabulky, pohledy · 04–09 analytické dotazy · 91 testy kvality dat
+sql/       01–03 databáze, tabulky, pohledy · 04–12 analytické dotazy · 90 tabulky logu pipeline · 91 testy kvality dat
 docs/      zadání, datový model, definice KPI, metodika simulovaného odběru, report kvality dat, nálezy,
            rozhodnutí (ADR)
 config/    regulované složky ceny s obdobím platnosti (ERÚ, 2020–2024)
@@ -71,6 +71,8 @@ powerbi/   report Power BI ve formátu PBIP (další verze)
 
 - Datový model a definice (co je jeden řádek) každé tabulky: [docs/data_model.md](docs/data_model.md)
 - Definice KPI (cenová pásma): [docs/kpi_definitions.md](docs/kpi_definitions.md)
+- Pipeline: inkrementální nahrání (watermark = nejvyšší už nahraný klíč, druhý běh vloží 0 řádků), každý běh
+  zapsaný v `etl_run_log`, kontroly kvality s pravidlem pass/fail uložené v `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
 - Kontroly kvality dat (27 testů) a jejich výsledky: [sql/91_dq_tests.sql](sql/91_dq_tests.sql),
   [docs/data_quality_report.md](docs/data_quality_report.md)
 - Rozhodnutí: [docs/decisions/](docs/decisions/)
@@ -96,12 +98,13 @@ py python/04_generate_load_profile.py   # SIMULOVANÝ hodinový odběr modelové
 # 3. Databáze a nahrání dat
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/01_create_database.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/02_create_tables.sql
-py python/03_load.py             # kompletní nové nahrání v jedné transakci
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/90_etl_infrastructure.sql   # tabulky logu běhů a výsledků DQ (přestavba je nemaže)
+py python/03_load.py             # inkrementálně: vloží jen řádky novější, než tabulka má, každý běh zapíše do logu
 
 # 4. Pohled, kontroly kvality dat a analýza
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/03_create_views.sql
 sqlcmd -S localhost -E -C -b -f 65001 -i sql/91_dq_tests.sql
-sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # dotazy 05–09 stejně
+sqlcmd -S localhost -E -C -b -f 65001 -i sql/04_query_daily_overview.sql   # dotazy 05–12 stejně
 
 # 5. Volitelně: ověření kurzů proti REST API ČNB (potřebuje internet)
 py python/05_check_fx_api.py     # 6 okrajových dnů, pro každý vypíše OK / DIFFERENCE
