@@ -1,0 +1,45 @@
+# Purpose: on every push, rebuild the Python part of the pipeline on a clean machine and prove it is
+# reproducible: download the raw files, clean them, generate the simulated load and compare the SHA-256
+# of every silver file with the reference in tests/silver_checksums.sha256.
+# The SQL Server part runs locally only (no database on the build machine), see README.
+
+name: pipeline-check
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  python-pipeline:
+    # Windows, the same OS as the reference run: CSV line endings, and so the checksums, depend on it.
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download raw files (bronze)
+        run: python python/01_extract.py
+
+      - name: Clean the data (silver)
+        run: python python/02_transform.py
+
+      - name: Generate the simulated load profile
+        run: python python/04_generate_load_profile.py
+
+      - name: Compare silver files with the reference checksums
+        run: sha256sum -c tests/silver_checksums.sha256
+
+      - name: Cross-check exchange rates against the ČNB REST API
+        run: python python/05_check_fx_api.py

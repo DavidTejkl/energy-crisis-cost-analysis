@@ -2,6 +2,8 @@
 # The pipeline downloads yearly text files; the API is a second, independent channel to the same
 # source, so a match shows the download and the cleaning (incl. the ADR-001 fill rule) are right.
 
+import sys
+
 import pandas as pd
 import requests
 
@@ -50,3 +52,6 @@ if __name__ == "__main__":
             matches += 1
 
     print(f"{matches} of {len(FX_API_CHECK_DATES)} days match.")
+    # Exit code 1 on any difference, so an automatic run (GitHub Actions) fails instead of passing.
+    if matches < len(FX_API_CHECK_DATES):
+        sys.exit(1)
