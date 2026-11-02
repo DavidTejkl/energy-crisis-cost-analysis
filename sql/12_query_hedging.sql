@@ -39,7 +39,10 @@ SELECT
 		hp.spot_cost_eur,
 		hp.hedge_price_eur_mwh,
 		hp.market_price_eur_mwh,
-		spot_cost_eur + hedge_share * volume_mwh * (hedge_price_eur_mwh - market_price_eur_mwh) AS hedged_cost_eur
+		spot_cost_eur + hedge_share * volume_mwh * (hedge_price_eur_mwh - market_price_eur_mwh) AS hedged_cost_eur,
+		hedge_share * volume_mwh * hedge_price_eur_mwh AS fixed_part_eur,
+		(spot_cost_eur + hedge_share * volume_mwh * (hedge_price_eur_mwh - market_price_eur_mwh)) -
+		(hedge_share * volume_mwh * hedge_price_eur_mwh) AS  spot_part_eur
 FROM with_hedge_price hp 
 CROSS JOIN hedge_shares s 
 WHERE hedge_price_eur_mwh IS NOT NULL
