@@ -135,3 +135,35 @@ of `R`); `C_czk` over 5 years = 419,457,499 CZK = power cost of query 08.
   **6.2 %** of the commodity increase (+112.80 m CZK). The rate softened the crisis, it did not stop it.
 - **FINDING (SIMULATED load):** in 2024 the weaker koruna worked the other way: +2.91 m CZK, eating 27 % of the
   commodity saving (−10.61 m CZK).
+
+## 2.9 Hedging (`sql/12_query_hedging.sql`)
+
+Method ADR-003: a share of the yearly volume (0 / 25 / 50 / 75 / 100 %) is fixed in advance as a base load contract
+(same power in every hour); the rest is settled on the spot market, so the hedged cost is
+`C + share × V × (Ph − Pb)`. Two hedge prices `Ph`: the simple spot average of the prior year (proxy, ASSUMPTION) and
+the PXE CZ CAL base last trade of the prior year (FACT, quoted in ADR-003, 2022–2024 only). Load is SIMULATED, prices
+are real OTE / PXE data. Checks: at 0 % both variants equal the spot cost; at 100 % the remaining spot part equals
+`C − V × Pb` of query 10 (2022: 483,332.58 EUR); the proxy difference equals the market price effect of query 10
+with the opposite sign.
+
+Difference of the 100 % hedged cost against the pure spot cost (EUR, negative = saving):
+
+| Delivery year | Spot cost | Proxy price | Proxy difference | PXE price | PXE difference |
+|---|---:|---:|---:|---:|---:|
+| 2021 | 2,981,864 | 33.62 | −1,876,652 (−63 %) | – | – |
+| 2022 | 7,399,949 | 100.66 | −4,102,833 (−55 %) | 221.88 | −714,311 (−10 %) |
+| 2023 | 2,972,187 | 247.43 | +4,098,657 (+138 %) | 241.98 | +3,946,234 (+133 %) |
+| 2024 | 2,529,549 | 100.79 | +439,875 (+17 %) | 99.03 | +390,630 (+15 %) |
+| 2022–2024 | 12,901,686 | | +435,699 | | **+3,622,554** |
+
+- **FINDING (SIMULATED load):** fixing the whole volume once at year end does not remove the crisis, it moves it by one
+  year. The highest yearly cost is 7.40 m EUR on spot (2022) and 7.07 m EUR at 100 % fixed (2023), because the hedge
+  for 2023 was bought at the 2022 price level and the market fell by 59 % in 2023.
+- **FINDING (SIMULATED load):** the proxy overstates the benefit in the crisis year. With the real PXE year-end price
+  the 2022 saving is 0.71 m EUR instead of 4.10 m EUR, because forward prices had already risen in autumn 2021. Over
+  2022–2024 a 100 % year-end hedge at PXE prices costs **3.62 m EUR more** than spot.
+- **FINDING (SIMULATED load):** a base load hedge does not cover the load profile premium. Even at 100 % the company
+  still pays `C − V × Pb` on the spot market: 164,030 / 483,333 / 155,344 / 142,087 EUR in 2021–2024, which is
+  14.8 / 14.7 / 2.2 / 4.8 % of the hedged cost.
+- **RECOMMENDATION:** not "do not hedge", but do not fix everything on one day. Buying in tranches over one to three
+  years (ADR-003, limits) spreads the purchase price; this was not calculated here.
