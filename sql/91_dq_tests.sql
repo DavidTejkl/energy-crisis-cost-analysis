@@ -2,13 +2,21 @@
 -- Data quality checks for all 5 tables. Every check returns numbers next to the expected value;
 -- results are written up in docs/data_quality_report.md.
 -- Expected values come from the source profiling (docs/01_project_brief.md).
+-- Checks with a pass/fail rule (expected 0) are stored in dq_results (sql/90_etl_infrastructure.sql),
+-- one row per check with the same run_at, and listed at the end; descriptive checks are only displayed.
 -- CZ: Byznys otázka: dá se nahraným datům věřit dřív, než nad nimi poběží jakákoli analýza nákladů?
 -- Kontroly kvality dat pro všech 5 tabulek. Každá kontrola vrací čísla vedle očekávané hodnoty;
 -- výsledky jsou sepsané v docs/data_quality_report.md.
 -- Očekávané hodnoty pocházejí z profilování zdroje (docs/01_project_brief.md).
+-- Kontroly s pravidlem pass/fail (očekáváno 0) se ukládají do dq_results (sql/90_etl_infrastructure.sql),
+-- jeden řádek na kontrolu se stejným run_at, a na konci se vypíšou; popisné kontroly se jen zobrazí.
 
 USE [EnergyCrisisCostAnalysis];
 SET NOCOUNT ON;
+
+-- One timestamp for the whole run, so all results of one run can be selected together.
+-- CZ: Jeden čas pro celý běh, aby šly všechny výsledky jednoho běhu vybrat najednou.
+DECLARE @run_at datetime2(0) = SYSDATETIME();
 
 -- =====================================================================
 -- fact_energy_prices  (grain: one delivery day + one hour of that day)
@@ -59,45 +67,72 @@ WITH day_hours AS (
     SELECT date_key, MIN(hour_of_day) AS first_hour, MAX(hour_of_day) AS last_hour, COUNT(*) AS hours_in_day
     FROM dbo.fact_energy_prices
     GROUP BY date_key
+),
+result AS (
+    SELECT COUNT(*) AS failed_rows
+    FROM day_hours
+    WHERE first_hour <> 1 OR last_hour <> hours_in_day
 )
-SELECT 'P04 days with hour gaps' AS check_id, COUNT(*) AS day_count
-FROM day_hours
-WHERE first_hour <> 1 OR last_hour <> hours_in_day;
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P04', 'days with hour gaps', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- P05 Calendar days without any price row (expected 0)
 -- CZ: P05 Kalendářní dny bez jakéhokoli řádku s cenou (očekáváno 0)
-SELECT 'P05 dim_date days without prices' AS check_id, COUNT(*) AS day_count
-FROM dbo.dim_date AS d
-LEFT JOIN dbo.fact_energy_prices AS p ON p.date_key = d.date_key
-WHERE p.date_key IS NULL;
+WITH result AS (
+    SELECT COUNT(*) AS failed_rows
+    FROM dbo.dim_date AS d
+    LEFT JOIN dbo.fact_energy_prices AS p ON p.date_key = d.date_key
+    WHERE p.date_key IS NULL
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P05', 'dim_date days without prices', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- P06 Grain uniqueness: duplicate date_key + hour_of_day (expected 0; the PK also enforces it)
 -- CZ: P06 Jedinečnost grainu: duplicitní date_key + hour_of_day (očekáváno 0; vynucuje to i PK)
-SELECT 'P06 duplicate grain keys' AS check_id, COUNT(*) AS duplicate_count
-FROM (
-    SELECT date_key, hour_of_day
+WITH result AS (
+    SELECT COUNT(*) AS failed_rows
+    FROM (
+        SELECT date_key, hour_of_day
+        FROM dbo.fact_energy_prices
+        GROUP BY date_key, hour_of_day
+        HAVING COUNT(*) > 1
+    ) AS dup
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P06', 'duplicate grain keys', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
+
+-- P07 Completeness: NULL price or volume (expected 0)
+-- COALESCE: SUM over an empty table returns NULL, which would not count as a failure.
+-- CZ: P07 Úplnost: NULL cena nebo objem (očekáváno 0)
+-- CZ: COALESCE: SUM nad prázdnou tabulkou vrátí NULL, což by se nepočítalo jako chyba.
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN price_eur_mwh IS NULL OR volume_mwh IS NULL THEN 1 ELSE 0 END), 0) AS failed_rows
     FROM dbo.fact_energy_prices
-    GROUP BY date_key, hour_of_day
-    HAVING COUNT(*) > 1
-) AS dup;
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P07', 'NULL price or volume', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
--- P07 Completeness: NULL price or volume (expected 0 / 0)
--- CZ: P07 Úplnost: NULL cena nebo objem (očekáváno 0 / 0)
-SELECT 'P07 NULL values' AS check_id,
-       SUM(CASE WHEN price_eur_mwh IS NULL THEN 1 ELSE 0 END) AS null_price,
-       SUM(CASE WHEN volume_mwh IS NULL THEN 1 ELSE 0 END) AS null_volume
-FROM dbo.fact_energy_prices;
-
--- P08 Validity: price range and prices outside the sanity range -500 .. 5,000 EUR/MWh (expected 0)
--- Volume must be positive: the market always clears some volume.
--- CZ: P08 Platnost: rozsah cen a ceny mimo rozumný rozsah -500 .. 5 000 EUR/MWh (očekáváno 0)
--- Objem musí být kladný: trh vždy zobchoduje nějaký objem.
-SELECT 'P08 ranges' AS check_id,
-       MIN(price_eur_mwh) AS min_price, MAX(price_eur_mwh) AS max_price,
-       SUM(CASE WHEN price_eur_mwh < -500 OR price_eur_mwh > 5000 THEN 1 ELSE 0 END) AS price_out_of_range,
-       MIN(volume_mwh) AS min_volume, MAX(volume_mwh) AS max_volume,
-       SUM(CASE WHEN volume_mwh <= 0 THEN 1 ELSE 0 END) AS volume_not_positive
-FROM dbo.fact_energy_prices;
+-- P08 Validity: prices outside the sanity range -500 .. 5,000 EUR/MWh or volume not positive (expected 0)
+-- Volume must be positive: the market always clears some volume. Min / max per year are shown in P11.
+-- CZ: P08 Platnost: ceny mimo rozumný rozsah -500 .. 5 000 EUR/MWh nebo objem není kladný (očekáváno 0)
+-- Objem musí být kladný: trh vždy zobchoduje nějaký objem. Min / max za rok ukazuje P11.
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN price_eur_mwh < -500 OR price_eur_mwh > 5000 OR volume_mwh <= 0
+                             THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.fact_energy_prices
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P08', 'price or volume out of range', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- P09 Negative prices per year (expected 119 / 33 / 8 / 134 / 315 = 609) - valid market outcome, not an error
 -- CZ: P09 Záporné ceny za rok (očekáváno 119 / 33 / 8 / 134 / 315 = 609) - platný výsledek trhu, ne chyba
@@ -109,14 +144,29 @@ JOIN dbo.dim_date AS d ON d.date_key = p.date_key
 GROUP BY d.year
 ORDER BY d.year;
 
--- P10 Referential integrity: fact keys missing in the dimensions (expected 0 / 0; the FKs also enforce it)
--- CZ: P10 Referenční integrita: klíče faktu chybějící v dimenzích (očekáváno 0 / 0; vynucují to i FK)
-SELECT 'P10 orphan keys' AS check_id,
-       SUM(CASE WHEN d.date_key IS NULL THEN 1 ELSE 0 END) AS orphan_date_key,
-       SUM(CASE WHEN h.hour_of_day IS NULL THEN 1 ELSE 0 END) AS orphan_hour
-FROM dbo.fact_energy_prices AS p
-LEFT JOIN dbo.dim_date AS d ON d.date_key = p.date_key
-LEFT JOIN dbo.dim_hour AS h ON h.hour_of_day = p.hour_of_day;
+-- Stored as WARN, not FAIL: negative prices are kept on purpose (docs/data_quality_report.md).
+-- CZ: Uloženo jako WARN, ne FAIL: záporné ceny se záměrně ponechávají (docs/data_quality_report.md).
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN price_eur_mwh < 0 THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.fact_energy_prices
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P09', 'negative price hours (valid, flagged)', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'WARN' END
+FROM result;
+
+-- P10 Referential integrity: fact keys missing in the dimensions (expected 0; the FKs also enforce it)
+-- CZ: P10 Referenční integrita: klíče faktu chybějící v dimenzích (očekáváno 0; vynucují to i FK)
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN d.date_key IS NULL OR h.hour_of_day IS NULL THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.fact_energy_prices AS p
+    LEFT JOIN dbo.dim_date AS d ON d.date_key = p.date_key
+    LEFT JOIN dbo.dim_hour AS h ON h.hour_of_day = p.hour_of_day
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'P10', 'orphan keys', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- P11 Distribution: yearly price statistics - the crisis should be visible, not hidden by an error
 -- CZ: P11 Rozdělení: roční statistiky cen - krize má být vidět, ne schovaná za chybou
@@ -154,10 +204,16 @@ FROM dbo.fact_fx;
 
 -- F02 Calendar days without a rate (expected 0)
 -- CZ: F02 Kalendářní dny bez kurzu (očekáváno 0)
-SELECT 'F02 dim_date days without rate' AS check_id, COUNT(*) AS day_count
-FROM dbo.dim_date AS d
-LEFT JOIN dbo.fact_fx AS f ON f.date_key = d.date_key
-WHERE f.date_key IS NULL;
+WITH result AS (
+    SELECT COUNT(*) AS failed_rows
+    FROM dbo.dim_date AS d
+    LEFT JOIN dbo.fact_fx AS f ON f.date_key = d.date_key
+    WHERE f.date_key IS NULL
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'F02', 'dim_date days without rate', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- F03 Fill rule consistency (expected 0 / 0 / 0):
 -- an actual rate comes from its own day, a filled rate from an earlier day, never more than 4 days back
@@ -165,13 +221,18 @@ WHERE f.date_key IS NULL;
 -- CZ: F03 Konzistence pravidla doplnění (očekáváno 0 / 0 / 0):
 -- skutečný kurz pochází z vlastního dne, doplněný kurz z dřívějšího dne, nikdy víc než 4 dny zpět
 -- (4 dny = nejdelší mezera ČNB kolem Velikonoc nebo Vánoc).
-SELECT 'F03 fill rule' AS check_id,
-       SUM(CASE WHEN f.is_actual_rate = 1 AND f.source_date <> d.full_date THEN 1 ELSE 0 END) AS actual_wrong_source,
-       SUM(CASE WHEN f.is_actual_rate = 0 AND f.source_date >= d.full_date THEN 1 ELSE 0 END) AS filled_not_earlier,
-       SUM(CASE WHEN DATEDIFF(day, f.source_date, d.full_date) > 4 THEN 1 ELSE 0 END) AS fill_older_than_4_days,
-       MAX(DATEDIFF(day, f.source_date, d.full_date)) AS max_fill_days
-FROM dbo.fact_fx AS f
-JOIN dbo.dim_date AS d ON d.date_key = f.date_key;
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN (f.is_actual_rate = 1 AND f.source_date <> d.full_date)
+                               OR (f.is_actual_rate = 0 AND f.source_date >= d.full_date)
+                               OR DATEDIFF(day, f.source_date, d.full_date) > 4
+                             THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.fact_fx AS f
+    JOIN dbo.dim_date AS d ON d.date_key = f.date_key
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'F03', 'fill rule broken', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- F04 Filled days by weekday: weekends dominate, weekday fills are public holidays
 -- CZ: F04 Doplněné dny podle dne v týdnu: převažují víkendy, doplnění ve všední den jsou státní svátky
@@ -184,10 +245,16 @@ ORDER BY d.weekday_num;
 
 -- F05 Actual rates on weekends (expected 0 - ČNB does not publish on Saturday or Sunday)
 -- CZ: F05 Skutečné kurzy o víkendu (očekáváno 0 - ČNB v sobotu a neděli kurz nevyhlašuje)
-SELECT 'F05 actual rate on weekend' AS check_id, COUNT(*) AS row_count
-FROM dbo.fact_fx AS f
-JOIN dbo.dim_date AS d ON d.date_key = f.date_key
-WHERE f.is_actual_rate = 1 AND d.is_weekend = 1;
+WITH result AS (
+    SELECT COUNT(*) AS failed_rows
+    FROM dbo.fact_fx AS f
+    JOIN dbo.dim_date AS d ON d.date_key = f.date_key
+    WHERE f.is_actual_rate = 1 AND d.is_weekend = 1
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'F05', 'actual rate on weekend', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- F06 Ranges and NULLs per year (plausible EUR/CZK band 20 - 30)
 -- CZ: F06 Rozsahy a NULL za rok (věrohodné pásmo EUR/CZK 20 - 30)
@@ -242,12 +309,16 @@ WITH ordered AS (
     SELECT valid_from, valid_to,
            LAG(valid_to) OVER (ORDER BY valid_from) AS prev_to
     FROM dbo.repo_rate
+),
+result AS (
+    SELECT COALESCE(SUM(CASE WHEN DATEDIFF(day, prev_to, valid_from) <> 1 THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM ordered
+    WHERE prev_to IS NOT NULL
 )
-SELECT 'R02 gaps and overlaps' AS check_id,
-       SUM(CASE WHEN DATEDIFF(day, prev_to, valid_from) > 1 THEN 1 ELSE 0 END) AS gaps,
-       SUM(CASE WHEN DATEDIFF(day, prev_to, valid_from) < 1 THEN 1 ELSE 0 END) AS overlaps
-FROM ordered
-WHERE prev_to IS NOT NULL;
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'R02', 'repo rate gaps or overlaps', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- R03 Coverage: calendar days with no valid repo rate or more than one (expected 0 / 0)
 -- CZ: R03 Pokrytí: kalendářní dny bez platné repo sazby nebo s více než jednou (očekáváno 0 / 0)
@@ -256,11 +327,15 @@ WITH rate_per_day AS (
     FROM dbo.dim_date AS d
     LEFT JOIN dbo.repo_rate AS r ON d.full_date BETWEEN r.valid_from AND r.valid_to
     GROUP BY d.date_key
+),
+result AS (
+    SELECT COALESCE(SUM(CASE WHEN rate_count <> 1 THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM rate_per_day
 )
-SELECT 'R03 days by rate count' AS check_id,
-       SUM(CASE WHEN rate_count = 0 THEN 1 ELSE 0 END) AS days_without_rate,
-       SUM(CASE WHEN rate_count > 1 THEN 1 ELSE 0 END) AS days_with_two_rates
-FROM rate_per_day;
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'R03', 'days without exactly one repo rate', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- =====================================================================
 -- dim_date and dim_hour
@@ -276,19 +351,31 @@ FROM dbo.dim_date;
 
 -- D02 dim_date: derived columns agree with full_date (expected 0 for each)
 -- CZ: D02 dim_date: odvozené sloupce odpovídají full_date (očekáváno 0 u každého)
-SELECT 'D02 dim_date consistency' AS check_id,
-       SUM(CASE WHEN date_key <> YEAR(full_date) * 10000 + MONTH(full_date) * 100 + DAY(full_date) THEN 1 ELSE 0 END) AS wrong_key,
-       SUM(CASE WHEN year <> YEAR(full_date) OR month <> MONTH(full_date) OR day_of_month <> DAY(full_date) THEN 1 ELSE 0 END) AS wrong_parts,
-       SUM(CASE WHEN quarter <> DATEPART(quarter, full_date) THEN 1 ELSE 0 END) AS wrong_quarter,
-       SUM(CASE WHEN week_of_year <> DATEPART(iso_week, full_date) THEN 1 ELSE 0 END) AS wrong_iso_week,
-       SUM(CASE WHEN is_weekend <> CASE WHEN weekday_num IN (6, 7) THEN 1 ELSE 0 END THEN 1 ELSE 0 END) AS wrong_weekend
-FROM dbo.dim_date;
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN date_key <> YEAR(full_date) * 10000 + MONTH(full_date) * 100 + DAY(full_date)
+                               OR year <> YEAR(full_date) OR month <> MONTH(full_date) OR day_of_month <> DAY(full_date)
+                               OR quarter <> DATEPART(quarter, full_date)
+                               OR week_of_year <> DATEPART(iso_week, full_date)
+                               OR is_weekend <> CASE WHEN weekday_num IN (6, 7) THEN 1 ELSE 0 END
+                             THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.dim_date
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'D02', 'dim_date derived columns wrong', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- D03 dim_date: weekday_num against a known Monday (2020-01-06); 1 = Monday .. 7 = Sunday (expected 0)
 -- CZ: D03 dim_date: weekday_num proti známému pondělí (2020-01-06); 1 = pondělí .. 7 = neděle (očekáváno 0)
-SELECT 'D03 dim_date weekday' AS check_id,
-       SUM(CASE WHEN weekday_num <> (DATEDIFF(day, '2020-01-06', full_date) % 7 + 7) % 7 + 1 THEN 1 ELSE 0 END) AS wrong_weekday
-FROM dbo.dim_date;
+WITH result AS (
+    SELECT COALESCE(SUM(CASE WHEN weekday_num <> (DATEDIFF(day, '2020-01-06', full_date) % 7 + 7) % 7 + 1
+                             THEN 1 ELSE 0 END), 0) AS failed_rows
+    FROM dbo.dim_date
+)
+INSERT INTO dbo.dq_results (run_at, test_id, test_name, failed_rows, status)
+SELECT @run_at, 'D03', 'dim_date weekday wrong', failed_rows,
+       CASE WHEN failed_rows = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM result;
 
 -- D04 dim_hour: hours 1..25 exactly once, label per time of day
 -- CZ: D04 dim_hour: hodiny 1..25 právě jednou, popisek podle části dne
@@ -297,3 +384,12 @@ SELECT 'D04 dim_hour' AS check_id, time_of_day, COUNT(*) AS hour_count,
 FROM dbo.dim_hour
 GROUP BY time_of_day
 ORDER BY MIN(hour_of_day);
+
+-- =====================================================================
+-- Stored results of this run (expected: every check PASS, only P09 WARN with 609 rows)
+-- CZ: Uložené výsledky tohoto běhu (očekáváno: všechny kontroly PASS, jen P09 WARN s 609 řádky)
+-- =====================================================================
+SELECT run_at, test_id, test_name, failed_rows, status
+FROM dbo.dq_results
+WHERE run_at = @run_at
+ORDER BY dq_result_id;
