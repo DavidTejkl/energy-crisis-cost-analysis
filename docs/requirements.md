@@ -44,6 +44,19 @@ expensive hours, so that I know how much moving shifts into cheaper hours could 
 Acceptance: for 2022 the report shows a premium of +17.29 EUR/MWh and 483,333 EUR in total (query 10, `C − V × Pb`),
 labelled SIMULATED.
 
+**US-06.1 · Energy manager · price bands and top hours**
+As an energy manager I want to see how many hours of each year fell into each price band and which hours were the
+most expensive, so that I can see how often the market offered extreme prices and when buying only on the spot
+market is risky.
+Acceptance: 2022 has 3,694 hours in the "extreme" band (≥ 5,821 CZK/MWh, query 05); the hours of all bands sum to
+the hours of the year (8,760); the most expensive hour is 2022-08-29, hour 20, 21,422.25 CZK/MWh (query 07).
+
+**US-06.2 · Energy manager · peak vs off-peak**
+As an energy manager I want to see the price difference between peak (Mon–Fri 08:00–20:00) and off-peak per year,
+so that I know how much moving part of the production to nights and weekends could save.
+Acceptance: in 2022 peak is 60.04 EUR/MWh (1,471.75 CZK/MWh) more expensive than off-peak (query 09); peak plus
+off-peak hours equal all hours of the year (2022: 3,120 + 5,640 = 8,760).
+
 ## Traceability
 
 | Business question (brief) | User story | SQL source | Report page |
@@ -53,8 +66,9 @@ labelled SIMULATED.
 | 3 How did EUR/CZK affect the CZK cost? | US-03 | `sql/11_query_fx_effect.sql` | 3 Why it changed |
 | 4 Could the loss have been hedged? | US-04 | `sql/12_query_hedging.sql` | 4 Hedging |
 | own finding (2.7, 2.9) | US-05 | `sql/10_query_variance_split.sql`, `sql/12_query_hedging.sql` | 2 Company cost |
+| market context for questions 2 and 4 | US-06.1 | `sql/05_query_price_bands.sql`, `sql/07_query_top_hours.sql` | 1 Market |
+| market context for questions 2 and 4 | US-06.2 | `sql/09_query_peak_offpeak.sql` | 1 Market |
 
 ## Open (next version)
 
 - Priorities (MoSCoW) and what the report will not do.
-- Page 1 Market (price bands, peak vs off-peak, top hours): user story to be added.
