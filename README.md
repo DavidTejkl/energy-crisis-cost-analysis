@@ -52,7 +52,7 @@ check (Python)     →  ČNB REST API  exchange rates cross-checked for edge-cas
 ```
 
 ```
-python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
+python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api · run_pipeline ·
            config.py (paths and constants)
 sql/       01–03 database, tables, views · 04–12 analysis queries · 90 pipeline log tables · 91 data quality tests
 docs/      brief, data model, KPI definitions, methodology of the simulated load, data quality report,
@@ -80,6 +80,9 @@ ODBC Driver 17 for SQL Server, `sqlcmd`.
 py -m venv .venv
 source .venv/Scripts/activate    # Git Bash; in PowerShell: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+
+# Steps 2-4 in one command (stops at the first failing step; safe to run again, the second run is incremental):
+# py python/run_pipeline.py
 
 # 2. Download and clean the data
 py python/01_extract.py          # raw files into data/bronze (a second run skips existing files)

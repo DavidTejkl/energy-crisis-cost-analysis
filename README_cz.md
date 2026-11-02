@@ -59,7 +59,7 @@ kontrola (Python)     →  REST API ČNB  ověření kurzů v okrajových dnech
 ```
 
 ```
-python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api ·
+python/    01_extract · 02_transform · 03_load · 04_generate_load_profile · 05_check_fx_api · run_pipeline ·
            config.py (cesty a konstanty)
 sql/       01–03 databáze, tabulky, pohledy · 04–12 analytické dotazy · 90 tabulky logu pipeline · 91 testy kvality dat
 docs/      zadání, datový model, definice KPI, metodika simulovaného odběru, report kvality dat, nálezy,
@@ -89,6 +89,9 @@ ODBC Driver 17 for SQL Server, `sqlcmd`.
 py -m venv .venv
 source .venv/Scripts/activate    # Git Bash; v PowerShellu: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+
+# Kroky 2-4 jedním příkazem (zastaví se na prvním chybném kroku; lze spustit znovu, druhý běh je inkrementální):
+# py python/run_pipeline.py
 
 # 2. Stažení a vyčištění dat
 py python/01_extract.py          # surové soubory do data/bronze (druhé spuštění už stažené soubory přeskočí)
