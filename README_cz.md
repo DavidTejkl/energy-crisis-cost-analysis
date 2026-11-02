@@ -73,7 +73,7 @@ powerbi/   report Power BI ve formátu PBIP (další verze)
 - Definice KPI (cenová pásma): [docs/kpi_definitions.md](docs/kpi_definitions.md)
 - Pipeline: inkrementální nahrání (watermark = nejvyšší už nahraný klíč, druhý běh vloží 0 řádků), každý běh
   zapsaný v `etl_run_log`, kontroly kvality s pravidlem pass/fail uložené v `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
-- Automatická kontrola při každém pushi (GitHub Actions, [.github/workflows/pipeline-check.yml](.github/workflows/pipeline-check.yml)):
+- Automatická kontrola, když push mění kód, ceník nebo knihovny (GitHub Actions, [.github/workflows/pipeline-check.yml](.github/workflows/pipeline-check.yml)):
   čistý počítač s Windows stáhne surové soubory, znovu sestaví data silver a porovná SHA-256 všech 6 souborů
   s [tests/silver_checksums.sha256](tests/silver_checksums.sha256), pak ověří kurzy proti API ČNB. Část se SQL Serverem
   tam neběží (databáze je lokální).

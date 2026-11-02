@@ -66,7 +66,7 @@ powerbi/   Power BI report as PBIP (next version)
 - KPI definitions (price bands): [docs/kpi_definitions.md](docs/kpi_definitions.md)
 - Pipeline: incremental load (watermark = highest key already loaded, a second run inserts 0 rows), every run
   logged in `etl_run_log`, pass/fail DQ checks stored in `dq_results`: [sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)
-- Automatic check on every push (GitHub Actions, [.github/workflows/pipeline-check.yml](.github/workflows/pipeline-check.yml)):
+- Automatic check when a push changes code, tariffs or dependencies (GitHub Actions, [.github/workflows/pipeline-check.yml](.github/workflows/pipeline-check.yml)):
   a clean Windows machine downloads the raw files, rebuilds the silver data and compares the SHA-256 of all 6 files
   with [tests/silver_checksums.sha256](tests/silver_checksums.sha256), then cross-checks the ČNB API. The SQL Server
   part is not run there (the database is local).

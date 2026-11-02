@@ -1,13 +1,22 @@
-# Purpose: on every push, rebuild the Python part of the pipeline on a clean machine and prove it is
+# Purpose: when a push changes code or inputs, rebuild the Python part of the pipeline on a clean machine and prove it is
 # reproducible: download the raw files, clean them, generate the simulated load and compare the SHA-256
 # of every silver file with the reference in tests/silver_checksums.sha256.
 # The SQL Server part runs locally only (no database on the build machine), see README.
 
 name: pipeline-check
 
+# Runs only when a push changes something that can change the data (code, tariffs, dependencies,
+# reference checksums or this file); README, docs and SQL changes do not start it.
+# workflow_dispatch = it can also be started by hand on the Actions tab.
 on:
   push:
     branches: [main]
+    paths:
+      - "python/**"
+      - "config/**"
+      - "requirements.txt"
+      - "tests/**"
+      - ".github/workflows/pipeline-check.yml"
   workflow_dispatch:
 
 jobs:
