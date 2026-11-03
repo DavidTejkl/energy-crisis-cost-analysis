@@ -41,7 +41,7 @@ The report is one story in five chapters. Read only the page titles and you have
   | Graphite | `#1E1F22` | frame | page header band, "What this means" box, active page button |
   | Amber | `#D97706` | cost, increase, problem | power cost, increases in the waterfall, extreme band, fixed-price line |
   | Teal green | `#0D9488` | decrease, saving, what the company can influence | decreases in the waterfall, negative-price band, short notes on cards |
-  | Mint | `#5EDD92` | control on a dark background | SIMULATED label, selected year, "What this means" heading |
+  | Mint | `#5EDD92` | title and controls on a dark background | page title (contrast 9.6 : 1 on graphite), SIMULATED label as an outline, selected year, "What this means" heading |
   | Greys | `#868E9A`, `#A7AEB8`, `#B5BBC4`, `#D7DBE0` | everything else | regulated charges, market average, spot cost |
   | Background / cards | `#F3F4F6` / `#FFFFFF` | — | cards with 18 px rounded corners and a light shadow |
   | Text / muted text | `#1E1F22` / `#6B7280` | — | numbers and labels; never in a data colour |
