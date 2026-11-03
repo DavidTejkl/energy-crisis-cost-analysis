@@ -153,6 +153,96 @@
 - Known limitations: SIMULATED load shape; the CZK and EUR totals differ slightly more than one yearly rate would
   explain, because every hour is converted at its own daily rate.
 
+## Power cost change
+- Business question it answers: how much more or less did the company pay for power than in the previous year?
+- Business definition: power (commodity) cost in CZK of the selected year minus the previous year. Regulated
+  components are not part of it (they are on page 2).
+- Formula (SQL / DAX reference): `C_czk1 − C_czk0`, `C_czk = SUM(load_mwh × price_czk_mwh)` per year
+  (`sql/11_query_fx_effect.sql`).
+- Unit & time grain: CZK; year over year (2021–2024).
+- Filters / exclusions: none.
+- How to read it: 2021 +49.58 · 2022 +105.82 · 2023 −110.70 · 2024 −7.70 m CZK.
+- Known limitations: SIMULATED load.
+
+## Market price, volume and load profile effects
+These three are the split of the power cost change into its drivers, shown as one waterfall in CZK on page 3.
+- Business question it answers: which part of the change came from the market price level, from the consumed
+  volume, and from when the company consumed (load shape)?
+- Business definition (ADR-004, then priced at the previous year's effective rate `R0`, ADR-006):
+  - volume effect `(V1 − V0) × Pw0 × R0` — more or less MWh at last year's company price;
+  - market price effect `V1 × (Pb1 − Pb0) × R0` — the plain market average moved;
+  - load profile effect `V1 × (S1 − S0) × R0` — the premium for consuming in expensive hours changed
+    (`S = Pw − Pb`, see Load profile premium).
+  The three sum to the commodity effect of query 11, `(C_eur1 − C_eur0) × R0`.
+- Formula (SQL / DAX reference): EUR effects in `sql/10_query_variance_split.sql`, `R0` in
+  `sql/11_query_fx_effect.sql`. Cross-check query for the CZK waterfall (run 2026-11-03):
+
+  ```sql
+  WITH yearly AS (
+      SELECT d.year,
+             SUM(l.load_mwh) AS v,
+             SUM(l.load_mwh * p.price_eur_mwh) AS c_eur,
+             SUM(l.load_mwh * p.price_czk_mwh) AS c_czk,
+             AVG(p.price_eur_mwh) AS pb
+      FROM dbo.vw_energy_prices_czk p
+      JOIN dbo.fact_load l ON l.date_key = p.date_key AND l.hour_of_day = p.hour_of_day
+      JOIN dbo.dim_date d ON d.date_key = p.date_key
+      GROUP BY d.year
+  ), derived AS (
+      SELECT year, v, c_eur, c_czk, pb,
+             c_eur / NULLIF(v, 0) AS pw,
+             c_eur / NULLIF(v, 0) - pb AS s,
+             c_czk / NULLIF(c_eur, 0) AS r
+      FROM yearly
+  ), prev AS (
+      SELECT *, LAG(v) OVER (ORDER BY year) AS v0, LAG(c_eur) OVER (ORDER BY year) AS c_eur0,
+             LAG(c_czk) OVER (ORDER BY year) AS c_czk0, LAG(pb) OVER (ORDER BY year) AS pb0,
+             LAG(pw) OVER (ORDER BY year) AS pw0, LAG(s) OVER (ORDER BY year) AS s0,
+             LAG(r) OVER (ORDER BY year) AS r0
+      FROM derived
+  )
+  SELECT year,
+         c_czk0                 AS cost_prev_czk,
+         (v - v0) * pw0 * r0    AS volume_czk,
+         v * (pb - pb0) * r0    AS market_price_czk,
+         v * (s - s0) * r0      AS load_profile_czk,
+         c_eur * (r - r0)       AS rate_czk,
+         c_czk                  AS cost_czk,
+         c_czk - c_czk0 - ((v - v0) * pw0 * r0 + v * (pb - pb0) * r0 + v * (s - s0) * r0 + c_eur * (r - r0))
+                                AS check_czk
+  FROM prev
+  WHERE v0 IS NOT NULL
+  ORDER BY year;
+  ```
+- Unit & time grain: CZK; year over year (2021–2024).
+- Filters / exclusions: none.
+- How to read it (m CZK, run 2026-11-03):
+
+  | Year | Volume | Market price | Load profile | Rate | Check (CZK) |
+  |---|---|---|---|---|---|
+  | 2021 | −0.05 | +49.55 | +2.68 | −2.60 | 1.52 |
+  | 2022 | −0.11 | +104.75 | +8.16 | −6.98 | −0.62 |
+  | 2023 | −0.03 | −100.78 | −8.06 | −1.82 | 1.31 |
+  | 2024 | +0.27 | −10.55 | −0.33 | +2.91 | −1.80 |
+
+  Volume + market price + load profile = commodity effect of query 11 (2022: 112.80 m CZK).
+- Known limitations: volume and load profile effects are SIMULATED (constant simulated volume → the volume effect
+  is almost zero by construction). The order of the split (volume → price → profile) changes the size of the
+  parts, not the total (ADR-004).
+
+## Exchange rate effect
+- Business question it answers: did the EUR/CZK rate help or hurt the CZK power cost?
+- Business definition: the part of the CZK cost change caused by the effective EUR/CZK rate
+  (`R = C_czk / C_eur`, cost-weighted) moving from the previous year: `C_eur1 × (R1 − R0)` (ADR-006).
+  Negative = a stronger koruna made power cheaper.
+- Formula (SQL / DAX reference): `rate_effect_czk` in `sql/11_query_fx_effect.sql`.
+- Unit & time grain: CZK; year over year (2021–2024).
+- Filters / exclusions: none.
+- How to read it: 2021 −2.60 · 2022 −6.98 · 2023 −1.82 · 2024 +2.91 m CZK. In 2022 the koruna offset 6.2 % of the
+  commodity increase.
+- Known limitations: the effective rate weights days by cost, so it differs slightly from the yearly average
+  ČNB rate.
+
 ## <KPI name>
 - Business question it answers:
 - Business definition:

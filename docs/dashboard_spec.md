@@ -135,7 +135,65 @@ Band order in the legend is negative → low → normal → high → extreme (so
 
 ## Page 3 — Why it changed
 
-Not specified yet.
+**Question:** why did the power cost change from the previous year — market price, volume, load profile or the
+EUR/CZK rate?
+**User:** CFO. **User stories:** US-02, US-03. **Labels:** SIMULATED (volume and load profile effects).
+**Currency:** CZK; the EUR split of query 10 in the tooltip.
+**Dynamic title (example 2022):** "2022: power cost +105.8 m CZK, market price +104.8 m CZK".
+
+**Method:** one waterfall in CZK answers both stories. ADR-006 prices the commodity effect as
+`(C_eur1 − C_eur0) × R0`, and ADR-004 splits `C_eur1 − C_eur0` into volume, market price and load profile.
+Each EUR effect × the previous year's effective rate `R0` therefore gives the same effect in CZK, and the three
+sum to the commodity effect of query 11. No new method, only ADR-004 and ADR-006 in one picture.
+
+### Layout
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│ 3 <dynamic title>                SIMULATED  Change into: [2021]…[2024] │
+├────────────────┬────────────────┬────────────────┬─────────────────────┤
+│ Power cost     │ Market price   │ Load profile   │ Exchange rate       │
+│ change         │ effect         │ effect         │ effect              │
+├────────────────┴────────────────┴────────────────┴─────────────────────┤
+│ Waterfall: previous year → volume → market price → load profile →      │
+│ exchange rate → selected year (m CZK)                                  │
+├────────────────────────────────────────────────────────────────────────┤
+│ All years: effects side by side (clustered column, m CZK)              │
+├────────────────────────────────────────────────────────────────────────┤
+│ Volume and load profile are SIMULATED. Split: ADR-004 × previous-year  │
+│ rate, rate effect: ADR-006. EUR values in the tooltip.                 │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### KPI cards (filtered by the year slicer = change from the previous year into the selected year)
+
+| Card | KPI | Unit | Comparison line | Check value 2022 | SQL check |
+|---|---|---|---|---|---|
+| Power cost change | [Power cost change](kpi_definitions.md#power-cost-change) | m CZK | % vs previous year | +105.82 (+139.0 %) | `sql/11_query_fx_effect.sql` |
+| Market price effect | [Market price effect](kpi_definitions.md#market-price-volume-and-load-profile-effects) | m CZK | share of the change | +104.75 (99.0 %) | waterfall query in `kpi_definitions.md` |
+| Load profile effect | [Load profile effect](kpi_definitions.md#market-price-volume-and-load-profile-effects) | m CZK | "can be influenced" | +8.16 | waterfall query in `kpi_definitions.md` |
+| Exchange rate effect | [Exchange rate effect](kpi_definitions.md#exchange-rate-effect) | m CZK | koruna helped / hurt | −6.98 | `sql/11_query_fx_effect.sql` |
+
+### Visuals
+
+| Visual | Type | Axis / legend | Values | Year slicer | Colour | Answers |
+|---|---|---|---|---|---|---|
+| Waterfall | waterfall | previous year cost → volume → market price → load profile → exchange rate → selected year cost | m CZK | yes | increase red, decrease green, start and end grey | US-02, US-03 |
+| Effects of all years | clustered column | year 2021–2024; legend = volume, market price, load profile, exchange rate | m CZK | no (all years) | market price strong, the rest grey | US-02, US-03 |
+
+Tooltip on the waterfall: the same effect in EUR (query 10) and the effective rates `R0`, `R1` (query 11).
+
+### Filters
+
+- Year slicer "Change into" (buttons 2021–2024; 2020 has no previous year), single select, default 2022.
+
+### Acceptance
+
+- 2022: start 76.13 m CZK; volume −0.11 + market price +104.75 + load profile +8.16 = commodity +112.80 m CZK
+  (= query 11); exchange rate −6.98 m CZK (= query 11); end 181.96 m CZK. Total change +105.82 m CZK.
+- For every year the four effects sum to the change within 2 CZK (DECIMAL rounding; run 2026-11-03:
+  1.52 / −0.62 / 1.31 / −1.80 CZK).
+- The tooltip shows the EUR effects of US-02: market price +4,102,833, load profile +319,538, volume −4,286 EUR.
 
 ## Page 4 — Hedging
 
