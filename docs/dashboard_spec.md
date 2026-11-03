@@ -34,9 +34,21 @@ The report is one story in five chapters. Read only the page titles and you have
   (*edit interactions* = none).
 
 **Visual**
-- Grey + one accent colour (orange). The accent marks only what the reader should look at (power cost, crisis
-  years, extreme band, the selected share). Increases orange, decreases blue — never red/green
-  (colour-blind safe, ~8 % of men).
+- Every colour has one meaning (theme file in Power BI):
+
+  | Colour | Hex | Meaning | Where |
+  |---|---|---|---|
+  | Graphite | `#1E1F22` | frame | page header band, "What this means" box, active page button |
+  | Amber | `#D97706` | cost, increase, problem | power cost, increases in the waterfall, extreme band, fixed-price line |
+  | Teal green | `#0D9488` | decrease, saving, what the company can influence | decreases in the waterfall, negative-price band, short notes on cards |
+  | Mint | `#5EDD92` | control on a dark background | SIMULATED label, selected year, "What this means" heading |
+  | Greys | `#868E9A`, `#A7AEB8`, `#B5BBC4`, `#D7DBE0` | everything else | regulated charges, market average, spot cost |
+  | Background / cards | `#F3F4F6` / `#FFFFFF` | — | cards with 18 px rounded corners and a light shadow |
+  | Text / muted text | `#1E1F22` / `#6B7280` | — | numbers and labels; never in a data colour |
+
+- Rules: teal green and mint never fill a large area; mint never in a chart (contrast 1.7 : 1 on white).
+  Amber and teal pass the colour-blind check (ΔE 12.5 protan, target ≥ 8); pure green next to amber would not.
+  Never red/green (~8 % of men are colour-blind).
 - Data labels on the data instead of legends where possible; no gridlines; no pie, gauge or 3D charts.
 - Title 20 pt or more, card numbers 28 pt or more.
 - Money: m CZK (or m EUR on page 4) with one decimal on cards and charts; full precision in tooltips.
@@ -106,7 +118,7 @@ in tooltips.
 
 | Visual | Type | Axis / legend | Values | Colour | Chart title |
 |---|---|---|---|---|---|
-| Main: yearly cost | stacked column | year 2020–2024; power, regulated | m CZK | power orange, regulated grey; 2021–2023 shaded | "Power drove the cost up; regulated charges stayed at 17–20 m CZK until 2024" |
+| Main: yearly cost | stacked column | year 2020–2024; power, regulated | m CZK | power amber, regulated grey; 2021–2023 shaded | "Power drove the cost up; regulated charges stayed at 17–20 m CZK until 2024" |
 | Navigation tiles | 4 buttons | one per detail page with its question | — | grey | — |
 
 ### Acceptance
@@ -138,8 +150,8 @@ in a crisis. After 2023 prices fell, but single extreme hours still occur (Decem
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: price trend | line | month 2020-01 … 2024-12 | Average market price, CZK/MWh | no | grey line, 2021–2023 shaded orange | "Market prices multiplied in 2021–2022 and fell back in 2023" |
-| Hours by price band | 100 % stacked bar | year; band negative → extreme | count of hours | no | grey scale, extreme orange | "Extreme hours: 0 in 2020, 3,694 in 2022" |
+| Main: price trend | line | month 2020-01 … 2024-12 | Average market price, CZK/MWh | no | grey line, 2021–2023 shaded amber | "Market prices multiplied in 2021–2022 and fell back in 2023" |
+| Hours by price band | 100 % stacked bar | year; band negative → extreme | count of hours | no | grey scale, negative teal green, extreme amber | "Extreme hours: 0 in 2020, 3,694 in 2022" |
 | Top 5 hours | table | rank, date, hour, CZK/MWh | `RANK` within the year | yes | — | "The most expensive hours of {year}" |
 
 Tooltip on the bands chart: hours per band and the peak/off-peak spread and hours of the year (US-06.2).
@@ -177,8 +189,8 @@ daytime hours — this is the part of the bill it can influence by moving load.
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: monthly cost | stacked column | month 2020-01 … 2024-12; power, regulated per MWh, fixed (reserved capacity, OTE fees), POZE | m CZK | no | power orange, the rest grey shades | "Only the power part of the bill exploded" |
-| Company price vs market average | clustered column | year; market average, company price | CZK/MWh | no | company orange, market grey | "The company pays more than the market average because it uses power in expensive hours" |
+| Main: monthly cost | stacked column | month 2020-01 … 2024-12; power, regulated per MWh, fixed (reserved capacity, OTE fees), POZE | m CZK | no | power amber, the rest grey shades | "Only the power part of the bill exploded" |
+| Company price vs market average | clustered column | year; market average, company price | CZK/MWh | no | company amber, market grey | "The company pays more than the market average because it uses power in expensive hours" |
 
 Tooltip on the monthly chart: every component in CZK (network use, system services, tax, reserved capacity,
 OTE fees, POZE).
@@ -220,8 +232,8 @@ was small next to the market price.
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: waterfall | waterfall | previous year cost → volume → market price → load profile → exchange rate → selected year cost | m CZK | yes | increase orange, decrease blue, start and end grey | "From {year−1} to {year}: what pushed the cost up and down" |
-| Effects of all years | clustered column | year 2021–2024; volume, market price, load profile, exchange rate | m CZK | no | market price orange, the rest grey | "Every year, the market price was the main driver" |
+| Main: waterfall | waterfall | previous year cost → volume → market price → load profile → exchange rate → selected year cost | m CZK | yes | increase amber, decrease teal green, start and end grey | "From {year−1} to {year}: what pushed the cost up and down" |
+| Effects of all years | clustered column | year 2021–2024; volume, market price, load profile, exchange rate | m CZK | no | market price amber, the rest grey | "Every year, the market price was the main driver" |
 
 Tooltip on the waterfall: the same effect in EUR (query 10) and the effective rates `R0`, `R1` (query 11).
 
@@ -259,8 +271,8 @@ flat contract does not match its load shape.
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: cost by share fixed | line | share 0–100 %; spot (flat), proxy price, PXE price | m EUR | yes | proxy orange, PXE dark grey, spot light grey; marker at the slider value | "{year}: what the company would have paid at each share fixed in advance" |
-| All years at the selected share | clustered column | year 2021–2024; spot, fixed at proxy price | m EUR | no (slider yes) | fixed orange, spot grey | "The 2022 shock gets smaller — and moves to 2023" |
+| Main: cost by share fixed | line | share 0–100 %; spot (flat), proxy price, PXE price | m EUR | yes | proxy amber, PXE dark grey, spot light grey; marker at the slider value | "{year}: what the company would have paid at each share fixed in advance" |
+| All years at the selected share | clustered column | year 2021–2024; spot, fixed at proxy price | m EUR | no (slider yes) | fixed amber, spot grey | "The 2022 shock gets smaller — and moves to 2023" |
 
 The PXE price exists for 2022–2024 only; for 2021 the PXE line is hidden and the card says "no PXE price".
 
