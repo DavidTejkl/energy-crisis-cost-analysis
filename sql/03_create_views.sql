@@ -71,4 +71,39 @@ CREATE OR ALTER VIEW dbo.vw_daily_summary AS
 
 GO
 
+-- ** HOURLY COST VIEW **
+-- Business question: what did the company pay for power in each hour, in EUR and in CZK?
+-- Main fact table for Power BI: one row = one hour (43,848 rows). Load is SIMULATED (docs/methodology.md).
+-- CZ: ** VIEW S HODINOVÝM NÁKLADEM **
+-- Byznys otázka: kolik firma zaplatila za silovou elektřinu v každé hodině, v EUR a v CZK?
+-- Hlavní faktová tabulka pro Power BI: jeden řádek = jedna hodina (43 848 řádků). Odběr je SIMULOVANÝ (docs/methodology.md).
+
+-- Costs are stored, prices for more than one hour are not: Power BI computes the load-weighted price
+-- as SUM(power_cost) / SUM(load_mwh), so it stays correct for any filter (never an average of averages).
+-- The hourly price columns serve the market page (simple average, every hour has the same weight).
+-- CZ: Ukládají se náklady, ceny za víc hodin ne: Power BI počítá cenu váženou odběrem
+-- jako SUM(power_cost) / SUM(load_mwh), takže platí pro jakýkoli filtr (nikdy průměr průměrů).
+-- Hodinové ceny slouží stránce trhu (prostý průměr, každá hodina má stejnou váhu).
+
+-- LEFT JOIN on fact_fx: a missing rate would show as NULL (visible in the check), not as a lost hour.
+-- power_cost = power (commodity) only, without regulated components (query 08), margin and VAT (ADR-005).
+-- CZ: LEFT JOIN na fact_fx: chybějící kurz by se ukázal jako NULL (vidět v kontrole), ne jako ztracená hodina.
+-- power_cost = jen silová elektřina, bez regulovaných složek (dotaz 08), marže a DPH (ADR-005).
+
+CREATE OR ALTER VIEW dbo.vw_hourly_cost AS 
+	
+	SELECT
+		ep.date_key,
+		ep.hour_of_day,
+		ep.price_eur_mwh,
+		fx.rate_czk_per_eur,
+		ep.price_eur_mwh * fx.rate_czk_per_eur AS price_czk_mwh,
+		l.load_mwh,
+		l.load_mwh * ep.price_eur_mwh AS power_cost_eur,
+		l.load_mwh * ep.price_eur_mwh * fx.rate_czk_per_eur AS power_cost_czk
+	FROM dbo.fact_energy_prices ep
+	JOIN dbo.fact_load l ON ep.date_key = l.date_key AND ep.hour_of_day = l.hour_of_day
+	LEFT JOIN dbo.fact_fx fx ON ep.date_key = fx.date_key
+
+GO
 
