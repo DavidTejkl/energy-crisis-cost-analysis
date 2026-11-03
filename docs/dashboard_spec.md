@@ -289,10 +289,26 @@ The PXE price exists for 2022–2024 only; for 2021 the PXE line is hidden and t
 
 ## Data sources for Power BI
 
-Not decided yet: which tables and views the model imports, and which query results become views
-(decided in the next part of 4.0b). Known needs:
-- Page 1 trend in CZK: `vw_daily_summary` holds the market price sum in EUR only → a CZK sum or the hourly
-  view `vw_energy_prices_czk` is needed.
-- Page 2 monthly components: the result of query 08 (monthly, by component).
-- Page 3 waterfall: one row per year and step (step name, value in CZK) — Power BI's waterfall needs this shape.
-- Page 4: yearly V, C, Pb, proxy price and PXE price (query 12 inputs); the share comes from the what-if parameter.
+**Source = SQL Server database `EnergyCrisisCostAnalysis`, Import mode.** Power BI never reads the CSV files.
+The database is the single source of truth: it has the keys, the DQ tests and the views whose numbers were
+checked in SQL. The "gold" layer of this project is therefore the set of views below, not a folder of files.
+After the pipeline runs, one *Refresh* in Power BI updates the report.
+
+| Model table | Source in SQL | Grain (1 row =) | Used on | Status |
+|---|---|---|---|---|
+| `dim_date` | table `dim_date` | 1 day | all pages (year slicer, month axis, weekend flag) | exists |
+| `dim_hour` | table `dim_hour` | 1 hour of the day | page 1 (peak / off-peak, top hours) | exists |
+| Hourly fact | new view: price EUR and CZK, rate, load, cost EUR and CZK per hour (`fact_energy_prices` + `fact_fx` + `fact_load`) | 1 hour | pages 0–2 (market price, bands, top hours, power cost, load profile premium) | to write |
+| Monthly cost | new view from query 08 (power, regulated per MWh, fixed, POZE, total) | 1 month | pages 0 and 2 | to write |
+| Cost change steps | new view from queries 10 + 11 (previous-year cost, volume, market price, load profile, exchange rate) | 1 year + 1 step | page 3 waterfall and table | to write |
+| Hedging inputs | new view from query 12 (V, C, Pb, proxy price Ph, PXE price) | 1 year | page 4; the hedged cost is a DAX measure with the what-if share | to write |
+
+- Relationships: `dim_date` 1 → * every fact on `date_key`; `dim_hour` 1 → * the hourly fact on `hour_of_day`.
+  Monthly and yearly views carry the `date_key` of the first day of their month / year, so the same year slicer
+  filters them. Several facts sharing the same dimensions = star schema with more than one fact (galaxy).
+- Prices are never stored as averages: every price on the report is a DAX ratio of two sums (cost / volume),
+  so it stays correct for any filter.
+- Logic over validity periods (regulated tariffs) and year-over-year effects stays in SQL, where it was tested;
+  DAX does sums, ratios and the what-if hedge only.
+- `vw_energy_prices_czk` and `vw_daily_summary` are not imported: the hourly view covers both at a finer grain,
+  and two tables with the same content could give two different answers.
