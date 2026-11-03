@@ -243,6 +243,52 @@ These three are the split of the power cost change into its drivers, shown as on
 - Known limitations: the effective rate weights days by cost, so it differs slightly from the yearly average
   ČNB rate.
 
+## Spot cost
+- Business question it answers: what did power cost the company when it bought everything on the day-ahead market?
+- Business definition: load-weighted power cost without any hedge, `C = SUM(load × price)`.
+- Formula (SQL / DAX reference): `spot_cost_eur` in `sql/12_query_hedging.sql` (= yearly C of query 10).
+- Unit & time grain: EUR per year (2021–2024 on page 4).
+- Filters / exclusions: none.
+- How to read it: 2021 2.98 · 2022 7.40 · 2023 2.97 · 2024 2.53 m EUR.
+- Known limitations: SIMULATED load; power only (no regulated components).
+
+## Hedged cost
+- Business question it answers: what would the company have paid if it had fixed a share of the yearly volume
+  in advance?
+- Business definition: the share is bought as a flat (base load) product at a price fixed before the year, the
+  rest at spot: `hedged = C + share × V × (Ph − Pb)`. `Ph` = proxy price = plain average spot price of the
+  previous year (ASSUMPTION, ADR-003); sensitivity with the PXE CZ CAL base price of the previous year-end (FACT,
+  2022–2024 only).
+- Formula (SQL / DAX reference): `hedged_cost_eur` and `hedged_cost_pxe_eur` in `sql/12_query_hedging.sql`;
+  in Power BI the share comes from the what-if parameter (0–100 %, step 5 %).
+- Unit & time grain: EUR per year.
+- Filters / exclusions: 2020 excluded (no previous year).
+- How to read it: 2022 at 50 % 5.35 m EUR (proxy) / 7.04 m (PXE); at 100 % 3.30 m / 6.69 m (spot 7.40 m).
+  2023 at 100 % 7.07 m (proxy) vs spot 2.97 m — the hedge fixed the crisis price.
+- Known limitations: proxy price is not a real contract price; no transaction costs, no supplier margin;
+  base load only (the load profile premium stays on spot).
+
+## Hedging result 2021–2024
+- Business question it answers: over several years, did fixing in advance save money or cost money?
+- Business definition: sum of hedged cost 2021–2024 at the selected share minus sum of spot cost 2021–2024.
+  Negative = hedging was cheaper.
+- Formula (SQL / DAX reference): sum over years of `hedged_cost_eur − spot_cost_eur` from `sql/12_query_hedging.sql`.
+- Unit & time grain: EUR, period 2021–2024.
+- Filters / exclusions: PXE variant only 2022–2024 (shown separately in the tooltip).
+- How to read it: proxy price at 100 % −1.44 m EUR (14,442,596.70 vs 15,883,549.87), at 50 % −0.72 m EUR.
+  PXE price 2022–2024 at 100 % +3.62 m EUR (more expensive).
+- Known limitations: as Hedged cost; the result depends on which price the hedge used.
+
+## Crisis cost multiple
+- Business question it answers: how many times more did electricity cost at the peak of the crisis than before it?
+- Business definition: total electricity cost 2022 / total electricity cost 2020.
+- Formula (SQL / DAX reference): yearly `total_cost_czk` of `sql/08_query_allin_price.sql`:
+  200,924,897.61 / 45,464,435.44 = 4.42.
+- Unit & time grain: ratio, fixed years 2022 and 2020 (Summary page title).
+- Filters / exclusions: none.
+- How to read it: 4.4× — the headline number of the report.
+- Known limitations: SIMULATED load; regulated tariffs changed too (POZE was 0 from 2022-10-01 to 2023-12-31).
+
 ## <KPI name>
 - Business question it answers:
 - Business definition:

@@ -68,5 +68,5 @@
   download source → backlog.
 
 ## Scope
-- In: pipeline, star schema, DQ tests, incremental load, analysis queries, 4-page Power BI, README CZ/EN.
+- In: pipeline, star schema, DQ tests, incremental load, analysis queries, 5-page Power BI (summary + 4 detail pages), README CZ/EN.
 - Out: Kaggle data, invoice PDF parsing, Airflow, Docker, dbt, Spark, cloud DB.
