@@ -167,3 +167,34 @@ Difference of the 100 % hedged cost against the pure spot cost (EUR, negative = 
   14.8 / 14.7 / 2.2 / 4.8 % of the hedged cost.
 - **RECOMMENDATION:** not "do not hedge", but do not fix everything on one day. Buying in tranches over one to three
   years (ADR-003, limits) spreads the purchase price; this was not calculated here.
+
+## 4.1 Most expensive day for the company (`dbo.vw_hourly_cost`, grouped by day)
+
+Power (commodity) cost per day = sum of hourly load × day-ahead price × EUR/CZK rate, without regulated components,
+margin and VAT. Load is SIMULATED (28 GWh/year, ASSUMPTION), prices and rates are real OTE / ČNB data. The company
+buys 100 % on the spot market (worst case, no hedge). Query: `vw_hourly_cost` JOIN `dim_date`, GROUP BY day,
+`RANK() OVER (PARTITION BY year ORDER BY SUM(power_cost_czk) DESC)`.
+
+| Year | Most expensive day | Load MWh | Power cost CZK | Weighted price CZK/MWh | × average day of 2020 |
+|---|---|---:|---:|---:|---:|
+| 2020 | 2020-12-09 (Wed) | 78.753 | 186,946 | 2,374 | 2.6 |
+| 2021 | 2021-12-21 (Tue) | 78.565 | 912,097 | 11,609 | 12.6 |
+| 2022 | 2022-08-30 (Tue) | 97.792 | **1,657,483** | 16,949 | **22.8** |
+| 2023 | 2023-01-23 (Mon) | 78.511 | 406,854 | 5,182 | 5.6 |
+| 2024 | 2024-12-12 (Thu) | 78.535 | 830,802 | 10,579 | 11.5 |
+
+Average day (power cost / days): 72,545 / 208,584 / 498,512 / 195,233 / 173,651 CZK in 2020–2024.
+Check: the 2022 top 3 days are equal when computed directly from the fact tables (practice query, same result to the
+haléř).
+
+- **FINDING (SIMULATED load):** at the peak of the crisis one day of operation cost the unhedged company 1.66 m CZK
+  for power alone, 22.8 times an average day of 2020 (72,545 CZK). In 2022 the *average* day cost 0.50 m CZK.
+- **FINDING (SIMULATED load):** the most expensive day for the company is not the most expensive day of the market.
+  The market peak was Friday 2022-08-26 (query 07), but the company paid most on Tuesday 2022-08-30 (1,657,483 vs
+  1,629,833 CZK), because on Friday the milling stops at 22:00 and the load was lower (93.8 vs 97.8 MWh).
+  Cost = price × load shape, not price alone.
+- **FINDING (SIMULATED load):** the crisis ended, the spikes did not. The most expensive day of 2024 (Dunkelflaute,
+  2024-12-12) cost 0.83 m CZK, close to the most expensive day of 2021.
+- **Limit:** real energy-intensive companies usually buy most of their volume in advance (one to two years), so they
+  did not pay such daily amounts in 2022; the hit came when their fixed contracts ended. This is the worst case that
+  page 4 (hedging, query 12) compares with partly fixed volumes.
