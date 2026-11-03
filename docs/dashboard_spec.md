@@ -41,11 +41,14 @@ The report is one story in five chapters. Read only the page titles and you have
   | Graphite | `#1E1F22` | frame | page header band, "What this means" box, active page button |
   | Amber | `#D97706` | cost, increase, problem | power cost, increases in the waterfall, extreme band, fixed-price line |
   | Teal green | `#0D9488` | decrease, saving, what the company can influence | decreases in the waterfall, negative-price band, short notes on cards |
-  | Mint | `#5EDD92` | title and controls on a dark background | page title (contrast 9.6 : 1 on graphite), SIMULATED label as an outline, selected year, "What this means" heading |
+  | Mint | `#5EDD92` | accent of the frame | 4 px strip on top of the three KPI cards, SIMULATED label as an outline, selected year, "What this means" heading |
   | Greys | `#868E9A`, `#A7AEB8`, `#B5BBC4`, `#D7DBE0` | everything else | regulated charges, market average, spot cost |
   | Background / cards | `#F3F4F6` / `#FFFFFF` | — | cards with 18 px rounded corners and a light shadow |
   | Text / muted text | `#1E1F22` / `#6B7280` | — | numbers and labels; never in a data colour |
 
+- Header band: page title in white on one full-width line (24 pt bold); subtitle, labels and the year slicer
+  share the second line. A green title was tried and dropped: it competed with the KPI numbers and read as
+  "good" on a cost increase.
 - Rules: teal green and mint never fill a large area; mint never in a chart (contrast 1.7 : 1 on white).
   Amber and teal pass the colour-blind check (ΔE 12.5 protan, target ≥ 8); pure green next to amber would not.
   Never red/green (~8 % of men are colour-blind).
