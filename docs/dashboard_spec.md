@@ -106,7 +106,7 @@ in tooltips.
 
 | Visual | Type | Axis / legend | Values | Colour | Chart title |
 |---|---|---|---|---|---|
-| Main: yearly cost | stacked column | year 2020–2024; power, regulated | m CZK | power orange, regulated grey; 2021–2023 shaded | "Power drove the cost up; regulated charges stayed almost flat" |
+| Main: yearly cost | stacked column | year 2020–2024; power, regulated | m CZK | power orange, regulated grey; 2021–2023 shaded | "Power drove the cost up; regulated charges stayed at 17–20 m CZK until 2024" |
 | Navigation tiles | 4 buttons | one per detail page with its question | — | grey | — |
 
 ### Acceptance
@@ -169,8 +169,8 @@ The power share (90.6 % in 2022, [Power share](kpi_definitions.md#power-share)) 
 
 ### What this means
 
-In a crisis the budget risk is the market price, not regulation: regulated charges stayed almost the same while
-power cost multiplied. The company also pays extra every year because it runs most of its load in expensive
+In a crisis the budget risk is the market price, not regulation: regulated charges stayed at 17–20 m CZK a year
+until 2024 while power cost multiplied. The company also pays extra every year because it runs most of its load in expensive
 daytime hours — this is the part of the bill it can influence by moving load.
 
 ### Visuals
