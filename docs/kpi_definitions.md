@@ -48,12 +48,13 @@
 - Business question it answers: how expensive was electricity on the market in a year or month?
 - Business definition: plain average of the hourly day-ahead prices; every hour has the same weight.
   This is the market's price level, not what the company paid (that is the load-weighted price, page 2).
-- Formula (SQL / DAX reference): `AVG(price_eur_mwh)` over the hours of the period (`fact_energy_prices`).
-  In Power BI from `vw_daily_summary` as `SUM(market_price_sum_eur) / SUM(hours_in_day)`, which gives the same
-  result for any period (sum / sum, never an average of daily averages).
-- Unit & time grain: EUR/MWh; card = selected year, trend line = month.
+- Formula (SQL / DAX reference): `AVG(price_czk_mwh)` over the hours of the period (`vw_energy_prices_czk`).
+  In Power BI as a sum of hourly prices / number of hours, which gives the same result for any period
+  (sum / sum, never an average of daily averages). EUR version: `AVG(price_eur_mwh)` (tooltip).
+- Unit & time grain: CZK/MWh; card = selected year, trend line = month.
 - Filters / exclusions: none; negative and zero hours are included (valid market prices).
-- How to read it: 2022 (247.43) is 2.5 × 2021 (100.66) and 7.4 × 2020 (33.62).
+- How to read it: CZK/MWh 2020 886.55 · 2021 2,570.35 · 2022 6,082.84 · 2023 2,416.13 · 2024 2,138.04
+  (run 2026-11-03); EUR/MWh 33.62 · 100.66 · 247.43 · 100.79 · 85.11. 2022 is 2.4 × 2021 and 6.9 × 2020 in CZK.
 - Known limitations: market price only, without regulated components and without the company's load shape.
 
 ## Extreme hours
@@ -86,11 +87,71 @@
   definition (PXE / EEX). Off-peak = all other hours. Weekday public holidays count as peak (ASSUMPTION).
 - Formula (SQL / DAX reference): `AVG(CASE WHEN peak THEN price END) − AVG(CASE WHEN off-peak THEN price END)`
   (`sql/09_query_peak_offpeak.sql`).
-- Unit & time grain: EUR/MWh per year.
+- Unit & time grain: CZK/MWh per year (EUR/MWh in the tooltip).
 - Filters / exclusions: none.
-- How to read it: 2020 12.53 · 2021 33.71 · 2022 60.04 · 2023 21.82 · 2024 14.89 EUR/MWh. The upper limit of what
-  one MWh moved from peak to off-peak could save; the company's real extra cost is the load profile premium (page 2).
+- How to read it: CZK/MWh 2020 330.09 · 2021 858.42 · 2022 1,471.75 · 2023 526.54 · 2024 374.52
+  (EUR/MWh 12.53 · 33.71 · 60.04 · 21.82 · 14.89). The upper limit of what one MWh moved from peak to off-peak
+  could save; the company's real extra cost is the load profile premium (page 2).
 - Known limitations: plain averages over hours; no holiday calendar (backlog).
+
+## Total electricity cost
+- Business question it answers: how much did the company pay for electricity in a month or year?
+- Business definition: power (commodity) + regulated components per MWh (network use, system services, electricity
+  tax) + fixed monthly charges (reserved capacity, OTE fees) + POZE. Without VAT and supplier margin (ADR-005).
+- Formula (SQL / DAX reference): `total_cost_czk` in `sql/08_query_allin_price.sql`; power =
+  `SUM(load_mwh × price_czk_mwh)` per hour, regulated components joined by validity period (`regulated_price`).
+- Unit & time grain: CZK; month (query 08), year = sum of months.
+- Filters / exclusions: reserved capacity 5 MW (scenario ASSUMPTION); the 2023 price cap never binds (ADR-005).
+- How to read it: 2020 45.46 · 2021 95.72 · 2022 200.92 · 2023 87.93 · 2024 94.84 m CZK.
+- Known limitations: SIMULATED load; no supplier margin; real invoices would differ.
+
+## All-in price
+- Business question it answers: what did one kWh really cost the company, everything included?
+- Business definition: total electricity cost divided by consumed energy.
+- Formula (SQL / DAX reference): `total_cost_czk / (SUM(load_mwh) × 1000)` (`allin_price_czk_kwh` in
+  `sql/08_query_allin_price.sql`). In Power BI as `DIVIDE(total cost, load × 1000)` — sum / sum.
+- Unit & time grain: CZK/kWh; month or year.
+- Filters / exclusions: as Total electricity cost.
+- How to read it: 2020 1.6208 · 2021 3.4193 · 2022 7.1878 · 2023 3.1461 · 2024 3.3807 CZK/kWh. Comparable with
+  the price per kWh on an invoice (without VAT and margin).
+- Known limitations: SIMULATED load; fixed charges make the price per kWh higher in months with low consumption.
+
+## Power share
+- Business question it answers: how much of the cost does the market drive, and how much regulation?
+- Business definition: power (commodity) cost / total electricity cost. The rest is the regulated share.
+- Formula (SQL / DAX reference): `power_cost_czk / total_cost_czk` from `sql/08_query_allin_price.sql`.
+- Unit & time grain: %; year.
+- Filters / exclusions: as Total electricity cost.
+- How to read it: 2020 58.4 · 2021 79.5 · 2022 90.6 · 2023 81.0 · 2024 67.0 %. A high share = the budget depends
+  on the market price → hedging matters.
+- Known limitations: SIMULATED load.
+
+## Load profile premium
+- Business question it answers: how much extra does the company pay because it uses more power in expensive hours?
+- Business definition: load-weighted power price (what the company paid per MWh) minus the plain market average of
+  the same hours. Total premium = premium per MWh × consumed MWh = what the company paid above "the same volume
+  bought flat at the market average". The part of the power cost the company can influence by moving load.
+- Formula (SQL / DAX reference): per MWh `S = SUM(load × price) / SUM(load) − AVG(price)`; total
+  `C − V × Pb = SUM(load × price) − SUM(load) × AVG(price)` (ADR-004). Page 2 uses CZK prices
+  (`price_czk_mwh`), page 3 and query 10 use EUR. Cross-check query (run 2026-11-03):
+
+  ```sql
+  SELECT d.year,
+         SUM(l.load_mwh * p.price_czk_mwh) / SUM(l.load_mwh) - AVG(p.price_czk_mwh) AS s_czk_mwh,
+         SUM(l.load_mwh * p.price_czk_mwh) - SUM(l.load_mwh) * AVG(p.price_czk_mwh) AS premium_czk
+  FROM dbo.vw_energy_prices_czk p
+  JOIN dbo.fact_load l ON l.date_key = p.date_key AND l.hour_of_day = p.hour_of_day
+  JOIN dbo.dim_date d ON d.date_key = p.date_key
+  GROUP BY d.year
+  ORDER BY d.year;
+  ```
+- Unit & time grain: CZK/MWh and CZK per year.
+- Filters / exclusions: none.
+- How to read it: CZK/MWh 2020 59.99 · 2021 149.30 · 2022 426.45 · 2023 133.52 · 2024 127.53; total 1.68 · 4.18 ·
+  11.92 · 3.73 · 3.58 m CZK (EUR in query 10: 2022 +17.29 EUR/MWh, 483,332.58 EUR). The yearly power cost of the
+  same query sums to 419,457,499 CZK over 5 years (= queries 08 and 11). A base-load hedge does not remove it (2.9).
+- Known limitations: SIMULATED load shape; the CZK and EUR totals differ slightly more than one yearly rate would
+  explain, because every hour is converted at its own daily rate.
 
 ## <KPI name>
 - Business question it answers:
