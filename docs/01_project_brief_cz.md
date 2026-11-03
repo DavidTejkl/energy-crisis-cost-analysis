@@ -74,4 +74,6 @@
 - PRIBOR: ČNB ho zveřejňuje se souhlasem administrátora (CFBF) jen pro interní použití; další šíření sazeb
   nebo z nich odvozených dat je zakázané → nahrazen repo sazbou.
 
-##
+## Rozsah
+- Ano: pipeline, hvězdicové schéma, DQ testy, inkrementální načítání, analytické dotazy, Power BI s 5 stránkami (shrnutí + 4 detailní), README CZ/EN.
+- Ne: data z Kaggle, čtení PDF faktur, Airflow, Docker, dbt, Spark, cloudová DB.
