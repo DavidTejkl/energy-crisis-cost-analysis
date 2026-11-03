@@ -65,7 +65,7 @@ sql/       01–03 databáze, tabulky, pohledy · 04–12 analytické dotazy · 
 docs/      zadání, datový model, definice KPI, metodika simulovaného odběru, report kvality dat, nálezy,
            rozhodnutí (ADR)
 config/    regulované složky ceny s obdobím platnosti (ERÚ, 2020–2024)
-data/      bronze (surová) · silver (vyčištěná) — vytváří je skripty, v gitu nejsou · gold (další verze)
+data/      bronze (surová) · silver (vyčištěná) — vytváří je skripty, v gitu nejsou; gold = view v SQL Serveru, ze kterých čte Power BI
 powerbi/   report Power BI ve formátu PBIP (další verze)
 ```
 

@@ -9,7 +9,6 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 BRONZE_DIR = DATA_DIR / "bronze"    # raw downloads, never edited
 SILVER_DIR = DATA_DIR / "silver"    # cleaned data
-GOLD_DIR = DATA_DIR / "gold"        # model-ready data
 CONFIG_DIR = PROJECT_ROOT / "config"  # ERÚ tariffs with validity periods
 
 # Analysis period of the energy crisis study (2020 = pre-crisis baseline).

@@ -58,7 +58,7 @@ sql/       01–03 database, tables, views · 04–12 analysis queries · 90 pip
 docs/      brief, data model, KPI definitions, methodology of the simulated load, data quality report,
            findings, decisions (ADRs)
 config/    regulated price components with validity periods (ERÚ, 2020–2024)
-data/      bronze (raw) · silver (cleaned) — rebuilt by the scripts, not stored in git · gold (next version)
+data/      bronze (raw) · silver (cleaned) — rebuilt by the scripts, not stored in git; gold = views in SQL Server, read by Power BI
 powerbi/   Power BI report as PBIP (next version)
 ```
 
