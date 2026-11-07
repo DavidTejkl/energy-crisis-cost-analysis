@@ -67,6 +67,11 @@ The report is one story in five chapters. Read only the page titles and you have
   | Fixed in advance | hedged |
   | Price fixed one year ahead (estimate) | hedging proxy price (ASSUMPTION, ADR-003) |
 
+**Language** — everything the user sees is in Czech: page titles, axis labels, tooltips and measure names
+(e.g. `Náklad na silovou elektřinu (Kč)`, `Celková cena elektřiny (Kč/kWh)`). The users are a Czech CFO and energy
+manager. Tables and columns keep their English names from SQL (technical layer, hidden from the report). Every
+measure has a short Czech description, shown as its tooltip in the report.
+
 **Currency** — one currency per page. Pages 0–3 in CZK (the users are a Czech CFO and energy manager; price bands
 are defined in CZK). Page 4 in EUR, because power contracts are traded in EUR/MWh. The other currency appears only
 in tooltips.
