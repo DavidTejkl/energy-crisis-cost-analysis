@@ -1,0 +1,118 @@
+table vw_hourly_cost
+	lineageTag: af918e86-24be-4391-a9f6-a910874fe3cc
+
+	/// Náklad na elektřinu nakoupenou na denním trhu OTE. Bez distribuce, poplatků a DPH.
+	measure 'Náklad na silovou elektřinu (Kč)' = SUM(vw_hourly_cost[power_cost_czk])
+		lineageTag: e2b6e9fd-21e5-4e17-8504-fe1423b9a3bf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Spotřeba elektřiny firmy. Simulovaný profil, viz metodika.
+	measure 'Spotřeba (MWh)' = SUM(vw_hourly_cost[load_mwh])
+		lineageTag: 7b37902a-c484-48bc-9081-37798eb89a90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Náklad na silovou elektřinu vydělený spotřebou.
+	measure 'Cena za silovou elektřinu (Kč/MWh)' = DIVIDE([Náklad na silovou elektřinu (Kč)],[Spotřeba (MWh)])
+		lineageTag: 315d0a2c-6006-4f96-b70a-b0aaa53e68dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Náklad na silovou elektřinu vydělený spotřebou a přepočtený na kWh.
+	measure 'Cena za silovou elektřinu (Kč/kWh)' = ```
+			[Cena za silovou elektřinu (Kč/MWh)]/1000 
+			```
+		lineageTag: 18a6530f-cb69-4e7c-8c34-957944104031
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d47deac-43e1-4f6b-b56c-b2947a3176b4
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour_of_day
+		dataType: int64
+		formatString: 0
+		lineageTag: 09cdf8e2-29df-4855-8d89-a194ceee79cc
+		summarizeBy: none
+		sourceColumn: hour_of_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_eur_mwh
+		dataType: double
+		lineageTag: 3d0719c8-2983-4a6d-a8e0-06371918a60c
+		summarizeBy: sum
+		sourceColumn: price_eur_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rate_czk_per_eur
+		dataType: double
+		lineageTag: 602a588e-bf62-455f-84aa-a79c7164c74d
+		summarizeBy: sum
+		sourceColumn: rate_czk_per_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_czk_mwh
+		dataType: double
+		lineageTag: d033c39e-f4a2-49d9-bcae-b9985a1fc6f4
+		summarizeBy: sum
+		sourceColumn: price_czk_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column load_mwh
+		dataType: double
+		lineageTag: 7564dfb1-8df2-4d93-a34f-17f6620661c2
+		summarizeBy: sum
+		sourceColumn: load_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_cost_eur
+		dataType: double
+		lineageTag: 02c3e1b5-1843-4a35-8298-cf66ba89870d
+		summarizeBy: sum
+		sourceColumn: power_cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_cost_czk
+		dataType: double
+		lineageTag: a5ef5480-48b0-4e48-a98f-a91f76f0ee53
+		summarizeBy: sum
+		sourceColumn: power_cost_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_hourly_cost = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_vw_hourly_cost = Zdroj{[Schema="dbo",Item="vw_hourly_cost"]}[Data]
+				in
+				    dbo_vw_hourly_cost
+
+	annotation PBI_ResultType = Table
+

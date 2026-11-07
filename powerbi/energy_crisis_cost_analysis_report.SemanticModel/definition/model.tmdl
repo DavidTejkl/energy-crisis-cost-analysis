@@ -1,0 +1,24 @@
+model Model
+	culture: cs-CZ
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: cs-CZ
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_date","dim_hour","vw_hourly_cost","vw_monthly_cost","vw_cost_change_steps","vw_yearly_hedging"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_date
+ref table dim_hour
+ref table vw_hourly_cost
+ref table vw_monthly_cost
+ref table vw_cost_change_steps
+ref table vw_yearly_hedging
+
+ref cultureInfo cs-CZ
+

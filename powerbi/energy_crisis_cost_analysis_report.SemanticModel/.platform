@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "energy_crisis_cost_analysis_report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "dc27e5b9-a610-498a-918a-760aa51eff91"
+  }
+}

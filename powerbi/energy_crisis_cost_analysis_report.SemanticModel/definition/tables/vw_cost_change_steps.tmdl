@@ -1,0 +1,59 @@
+table vw_cost_change_steps
+	lineageTag: bb7e2d07-daad-4afe-be41-4688f98ecfa8
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 99eb4e5c-f031-4637-8a0f-f67d929bc56c
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: fb228d17-06d7-4560-b28a-c263b549243f
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e6f1cd2-c3a3-4cff-a17a-3a19f0d61c76
+		summarizeBy: sum
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_name
+		dataType: string
+		lineageTag: fc5623c7-4079-46e0-8d81-2fd5bca48604
+		summarizeBy: none
+		sourceColumn: step_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_czk
+		dataType: double
+		lineageTag: f5c7a1c7-0368-4b2e-bc5f-c989dbafa49a
+		summarizeBy: sum
+		sourceColumn: amount_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_cost_change_steps = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_vw_cost_change_steps = Zdroj{[Schema="dbo",Item="vw_cost_change_steps"]}[Data]
+				in
+				    dbo_vw_cost_change_steps
+
+	annotation PBI_ResultType = Table
+

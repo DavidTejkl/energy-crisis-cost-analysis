@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 267.19077562201812,
+            "y": 0
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "eb032dc1-4c09-4162-b613-8d2f3e8fdcd4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 969,
+            "y": 5
+          },
+          "nodeIndex": "dim_hour",
+          "nodeLineageTag": "11239ecc-414d-4390-b27c-f353f92679d8",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 508.873015211087,
+            "y": 454.54040446229078
+          },
+          "nodeIndex": "vw_cost_change_steps",
+          "nodeLineageTag": "bb7e2d07-daad-4afe-be41-4688f98ecfa8",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 766,
+            "y": 453.80000305175781
+          },
+          "nodeIndex": "vw_hourly_cost",
+          "nodeLineageTag": "af918e86-24be-4391-a9f6-a910874fe3cc",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 457
+          },
+          "nodeIndex": "vw_monthly_cost",
+          "nodeLineageTag": "18c4a0ef-5b70-4062-bf28-65f06df719f0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 266.57873750378167,
+            "y": 456
+          },
+          "nodeIndex": "vw_yearly_hedging",
+          "nodeLineageTag": "248e0779-9932-4ea1-a3e1-8d44fbd7b0fa",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "Všechny tabulky",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Všechny tabulky",
+  "defaultDiagram": "Všechny tabulky"
+}

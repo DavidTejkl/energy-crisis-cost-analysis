@@ -1,0 +1,107 @@
+table dim_date
+	lineageTag: eb032dc1-4c09-4162-b613-8d2f3e8fdcd4
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 531bebbc-fa5e-4335-86b5-c70f9e51bc3f
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 3834f90c-faad-4a7b-9fd6-4a5e2ff64ebb
+		summarizeBy: none
+		sourceColumn: full_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: e00fb72e-e13a-452c-b412-75366559cdbc
+		summarizeBy: none
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = User
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ae733bd-3b42-4256-9497-b8bb009c6609
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = User
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c958982-947a-49b9-834b-544874a32dcf
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 44e24e82-e9f8-4513-b957-13defdd9dd56
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = User
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fe4e124-5de0-4bfd-a14a-dc40843cd3f5
+		summarizeBy: none
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = User
+
+	column weekday_num
+		dataType: int64
+		formatString: 0
+		lineageTag: a5b9d89a-1466-41aa-bfc0-d5ba5606f17e
+		summarizeBy: none
+		sourceColumn: weekday_num
+
+		annotation SummarizationSetBy = User
+
+	column weekday_name
+		dataType: string
+		lineageTag: b7310918-b216-4366-a2dd-0b0e413df83d
+		summarizeBy: none
+		sourceColumn: weekday_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bed3b8a8-effe-414a-a8d4-43cc22e65934
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_dim_date = Zdroj{[Schema="dbo",Item="dim_date"]}[Data]
+				in
+				    dbo_dim_date
+
+	annotation PBI_ResultType = Table
+
