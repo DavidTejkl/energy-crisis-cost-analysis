@@ -27,55 +27,55 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: e00fb72e-e13a-452c-b412-75366559cdbc
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: day_of_month
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column month
 		dataType: int64
 		formatString: 0
 		lineageTag: 7ae733bd-3b42-4256-9497-b8bb009c6609
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: month
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column year
 		dataType: int64
 		formatString: 0
 		lineageTag: 1c958982-947a-49b9-834b-544874a32dcf
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column quarter
 		dataType: int64
 		formatString: 0
 		lineageTag: 44e24e82-e9f8-4513-b957-13defdd9dd56
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: quarter
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column week_of_year
 		dataType: int64
 		formatString: 0
 		lineageTag: 0fe4e124-5de0-4bfd-a14a-dc40843cd3f5
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: week_of_year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column weekday_num
 		dataType: int64
 		formatString: 0
 		lineageTag: a5b9d89a-1466-41aa-bfc0-d5ba5606f17e
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: weekday_num
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column weekday_name
 		dataType: string

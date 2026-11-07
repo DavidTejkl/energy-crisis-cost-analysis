@@ -1,6 +1,28 @@
 table vw_hourly_cost
 	lineageTag: af918e86-24be-4391-a9f6-a910874fe3cc
 
+	measure 'Náklad na silovou elektřinu (Kč)' = SUM(vw_hourly_cost[power_cost_czk])
+		lineageTag: e2b6e9fd-21e5-4e17-8504-fe1423b9a3bf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spotřeba (MWh)' = SUM(vw_hourly_cost[load_mwh])
+		lineageTag: 7b37902a-c484-48bc-9081-37798eb89a90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cena za silovou elektřinu (Kč/MWh)' = DIVIDE([Náklad na silovou elektřinu (Kč)],[Spotřeba (MWh)])
+		lineageTag: 315d0a2c-6006-4f96-b70a-b0aaa53e68dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cena za silovou elektřinu (Kč/kWh)' = ```
+			[Cena za silovou elektřinu (Kč/MWh)]/1000 
+			```
+		lineageTag: 18a6530f-cb69-4e7c-8c34-957944104031
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0
