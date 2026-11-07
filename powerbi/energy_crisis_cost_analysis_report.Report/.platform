@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "energy_crisis_cost_analysis_report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7388a8ae-7581-49a2-bd2b-0cfc7474460d"
+  }
+}

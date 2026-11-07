@@ -1,0 +1,31 @@
+table dim_hour
+	lineageTag: 11239ecc-414d-4390-b27c-f353f92679d8
+
+	column hour_of_day
+		dataType: int64
+		formatString: 0
+		lineageTag: ed98c986-bfea-4dd3-94f7-7cf8357c9ab6
+		summarizeBy: none
+		sourceColumn: hour_of_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_of_day
+		dataType: string
+		lineageTag: 61649386-f29e-4c90-9c36-f7d30c2eb05f
+		summarizeBy: none
+		sourceColumn: time_of_day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_hour = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_dim_hour = Zdroj{[Schema="dbo",Item="dim_hour"]}[Data]
+				in
+				    dbo_dim_hour
+
+	annotation PBI_ResultType = Table
+

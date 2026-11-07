@@ -1,0 +1,20 @@
+relationship AutoDetected_2cf71ae5-b77a-4c9a-a0b7-c0c3d34010f2
+	fromColumn: vw_hourly_cost.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_d8115bc1-63fc-4e12-aabc-a2ac7e46c281
+	fromColumn: vw_monthly_cost.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_5dc63bbb-1158-4d51-870f-ce8015493098
+	fromColumn: vw_cost_change_steps.date_key
+	toColumn: dim_date.date_key
+
+relationship AutoDetected_c839d45d-2e63-4143-8744-e465d3299468
+	fromColumn: vw_hourly_cost.hour_of_day
+	toColumn: dim_hour.hour_of_day
+
+relationship e9dd3390-87df-6086-f60c-0a3b8db22ba5
+	fromColumn: vw_yearly_hedging.date_key
+	toColumn: dim_date.date_key
+

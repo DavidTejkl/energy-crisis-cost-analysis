@@ -1,0 +1,131 @@
+table vw_monthly_cost
+	lineageTag: 18c4a0ef-5b70-4062-bf28-65f06df719f0
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 00f7e083-4614-4faf-a034-99b14d7cd3fa
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: dd4f6b52-b1d8-4135-8ea3-55cdaeeede14
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e845f33-08e0-4a7a-8167-756e3206c74f
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_mwh
+		dataType: double
+		lineageTag: 3ad02690-b3ed-4d3f-8b08-2166e4d586b5
+		summarizeBy: sum
+		sourceColumn: load_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_cost_czk
+		dataType: double
+		lineageTag: b11d5c8f-a9cc-4b46-be29-4ed789edd9b6
+		summarizeBy: sum
+		sourceColumn: power_cost_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column electricity_tax_czk
+		dataType: double
+		lineageTag: 384b7b7d-22c5-4ef8-9b80-99d0b32d8743
+		summarizeBy: sum
+		sourceColumn: electricity_tax_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column network_use_czk
+		dataType: double
+		lineageTag: 6a4499e6-fac0-466f-87e2-6fe826a6bd00
+		summarizeBy: sum
+		sourceColumn: network_use_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column system_services_czk
+		dataType: double
+		lineageTag: f2f91eb4-cae9-4e76-a95b-06dcc3e07bd5
+		summarizeBy: sum
+		sourceColumn: system_services_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reserved_capacity_czk
+		dataType: double
+		lineageTag: bef52e09-58b1-45e2-aeaa-646f97ab3bc9
+		summarizeBy: sum
+		sourceColumn: reserved_capacity_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ote_fees_czk
+		dataType: double
+		lineageTag: 3b1b1e5d-b42d-44a3-a287-3009e0793050
+		summarizeBy: sum
+		sourceColumn: ote_fees_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column poze_czk
+		dataType: double
+		lineageTag: 4c9d2a62-87e2-498a-8a16-531ef00fc067
+		summarizeBy: sum
+		sourceColumn: poze_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_cost_czk
+		dataType: double
+		lineageTag: 38c9d17d-50d9-4741-9e31-0e659b8febfb
+		summarizeBy: sum
+		sourceColumn: total_cost_czk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_monthly_cost = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_vw_monthly_cost = Zdroj{[Schema="dbo",Item="vw_monthly_cost"]}[Data]
+				in
+				    dbo_vw_monthly_cost
+
+	annotation PBI_ResultType = Table
+

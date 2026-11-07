@@ -1,0 +1,102 @@
+table vw_yearly_hedging
+	lineageTag: 248e0779-9932-4ea1-a3e1-8d44fbd7b0fa
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: f7d07211-2ed2-468e-9ee0-46d891857a55
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 332bf974-aa6d-4066-b587-9ae561e0dc68
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column volume_mwh
+		dataType: double
+		lineageTag: 9041fa85-a3d4-4833-9214-61df816fb49f
+		summarizeBy: sum
+		sourceColumn: volume_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spot_cost_eur
+		dataType: double
+		lineageTag: ae1e9dbf-61e2-475d-8cec-a028eefc73a8
+		summarizeBy: sum
+		sourceColumn: spot_cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_price_eur_mwh
+		dataType: double
+		lineageTag: 909a9d18-a0d5-40a4-93d7-e9b604ba5076
+		summarizeBy: sum
+		sourceColumn: market_price_eur_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hedge_price_eur_mwh
+		dataType: double
+		lineageTag: 3101f08c-1e8f-4c7d-92fb-b15662621d2d
+		summarizeBy: sum
+		sourceColumn: hedge_price_eur_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pxe_price_eur_mwh
+		dataType: double
+		lineageTag: 0515f6b6-c98b-4a2b-a2e6-c52065d62c10
+		summarizeBy: sum
+		sourceColumn: pxe_price_eur_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hedge_diff_proxy_eur
+		dataType: double
+		lineageTag: 8fc7428b-be1b-42d6-9338-366b61ecc863
+		summarizeBy: sum
+		sourceColumn: hedge_diff_proxy_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hedge_diff_pxe_eur
+		dataType: double
+		lineageTag: ed718855-d9ee-40bf-bc4f-c299053883e2
+		summarizeBy: sum
+		sourceColumn: hedge_diff_pxe_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_yearly_hedging = m
+		mode: import
+		source =
+				let
+				    Zdroj = Sql.Database("localhost", "EnergyCrisisCostAnalysis"),
+				    dbo_vw_yearly_hedging = Zdroj{[Schema="dbo",Item="vw_yearly_hedging"]}[Data]
+				in
+				    dbo_vw_yearly_hedging
+
+	annotation PBI_ResultType = Table
+
