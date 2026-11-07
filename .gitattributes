@@ -1,0 +1,12 @@
+# Purpose: one line-ending rule for every PC. Text files are stored with LF in the repo and
+# checked out with the native ending, so Windows and the GitHub runner see the same content
+# (no "LF will be replaced by CRLF" warnings, no files shown as modified by line endings only).
+* text=auto
+
+# Never touch binary files
+*.png binary
+*.jpg binary
+*.xlsx binary
+*.xls binary
+*.zip binary
+*.pdf binary
