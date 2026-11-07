@@ -1,6 +1,16 @@
 table vw_monthly_cost
 	lineageTag: 18c4a0ef-5b70-4062-bf28-65f06df719f0
 
+	measure 'Celková cena elektřiny (Kč/kWh)' = DIVIDE([Celkový náklad na elektřinu (Kč)],SUM(vw_monthly_cost[load_mwh]))/1000
+		lineageTag: b4d2c9a2-7811-4ce8-a80e-00075c7aab4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Celkový náklad na elektřinu (Kč)' = SUM(vw_monthly_cost[total_cost_czk])
+		lineageTag: 2684dde1-02b5-42d0-a5e4-3156c870177a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

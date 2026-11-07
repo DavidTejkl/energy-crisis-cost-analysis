@@ -6,7 +6,7 @@
     "y": 90.756515316709454,
     "z": 0,
     "height": 321.24925262898745,
-    "width": 920.53036964091018,
+    "width": 1313.8086026799845,
     "tabOrder": 0
   },
   "visual": {
@@ -42,6 +42,20 @@
               },
               "queryRef": "vw_hourly_cost.Power cost CZK",
               "nativeQueryRef": "Náklad na silovou elektřinu (Kč)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_monthly_cost"
+                    }
+                  },
+                  "Property": "Celkový náklad na elektřinu (Kč)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Celkový náklad na elektřinu (Kč)",
+              "nativeQueryRef": "Celkový náklad na elektřinu (Kč)"
             },
             {
               "field": {
@@ -84,6 +98,20 @@
               },
               "queryRef": "vw_hourly_cost.Cena za silovou elekřinu (Kč / KWh )",
               "nativeQueryRef": "Cena za silovou elektřinu (Kč/kWh)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_monthly_cost"
+                    }
+                  },
+                  "Property": "Celková cena elektřiny (Kč/kWh)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Celková cena elektřiny (Kč/kWh)",
+              "nativeQueryRef": "Celková cena elektřiny (Kč/kWh)"
             }
           ]
         }
@@ -176,6 +204,34 @@
               }
             },
             "Property": "Cena za silovou elektřinu (Kč/kWh)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d14b0f7fe691416d2eee",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_monthly_cost"
+              }
+            },
+            "Property": "Celkový náklad na elektřinu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5f9a8e422aa6212dad20",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_monthly_cost"
+              }
+            },
+            "Property": "Celková cena elektřiny (Kč/kWh)"
           }
         },
         "type": "Advanced"
