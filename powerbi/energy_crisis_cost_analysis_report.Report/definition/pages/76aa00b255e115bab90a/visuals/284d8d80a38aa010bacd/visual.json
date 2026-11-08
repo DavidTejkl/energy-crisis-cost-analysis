@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "284d8d80a38aa010bacd",
+  "position": {
+    "x": 0,
+    "y": 575,
+    "z": 2,
+    "height": 269,
+    "width": 1920,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "year"
+                }
+              },
+              "queryRef": "dim_date.year",
+              "nativeQueryRef": "year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Náklad na silovou elektřinu (Kč)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Náklad na silovou elektřinu (Kč)",
+              "nativeQueryRef": "Náklad na silovou elektřinu (Kč)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Náklad na silovou elektřinu minulý rok (Kč)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Náklad na silovou elektřinu minulý rok (Kč)",
+              "nativeQueryRef": "Náklad na silovou elektřinu minulý rok (Kč)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Změna nákladu na silovou elektřinu (Kč)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Změna nákladu na silovou elektřinu (Kč)",
+              "nativeQueryRef": "Změna nákladu na silovou elektřinu (Kč)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "52971449a234a93518cd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2e6f7d9627924b905489",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Náklad na silovou elektřinu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dfd859876c9ce9db18c1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Náklad na silovou elektřinu minulý rok (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d384ca4a8e3be6a4e54c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Změna nákladu na silovou elektřinu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

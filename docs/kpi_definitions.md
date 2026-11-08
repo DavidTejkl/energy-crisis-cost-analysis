@@ -294,7 +294,7 @@ These three are the split of the power cost change into its drivers, shown as on
 Measures of the report (`powerbi/`, step 4.2). Names and descriptions are Czech (report language,
 `docs/dashboard_spec.md`); columns are referenced with the table name, measures without it. Every ratio takes its
 numerator and denominator from the same table, so a filter on one table cannot change only half of it.
-Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08 (query 05 extreme hours, 07 top hour, 09 peak/off-peak).
+Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08 (query 05 extreme hours, 07 top hour, 09 peak/off-peak, 11 cost change).
 
 | Measure | Home table | DAX | KPI | Check 2022 |
 |---------|------------|-----|-----|------------|
@@ -313,6 +313,8 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Průměrná cena ve špičce (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)` | Peak/off-peak spread | 7,030.40 |
 | Průměrná cena mimo špičku (Kč/MWh) | `vw_hourly_cost` | see below | Peak/off-peak spread | 5,558.65 |
 | Rozdíl špička – mimo špičku (Kč/MWh) | `vw_hourly_cost` | `[Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]` | Peak/off-peak spread | 1,471.75 |
+| Náklad na silovou elektřinu minulý rok (Kč) | `vw_hourly_cost` | `CALCULATE([Náklad na silovou elektřinu (Kč)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Power cost change | 76,133,003.83 |
+| Změna nákladu na silovou elektřinu (Kč) | `vw_hourly_cost` | `VAR previous_cost = [Náklad na silovou elektřinu minulý rok (Kč)] RETURN IF(ISBLANK(previous_cost), BLANK(), [Náklad na silovou elektřinu (Kč)] - previous_cost)` | Power cost change | +105,823,771.81 |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
@@ -325,6 +327,9 @@ RETURN
 DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_cost) - peak_hours)
 ```
 
+- Year-over-year measures need `dim_date` marked as date table. 2020 has no previous year in the data → BLANK
+  (not 0, the data are missing); without the `ISBLANK` check 2020 would show its whole cost as a "change".
+  Their total rows mean nothing (the period shifted by a year) → hidden in visuals.
 - `+ 0` in Extrémní hodiny: `COUNTROWS` of an empty table is BLANK; a year without extreme hours (2020) must show 0.
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
 - Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their

@@ -53,7 +53,7 @@ table vw_hourly_cost
 		formatString: #,0.00
 		lineageTag: f0da7315-cfdc-4768-b571-9767a0bec4e0
 
-	/// Prostý průměr hodinových cen v pracovní dny,8:00–20:00 (definice peak na trhu PXE/EEX). Svátky ve všední den se počítají jako špička.
+	/// Prostý průměr hodinových cen v pracovní dny, 8:00–20:00 (definice peak na trhu PXE/EEX). Svátky ve všední den se počítají jako špička.
 	measure 'Průměrná cena ve špičce (Kč/MWh)' = CALCULATE([Průměrná tržní cena (Kč/MWh)],dim_date[is_weekend] = FALSE (),dim_hour[hour_of_day] >= 9,dim_hour[hour_of_day] <= 20)
 		formatString: #,0.00
 		lineageTag: 0ae11ce6-78d7-418e-a502-8e998856a1c1
@@ -72,6 +72,21 @@ table vw_hourly_cost
 	measure 'Rozdíl špička – mimo špičku (Kč/MWh)' = [Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]
 		formatString: #,0.00
 		lineageTag: 751e2906-0a72-4ad9-a8d8-fc3dd187e525
+
+	/// Náklad na silovou elektřinu ve stejném období předchozího roku. Pro rok 2020 prázdné (data za rok 2019 nemám).
+	measure 'Náklad na silovou elektřinu minulý rok (Kč)' = CALCULATE([Náklad na silovou elektřinu (Kč)],SAMEPERIODLASTYEAR(dim_date[full_date]))
+		formatString: #,0.00
+		lineageTag: 98ea1d3e-45a0-47ce-84f6-4ab039c77edb
+
+	/// O kolik Kč se náklad na silovou elektřinu změnil oproti stejnému období předchozího roku. Kladné = zdražení. Pro rok 2020 prázdné.
+	measure 'Změna nákladu na silovou elektřinu (Kč)' =
+			
+			VAR previous_cost = [Náklad na silovou elektřinu minulý rok (Kč)]
+			RETURN
+			IF(ISBLANK(previous_cost),BLANK(),[Náklad na silovou elektřinu (Kč)] - previous_cost)
+		lineageTag: fd362449-8b19-4f50-babf-26b54a64b357
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column date_key
 		dataType: int64
