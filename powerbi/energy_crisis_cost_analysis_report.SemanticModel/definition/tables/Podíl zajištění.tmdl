@@ -1,0 +1,26 @@
+table 'Podíl zajištění'
+	lineageTag: 1aefaf4c-c137-413c-b487-341a5f916ed8
+
+	measure 'Hodnota parametru Podíl zajištění' = SELECTEDVALUE('Podíl zajištění'[Podíl zajištění], 0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: b3e7aaa7-f08a-4ff3-b95f-613fde13e919
+
+	column 'Podíl zajištění'
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 46cab9fa-adef-4921-be80-a29d060d182e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Podíl zajištění' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.25)
+
+	annotation PBI_Id = 7398185744ca43f58289fafae7e8273c
+

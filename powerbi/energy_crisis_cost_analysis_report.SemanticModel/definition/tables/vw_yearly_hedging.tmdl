@@ -8,6 +8,17 @@ table vw_yearly_hedging
 		formatString: #,0.00
 		lineageTag: 57c5891d-1047-4dfe-92c1-2332e88bce13
 
+	/// Náklad na silovou elektřinu v EUR, když firma zvolený podíl spotřeby koupí předem za pevnou cenu a zbytek na denním trhu. Pevná cena je proxy tzn. náhradní cena: průměr denního trhu v předchozím roce, protože skutečné forwardové ceny OTE nezveřejňuje (ADR-003). Podíl se volí posuvníkem. Simulace.
+	measure 'Náklad na silovou elektřinu se zajištěním - proxy (EUR)' =
+			
+			VAR no_hedge = [Náklad na silovou elektřinu bez zajištění (EUR)]
+			VAR parameter = [Hodnota parametru Podíl zajištění]
+			VAR hedge_diff = SUM(vw_yearly_hedging[hedge_diff_proxy_eur])
+			RETURN
+			no_hedge + parameter * hedge_diff
+		formatString: #,0.00
+		lineageTag: 736a3e8c-5b2f-4d8e-b242-4e4cdcd09935
+
 	column date_key
 		dataType: int64
 		formatString: 0

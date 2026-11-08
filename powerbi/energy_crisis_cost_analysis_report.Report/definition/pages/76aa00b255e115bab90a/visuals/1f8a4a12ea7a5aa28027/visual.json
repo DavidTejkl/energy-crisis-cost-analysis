@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "1f8a4a12ea7a5aa28027",
+  "position": {
+    "x": 922.77502895041584,
+    "y": 672.67712390777979,
+    "z": 3002,
+    "height": 237.16180650594802,
+    "width": 918.46299610485323,
+    "tabOrder": 3002
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "year"
+                }
+              },
+              "queryRef": "dim_date.year",
+              "nativeQueryRef": "year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_yearly_hedging"
+                    }
+                  },
+                  "Property": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
+                }
+              },
+              "queryRef": "vw_yearly_hedging.Náklad na silovou elektřinu se zajištěním (EUR)",
+              "nativeQueryRef": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "146da2a10eede084c686",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a7a26adda9187be00504",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_yearly_hedging"
+              }
+            },
+            "Property": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

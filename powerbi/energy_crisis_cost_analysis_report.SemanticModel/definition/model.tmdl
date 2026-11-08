@@ -19,6 +19,7 @@ ref table vw_hourly_cost
 ref table vw_monthly_cost
 ref table vw_cost_change_steps
 ref table vw_yearly_hedging
+ref table 'Podíl zajištění'
 
 ref cultureInfo cs-CZ
 
