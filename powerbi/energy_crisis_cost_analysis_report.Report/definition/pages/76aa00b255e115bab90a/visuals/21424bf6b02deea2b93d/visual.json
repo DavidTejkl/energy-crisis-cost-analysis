@@ -5,8 +5,8 @@
     "x": 0,
     "y": 17.248131382250765,
     "z": 0,
-    "height": 653.82201217731733,
-    "width": 1920.2699341386658,
+    "height": 268.78338070674107,
+    "width": 1920.2919605572517,
     "tabOrder": 0
   },
   "visual": {
@@ -140,34 +140,6 @@
               },
               "queryRef": "vw_hourly_cost.Průměrná tržní cena (Kč/MWh)",
               "nativeQueryRef": "Průměrná tržní cena (Kč/MWh)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "vw_hourly_cost"
-                    }
-                  },
-                  "Property": "Přirážka za diagram odběru (Kč/MWh)"
-                }
-              },
-              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (Kč/MWh)",
-              "nativeQueryRef": "Přirážka za diagram odběru (Kč/MWh)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "vw_hourly_cost"
-                    }
-                  },
-                  "Property": "Přirážka za diagram odběru (Kč)"
-                }
-              },
-              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (Kč)",
-              "nativeQueryRef": "Přirážka za diagram odběru (Kč)"
             }
           ]
         }
@@ -316,34 +288,6 @@
               }
             },
             "Property": "Průměrná tržní cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "28910e4fad097da9d15c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Přirážka za diagram odběru (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0bbed21178aec3858a52",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Přirážka za diagram odběru (Kč)"
           }
         },
         "type": "Advanced"

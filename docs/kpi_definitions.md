@@ -294,7 +294,7 @@ These three are the split of the power cost change into its drivers, shown as on
 Measures of the report (`powerbi/`, step 4.2). Names and descriptions are Czech (report language,
 `docs/dashboard_spec.md`); columns are referenced with the table name, measures without it. Every ratio takes its
 numerator and denominator from the same table, so a filter on one table cannot change only half of it.
-Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08.
+Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08 (query 05 extreme hours, 07 top hour, 09 peak/off-peak).
 
 | Measure | Home table | DAX | KPI | Check 2022 |
 |---------|------------|-----|-----|------------|
@@ -308,7 +308,24 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Průměrná tržní cena (Kč/MWh) | `vw_hourly_cost` | `AVERAGE(vw_hourly_cost[price_czk_mwh])` | Average market price | 6,082.84 |
 | Přirážka za diagram odběru (Kč/MWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]` | Load profile premium | 426.45 |
 | Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
+| Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_czk_mwh] >= 5821) + 0` | Extreme hours | 3,694 |
+| Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |
+| Průměrná cena ve špičce (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)` | Peak/off-peak spread | 7,030.40 |
+| Průměrná cena mimo špičku (Kč/MWh) | `vw_hourly_cost` | see below | Peak/off-peak spread | 5,558.65 |
+| Rozdíl špička – mimo špičku (Kč/MWh) | `vw_hourly_cost` | `[Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]` | Peak/off-peak spread | 1,471.75 |
 
+Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
+two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
+
+```dax
+Průměrná cena mimo špičku (Kč/MWh) =
+VAR peak_price_sum = CALCULATE(SUM(vw_hourly_cost[price_czk_mwh]), dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)
+VAR peak_hours = CALCULATE(COUNTROWS(vw_hourly_cost), dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)
+RETURN
+DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_cost) - peak_hours)
+```
+
+- `+ 0` in Extrémní hodiny: `COUNTROWS` of an empty table is BLANK; a year without extreme hours (2020) must show 0.
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
 - Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their
   hours, not per year: 2020–2024 shows 25,028,480.44 CZK, the sum of the five years is 25,092,615.49 CZK. The report

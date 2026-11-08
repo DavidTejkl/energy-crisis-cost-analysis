@@ -40,8 +40,38 @@ table vw_hourly_cost
 
 	/// O kolik korun firma za období zaplatila víc, než kdyby stejné množství odebírala rovnoměrně za tržní průměr. Přirážka za MWh * spotřeba. Počítá se na jeden rok. Simulovaný profil spotřeby.
 	measure 'Přirážka za diagram odběru (Kč)' = [Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]
-		formatString: 0.00
+		formatString: #,0.00
 		lineageTag: 26b6e798-7b16-473a-a8ee-0f332892f31b
+
+	/// Počet hodin s cenou na denním trhu alespoň 5 821 Kč/MWh (pásmo „extrémní“, 90. percentil let 2020–2024).
+	measure 'Extrémní hodiny' = CALCULATE(COUNTROWS(vw_hourly_cost),vw_hourly_cost[price_czk_mwh] >= 5821) + 0
+		formatString: 0
+		lineageTag: 1d0c1bc3-c32b-444e-b88d-a9db300915ea
+
+	/// Nejvyšší cena jedné hodiny na denním trhu OTE ve vybraném období.
+	measure 'Nejvyšší hodinová cena (Kč/MWh)' = MAX(vw_hourly_cost[price_czk_mwh])
+		formatString: #,0.00
+		lineageTag: f0da7315-cfdc-4768-b571-9767a0bec4e0
+
+	/// Prostý průměr hodinových cen v pracovní dny,8:00–20:00 (definice peak na trhu PXE/EEX). Svátky ve všední den se počítají jako špička.
+	measure 'Průměrná cena ve špičce (Kč/MWh)' = CALCULATE([Průměrná tržní cena (Kč/MWh)],dim_date[is_weekend] = FALSE (),dim_hour[hour_of_day] >= 9,dim_hour[hour_of_day] <= 20)
+		formatString: #,0.00
+		lineageTag: 0ae11ce6-78d7-418e-a502-8e998856a1c1
+
+	/// Prostý průměr hodinových cen v noci (20:00–8:00) a o víkendech. Počítá se jako všechny hodiny minus hodiny špičky.
+	measure 'Průměrná cena mimo špičku (Kč/MWh)' =
+			
+			VAR peak_price_sum = CALCULATE(SUM(vw_hourly_cost[price_czk_mwh]),dim_date[is_weekend] = FALSE (),dim_hour[hour_of_day] >=9,dim_hour[hour_of_day] <=20)
+			VAR peak_hours = CALCULATE(COUNTROWS(vw_hourly_cost),dim_date[is_weekend] = FALSE (),dim_hour[hour_of_day] >=9,dim_hour[hour_of_day] <=20)
+			RETURN
+			DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_cost) - peak_hours)
+		formatString: #,0.00
+		lineageTag: f3f15748-1691-4ac3-80ff-4dd753dde5be
+
+	/// O kolik je MWh ve špičce dražší než mimo ni. Horní hranice úspory za 1 MWh přesunutou ze špičky do noci nebo na víkend.
+	measure 'Rozdíl špička – mimo špičku (Kč/MWh)' = [Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]
+		formatString: #,0.00
+		lineageTag: 751e2906-0a72-4ad9-a8d8-fc3dd187e525
 
 	column date_key
 		dataType: int64
