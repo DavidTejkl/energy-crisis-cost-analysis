@@ -8,9 +8,8 @@ table vw_cost_change_steps
 
 	/// O kolik Kč změnil náklad na silovou elektřinu pohyb kurzu EUR/CZK oproti předchozímu roku. Záporné = silnější koruna snížila náklad.
 	measure 'Vliv kurzu (Kč)' = CALCULATE([Krok změny nákladu (Kč)],vw_cost_change_steps[step_name] = "Exchange rate")
+		formatString: #,0.00
 		lineageTag: 8d1922dd-27c2-4fda-b9a9-b862faccdc27
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column date_key
 		dataType: int64

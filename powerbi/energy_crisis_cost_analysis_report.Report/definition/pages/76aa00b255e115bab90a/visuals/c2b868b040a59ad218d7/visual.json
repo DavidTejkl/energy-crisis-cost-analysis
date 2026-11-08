@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 296,
-    "z": 1,
+    "z": 1000,
     "height": 269,
     "width": 1920,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -132,121 +132,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "fb66068ce00ad177d05b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ea380636026034600a18",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Přirážka za diagram odběru (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "9116be59344513bc2ee5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Přirážka za diagram odběru (Kč)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f542c2d376b0d27bc820",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Extrémní hodiny"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d9b6e4205589822a900a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2dec8dfa0b0cae285964",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Průměrná cena ve špičce (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a56869f9527074c44b93",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Průměrná cena mimo špičku (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "34589e54e2abc5ec403c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Rozdíl špička – mimo špičku (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

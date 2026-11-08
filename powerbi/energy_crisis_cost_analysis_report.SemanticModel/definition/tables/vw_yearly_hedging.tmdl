@@ -1,6 +1,13 @@
 table vw_yearly_hedging
 	lineageTag: 248e0779-9932-4ea1-a3e1-8d44fbd7b0fa
 
+	/// Náklad na silovou elektřinu v EUR, kdyby firma nic nezajistila a vše koupila na denním trhu OTE. Výchozí bod pro srovnání se zajištěním.
+	measure 'Náklad na silovou elektřinu bez zajištění (EUR)' = ```
+			SUM(vw_yearly_hedging[spot_cost_eur]) 
+			```
+		formatString: #,0.00
+		lineageTag: 57c5891d-1047-4dfe-92c1-2332e88bce13
+
 	column date_key
 		dataType: int64
 		formatString: 0

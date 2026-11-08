@@ -18,6 +18,18 @@ table vw_monthly_cost
 		formatString: 0.0\ %;-0.0\ %;0.0\ %
 		lineageTag: 00eae37f-0146-4493-824b-7b0bd79cc015
 
+	/// Kolikrát vyšší byl celkový náklad na elektřinu v roce 2022 než v roce 2020. Roky jsou pevné, výsledek nezávisí na výběru v reportu.
+	measure 'Násobek nákladu krize (2022 / 2020)' =
+			
+			VAR cost_2022 =
+			    CALCULATE ([Celkový náklad na elektřinu (Kč)],dim_date[year] = 2022 )
+			VAR cost_2020 =
+			    CALCULATE ([Celkový náklad na elektřinu (Kč)], dim_date[year] = 2020 )
+			RETURN
+			    DIVIDE ( cost_2022, cost_2020 )
+		formatString: #,0.00
+		lineageTag: 2541bb2a-a1d7-4d6f-881e-b5db881017e0
+
 	column date_key
 		dataType: int64
 		formatString: 0
