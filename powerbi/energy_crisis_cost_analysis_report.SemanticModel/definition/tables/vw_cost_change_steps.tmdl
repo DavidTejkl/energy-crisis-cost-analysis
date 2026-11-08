@@ -1,6 +1,17 @@
 table vw_cost_change_steps
 	lineageTag: bb7e2d07-daad-4afe-be41-4688f98ecfa8
 
+	/// Hodnota jednoho kroku vodopádu: loňský náklad na silovou elektřinu, nebo vliv objemu, tržní ceny, diagramu odběru a kurzu na jeho změnu.
+	measure 'Krok změny nákladu (Kč)' = SUM(vw_cost_change_steps[amount_czk])
+		formatString: #,0.00
+		lineageTag: 1bf3a75f-34c7-478e-801e-74f33bf33605
+
+	/// O kolik Kč změnil náklad na silovou elektřinu pohyb kurzu EUR/CZK oproti předchozímu roku. Záporné = silnější koruna snížila náklad.
+	measure 'Vliv kurzu (Kč)' = CALCULATE([Krok změny nákladu (Kč)],vw_cost_change_steps[step_name] = "Exchange rate")
+		lineageTag: 8d1922dd-27c2-4fda-b9a9-b862faccdc27
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

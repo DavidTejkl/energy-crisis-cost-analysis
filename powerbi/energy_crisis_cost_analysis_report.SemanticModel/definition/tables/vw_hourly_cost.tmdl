@@ -3,9 +3,8 @@ table vw_hourly_cost
 
 	/// Náklad na elektřinu nakoupenou na denním trhu OTE. Bez distribuce, poplatků a DPH.
 	measure 'Náklad na silovou elektřinu (Kč)' = SUM(vw_hourly_cost[power_cost_czk])
+		formatString: #,0.00
 		lineageTag: e2b6e9fd-21e5-4e17-8504-fe1423b9a3bf
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	/// Spotřeba elektřiny firmy. Simulovaný profil, viz metodika.
 	measure 'Spotřeba (MWh)' = SUM(vw_hourly_cost[load_mwh])
@@ -84,9 +83,8 @@ table vw_hourly_cost
 			VAR previous_cost = [Náklad na silovou elektřinu minulý rok (Kč)]
 			RETURN
 			IF(ISBLANK(previous_cost),BLANK(),[Náklad na silovou elektřinu (Kč)] - previous_cost)
+		formatString: #,0.00
 		lineageTag: fd362449-8b19-4f50-babf-26b54a64b357
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column date_key
 		dataType: int64

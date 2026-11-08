@@ -315,6 +315,8 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Rozdíl špička – mimo špičku (Kč/MWh) | `vw_hourly_cost` | `[Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]` | Peak/off-peak spread | 1,471.75 |
 | Náklad na silovou elektřinu minulý rok (Kč) | `vw_hourly_cost` | `CALCULATE([Náklad na silovou elektřinu (Kč)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Power cost change | 76,133,003.83 |
 | Změna nákladu na silovou elektřinu (Kč) | `vw_hourly_cost` | `VAR previous_cost = [Náklad na silovou elektřinu minulý rok (Kč)] RETURN IF(ISBLANK(previous_cost), BLANK(), [Náklad na silovou elektřinu (Kč)] - previous_cost)` | Power cost change | +105,823,771.81 |
+| Krok změny nákladu (Kč) | `vw_cost_change_steps` | `SUM(vw_cost_change_steps[amount_czk])` | Market price, volume and load profile effects | 181,956,776.26 (sum of 5 steps) |
+| Vliv kurzu (Kč) | `vw_cost_change_steps` | `CALCULATE([Krok změny nákladu (Kč)], vw_cost_change_steps[step_name] = "Exchange rate")` | Exchange rate effect | −6,978,840.33 |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
@@ -330,6 +332,8 @@ DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_
 - Year-over-year measures need `dim_date` marked as date table. 2020 has no previous year in the data → BLANK
   (not 0, the data are missing); without the `ISBLANK` check 2020 would show its whole cost as a "change".
   Their total rows mean nothing (the period shifted by a year) → hidden in visuals.
+- Krok změny nákladu: the waterfall splits it by `step_name`; per year the 5 steps add up to that year's power cost
+  within 0.6–1.8 CZK (rounding of the effective rate R, ADR-006). The view starts in 2021 (2020 has no previous year).
 - `+ 0` in Extrémní hodiny: `COUNTROWS` of an empty table is BLANK; a year without extreme hours (2020) must show 0.
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
 - Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their

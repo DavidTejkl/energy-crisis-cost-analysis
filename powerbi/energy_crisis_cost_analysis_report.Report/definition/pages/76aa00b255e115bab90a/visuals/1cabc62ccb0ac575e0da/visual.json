@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "1cabc62ccb0ac575e0da",
+  "position": {
+    "x": 0,
+    "y": 854,
+    "z": 3,
+    "height": 226,
+    "width": 1920,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "year"
+                }
+              },
+              "queryRef": "dim_date.year",
+              "nativeQueryRef": "year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_cost_change_steps"
+                    }
+                  },
+                  "Property": "Krok změny nákladu (Kč)"
+                }
+              },
+              "queryRef": "vw_cost_change_steps.Krok změny nákladu (Kč)",
+              "nativeQueryRef": "Krok změny nákladu (Kč)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_cost_change_steps"
+                    }
+                  },
+                  "Property": "Vliv kurzu (Kč)"
+                }
+              },
+              "queryRef": "vw_cost_change_steps.Vliv kurzu (Kč)",
+              "nativeQueryRef": "Vliv kurzu (Kč)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e7c2daec38c76bd6c4d2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "03d5ae1578538bc6a05c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_cost_change_steps"
+              }
+            },
+            "Property": "Krok změny nákladu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "68b77699329a177ea2a1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_cost_change_steps"
+              }
+            },
+            "Property": "Vliv kurzu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
