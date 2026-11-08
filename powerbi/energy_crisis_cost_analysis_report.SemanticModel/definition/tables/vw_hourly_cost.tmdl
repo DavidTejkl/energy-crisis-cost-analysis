@@ -27,6 +27,22 @@ table vw_hourly_cost
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Prostý průměr hodinových cen denního trhu OTE. Každá hodina má stejnou váhu, spotřeba firmy se nepoužívá.
+	measure 'Průměrná tržní cena (Kč/MWh)' = AVERAGE(vw_hourly_cost[price_czk_mwh])
+		lineageTag: 4c6b9caa-8148-4852-ba70-66d1fa31ba63
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// O kolik firma platí za MWh víc než tržní průměr, protože odebírá víc v dražších hodinách. Cena za silovou elektřinu minus průměrná tržní cena. Simulovaný profil spotřeby.
+	measure 'Přirážka za diagram odběru (Kč/MWh)' = [Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]
+		formatString: 0.00
+		lineageTag: 24c5d725-5692-4a21-8d2c-66d59f1e12e0
+
+	/// O kolik korun firma za období zaplatila víc, než kdyby stejné množství odebírala rovnoměrně za tržní průměr. Přirážka za MWh * spotřeba. Počítá se na jeden rok. Simulovaný profil spotřeby.
+	measure 'Přirážka za diagram odběru (Kč)' = [Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]
+		formatString: 0.00
+		lineageTag: 26b6e798-7b16-473a-a8ee-0f332892f31b
+
 	column date_key
 		dataType: int64
 		formatString: 0

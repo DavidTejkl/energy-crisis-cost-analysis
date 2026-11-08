@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "21424bf6b02deea2b93d",
   "position": {
-    "x": 246.33911300249707,
-    "y": 90.756515316709454,
+    "x": 0,
+    "y": 17.248131382250765,
     "z": 0,
-    "height": 321.24925262898745,
-    "width": 1313.8086026799845,
+    "height": 653.82201217731733,
+    "width": 1920.2699341386658,
     "tabOrder": 0
   },
   "visual": {
@@ -112,6 +112,62 @@
               },
               "queryRef": "vw_hourly_cost.Celková cena elektřiny (Kč/kWh)",
               "nativeQueryRef": "Celková cena elektřiny (Kč/kWh)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_monthly_cost"
+                    }
+                  },
+                  "Property": "Podíl silové elektřiny (%)"
+                }
+              },
+              "queryRef": "vw_monthly_cost.Podíl silové elektřiny (%)",
+              "nativeQueryRef": "Podíl silové elektřiny (%)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Průměrná tržní cena (Kč/MWh)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Průměrná tržní cena (Kč/MWh)",
+              "nativeQueryRef": "Průměrná tržní cena (Kč/MWh)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Přirážka za diagram odběru (Kč/MWh)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (Kč/MWh)",
+              "nativeQueryRef": "Přirážka za diagram odběru (Kč/MWh)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Přirážka za diagram odběru (Kč)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (Kč)",
+              "nativeQueryRef": "Přirážka za diagram odběru (Kč)"
             }
           ]
         }
@@ -232,6 +288,62 @@
               }
             },
             "Property": "Celková cena elektřiny (Kč/kWh)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d48cb58de1d2cd781592",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_monthly_cost"
+              }
+            },
+            "Property": "Podíl silové elektřiny (%)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eef958d03bc49d13a6e9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Průměrná tržní cena (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "28910e4fad097da9d15c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Přirážka za diagram odběru (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0bbed21178aec3858a52",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Přirážka za diagram odběru (Kč)"
           }
         },
         "type": "Advanced"

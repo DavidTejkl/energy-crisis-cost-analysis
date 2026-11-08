@@ -151,7 +151,8 @@
   11.92 · 3.73 · 3.58 m CZK (EUR in query 10: 2022 +17.29 EUR/MWh, 483,332.58 EUR). The yearly power cost of the
   same query sums to 419,457,499 CZK over 5 years (= queries 08 and 11). A base-load hedge does not remove it (2.9).
 - Known limitations: SIMULATED load shape; the CZK and EUR totals differ slightly more than one yearly rate would
-  explain, because every hour is converted at its own daily rate.
+  explain, because every hour is converted at its own daily rate. Not additive across years (the market average
+  is per period) → shown per year, see DAX measures.
 
 ## Power cost change
 - Business question it answers: how much more or less did the company pay for power than in the previous year?
@@ -288,6 +289,31 @@ These three are the split of the power cost change into its drivers, shown as on
 - Filters / exclusions: none.
 - How to read it: 4.4× — the headline number of the report.
 - Known limitations: SIMULATED load; regulated tariffs changed too (POZE was 0 from 2022-10-01 to 2023-12-31).
+
+## DAX measures in Power BI
+Measures of the report (`powerbi/`, step 4.2). Names and descriptions are Czech (report language,
+`docs/dashboard_spec.md`); columns are referenced with the table name, measures without it. Every ratio takes its
+numerator and denominator from the same table, so a filter on one table cannot change only half of it.
+Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08.
+
+| Measure | Home table | DAX | KPI | Check 2022 |
+|---------|------------|-----|-----|------------|
+| Náklad na silovou elektřinu (Kč) | `vw_hourly_cost` | `SUM(vw_hourly_cost[power_cost_czk])` | Total electricity cost (power part) | 181,956,775.64 |
+| Spotřeba (MWh) | `vw_hourly_cost` | `SUM(vw_hourly_cost[load_mwh])` | — | 27,953.42 |
+| Cena za silovou elektřinu (Kč/MWh) | `vw_hourly_cost` | `DIVIDE([Náklad na silovou elektřinu (Kč)], [Spotřeba (MWh)])` | Load profile premium (weighted price) | 6,509.28 |
+| Cena za silovou elektřinu (Kč/kWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] / 1000` | — | 6.51 |
+| Celkový náklad na elektřinu (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[total_cost_czk])` | Total electricity cost | 200,924,897.61 |
+| Celková cena elektřiny (Kč/kWh) | `vw_monthly_cost` | `DIVIDE([Celkový náklad na elektřinu (Kč)], SUM(vw_monthly_cost[load_mwh])) / 1000` | All-in price | 7.19 |
+| Podíl silové elektřiny (%) | `vw_monthly_cost` | `DIVIDE(SUM(vw_monthly_cost[power_cost_czk]), [Celkový náklad na elektřinu (Kč)])` | Power share | 90.6 % |
+| Průměrná tržní cena (Kč/MWh) | `vw_hourly_cost` | `AVERAGE(vw_hourly_cost[price_czk_mwh])` | Average market price | 6,082.84 |
+| Přirážka za diagram odběru (Kč/MWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]` | Load profile premium | 426.45 |
+| Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
+
+- `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
+- Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their
+  hours, not per year: 2020–2024 shows 25,028,480.44 CZK, the sum of the five years is 25,092,615.49 CZK. The report
+  shows it per year (page 2 year slicer); visuals by year hide the total row.
+- Power BI and SQL differ by up to 0.02 CZK in the premium (SQL rounds `AVG` of DECIMAL to 6 decimals).
 
 ## <KPI name>
 - Business question it answers:

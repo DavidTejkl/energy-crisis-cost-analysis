@@ -13,6 +13,11 @@ table vw_monthly_cost
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Jaký podíl celkového nákladu na elektřinu tvoří silová elektřina (cena z trhu). Zbytek jsou regulované složky: distribuce, systémové služby, POZE a daň.
+	measure 'Podíl silové elektřiny (%)' = DIVIDE(SUM(vw_monthly_cost[power_cost_czk]),[Celkový náklad na elektřinu (Kč)])
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 00eae37f-0146-4493-824b-7b0bd79cc015
+
 	column date_key
 		dataType: int64
 		formatString: 0
