@@ -169,6 +169,31 @@ table vw_hourly_cost
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column price_band
+		dataType: string
+		lineageTag: 9d6d9982-88fe-49ec-b486-35766c1e59d9
+		summarizeBy: none
+		sourceColumn: price_band
+		sortByColumn: price_band_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_band_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 28e5dfd8-afd5-4911-ad83-a82e54bced08
+		summarizeBy: none
+		sourceColumn: price_band_order
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
 	partition vw_hourly_cost = m
 		mode: import
 		source =
