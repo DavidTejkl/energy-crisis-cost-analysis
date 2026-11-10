@@ -1,0 +1,35 @@
+{
+  "name": "Energy crisis - theme G",
+  "dataColors": [
+    "#D97706",
+    "#868E9A",
+    "#0D9488",
+    "#A7AEB8",
+    "#1E1F22",
+    "#B5BBC4",
+    "#D7DBE0",
+    "#6B7280"
+  ],
+  "foreground": "#1E1F22",
+  "foregroundNeutralSecondary": "#6B7280",
+  "background": "#FFFFFF",
+  "tableAccent": "#D97706",
+  "good": "#0D9488",
+  "neutral": "#868E9A",
+  "bad": "#D97706",
+  "maximum": "#D97706",
+  "center": "#D7DBE0",
+  "minimum": "#0D9488",
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#F3F4F6" } },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}
