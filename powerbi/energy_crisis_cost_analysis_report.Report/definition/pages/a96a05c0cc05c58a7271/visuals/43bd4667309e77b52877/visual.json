@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "43bd4667309e77b52877",
   "position": {
-    "x": 24,
-    "y": 108,
-    "z": 2001,
-    "height": 112,
+    "x": 0,
+    "y": 4,
+    "z": 1000,
+    "height": 108,
     "width": 257,
-    "tabOrder": 4
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "cardVisual",
@@ -106,10 +106,42 @@
             "id": "default"
           }
         }
+      ],
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "rectangleRoundedCurve": {
+              "expr": {
+                "Literal": {
+                  "Value": "18L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Karta cena'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "f1d999a740220657ac68",
   "filterConfig": {
     "filters": [
       {

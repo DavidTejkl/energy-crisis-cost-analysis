@@ -4,10 +4,10 @@
   "position": {
     "x": 922.77502895041584,
     "y": 574.93771274169217,
-    "z": 3001,
+    "z": 4000,
     "height": 97.739411166087663,
     "width": 918.46299610485323,
-    "tabOrder": 3001
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -92,23 +92,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "7122183176580b5b05a0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Podíl zajištění"
-              }
-            },
-            "Property": "Podíl zajištění"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

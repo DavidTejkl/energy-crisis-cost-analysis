@@ -7,7 +7,7 @@
     "z": 0,
     "height": 76,
     "width": 1232,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "shape",
@@ -72,6 +72,21 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Záhlaví okraj'"
                 }
               }
             }

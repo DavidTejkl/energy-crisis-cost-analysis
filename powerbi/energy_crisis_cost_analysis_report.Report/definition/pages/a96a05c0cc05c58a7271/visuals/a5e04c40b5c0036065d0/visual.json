@@ -7,7 +7,7 @@
     "z": 2000,
     "height": 44,
     "width": 900,
-    "tabOrder": 3
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -41,6 +41,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Titulek'"
                 }
               }
             }

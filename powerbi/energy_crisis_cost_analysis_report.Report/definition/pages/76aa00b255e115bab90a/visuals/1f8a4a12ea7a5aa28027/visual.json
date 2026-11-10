@@ -4,10 +4,10 @@
   "position": {
     "x": 922.5,
     "y": 660,
-    "z": 3002,
+    "z": 5000,
     "height": 237.16180650594802,
     "width": 918.46299610485323,
-    "tabOrder": 3002
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -121,37 +121,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "146da2a10eede084c686",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a7a26adda9187be00504",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_yearly_hedging"
-              }
-            },
-            "Property": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
