@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4322f12300adee95e98c",
+  "position": {
+    "x": 1480,
+    "y": 910,
+    "z": 3003,
+    "height": 170,
+    "width": 361.25,
+    "tabOrder": 3003
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_yearly_hedging"
+                    }
+                  },
+                  "Property": "Výsledek zajištění - proxy (EUR)"
+                }
+              },
+              "queryRef": "vw_yearly_hedging.Výsledek zajištění - proxy (EUR)",
+              "nativeQueryRef": "Výsledek zajištění - proxy (EUR)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vw_yearly_hedging"
+                  }
+                },
+                "Property": "Výsledek zajištění - proxy (EUR)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

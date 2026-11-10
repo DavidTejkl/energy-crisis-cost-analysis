@@ -31,6 +31,16 @@ table vw_yearly_hedging
 		formatString: #,0.00
 		lineageTag: a436cbd6-3076-46ab-9b34-92f9824ac69e
 
+	/// Rozdíl mezi nákladem na silovou elektřinu se zajištěním za náhradní (proxy) cenu a nákladem bez zajištění, v EUR. Záporné číslo znamená, že nákup předem by byl levnější, kladné, že by byl dražší. Po letech ukazuje každý rok zvlášť, bez filtru roku ukazuje součet za 2021–2024. Podíl se volí posuvníkem. Simulace.
+	measure 'Výsledek zajištění - proxy (EUR)' =
+			
+			VAR no_hedging = [Náklad na silovou elektřinu bez zajištění (EUR)]
+			VAR proxy = [Náklad na silovou elektřinu se zajištěním - proxy (EUR)]
+			RETURN
+			proxy - no_hedging
+		formatString: #,0.00
+		lineageTag: bb0b3f1d-786b-45ff-8ede-11f5705ca114
+
 	column date_key
 		dataType: int64
 		formatString: 0

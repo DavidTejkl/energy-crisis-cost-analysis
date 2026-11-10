@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "1f8a4a12ea7a5aa28027",
   "position": {
-    "x": 922.77502895041584,
-    "y": 672.67712390777979,
+    "x": 922.5,
+    "y": 660,
     "z": 3002,
     "height": 237.16180650594802,
     "width": 918.46299610485323,
@@ -56,6 +56,20 @@
               },
               "queryRef": "vw_yearly_hedging.Náklad na silovou elektřinu se zajištěním - PXE (EUR)",
               "nativeQueryRef": "Náklad na silovou elektřinu se zajištěním - PXE (EUR)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_yearly_hedging"
+                    }
+                  },
+                  "Property": "Výsledek zajištění - proxy (EUR)"
+                }
+              },
+              "queryRef": "vw_yearly_hedging.Výsledek zajištění - proxy (EUR)",
+              "nativeQueryRef": "Výsledek zajištění - proxy (EUR)"
             }
           ]
         }
