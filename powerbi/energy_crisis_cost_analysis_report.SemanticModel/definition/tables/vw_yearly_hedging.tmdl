@@ -19,6 +19,18 @@ table vw_yearly_hedging
 		formatString: #,0.00
 		lineageTag: 736a3e8c-5b2f-4d8e-b242-4e4cdcd09935
 
+	/// Náklad na silovou elektřinu v EUR, když firma zvolený podíl spotřeby koupí předem za skutečnou burzovní cenu PXE (roční produkt na příští rok, poslední obchod v prosinci) a zbytek na denním trhu. Cenu PXE máme pro roky 2022–2024, rok 2021 zůstává prázdný. Podíl se volí posuvníkem. Simulace.
+	measure 'Náklad na silovou elektřinu se zajištěním - PXE (EUR)' = ```
+			
+			VAR no_hedging = [Náklad na silovou elektřinu bez zajištění (EUR)]
+			VAR param = [Hodnota parametru Podíl zajištění]
+			VAR pxe = SUM(vw_yearly_hedging[hedge_diff_pxe_eur])
+			RETURN
+			IF(ISBLANK(pxe),BLANK(),no_hedging + param * pxe) 
+			```
+		formatString: #,0.00
+		lineageTag: a436cbd6-3076-46ab-9b34-92f9824ac69e
+
 	column date_key
 		dataType: int64
 		formatString: 0

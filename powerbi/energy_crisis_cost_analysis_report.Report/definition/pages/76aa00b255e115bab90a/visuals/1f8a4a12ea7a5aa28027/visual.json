@@ -42,9 +42,40 @@
               },
               "queryRef": "vw_yearly_hedging.Náklad na silovou elektřinu se zajištěním (EUR)",
               "nativeQueryRef": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_yearly_hedging"
+                    }
+                  },
+                  "Property": "Náklad na silovou elektřinu se zajištěním - PXE (EUR)"
+                }
+              },
+              "queryRef": "vw_yearly_hedging.Náklad na silovou elektřinu se zajištěním - PXE (EUR)",
+              "nativeQueryRef": "Náklad na silovou elektřinu se zajištěním - PXE (EUR)"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_date"
+                  }
+                },
+                "Property": "year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "drillFilterOtherVisuals": true
