@@ -310,6 +310,7 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
 | Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_band] = "extrémní") + 0` | Extreme hours | 3,694 |
 | Podíl extrémních hodin (%) | `vw_hourly_cost` | `DIVIDE([Extrémní hodiny], COUNTROWS(vw_hourly_cost))` | Extreme hours (share of the year) | 42.2 % |
+| Průměrná tržní cena – karta | `vw_hourly_cost` | `FORMAT([Průměrná tržní cena (Kč/MWh)], "#,0")` | Average market price (card display only) | "6 083" (text) |
 | Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |
 | Průměrná cena ve špičce (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)` | Peak/off-peak spread | 7,030.40 |
 | Průměrná cena mimo špičku (Kč/MWh) | `vw_hourly_cost` | see below | Peak/off-peak spread | 5,558.65 |
@@ -358,7 +359,11 @@ DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_
 - Price bands come from `vw_hourly_cost[price_band]` (SQL `CASE`, same bounds as query 05; sorted by the hidden
   `price_band_order` 1–5). Since 2026-11-10 Extrémní hodiny filters on the band instead of `price_czk_mwh >= 5821`,
   so the bounds live only in SQL; same values as before (0 / 577 / 3,694 / 30 / 84).
-- Podíl extrémních hodin reuses `[Extrémní hodiny]`, so it needs no threshold of its own. The denominator
+- Podíl extrémních hodin reuses `[Extrémní hodiny]`, so it needs no threshold of its own.
+- Card measures (`… – karta`): the new card visual of this Power BI version shortens numbers automatically
+  ("6 tis.") and has no display-unit option for the main value; neither the data format nor a custom format code
+  `#,0` stops it (tried 2026-11-10). A text measure with `FORMAT(…, "#,0")` shows the exact number. Display only:
+  calculations and the consistency check (4.7) use the numeric measure. The denominator
   counts fact rows (one row = one hour), not `dim_hour` (25 hours of a day). Checked 2026-11-10: 0.0 / 6.6 / 42.2 /
   0.3 / 1.0 %; the 2020–2024 total is exactly 10.0 % (4,385 / 43,848), because the threshold is the P90 of all hours.
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.

@@ -1,2 +1,6567 @@
 cultureInfo cs-CZ
 
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dim_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dim_date": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "dim moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "dim period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.date_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "date_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "date solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.full_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "full_date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "full date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "full_date": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "full moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "full period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "complete date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "entire date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "whole date": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "dim_date.day_of_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "day_of_month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "day of month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "day_of_month": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "day of mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "dim_date.quarter": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "quarter"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "quarter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "qtr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.818
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.week_of_year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "week_of_year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "week of year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "week_of_year": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "week of yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.weekday_num": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "weekday_num"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "weekday num": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "weekday_num": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "weekday number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.weekday_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "weekday_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "weekday name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "weekday_name": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "weekday": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "weekday nickname": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "weekday title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "weekday label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "weekday tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "ordinary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "routine": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "dim_date.is_weekend": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "is_weekend"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "is weekend": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "is_weekend": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "weekend": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "dim_hour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_hour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim hour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dim_hour": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "dim period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "dim era": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "dim epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "dim age": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "dim_hour.hour_of_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_hour",
+			          "ConceptualProperty": "hour_of_day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hour of day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hour_of_day": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "period of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "era of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "epoch of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "age of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        }
+			      ]
+			    },
+			    "dim_hour.time_of_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_hour",
+			          "ConceptualProperty": "time_of_day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "time of day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "time_of_day": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "duration of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "interval of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "moment of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "period of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "timetable of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw hourly cost": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_hourly_cost": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "cost": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "hourly cost": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "vw hourly price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw hourly charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw hourly rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw hourly fee": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw hourly total": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "hourly price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "hourly charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "hourly rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "hourly fee": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "hourly total": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.date_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "date_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "date solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.hour_of_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "hour_of_day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "hour of day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hour_of_day": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "period of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "era of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "epoch of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "age of day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.price_eur_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "price_eur_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "price eur mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "price_eur_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.rate_czk_per_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "rate_czk_per_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "rate czk per eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "rate_czk_per_eur": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.price_czk_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "price_czk_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "price czk mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "price_czk_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.load_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "load_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "load mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "load_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "mwh": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.power_cost_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "power_cost_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power cost eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "power_cost_eur": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.power_cost_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "power_cost_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power cost czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "power_cost_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.price_band": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "price_band"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "price band": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "price_band": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "band": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "price posse": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "posse": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "price group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "price gang": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "price crew": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "price crowd": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "price mob": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "gang": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "crew": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "crowd": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.price_band_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "price_band_order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "price band order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "price_band_order": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "band order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "price band instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "price band direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "price band edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "band instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "band direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "band edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "price band command": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "price band directive": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "price band demand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "price band mandate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.náklad_na_silovou_elektřinu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Náklad na silovou elektřinu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.spotřeba_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Spotřeba (MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "spotřeba (MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "spotřeba": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Cena za silovou elektřinu (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "cena za silovou elektřinu (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Cena za silovou elektřinu (Kč/kWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "cena za silovou elektřinu (kč/kWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "cena za silovou elektřinu ( kč kWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "kWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.průměrná_tržní_cena_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Průměrná tržní cena (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "průměrná tržní cena (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "průměrná tržní cena": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "průměrná tržní cena (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "průměrná tržní cena ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Přirážka za diagram odběru (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "přirážka za diagram odběru (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "přirážka za diagram odběru": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "přirážka za diagram odběru (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "přirážka za diagram odběru ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.přirážka_za_diagram_odběru_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Přirážka za diagram odběru (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "přirážka za diagram odběru (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "přirážka za diagram odběru": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.extrémní_hodiny": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Extrémní hodiny"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "extrémní hodiny": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Nejvyšší hodinová cena (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejvyšší hodinová cena (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejvyšší hodinová cena": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "nejvyšší hodinová cena (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "nejvyšší hodinová cena ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Průměrná cena ve špičce (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "průměrná cena ve špičce (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "průměrná cena ve špičce": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "průměrná cena ve špičce (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "průměrná cena ve špičce ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Průměrná cena mimo špičku (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "průměrná cena mimo špičku (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "průměrná cena mimo špičku": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "průměrná cena mimo špičku (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "průměrná cena mimo špičku ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Rozdíl špička – mimo špičku (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "rozdíl špička – mimo špičku (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "rozdíl špička – mimo špičku": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "rozdíl špička – mimo špičku (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "rozdíl špička – mimo špičku ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Náklad na silovou elektřinu minulý rok (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu minulý rok (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu minulý rok": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Změna nákladu na silovou elektřinu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "změna nákladu na silovou elektřinu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "změna nákladu na silovou elektřinu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.podíl_extrémních_hodin": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Podíl extrémních hodin (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "podíl extrémních hodin": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "podíl extrémních hodin (%)": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "Units": [
+			        "percentage",
+			        "%"
+			      ]
+			    },
+			    "vw_hourly_cost.průměrná_tržní_cena__karta": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Průměrná tržní cena – karta"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "průměrná tržní cena – karta": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Průměrná tržní cena (Kč/MWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw monthly cost": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_monthly_cost": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "cost": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "monthly cost": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "vw monthly price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw monthly charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw monthly rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw monthly fee": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw monthly total": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "monthly price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "monthly charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "monthly rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "monthly fee": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "monthly total": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.date_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "date_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "date solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "vw_monthly_cost.month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.load_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "load_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "load mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "load_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "mwh": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.power_cost_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "power_cost_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power cost czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "power_cost_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.electricity_tax_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "electricity_tax_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "electricity tax czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "electricity_tax_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.network_use_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "network_use_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "network use czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "network_use_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.system_services_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "system_services_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "system services czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "system service czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "system_services_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "system amenity czk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "system assistance czk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "system public amenity czk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.484
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.reserved_capacity_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "reserved_capacity_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "reserved capacity czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "reserved_capacity_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.ote_fees_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "ote_fees_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ote fees czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ote fee czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "ote_fees_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.poze_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "poze_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "poze czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "poze_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.total_cost_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "total_cost_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total cost czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total_cost_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate cost czk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall cost czk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.celková_cena_elektřiny_kč_kWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Celková cena elektřiny (Kč/kWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "celková cena elektřiny (kč/kWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "celková cena elektřiny": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "celková cena elektřiny (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "celková cena elektřiny ( kč kWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "kWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.celkový_náklad_na_elektřinu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Celkový náklad na elektřinu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "celkový náklad na elektřinu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "celkový náklad na elektřinu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.podíl_silové_elektřiny": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Podíl silové elektřiny (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "podíl silové elektřiny": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "podíl silové elektřiny (%)": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "Units": [
+			        "percentage",
+			        "%"
+			      ]
+			    },
+			    "vw_monthly_cost.násobek_nákladu_krize_2022___2020": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Násobek nákladu krize (2022 / 2020)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "násobek nákladu krize (2022 / 2020)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "násobek nákladu krize": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "násobek nákladu krize (2022": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "násobek nákladu krize ( 2022 2020 )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw cost change step": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_cost_change_steps": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "step": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change step": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "cost change step": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "vw cost change stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "vw cost change phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "vw cost change period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "cost change stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "cost change phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "cost change period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "vw cost change footstep": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "change stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "change phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "change period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.date_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "date_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "date solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "vw_cost_change_step.step_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "step_order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "step order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "step_order": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "step instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "step direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "step edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "step command": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "step directive": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "step demand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "step mandate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.step_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "step_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "step name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "step_name": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "step": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "step nickname": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "step title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "step label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "step tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "footstep": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "pace": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "stride": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.amount_czk": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "amount_czk"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "amount czk": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "amount_czk": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.krok_změny_nákladu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Krok změny nákladu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "krok změny nákladu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "krok změny nákladu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.vliv_kurzu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Vliv kurzu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vliv kurzu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vliv kurzu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw yearly hedging": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_yearly_hedging": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "hedging": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "yearly hedging": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.date_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "date_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "date key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "moment key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "period key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "date solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "vw_yearly_hedging.volume_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "volume_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "volume mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "volume_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "mwh": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.spot_cost_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "spot_cost_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "spot cost eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "spot_cost_eur": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.market_price_eur_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "market_price_eur_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "market price eur mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "market_price_eur_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.hedge_price_eur_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "hedge_price_eur_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hedge price eur mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hedge_price_eur_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.pxe_price_eur_mwh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "pxe_price_eur_mwh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "pxe price eur mwh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "pxe_price_eur_mwh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.hedge_diff_proxy_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "hedge_diff_proxy_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hedge diff proxy eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hedge_diff_proxy_eur": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.hedge_diff_pxe_eur": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "hedge_diff_pxe_eur"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hedge diff pxe eur": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hedge_diff_pxe_eur": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu bez zajištění (EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu bez zajištění (EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu bez zajištění": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu se zajištěním - proxy (EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu se zajištěním - proxy (EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním - proxy": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním proxy (EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu se zajištěním - PXE (EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu se zajištěním - PXE (EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním - PXE": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním PXE (EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Výsledek zajištění - proxy (EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "výsledek zajištění - proxy (EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "výsledek zajištění - proxy": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "výsledek zajištění proxy (EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "podíl_zajištění": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Podíl zajištění"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "podíl zajištění": {
+			            "State": "Generated",
+			            "Weight": 0.87
+			          }
+			        }
+			      ]
+			    },
+			    "podíl_zajištění.podíl_zajištění": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Podíl zajištění",
+			          "ConceptualProperty": "Podíl zajištění"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "podíl zajištění": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "podíl_zajištění.hodnota_parametru_podíl_zajištění": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Podíl zajištění",
+			          "ConceptualProperty": "Hodnota parametru Podíl zajištění"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hodnota parametru podíl zajištění": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "dim_date_is_weekend": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.is_weekend": {
+			          "Target": {
+			            "Entity": "dim_date.is_weekend"
+			          }
+			        }
+			      },
+			      "Conditions": [
+			        {
+			          "Target": {
+			            "Role": "dim_date.is_weekend"
+			          },
+			          "Operator": "Equals",
+			          "Value": {
+			            "Boolean": [
+			              true
+			            ]
+			          }
+			        }
+			      ],
+			      "Phrasings": [
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Adjectives": [
+			              {
+			                "weekend": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ]
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "some_dim_dates_are_weekend_dim_dates"
+			        }
+			      ]
+			    },
+			    "dim_date_has_date_key": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.date_key": {
+			          "Target": {
+			            "Entity": "dim_date.date_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_date_keys"
+			        }
+			      ]
+			    },
+			    "dim_date_has_full_date": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.full_date": {
+			          "Target": {
+			            "Entity": "dim_date.full_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.full_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_full_dates"
+			        }
+			      ]
+			    },
+			    "dim_date_has_day_of_month": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.day_of_month": {
+			          "Target": {
+			            "Entity": "dim_date.day_of_month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.day_of_month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_day_of_month"
+			        }
+			      ]
+			    },
+			    "dim_date_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.month": {
+			          "Target": {
+			            "Entity": "dim_date.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_months"
+			        }
+			      ]
+			    },
+			    "dim_date_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.year": {
+			          "Target": {
+			            "Entity": "dim_date.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_years"
+			        }
+			      ]
+			    },
+			    "dim_date_has_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.quarter": {
+			          "Target": {
+			            "Entity": "dim_date.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_quarters"
+			        }
+			      ]
+			    },
+			    "dim_date_has_week_of_year": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.week_of_year": {
+			          "Target": {
+			            "Entity": "dim_date.week_of_year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.week_of_year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_week_of_year"
+			        }
+			      ]
+			    },
+			    "dim_date_has_weekday_num": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.weekday_num": {
+			          "Target": {
+			            "Entity": "dim_date.weekday_num"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.weekday_num"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_weekday_nums"
+			        }
+			      ]
+			    },
+			    "dim_date_has_weekday_name": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.weekday_name": {
+			          "Target": {
+			            "Entity": "dim_date.weekday_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.weekday_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_weekday_names"
+			        }
+			      ]
+			    },
+			    "dim_date_has_is_weekend": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.is_weekend": {
+			          "Target": {
+			            "Entity": "dim_date.is_weekend"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.is_weekend"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_is_weekends"
+			        }
+			      ]
+			    },
+			    "dim_hour_has_hour_of_day": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_hour"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        },
+			        "dim_hour.hour_of_day": {
+			          "Target": {
+			            "Entity": "dim_hour.hour_of_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "dim_hour.hour_of_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_hour_of_day"
+			        }
+			      ]
+			    },
+			    "dim_hour_has_time_of_day": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_hour"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        },
+			        "dim_hour.time_of_day": {
+			          "Target": {
+			            "Entity": "dim_hour.time_of_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "dim_hour.time_of_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_time_of_day"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_rate_czk_per_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.rate_czk_per_eur": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.rate_czk_per_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.rate_czk_per_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_rate_czk_per_eur"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_czk_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_czk_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_czk_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_czk_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_czk_mwh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_load_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.load_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.load_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.load_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_load_mwh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_power_cost_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.power_cost_eur": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.power_cost_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.power_cost_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_power_cost_eurs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_power_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.power_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.power_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.power_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_power_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_band": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_band": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_band"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_band"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_bands"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.náklad_na_silovou_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_spotřeba_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.spotřeba_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.spotřeba_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.spotřeba_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_spotřeba_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_kWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_kWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_tržní_cena_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_tržní_cena_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_extrémní_hodiny": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.extrémní_hodiny": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.extrémní_hodiny"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.extrémní_hodiny"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_extrémní_hodiny"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_nejvyšší_hodinová_cena_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_nejvyšší_hodinová_cena_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_cena_ve_špičce_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_cena_ve_špičce_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_cena_mimo_špičku_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_cena_mimo_špičku_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_rozdíl_špička__mimo_špičku_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_rozdíl_špička__mimo_špičku_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_minulý_rok_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_minulý_rok_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_změna_nákladu_na_silovou_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_změna_nákladu_na_silovou_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_podíl_extrémních_hodin": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.podíl_extrémních_hodin": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.podíl_extrémních_hodin"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.podíl_extrémních_hodin"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_podíl_extrémních_hodin"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_tržní_cena__karta": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_tržní_cena__karta": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_tržní_cena__karta"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_tržní_cena__karta"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena__karta"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.year": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_years"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.month": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_months"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_load_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.load_mwh": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.load_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.load_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_load_mwh"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_power_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.power_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.power_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.power_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_power_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_electricity_tax_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.electricity_tax_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.electricity_tax_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.electricity_tax_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_electricity_tax_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_network_use_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.network_use_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.network_use_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.network_use_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_network_use_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_system_services_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.system_services_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.system_services_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.system_services_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_system_services_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_reserved_capacity_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.reserved_capacity_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.reserved_capacity_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.reserved_capacity_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_reserved_capacity_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_ote_fees_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.ote_fees_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.ote_fees_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.ote_fees_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_ote_fees_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_poze_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.poze_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.poze_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.poze_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_poze_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_total_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.total_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.total_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.total_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_total_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_celková_cena_elektřiny_kč_kWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.celková_cena_elektřiny_kč_kWh": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_kč_kWh"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_celkový_náklad_na_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.celkový_náklad_na_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_celkový_náklad_na_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_podíl_silové_elektřiny": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.podíl_silové_elektřiny": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.podíl_silové_elektřiny"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.podíl_silové_elektřiny"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_podíl_silové_elektřiny"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_násobek_nákladu_krize_2022___2020": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.násobek_nákladu_krize_2022___2020": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_násobek_nákladu_krize_2022___2020"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.year": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_years"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_step_order": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.step_order": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.step_order"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.step_order"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_step_orders"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_step_name": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.step_name": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.step_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.step_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_step_names"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_amount_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.amount_czk": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.amount_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.amount_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_amount_czks"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_krok_změny_nákladu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.krok_změny_nákladu_kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.krok_změny_nákladu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.krok_změny_nákladu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_krok_změny_nákladu_kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_vliv_kurzu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.vliv_kurzu_kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.vliv_kurzu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.vliv_kurzu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_vliv_kurzu_kč"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.year": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_years"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_volume_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.volume_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.volume_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.volume_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_volume_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_spot_cost_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.spot_cost_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.spot_cost_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.spot_cost_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_spot_cost_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_market_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.market_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.market_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.market_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_market_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_pxe_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.pxe_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.pxe_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.pxe_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_pxe_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_diff_proxy_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_diff_proxy_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_diff_proxy_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_diff_proxy_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_diff_proxy_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_diff_pxe_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_diff_pxe_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_diff_pxe_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_diff_pxe_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_diff_pxe_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_výsledek_zajištění__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_výsledek_zajištění__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_výsledek_zajištění__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_výsledek_zajištění__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_podíl_zajištění": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "podíl_zajištění.podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění.podíl_zajištění"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "podíl_zajištění.podíl_zajištění"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_podíl_zajištění"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_hodnota_parametru_podíl_zajištění": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "podíl_zajištění.hodnota_parametru_podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_hodnota_parametru_podíl_zajištění"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_dim_hour": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "dim_hour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_dim_hours"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_monthly_costs"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_cost_change_steps"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_yearly_hedging"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

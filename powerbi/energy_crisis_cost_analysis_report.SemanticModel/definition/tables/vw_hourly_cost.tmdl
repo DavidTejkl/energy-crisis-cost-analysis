@@ -91,6 +91,12 @@ table vw_hourly_cost
 		formatString: 0.0\ %;-0.0\ %;0.0\ %
 		lineageTag: 09b7a449-f3ed-476c-86f7-621268d78067
 
+	measure 'Průměrná tržní cena – karta' = ```
+			FORMAT([Průměrná tržní cena (Kč/MWh)], "#,0")
+			
+			```
+		lineageTag: 97f53d4e-0cf8-4aae-807c-1bc54c6fef57
+
 	column date_key
 		dataType: int64
 		formatString: 0
