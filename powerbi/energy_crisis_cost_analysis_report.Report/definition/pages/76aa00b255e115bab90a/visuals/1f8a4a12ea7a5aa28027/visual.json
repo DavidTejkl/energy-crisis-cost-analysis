@@ -84,6 +84,20 @@
               },
               "queryRef": "vw_hourly_cost.Podíl extrémních hodin (%)",
               "nativeQueryRef": "Podíl extrémních hodin (%)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Extrémní hodiny"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Extrémní hodiny",
+              "nativeQueryRef": "Extrémní hodiny"
             }
           ]
         }

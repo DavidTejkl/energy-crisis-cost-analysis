@@ -43,7 +43,7 @@ table vw_hourly_cost
 		lineageTag: 26b6e798-7b16-473a-a8ee-0f332892f31b
 
 	/// Počet hodin s cenou na denním trhu alespoň 5 821 Kč/MWh (pásmo „extrémní“, 90. percentil let 2020–2024).
-	measure 'Extrémní hodiny' = CALCULATE(COUNTROWS(vw_hourly_cost),vw_hourly_cost[price_czk_mwh] >= 5821) + 0
+	measure 'Extrémní hodiny' = CALCULATE(COUNTROWS(vw_hourly_cost),vw_hourly_cost[price_band] = "extrémní") + 0
 		formatString: 0
 		lineageTag: 1d0c1bc3-c32b-444e-b88d-a9db300915ea
 
