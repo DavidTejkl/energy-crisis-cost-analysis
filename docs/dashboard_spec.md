@@ -304,7 +304,7 @@ After the pipeline runs, one *Refresh* in Power BI updates the report.
 |---|---|---|---|---|
 | `dim_date` | table `dim_date` | 1 day | all pages (year slicer, month axis, weekend flag) | exists |
 | `dim_hour` | table `dim_hour` | 1 hour of the day | page 1 (peak / off-peak, top hours) | exists |
-| Hourly fact | view `vw_hourly_cost`: price EUR and CZK, rate, load, cost EUR and CZK per hour (`fact_energy_prices` + `fact_fx` + `fact_load`) | 1 hour | pages 0–2 (market price, bands, top hours, power cost, load profile premium) | exists (43,848 rows, 419,457,499.00 CZK = query 08) |
+| Hourly fact | view `vw_hourly_cost`: price EUR and CZK, rate, load, cost EUR and CZK, price band (Czech label + sort order 1–5) per hour (`fact_energy_prices` + `fact_fx` + `fact_load`) | 1 hour | pages 0–2 (market price, bands, top hours, power cost, load profile premium) | exists (43,848 rows, 419,457,499.00 CZK = query 08) |
 | Monthly cost | new view from query 08 (power, regulated per MWh, fixed, POZE, total) | 1 month | pages 0 and 2 | to write |
 | Cost change steps | new view from queries 10 + 11 (previous-year cost, volume, market price, load profile, exchange rate) | 1 year + 1 step | page 3 waterfall and table | to write |
 | Hedging inputs | new view from query 12 (V, C, Pb, proxy price Ph, PXE price) | 1 year | page 4; the hedged cost is a DAX measure with the what-if share | to write |

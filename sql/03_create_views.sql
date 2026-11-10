@@ -53,11 +53,13 @@ GO
 -- Main fact table for Power BI: one row = one hour (43,848 rows). Costs are stored, the weighted price
 -- is computed in Power BI as SUM(cost) / SUM(load). LEFT JOIN on the rate: no hour gets lost.
 -- Power only (no distribution, taxes or VAT), load is SIMULATED.
+-- Price band per hour = the KPI bands (docs/kpi_definitions.md, same bounds as query 05); price_band_order sorts them.
 -- CZ: ** VIEW S HODINOVÝM NÁKLADEM **
 -- Byznys otázka: kolik firma zaplatila za silovou elektřinu v každé hodině, v EUR a v CZK?
 -- Hlavní faktová tabulka pro Power BI: jeden řádek = jedna hodina (43 848 řádků). Ukládají se náklady, váženou
 -- cenu počítá Power BI jako SUM(náklad) / SUM(odběr). LEFT JOIN na kurz: žádná hodina se neztratí.
 -- Jen silová elektřina (bez distribuce, daní a DPH), odběr je SIMULOVANÝ.
+-- Cenové pásmo každé hodiny = pásma z KPI (docs/kpi_definitions.md, stejné hranice jako query 05); price_band_order je řadí.
 
 CREATE OR ALTER VIEW dbo.vw_hourly_cost AS 
 	
@@ -69,7 +71,21 @@ CREATE OR ALTER VIEW dbo.vw_hourly_cost AS
 		ep.price_eur_mwh * fx.rate_czk_per_eur AS price_czk_mwh,
 		l.load_mwh,
 		l.load_mwh * ep.price_eur_mwh AS power_cost_eur,
-		l.load_mwh * ep.price_eur_mwh * fx.rate_czk_per_eur AS power_cost_czk
+		l.load_mwh * ep.price_eur_mwh * fx.rate_czk_per_eur AS power_cost_czk,
+		CASE
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 0 THEN N'záporná'
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 1217 THEN N'nízká'
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 3374 THEN N'běžná'
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 5821 THEN N'vysoká'
+			ELSE N'extrémní'
+		END AS price_band,
+		CASE
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 0 THEN 1
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 1217 THEN 2
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 3374 THEN 3
+			WHEN ep.price_eur_mwh * fx.rate_czk_per_eur < 5821 THEN 4
+			ELSE 5
+		END AS price_band_order
 	FROM dbo.fact_energy_prices ep
 	JOIN dbo.fact_load l ON ep.date_key = l.date_key AND ep.hour_of_day = l.hour_of_day
 	LEFT JOIN dbo.fact_fx fx ON ep.date_key = fx.date_key
