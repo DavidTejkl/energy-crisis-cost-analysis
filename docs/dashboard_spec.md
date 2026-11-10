@@ -257,7 +257,8 @@ Tooltip on the waterfall: the same effect in EUR (query 10) and the effective ra
 **Question:** how much of next year's volume should the company fix in advance?
 **User:** energy manager, CFO. **User story:** US-04. **Labels:** SIMULATED, ASSUMPTION (proxy price).
 **Currency:** EUR (power contracts are traded in EUR/MWh). **Controls:** year slicer 2021–2024 and a
-"Share fixed in advance" slider 0–100 % in steps of 5 %, default 50 % (*what-if parameter*).
+"Share fixed in advance" slider 0–100 % in steps of 25 %, default 50 % (*what-if parameter*). Steps of 25 % because the cost is linear
+in the share (finer steps add no information) and every position has a check value in query 12.
 **Title (fixed):** "Fixing the price in advance moves the shock, it does not remove it".
 
 ### KPI cards (selected year and share)

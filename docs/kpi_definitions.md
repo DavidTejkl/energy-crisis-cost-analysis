@@ -309,6 +309,7 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Přirážka za diagram odběru (Kč/MWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]` | Load profile premium | 426.45 |
 | Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
 | Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_czk_mwh] >= 5821) + 0` | Extreme hours | 3,694 |
+| Podíl extrémních hodin (%) | `vw_hourly_cost` | `DIVIDE([Extrémní hodiny], COUNTROWS(vw_hourly_cost))` | Extreme hours (share of the year) | 42.2 % |
 | Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |
 | Průměrná cena ve špičce (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)` | Peak/off-peak spread | 7,030.40 |
 | Průměrná cena mimo špičku (Kč/MWh) | `vw_hourly_cost` | see below | Peak/off-peak spread | 5,558.65 |
@@ -354,6 +355,9 @@ DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_
   year filter (both measures are sums, so their difference adds up). Checked at 100 %: −1,876,652.15 · −4,102,833.18 ·
   +4,098,656.75 · +439,875.41, total −1,440,953.17 EUR (= query 12). Negative = hedging was cheaper.
 - `+ 0` in Extrémní hodiny: `COUNTROWS` of an empty table is BLANK; a year without extreme hours (2020) must show 0.
+- Podíl extrémních hodin reuses `[Extrémní hodiny]`, so the threshold 5,821 lives in one measure only. The denominator
+  counts fact rows (one row = one hour), not `dim_hour` (25 hours of a day). Checked 2026-11-10: 0.0 / 6.6 / 42.2 /
+  0.3 / 1.0 %; the 2020–2024 total is exactly 10.0 % (4,385 / 43,848), because the threshold is the P90 of all hours.
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
 - Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their
   hours, not per year: 2020–2024 shows 25,028,480.44 CZK, the sum of the five years is 25,092,615.49 CZK. The report

@@ -70,6 +70,20 @@
               },
               "queryRef": "vw_yearly_hedging.Výsledek zajištění - proxy (EUR)",
               "nativeQueryRef": "Výsledek zajištění - proxy (EUR)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Podíl extrémních hodin (%)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Podíl extrémních hodin (%)",
+              "nativeQueryRef": "Podíl extrémních hodin (%)"
             }
           ]
         }
