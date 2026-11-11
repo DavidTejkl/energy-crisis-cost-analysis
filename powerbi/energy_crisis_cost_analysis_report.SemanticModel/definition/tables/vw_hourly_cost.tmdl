@@ -216,6 +216,13 @@ table vw_hourly_cost
 
 		annotation SummarizationSetBy = User
 
+	column hour_key = vw_hourly_cost[date_key] * 100 + vw_hourly_cost[hour_of_day]
+		formatString: 0
+		lineageTag: 332d6634-207e-496c-bbb0-379c08cb860c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
 	partition vw_hourly_cost = m
 		mode: import
 		source =

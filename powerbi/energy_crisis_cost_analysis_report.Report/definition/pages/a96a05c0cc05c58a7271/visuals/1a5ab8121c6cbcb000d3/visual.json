@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "dim_date.year",
-              "nativeQueryRef": "year",
-              "active": true
+              "nativeQueryRef": "Rok",
+              "active": true,
+              "displayName": "Rok"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "vw_hourly_cost.price_band",
-              "nativeQueryRef": "price_band"
+              "nativeQueryRef": "Cenové pásmo",
+              "displayName": "Cenové pásmo"
             }
           ]
         },
@@ -380,7 +382,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Podíl hodin roku v cenových pásmech (Kč/MWh) - extrémní od 5 821 Kč/MWh'"
+                  "Value": "'Podíl hodin roku v cenových pásmech (Kč/MWh) - extrémní od 5 821 Kč/MWh.'"
                 }
               }
             },

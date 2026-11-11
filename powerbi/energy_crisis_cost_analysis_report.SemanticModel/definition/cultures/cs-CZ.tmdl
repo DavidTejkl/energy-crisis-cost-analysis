@@ -252,6 +252,16 @@ cultureInfo cs-CZ
 			            },
 			            "Weight": 0.582
 			          }
+			        },
+			        {
+			          "Den": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "SemanticType": "Time"
@@ -337,6 +347,16 @@ cultureInfo cs-CZ
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "Rok": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ],
@@ -1099,6 +1119,16 @@ cultureInfo cs-CZ
 			            },
 			            "Weight": 0.468
 			          }
+			        },
+			        {
+			          "Hodina": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -1371,6 +1401,16 @@ cultureInfo cs-CZ
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "Cenové pásmo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -1795,6 +1835,16 @@ cultureInfo cs-CZ
 			        },
 			        {
 			          "Nejdražší hodina (Kč/MWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Cena (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -3848,6 +3898,343 @@ cultureInfo cs-CZ
 			          }
 			        }
 			      ]
+			    },
+			    "dim_date.month_start": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "month_start"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month start": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month_start": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "start": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "mth start": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "month twitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month jump": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month jerk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month flinch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month jolt": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "twitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "jump": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "jerk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "flinch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "vw_hourly_cost.průměrná_tržní_cena_minulý_rok_kč_MWh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Průměrná tržní cena minulý rok (Kč/MWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "průměrná tržní cena minulý rok (kč/MWh)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "průměrná tržní cena minulý rok": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "průměrná tržní cena minulý rok (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "průměrná tržní cena minulý rok ( kč MWh )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "MWh)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.nejdražší_hodina__kdy": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Nejdražší hodina – kdy"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší hodina – kdy": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.počet_hodin": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Počet hodin"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "počet hodin": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.hour_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "hour_key"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hour key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hour_key": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "hour solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "hour explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "hour basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -4078,6 +4465,171 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_hour_key": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.hour_key": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.hour_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.hour_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_hour_keys"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_počet_hodin": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.počet_hodin": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.počet_hodin"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.počet_hodin"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_počet_hodin"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_nejdražší_hodina__kdy": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.nejdražší_hodina__kdy": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejdražší_hodina__kdy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejdražší_hodina__kdy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_nejdražší_hodina__kdy"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_tržní_cena_minulý_rok_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_tržní_cena_minulý_rok_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_tržní_cena_minulý_rok_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_tržní_cena_minulý_rok_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena_minulý_rok_kč_MWh"
+			        }
+			      ]
+			    },
+			    "dim_date_has_month_start": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.month_start": {
+			          "Target": {
+			            "Entity": "dim_date.month_start"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.month_start"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_month_starts"
 			        }
 			      ]
 			    },
@@ -5332,39 +5884,6 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "vw_monthly_costs_have_years"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_průměrná_tržní_cena__karta": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.průměrná_tržní_cena__karta": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.průměrná_tržní_cena__karta"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.průměrná_tržní_cena__karta"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena__karta"
 			        }
 			      ]
 			    },

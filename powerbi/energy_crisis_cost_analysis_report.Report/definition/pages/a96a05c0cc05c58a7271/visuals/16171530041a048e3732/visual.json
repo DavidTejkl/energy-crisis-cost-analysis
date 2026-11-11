@@ -1,0 +1,550 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "16171530041a048e3732",
+  "position": {
+    "x": 698,
+    "y": 458,
+    "z": 7504,
+    "height": 246,
+    "width": 558,
+    "tabOrder": 3005
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "full_date"
+                }
+              },
+              "queryRef": "dim_date.full_date",
+              "nativeQueryRef": "Den",
+              "displayName": "Den"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "hour_of_day"
+                }
+              },
+              "queryRef": "vw_hourly_cost.hour_of_day",
+              "nativeQueryRef": "Hodina",
+              "displayName": "Hodina"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
+                    }
+                  },
+                  "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+                }
+              },
+              "queryRef": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)",
+              "nativeQueryRef": "Cena (Kč/MWh)",
+              "displayName": "Cena (Kč/MWh)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vw_hourly_cost"
+                  }
+                },
+                "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fixedWidth'"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_date.full_date"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_hourly_cost.hour_of_day"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_hourly_cost.hour_of_day"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_date.full_date"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Nejdražší hodiny vybraného roku'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hodina 20 = 19:00 – 20:00 (cena na denním trhu OTE-ČR)'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4e4c0fadb12b2e170cec",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "full_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6e8cf600ba672d56c61e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "hour_of_day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b3288a90ad905b7be67b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2d4ac3c9ca6800c75622",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "hour_key"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "v",
+                        "Entity": "vw_hourly_cost",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "v"
+                            }
+                          },
+                          "Property": "hour_key"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "v"
+                              }
+                            },
+                            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 5
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "v",
+              "Entity": "vw_hourly_cost",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "hour_key"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

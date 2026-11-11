@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "75b0fe75c158c52a7eb1",
   "position": {
-    "x": 24,
-    "y": 252,
+    "x": 23.598636692743746,
+    "y": 243.31008176311653,
     "z": 7502,
-    "height": 190,
-    "width": 1232,
+    "height": 206.69150758472108,
+    "width": 1232.0115845797941,
     "tabOrder": 3003
   },
   "visual": {
@@ -244,7 +244,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Měsíční průměr ceny na denním trhu OTE-ČR (Kč/MWh) - vždy pro celé období 2020–2024'"
+                  "Value": "'Měsíční průměr ceny na denním trhu OTE-ČR (Kč/MWh) - vždy pro celé období 2020–2024. Po najetí myši na linii zobrazení konkrétních měsíců.'"
                 }
               }
             },
