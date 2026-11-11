@@ -98,7 +98,7 @@ table dim_date
 			DATE(dim_date[year],dim_date[month],1)
 			
 			```
-		formatString: mmm yyyy
+		formatString: mmmm yyyy
 		lineageTag: ab0f750e-2eac-49de-9d30-40ba6948ec49
 		summarizeBy: none
 
