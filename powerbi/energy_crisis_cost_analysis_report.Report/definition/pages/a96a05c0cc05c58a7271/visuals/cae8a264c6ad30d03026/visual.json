@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "cae8a264c6ad30d03026",
   "position": {
-    "x": 867.4308155517738,
+    "x": 867.43081555177378,
     "y": 14.477287603089408,
     "z": 7500,
-    "height": 79.62508181699175,
+    "height": 79.625081816991752,
     "width": 372.79015577955226,
     "tabOrder": 3001
   },
@@ -94,7 +94,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "2020L"
+                                "Value": "2022L"
                               }
                             }
                           ]
@@ -208,9 +208,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0.4
+                    "Literal": {
+                      "Value": "'#5EDD92'"
                     }
                   }
                 }
@@ -228,7 +227,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 4,
+                      "ColorId": 9,
                       "Percent": 0
                     }
                   }
@@ -334,6 +333,25 @@
           },
           "selector": {
             "id": "selection:selected-interaction:press"
+          }
+        },
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:hover"
           }
         }
       ],
@@ -581,6 +599,156 @@
           },
           "selector": {
             "id": "selection:selected-interaction:press"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#5EDD92'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:hover"
+          }
+        }
+      ],
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected-interaction:rest"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected-interaction:hover"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "selection:selected-interaction:press"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:hover"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:press"
+          }
+        }
+      ],
+      "shadowCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:press"
+          }
+        }
+      ],
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "rectangleRoundedCurve": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "interaction:press"
           }
         }
       ]
