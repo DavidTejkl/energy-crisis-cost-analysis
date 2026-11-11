@@ -312,6 +312,7 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_band] = "extrémní") + 0` | Extreme hours | 3,694 |
 | Podíl extrémních hodin (%) | `vw_hourly_cost` | `DIVIDE([Extrémní hodiny], COUNTROWS(vw_hourly_cost))` | Extreme hours (share of the year) | 42.2 % |
 | Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |
+| Nejdražší hodina – kdy | `vw_hourly_cost` | see below | Highest hourly price (date and hour, text) | "29. 8. 2022, hodina 20" |
 | Průměrná cena ve špičce (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], dim_date[is_weekend] = FALSE(), dim_hour[hour_of_day] >= 9, dim_hour[hour_of_day] <= 20)` | Peak/off-peak spread | 7,030.40 |
 | Průměrná cena mimo špičku (Kč/MWh) | `vw_hourly_cost` | see below | Peak/off-peak spread | 5,558.65 |
 | Rozdíl špička – mimo špičku (Kč/MWh) | `vw_hourly_cost` | `[Průměrná cena ve špičce (Kč/MWh)] - [Průměrná cena mimo špičku (Kč/MWh)]` | Peak/off-peak spread | 1,471.75 |
@@ -336,6 +337,22 @@ VAR peak_hours = CALCULATE(COUNTROWS(vw_hourly_cost), dim_date[is_weekend] = FAL
 RETURN
 DIVIDE(SUM(vw_hourly_cost[price_czk_mwh]) - peak_price_sum, COUNTROWS(vw_hourly_cost) - peak_hours)
 ```
+
+The date and hour of the most expensive hour: find the row whose price equals the highest price, read its
+`date_key` and `hour_of_day`, split the key `YYYYMMDD` into year, month and day and return a text for the card:
+
+```dax
+Nejdražší hodina – kdy =
+VAR max_price = [Nejvyšší hodinová cena (Kč/MWh)]
+VAR max_day = CALCULATE(MAX(vw_hourly_cost[date_key]), vw_hourly_cost[price_czk_mwh] = max_price)
+VAR max_hour = CALCULATE(MAX(vw_hourly_cost[hour_of_day]), vw_hourly_cost[price_czk_mwh] = max_price)
+VAR max_date = DATE(QUOTIENT(max_day, 10000), MOD(QUOTIENT(max_day, 100), 100), MOD(max_day, 100))
+RETURN
+FORMAT(max_date, "d. M. yyyy") & ", hodina " & max_hour
+```
+
+Checked 2026-11-11 against a `RANK` query on `vw_hourly_cost`: 2020-09-22 h20 · 2021-12-21 h18 · 2022-08-29 h20 ·
+2023-09-11 h20 · 2024-12-12 h18; no tie for the top hour in any year. Hour 20 = 19:00–20:00.
 
 - Year-over-year measures need `dim_date` marked as date table. 2020 has no previous year in the data → BLANK
   (not 0, the data are missing); without the `ISBLANK` check 2020 would show its whole cost as a "change".

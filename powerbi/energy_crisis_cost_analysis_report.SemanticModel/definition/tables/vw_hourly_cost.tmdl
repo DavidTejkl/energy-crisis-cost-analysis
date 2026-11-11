@@ -95,6 +95,19 @@ table vw_hourly_cost
 		formatString: #,0.00
 		lineageTag: 5535f6d6-31a0-42d4-9f91-097a4e1da3ba
 
+	/// Den a hodina s nejvyšší cenou na denním trhu ve vybraném období. Hodina 20 = 19:00–20:00.
+	measure 'Nejdražší hodina – kdy' = ```
+			
+			VAR max_price = [Nejvyšší hodinová cena (Kč/MWh)]
+			VAR max_day = CALCULATE(MAX(vw_hourly_cost[date_key]), vw_hourly_cost[price_czk_mwh] = max_price)
+			VAR max_hour = CALCULATE(MAX(vw_hourly_cost[hour_of_day]), vw_hourly_cost[price_czk_mwh] = max_price)
+			VAR max_date = DATE(QUOTIENT(max_day, 10000), MOD(QUOTIENT(max_day, 100), 100), MOD(max_day, 100))
+			RETURN
+			FORMAT(max_date, "d. M. yyyy") & ", hodina " & max_hour
+			
+			```
+		lineageTag: 24ec032b-be8b-4b78-a5e0-b1eb8c56bc8d
+
 	column date_key
 		dataType: int64
 		formatString: 0
