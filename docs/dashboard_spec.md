@@ -158,7 +158,7 @@ in a crisis. After 2023 prices fell, but single extreme hours still occur (Decem
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: price trend | line | month 2020-01 … 2024-12 | Average market price, CZK/MWh | no | grey line, 2021–2023 shaded amber | "Market prices multiplied in 2021–2022 and fell back in 2023" |
+| Main: price trend | line (linear, not smoothed), axis `dim_date[month_start]` (year labels, month in the tooltip) | month 2020-01 … 2024-12 | Average market price, CZK/MWh, axis from 0 | no (chart filters nothing either) | amber line — the market price is the problem this page is about (grey was too weak as the only series); no shading | "Market prices multiplied in 2021–2022 and fell back in 2023" |
 | Hours by price band | 100 % stacked bar | year; band negative → extreme | count of hours | no | grey scale, negative teal green, extreme amber | "Extreme hours: 0 in 2020, 3,694 in 2022" |
 | Top 5 hours | table | rank, date, hour, CZK/MWh | `RANK` within the year | yes | — | "The most expensive hours of {year}" |
 

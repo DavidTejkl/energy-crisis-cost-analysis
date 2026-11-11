@@ -94,6 +94,22 @@ table dim_date
 
 		annotation SummarizationSetBy = Automatic
 
+	column month_start = ```
+			DATE(dim_date[year],dim_date[month],1)
+			
+			```
+		formatString: mmm yyyy
+		lineageTag: ab0f750e-2eac-49de-9d30-40ba6948ec49
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	partition dim_date = m
 		mode: import
 		source =

@@ -4,5 +4,72 @@
   "displayName": "Trh",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "75b0fe75c158c52a7eb1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "a5e04c40b5c0036065d0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "43bd4667309e77b52877",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "04b24ccdb8022631080d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "75ac623ebeb2670cb05c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "ba14bcc1498be3d53a4d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "43bd4667309e77b52877",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "04b24ccdb8022631080d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "75ac623ebeb2670cb05c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cae8a264c6ad30d03026",
+      "target": "ba14bcc1498be3d53a4d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "25dd4fcd4cc1b3c10358",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "a5e04c40b5c0036065d0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "75b0fe75c158c52a7eb1",
+      "target": "cae8a264c6ad30d03026",
+      "type": "NoFilter"
+    }
+  ]
 }
