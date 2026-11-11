@@ -1994,22 +1994,6 @@ cultureInfo cs-CZ
 			        "%"
 			      ]
 			    },
-			    "vw_hourly_cost.průměrná_tržní_cena__karta": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "vw_hourly_cost",
-			          "ConceptualProperty": "Průměrná tržní cena – karta"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "průměrná tržní cena – karta": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "vw_monthly_cost": {
 			      "Definition": {
 			        "Binding": {

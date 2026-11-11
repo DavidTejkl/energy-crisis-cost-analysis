@@ -90,11 +90,10 @@ table vw_hourly_cost
 		formatString: 0.0\ %;-0.0\ %;0.0\ %
 		lineageTag: 09b7a449-f3ed-476c-86f7-621268d78067
 
-	measure 'Průměrná tržní cena – karta' = ```
-			FORMAT([Průměrná tržní cena (Kč/MWh)], "#,0")
-			
-			```
-		lineageTag: 97f53d4e-0cf8-4aae-807c-1bc54c6fef57
+	/// Prostý průměr hodinových cen denního trhu OTE ve stejném období o rok dříve. Pro rok 2020 je prázdná, data za 2019 nemáme.
+	measure 'Průměrná tržní cena minulý rok (Kč/MWh)' = CALCULATE([Průměrná tržní cena (Kč/MWh)],SAMEPERIODLASTYEAR(dim_date[full_date]))
+		formatString: #,0.00
+		lineageTag: 5535f6d6-31a0-42d4-9f91-097a4e1da3ba
 
 	column date_key
 		dataType: int64
