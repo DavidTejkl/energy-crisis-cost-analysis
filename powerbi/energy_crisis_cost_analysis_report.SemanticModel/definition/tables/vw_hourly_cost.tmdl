@@ -108,6 +108,11 @@ table vw_hourly_cost
 			```
 		lineageTag: 24ec032b-be8b-4b78-a5e0-b1eb8c56bc8d
 
+	/// Počet hodin denního trhu ve vybraném období. Rok má 8 760 hodin, přestupný 8 784
+	measure 'Počet hodin' = COUNTROWS(vw_hourly_cost)
+		formatString: #,0
+		lineageTag: ce56579e-614f-4c51-8d90-a6ae2a33da67
+
 	column date_key
 		dataType: int64
 		formatString: 0
