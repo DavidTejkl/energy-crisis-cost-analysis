@@ -513,6 +513,26 @@
           {
             "labelDisplayUnits": 1
           }
+        ],
+        "referenceLabelValue": [
+          {
+            "valueDisplayUnits": 1
+          }
+        ],
+        "divider": [
+          {
+            "show": false
+          }
+        ],
+        "layout": [
+          {
+            "calloutSize": 60
+          }
+        ],
+        "referenceLabelLayout": [
+          {
+            "horizontalAlignment": "center"
+          }
         ]
       }
     }
