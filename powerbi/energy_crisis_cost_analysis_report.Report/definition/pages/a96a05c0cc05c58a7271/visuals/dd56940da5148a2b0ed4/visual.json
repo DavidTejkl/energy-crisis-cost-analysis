@@ -4,7 +4,7 @@
   "position": {
     "x": 44,
     "y": 66,
-    "z": 1500,
+    "z": 2000,
     "height": 24,
     "width": 900,
     "tabOrder": 3000
@@ -19,11 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Jak extrémní byl trh s elektřinou v jednotlivých letech? · Skutečná tržní data (OTE-ČR, ČNB)",
+                    "value": "Jak extrémní byl trh s elektřinou v jednotlivých letech? · Skutečná tržní data (OTE-ČR, ČNB) · ",
                     "textStyle": {
-                      "fontWeight": "bold",
                       "fontSize": "12pt",
-                      "color": "#a1a1aa"
+                      "color": "#bdbdbd"
                     }
                   }
                 ]

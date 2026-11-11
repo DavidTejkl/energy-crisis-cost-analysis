@@ -28,9 +28,8 @@ table vw_hourly_cost
 
 	/// Prostý průměr hodinových cen denního trhu OTE. Každá hodina má stejnou váhu, spotřeba firmy se nepoužívá.
 	measure 'Průměrná tržní cena (Kč/MWh)' = AVERAGE(vw_hourly_cost[price_czk_mwh])
+		formatString: #,0.00
 		lineageTag: 4c6b9caa-8148-4852-ba70-66d1fa31ba63
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	/// O kolik firma platí za MWh víc než tržní průměr, protože odebírá víc v dražších hodinách. Cena za silovou elektřinu minus průměrná tržní cena. Simulovaný profil spotřeby.
 	measure 'Přirážka za diagram odběru (Kč/MWh)' = [Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]
@@ -44,7 +43,7 @@ table vw_hourly_cost
 
 	/// Počet hodin s cenou na denním trhu alespoň 5 821 Kč/MWh (pásmo „extrémní“, 90. percentil let 2020–2024).
 	measure 'Extrémní hodiny' = CALCULATE(COUNTROWS(vw_hourly_cost),vw_hourly_cost[price_band] = "extrémní") + 0
-		formatString: 0
+		formatString: #,0
 		lineageTag: 1d0c1bc3-c32b-444e-b88d-a9db300915ea
 
 	/// Nejvyšší cena jedné hodiny na denním trhu OTE ve vybraném období.

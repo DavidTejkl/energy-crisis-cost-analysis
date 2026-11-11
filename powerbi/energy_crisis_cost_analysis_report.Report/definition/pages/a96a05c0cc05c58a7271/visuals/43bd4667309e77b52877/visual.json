@@ -23,17 +23,32 @@
                       "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Průměrná tržní cena – karta"
+                  "Property": "Průměrná tržní cena (Kč/MWh)"
                 }
               },
-              "queryRef": "vw_hourly_cost.Průměrná tržní cena – karta",
-              "nativeQueryRef": "Průměrná tržní cena (Kč/MWh)",
-              "displayName": "Průměrná tržní cena (Kč/MWh)"
+              "queryRef": "vw_hourly_cost.Průměrná tržní cena (Kč/MWh)",
+              "nativeQueryRef": "Průměrná tržní cena (Kč/MWh)1",
+              "format": "#,0"
             }
           ]
         }
       },
       "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vw_hourly_cost"
+                  }
+                },
+                "Property": "Průměrná tržní cena (Kč/MWh)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
         "isDefaultSort": true
       }
     },
@@ -157,8 +172,7 @@
             "Property": "Průměrná tržní cena (Kč/MWh)"
           }
         },
-        "type": "Advanced",
-        "howCreated": "User"
+        "type": "Advanced"
       },
       {
         "name": "3b7515af93622c48c9b6",

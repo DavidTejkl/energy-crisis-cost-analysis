@@ -506,6 +506,15 @@
           }
         ]
       }
+    },
+    "cardVisual": {
+      "*": {
+        "value": [
+          {
+            "labelDisplayUnits": 1
+          }
+        ]
+      }
     }
   }
 }

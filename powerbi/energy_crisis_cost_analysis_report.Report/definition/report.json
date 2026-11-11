@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Energy_crisis_-_theme_G9083407069581785.json",
+      "name": "Energy_crisis_-_theme_G545525793575221.json",
       "reportVersionAtImport": {
         "visual": "2.14.0",
         "report": "3.4.0",
@@ -72,8 +72,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Energy_crisis_-_theme_G9083407069581785.json",
-          "path": "Energy_crisis_-_theme_G9083407069581785.json",
+          "name": "Energy_crisis_-_theme_G545525793575221.json",
+          "path": "Energy_crisis_-_theme_G545525793575221.json",
           "type": "CustomTheme"
         }
       ]
