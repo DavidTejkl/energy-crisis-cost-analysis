@@ -1792,6 +1792,16 @@ cultureInfo cs-CZ
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
+			        },
+			        {
+			          "Nejdražší hodina (Kč/MWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -1996,16 +2006,6 @@ cultureInfo cs-CZ
 			        {
 			          "průměrná tržní cena – karta": {
 			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "Průměrná tržní cena (Kč/MWh)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -3867,1905 +3867,7 @@ cultureInfo cs-CZ
 			    }
 			  },
 			  "Relationships": {
-			    "dim_date_is_weekend": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.is_weekend": {
-			          "Target": {
-			            "Entity": "dim_date.is_weekend"
-			          }
-			        }
-			      },
-			      "Conditions": [
-			        {
-			          "Target": {
-			            "Role": "dim_date.is_weekend"
-			          },
-			          "Operator": "Equals",
-			          "Value": {
-			            "Boolean": [
-			              true
-			            ]
-			          }
-			        }
-			      ],
-			      "Phrasings": [
-			        {
-			          "Adjective": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Adjectives": [
-			              {
-			                "weekend": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ]
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "some_dim_dates_are_weekend_dim_dates"
-			        }
-			      ]
-			    },
-			    "dim_date_has_date_key": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.date_key": {
-			          "Target": {
-			            "Entity": "dim_date.date_key"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.date_key"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_date_keys"
-			        }
-			      ]
-			    },
-			    "dim_date_has_full_date": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.full_date": {
-			          "Target": {
-			            "Entity": "dim_date.full_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.full_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_full_dates"
-			        }
-			      ]
-			    },
-			    "dim_date_has_day_of_month": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.day_of_month": {
-			          "Target": {
-			            "Entity": "dim_date.day_of_month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.day_of_month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_day_of_month"
-			        }
-			      ]
-			    },
-			    "dim_date_has_month": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.month": {
-			          "Target": {
-			            "Entity": "dim_date.month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_months"
-			        }
-			      ]
-			    },
-			    "dim_date_has_year": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.year": {
-			          "Target": {
-			            "Entity": "dim_date.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_years"
-			        }
-			      ]
-			    },
-			    "dim_date_has_quarter": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.quarter": {
-			          "Target": {
-			            "Entity": "dim_date.quarter"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.quarter"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_quarters"
-			        }
-			      ]
-			    },
-			    "dim_date_has_week_of_year": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.week_of_year": {
-			          "Target": {
-			            "Entity": "dim_date.week_of_year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.week_of_year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_week_of_year"
-			        }
-			      ]
-			    },
-			    "dim_date_has_weekday_num": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.weekday_num": {
-			          "Target": {
-			            "Entity": "dim_date.weekday_num"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.weekday_num"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_weekday_nums"
-			        }
-			      ]
-			    },
-			    "dim_date_has_weekday_name": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.weekday_name": {
-			          "Target": {
-			            "Entity": "dim_date.weekday_name"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.weekday_name"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_weekday_names"
-			        }
-			      ]
-			    },
-			    "dim_date_has_is_weekend": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_date"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        },
-			        "dim_date.is_weekend": {
-			          "Target": {
-			            "Entity": "dim_date.is_weekend"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "dim_date.is_weekend"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_is_weekends"
-			        }
-			      ]
-			    },
-			    "dim_hour_has_hour_of_day": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_hour"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_hour": {
-			          "Target": {
-			            "Entity": "dim_hour"
-			          }
-			        },
-			        "dim_hour.hour_of_day": {
-			          "Target": {
-			            "Entity": "dim_hour.hour_of_day"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_hour"
-			            },
-			            "Object": {
-			              "Role": "dim_hour.hour_of_day"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_hours_have_hour_of_day"
-			        }
-			      ]
-			    },
-			    "dim_hour_has_time_of_day": {
-			      "Binding": {
-			        "ConceptualEntity": "dim_hour"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_hour": {
-			          "Target": {
-			            "Entity": "dim_hour"
-			          }
-			        },
-			        "dim_hour.time_of_day": {
-			          "Target": {
-			            "Entity": "dim_hour.time_of_day"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_hour"
-			            },
-			            "Object": {
-			              "Role": "dim_hour.time_of_day"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_hours_have_time_of_day"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_price_eur_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.price_eur_mwh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.price_eur_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.price_eur_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_price_eur_mwh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_rate_czk_per_eur": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.rate_czk_per_eur": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.rate_czk_per_eur"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.rate_czk_per_eur"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_rate_czk_per_eur"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_price_czk_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.price_czk_mwh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.price_czk_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.price_czk_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_price_czk_mwh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_load_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.load_mwh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.load_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.load_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_load_mwh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_power_cost_eur": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.power_cost_eur": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.power_cost_eur"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.power_cost_eur"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_power_cost_eurs"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_power_cost_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.power_cost_czk": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.power_cost_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.power_cost_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_power_cost_czks"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_price_band": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.price_band": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.price_band"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.price_band"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_price_bands"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.náklad_na_silovou_elektřinu_kč": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_kč"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_spotřeba_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.spotřeba_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.spotřeba_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.spotřeba_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_spotřeba_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_kWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_kWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_průměrná_tržní_cena_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.průměrná_tržní_cena_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_extrémní_hodiny": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.extrémní_hodiny": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.extrémní_hodiny"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.extrémní_hodiny"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_extrémní_hodiny"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_nejvyšší_hodinová_cena_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_nejvyšší_hodinová_cena_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_průměrná_cena_ve_špičce_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_průměrná_cena_ve_špičce_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_průměrná_cena_mimo_špičku_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_průměrná_cena_mimo_špičku_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_rozdíl_špička__mimo_špičku_kč_MWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_rozdíl_špička__mimo_špičku_kč_MWh"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_minulý_rok_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_minulý_rok_kč"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_změna_nákladu_na_silovou_elektřinu_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_změna_nákladu_na_silovou_elektřinu_kč"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_podíl_extrémních_hodin": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.podíl_extrémních_hodin": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.podíl_extrémních_hodin"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.podíl_extrémních_hodin"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_podíl_extrémních_hodin"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_průměrná_tržní_cena__karta": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "vw_hourly_cost.průměrná_tržní_cena__karta": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost.průměrná_tržní_cena__karta"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost.průměrná_tržní_cena__karta"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena__karta"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_year": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.year": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_years"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_month": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.month": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_months"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_load_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.load_mwh": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.load_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.load_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_load_mwh"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_power_cost_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.power_cost_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.power_cost_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.power_cost_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_power_cost_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_electricity_tax_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.electricity_tax_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.electricity_tax_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.electricity_tax_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_electricity_tax_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_network_use_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.network_use_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.network_use_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.network_use_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_network_use_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_system_services_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.system_services_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.system_services_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.system_services_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_system_services_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_reserved_capacity_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.reserved_capacity_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.reserved_capacity_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.reserved_capacity_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_reserved_capacity_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_ote_fees_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.ote_fees_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.ote_fees_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.ote_fees_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_ote_fees_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_poze_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.poze_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.poze_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.poze_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_poze_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_total_cost_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.total_cost_czk": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.total_cost_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.total_cost_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_total_cost_czks"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_celková_cena_elektřiny_kč_kWh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.celková_cena_elektřiny_kč_kWh": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_kč_kWh"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_celkový_náklad_na_elektřinu_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.celkový_náklad_na_elektřinu_kč": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_celkový_náklad_na_elektřinu_kč"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_podíl_silové_elektřiny": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.podíl_silové_elektřiny": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.podíl_silové_elektřiny"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.podíl_silové_elektřiny"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_podíl_silové_elektřiny"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_násobek_nákladu_krize_2022___2020": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "vw_monthly_cost.násobek_nákladu_krize_2022___2020": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_násobek_nákladu_krize_2022___2020"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_year": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.year": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_years"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_step_order": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.step_order": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.step_order"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.step_order"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_step_orders"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_step_name": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.step_name": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.step_name"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.step_name"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_step_names"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_amount_czk": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.amount_czk": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.amount_czk"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.amount_czk"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_amount_czks"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_krok_změny_nákladu_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.krok_změny_nákladu_kč": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.krok_změny_nákladu_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.krok_změny_nákladu_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_krok_změny_nákladu_kč"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_vliv_kurzu_kč": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "vw_cost_change_step.vliv_kurzu_kč": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step.vliv_kurzu_kč"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step.vliv_kurzu_kč"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_vliv_kurzu_kč"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_year": {
+			    "vw_yearly_hedging_has_dim_date": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_yearly_hedging"
 			      },
@@ -5776,567 +3878,6 @@ cultureInfo cs-CZ
 			            "Entity": "vw_yearly_hedging"
 			          }
 			        },
-			        "vw_yearly_hedging.year": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_years"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_volume_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.volume_mwh": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.volume_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.volume_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_volume_mwh"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_spot_cost_eur": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.spot_cost_eur": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.spot_cost_eur"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.spot_cost_eur"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_spot_cost_eurs"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_market_price_eur_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.market_price_eur_mwh": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.market_price_eur_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.market_price_eur_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_market_price_eur_mwh"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_hedge_price_eur_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.hedge_price_eur_mwh": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.hedge_price_eur_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.hedge_price_eur_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_hedge_price_eur_mwh"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_pxe_price_eur_mwh": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.pxe_price_eur_mwh": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.pxe_price_eur_mwh"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.pxe_price_eur_mwh"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_pxe_price_eur_mwh"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_hedge_diff_proxy_eur": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.hedge_diff_proxy_eur": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.hedge_diff_proxy_eur"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.hedge_diff_proxy_eur"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_hedge_diff_proxy_eurs"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_hedge_diff_pxe_eur": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.hedge_diff_pxe_eur": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.hedge_diff_pxe_eur"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.hedge_diff_pxe_eur"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_hedge_diff_pxe_eurs"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_bez_zajištění_EUR"
-			        }
-			      ]
-			    },
-			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "Podíl zajištění"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění"
-			          }
-			        },
-			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "podíl_zajištění"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
-			        }
-			      ]
-			    },
-			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "Podíl zajištění"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění"
-			          }
-			        },
-			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "podíl_zajištění"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
-			        }
-			      ]
-			    },
-			    "podíl_zajištění_has_vw_yearly_hedging_výsledek_zajištění__proxy_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "Podíl zajištění"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění"
-			          }
-			        },
-			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "podíl_zajištění"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "podíl_zajištění_have_výsledek_zajištění__proxy_EUR"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_výsledek_zajištění__proxy_EUR": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_výsledek_zajištění__proxy_EUR"
-			        }
-			      ]
-			    },
-			    "podíl_zajištění_has_podíl_zajištění": {
-			      "Binding": {
-			        "ConceptualEntity": "Podíl zajištění"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění"
-			          }
-			        },
-			        "podíl_zajištění.podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění.podíl_zajištění"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "podíl_zajištění"
-			            },
-			            "Object": {
-			              "Role": "podíl_zajištění.podíl_zajištění"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "podíl_zajištění_have_podíl_zajištění"
-			        }
-			      ]
-			    },
-			    "podíl_zajištění_has_hodnota_parametru_podíl_zajištění": {
-			      "Binding": {
-			        "ConceptualEntity": "Podíl zajištění"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění"
-			          }
-			        },
-			        "podíl_zajištění.hodnota_parametru_podíl_zajištění": {
-			          "Target": {
-			            "Entity": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "podíl_zajištění"
-			            },
-			            "Object": {
-			              "Role": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "podíl_zajištění_have_hodnota_parametru_podíl_zajištění"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
 			        "dim_date": {
 			          "Target": {
 			            "Entity": "dim_date"
@@ -6347,7 +3888,7 @@ cultureInfo cs-CZ
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "vw_hourly_cost"
+			              "Role": "vw_yearly_hedging"
 			            },
 			            "Object": {
 			              "Role": "dim_date"
@@ -6355,7 +3896,7 @@ cultureInfo cs-CZ
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_dim_dates"
+			          "ID": "vw_yearly_hedging_have_dim_dates"
 			        },
 			        {
 			          "Attribute": {
@@ -6363,104 +3904,12 @@ cultureInfo cs-CZ
 			              "Role": "dim_date"
 			            },
 			            "Object": {
-			              "Role": "vw_hourly_cost"
+			              "Role": "vw_yearly_hedging"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_hourly_costs"
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost_has_dim_hour": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_hourly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_hourly_cost": {
-			          "Target": {
-			            "Entity": "vw_hourly_cost"
-			          }
-			        },
-			        "dim_hour": {
-			          "Target": {
-			            "Entity": "dim_hour"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_hourly_cost"
-			            },
-			            "Object": {
-			              "Role": "dim_hour"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_dim_hours"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_hour"
-			            },
-			            "Object": {
-			              "Role": "vw_hourly_cost"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_hours_have_vw_hourly_costs"
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_monthly_cost"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_monthly_cost": {
-			          "Target": {
-			            "Entity": "vw_monthly_cost"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_monthly_cost"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_monthly_cost"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_monthly_costs"
+			          "ID": "dim_dates_have_vw_yearly_hedging"
 			        }
 			      ]
 			    },
@@ -6510,15 +3959,15 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_yearly_hedging_has_dim_date": {
+			    "vw_monthly_cost_has_dim_date": {
 			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
+			        "ConceptualEntity": "vw_monthly_cost"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "vw_yearly_hedging": {
+			        "vw_monthly_cost": {
 			          "Target": {
-			            "Entity": "vw_yearly_hedging"
+			            "Entity": "vw_monthly_cost"
 			          }
 			        },
 			        "dim_date": {
@@ -6531,7 +3980,7 @@ cultureInfo cs-CZ
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "vw_yearly_hedging"
+			              "Role": "vw_monthly_cost"
 			            },
 			            "Object": {
 			              "Role": "dim_date"
@@ -6539,7 +3988,7 @@ cultureInfo cs-CZ
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_dim_dates"
+			          "ID": "vw_monthly_costs_have_dim_dates"
 			        },
 			        {
 			          "Attribute": {
@@ -6547,12 +3996,2563 @@ cultureInfo cs-CZ
 			              "Role": "dim_date"
 			            },
 			            "Object": {
-			              "Role": "vw_yearly_hedging"
+			              "Role": "vw_monthly_cost"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_yearly_hedging"
+			          "ID": "dim_dates_have_vw_monthly_costs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_dim_hour": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "dim_hour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_dim_hours"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_hodnota_parametru_podíl_zajištění": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "podíl_zajištění.hodnota_parametru_podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "podíl_zajištění.hodnota_parametru_podíl_zajištění"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_hodnota_parametru_podíl_zajištění"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_podíl_zajištění": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "podíl_zajištění.podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění.podíl_zajištění"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "podíl_zajištění.podíl_zajištění"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_podíl_zajištění"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_výsledek_zajištění__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_výsledek_zajištění__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_výsledek_zajištění__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_výsledek_zajištění__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_bez_zajištění_EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_diff_pxe_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_diff_pxe_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_diff_pxe_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_diff_pxe_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_diff_pxe_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_diff_proxy_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_diff_proxy_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_diff_proxy_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_diff_proxy_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_diff_proxy_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_pxe_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.pxe_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.pxe_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.pxe_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_pxe_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_hedge_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.hedge_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.hedge_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.hedge_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_hedge_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_market_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.market_price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.market_price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.market_price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_market_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_spot_cost_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.spot_cost_eur": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.spot_cost_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.spot_cost_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_spot_cost_eurs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_volume_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.volume_mwh": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.volume_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.volume_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_volume_mwh"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.year": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_years"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_vliv_kurzu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.vliv_kurzu_kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.vliv_kurzu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.vliv_kurzu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_vliv_kurzu_kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_krok_změny_nákladu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.krok_změny_nákladu_kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.krok_změny_nákladu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.krok_změny_nákladu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_krok_změny_nákladu_kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_amount_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.amount_czk": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.amount_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.amount_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_amount_czks"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_step_name": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.step_name": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.step_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.step_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_step_names"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_step_order": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.step_order": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.step_order"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.step_order"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_step_orders"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.year": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_years"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_násobek_nákladu_krize_2022___2020": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.násobek_nákladu_krize_2022___2020": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.násobek_nákladu_krize_2022___2020"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_násobek_nákladu_krize_2022___2020"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_podíl_silové_elektřiny": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.podíl_silové_elektřiny": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.podíl_silové_elektřiny"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.podíl_silové_elektřiny"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_podíl_silové_elektřiny"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_celkový_náklad_na_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.celkový_náklad_na_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.celkový_náklad_na_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_celkový_náklad_na_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_celková_cena_elektřiny_kč_kWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.celková_cena_elektřiny_kč_kWh": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_kč_kWh"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_total_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.total_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.total_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.total_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_total_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_poze_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.poze_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.poze_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.poze_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_poze_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_ote_fees_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.ote_fees_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.ote_fees_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.ote_fees_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_ote_fees_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_reserved_capacity_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.reserved_capacity_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.reserved_capacity_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.reserved_capacity_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_reserved_capacity_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_system_services_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.system_services_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.system_services_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.system_services_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_system_services_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_network_use_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.network_use_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.network_use_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.network_use_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_network_use_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_electricity_tax_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.electricity_tax_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.electricity_tax_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.electricity_tax_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_electricity_tax_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_power_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.power_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.power_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.power_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_power_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_load_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.load_mwh": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.load_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.load_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_load_mwh"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.month": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_months"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.year": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_years"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_tržní_cena__karta": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_tržní_cena__karta": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_tržní_cena__karta"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_tržní_cena__karta"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena__karta"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_podíl_extrémních_hodin": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.podíl_extrémních_hodin": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.podíl_extrémních_hodin"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.podíl_extrémních_hodin"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_podíl_extrémních_hodin"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_změna_nákladu_na_silovou_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_změna_nákladu_na_silovou_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_minulý_rok_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_minulý_rok_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_minulý_rok_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_rozdíl_špička__mimo_špičku_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.rozdíl_špička__mimo_špičku_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_rozdíl_špička__mimo_špičku_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_cena_mimo_špičku_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_cena_mimo_špičku_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_cena_mimo_špičku_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_cena_ve_špičce_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_cena_ve_špičce_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_cena_ve_špičce_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_nejvyšší_hodinová_cena_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejvyšší_hodinová_cena_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_nejvyšší_hodinová_cena_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_extrémní_hodiny": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.extrémní_hodiny": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.extrémní_hodiny"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.extrémní_hodiny"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_extrémní_hodiny"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_průměrná_tržní_cena_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.průměrná_tržní_cena_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.průměrná_tržní_cena_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_průměrná_tržní_cena_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_kWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_kWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_kWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_cena_za_silovou_elektřinu_kč_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.cena_za_silovou_elektřinu_kč_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_cena_za_silovou_elektřinu_kč_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_spotřeba_MWh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.spotřeba_MWh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.spotřeba_MWh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.spotřeba_MWh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_spotřeba_MWh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_náklad_na_silovou_elektřinu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.náklad_na_silovou_elektřinu_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.náklad_na_silovou_elektřinu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_náklad_na_silovou_elektřinu_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_band": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_band": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_band"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_band"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_bands"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_power_cost_czk": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.power_cost_czk": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.power_cost_czk"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.power_cost_czk"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_power_cost_czks"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_power_cost_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.power_cost_eur": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.power_cost_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.power_cost_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_power_cost_eurs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_load_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.load_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.load_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.load_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_load_mwh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_czk_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_czk_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_czk_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_czk_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_czk_mwh"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_rate_czk_per_eur": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.rate_czk_per_eur": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.rate_czk_per_eur"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.rate_czk_per_eur"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_rate_czk_per_eur"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_price_eur_mwh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.price_eur_mwh": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.price_eur_mwh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.price_eur_mwh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_price_eur_mwh"
+			        }
+			      ]
+			    },
+			    "dim_hour_has_time_of_day": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_hour"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        },
+			        "dim_hour.time_of_day": {
+			          "Target": {
+			            "Entity": "dim_hour.time_of_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "dim_hour.time_of_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_time_of_day"
+			        }
+			      ]
+			    },
+			    "dim_hour_has_hour_of_day": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_hour"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_hour": {
+			          "Target": {
+			            "Entity": "dim_hour"
+			          }
+			        },
+			        "dim_hour.hour_of_day": {
+			          "Target": {
+			            "Entity": "dim_hour.hour_of_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_hour"
+			            },
+			            "Object": {
+			              "Role": "dim_hour.hour_of_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_hours_have_hour_of_day"
+			        }
+			      ]
+			    },
+			    "dim_date_has_is_weekend": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.is_weekend": {
+			          "Target": {
+			            "Entity": "dim_date.is_weekend"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.is_weekend"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_is_weekends"
+			        }
+			      ]
+			    },
+			    "dim_date_has_weekday_name": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.weekday_name": {
+			          "Target": {
+			            "Entity": "dim_date.weekday_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.weekday_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_weekday_names"
+			        }
+			      ]
+			    },
+			    "dim_date_has_weekday_num": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.weekday_num": {
+			          "Target": {
+			            "Entity": "dim_date.weekday_num"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.weekday_num"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_weekday_nums"
+			        }
+			      ]
+			    },
+			    "dim_date_has_week_of_year": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.week_of_year": {
+			          "Target": {
+			            "Entity": "dim_date.week_of_year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.week_of_year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_week_of_year"
+			        }
+			      ]
+			    },
+			    "dim_date_has_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.quarter": {
+			          "Target": {
+			            "Entity": "dim_date.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_quarters"
+			        }
+			      ]
+			    },
+			    "dim_date_has_year": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.year": {
+			          "Target": {
+			            "Entity": "dim_date.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_years"
+			        }
+			      ]
+			    },
+			    "dim_date_has_month": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.month": {
+			          "Target": {
+			            "Entity": "dim_date.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_months"
+			        }
+			      ]
+			    },
+			    "dim_date_has_day_of_month": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.day_of_month": {
+			          "Target": {
+			            "Entity": "dim_date.day_of_month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.day_of_month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_day_of_month"
+			        }
+			      ]
+			    },
+			    "dim_date_has_full_date": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.full_date": {
+			          "Target": {
+			            "Entity": "dim_date.full_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.full_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_full_dates"
+			        }
+			      ]
+			    },
+			    "dim_date_has_date_key": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.date_key": {
+			          "Target": {
+			            "Entity": "dim_date.date_key"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "dim_date.date_key"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_date_keys"
+			        }
+			      ]
+			    },
+			    "dim_date_is_weekend": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "dim_date.is_weekend": {
+			          "Target": {
+			            "Entity": "dim_date.is_weekend"
+			          }
+			        }
+			      },
+			      "Conditions": [
+			        {
+			          "Target": {
+			            "Role": "dim_date.is_weekend"
+			          },
+			          "Operator": "Equals",
+			          "Value": {
+			            "Boolean": [
+			              true
+			            ]
+			          }
+			        }
+			      ],
+			      "Phrasings": [
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Adjectives": [
+			              {
+			                "weekend": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ]
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "some_dim_dates_are_weekend_dim_dates"
 			        }
 			      ]
 			    }

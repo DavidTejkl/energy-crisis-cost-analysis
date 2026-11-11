@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "0fade2139a0b8e30c495",
+  "position": {
+    "x": 570,
+    "y": 108,
+    "z": 6000,
+    "height": 112,
+    "width": 257
+  },
+  "visualGroup": {
+    "displayName": "Skupina 3 - karta 3",
+    "groupMode": "ScaleMode"
+  }
+}
