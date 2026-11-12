@@ -33,10 +33,40 @@
               {
                 "textRuns": [
                   {
-                    "value": "V roce 2022 byla elektřina na trhu 6,9× dražší než v roce 2020 a extrémní cenu (od 5 821 Kč/MWh) mělo 42 % hodin (pro představu 4 hodiny z 10).",
+                    "value": "V r. 2022 byla elektřina na trhu ",
                     "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#bfbfbf"
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "7× dražší",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " než v r. 2020 a extrémní cenu (od 5 821 Kč/MWh) mělo ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "42 % hodin",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": ".",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
                     }
                   }
                 ]
@@ -44,21 +74,40 @@
               {
                 "textRuns": [
                   {
-                    "value": "Pracovní dny od 8 do 20 h byly v roce 2022 o 1 472 Kč/MWh dražší než noci a víkendy.",
+                    "value": "Pracovní dny od 8 do 20 h byly v r. 2022 o ",
                     "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#bfbfbf"
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
                     }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
+                  },
                   {
-                    "value": "Od roku 2023 ceny klesly o 60–65 %, extrémní hodiny se ale vrací (prosinec 2024).",
+                    "value": "1 472 Kč/MWh",
                     "textStyle": {
-                      "fontSize": "8pt",
-                      "color": "#bfbfbf"
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " dražší než noci a víkendy. Od r. 2023 ceny klesly o ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "60–65 %",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": ", extrémní hodiny se ale vrací (prosinec 2024).",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
                     }
                   }
                 ]

@@ -244,7 +244,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Měsíční průměr ceny na denním trhu OTE-ČR (Kč/MWh) - vždy pro celé období 2020–2024. Po najetí myši na linii zobrazení konkrétních měsíců.'"
+                  "Value": "'Měsíční průměr ceny na denním trhu OTE-ČR (Kč/MWh) - vždy pro celé období 2020–2024. Po najetí myši na linii je možné zobrazení konkrétních měsíců.'"
                 }
               }
             },
