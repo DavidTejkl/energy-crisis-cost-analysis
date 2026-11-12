@@ -6,7 +6,8 @@
     "y": 4,
     "z": 1000,
     "height": 124,
-    "width": 257
+    "width": 257,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "cardVisual",
@@ -356,7 +357,7 @@
             "valueBold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -378,8 +379,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#6B7280'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -536,6 +538,20 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "37ae241502c00cc0961d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Extrémní hodiny"
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

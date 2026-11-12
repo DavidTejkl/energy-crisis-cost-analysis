@@ -6,7 +6,8 @@
     "y": 4,
     "z": 1000,
     "height": 124,
-    "width": 257
+    "width": 257,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "cardVisual",
@@ -336,7 +337,7 @@
             "valueBold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -351,8 +352,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#6B7280'"
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -509,6 +511,20 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "895101794651d144374a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

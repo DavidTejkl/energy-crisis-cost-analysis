@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "31bdd18161825bb69ea0",
+  "displayName": "Náklad firmy",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "90fca39f88752ba9e030",
+      "target": "a75fc57088b2cad85a22",
+      "type": "NoFilter"
+    },
+    {
+      "source": "90fca39f88752ba9e030",
+      "target": "ea959bf0c665323caee2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "90fca39f88752ba9e030",
+      "target": "31a807cbb816cd41e06c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "90fca39f88752ba9e030",
+      "target": "2c25a2ff796601107005",
+      "type": "DataFilter"
+    },
+    {
+      "source": "90fca39f88752ba9e030",
+      "target": "938416d12d5c5eb43a15",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -30,6 +30,21 @@ table vw_monthly_cost
 		formatString: #,0.00
 		lineageTag: 2541bb2a-a1d7-4d6f-881e-b5db881017e0
 
+	/// Celkový náklad firmy na elektřinu v milionech Kč (silová elektřina, regulované složky, POZE). Jen pro zobrazení, počítá se z míry v Kč.
+	measure 'Celkový náklad na elektřinu (mil. Kč)' = DIVIDE([Celkový náklad na elektřinu (Kč)],1000000)
+		formatString: 0.00
+		lineageTag: 9617c475-0344-4659-abd7-edc84cf9e7a6
+
+	/// Celkový náklad na elektřinu v předchozím roce, v milionech Kč. Pro rok 2020 je prázdný, protože data začínají v roce 2020.
+	measure 'Celkový náklad na elektřinu minulý rok (mil. Kč)' = CALCULATE([Celkový náklad na elektřinu (mil. Kč)],SAMEPERIODLASTYEAR(dim_date[full_date]))
+		formatString: 0.00
+		lineageTag: cb15d31b-cf63-4a1e-b44d-c119d31771b6
+
+	measure 'Celková cena elektřiny (Kč/kWh) minulý rok' = CALCULATE([Celková cena elektřiny (Kč/kWh)],SAMEPERIODLASTYEAR(dim_date[full_date]))
+		lineageTag: 141ea787-68c2-40c8-845b-ef5291b1ca9b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0
