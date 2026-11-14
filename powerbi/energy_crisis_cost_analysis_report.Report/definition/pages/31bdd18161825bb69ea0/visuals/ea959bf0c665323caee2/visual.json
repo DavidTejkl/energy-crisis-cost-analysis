@@ -466,23 +466,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "08a15b0434c5107bb800",
-        "ordinal": 0,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Průměrná tržní cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
         "name": "3dd4f2ee92a3879cd8c2",
+        "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
