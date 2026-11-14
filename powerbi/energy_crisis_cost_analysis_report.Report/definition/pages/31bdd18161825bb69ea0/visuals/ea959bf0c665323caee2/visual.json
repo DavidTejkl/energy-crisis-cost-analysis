@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-              "nativeQueryRef": "Celkový náklad (mil. Kč)",
-              "displayName": "Celkový náklad (mil. Kč)"
+              "nativeQueryRef": "Celkový náklad za rok (mil. Kč)",
+              "displayName": "Celkový náklad za rok (mil. Kč)"
             }
           ]
         }

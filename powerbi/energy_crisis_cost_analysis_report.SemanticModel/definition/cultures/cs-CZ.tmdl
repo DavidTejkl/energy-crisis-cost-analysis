@@ -1834,7 +1834,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Nejdražší hodina (Kč/MWh)": {
+			          "Cena (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1844,7 +1844,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Cena (Kč/MWh)": {
+			          "Nejdražší hodina (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4267,7 +4267,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Celkový náklad (mil. Kč)": {
+			          "Celkový náklad za rok (mil. Kč)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4299,9 +4299,121 @@ cultureInfo cs-CZ
 			          }
 			        }
 			      ]
+			    },
+			    "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Celková cena elektřiny minulý rok (Kč/kWh)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "celková cena elektřiny (kč/kWh) minulý rok": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "celková cena elektřiny (kč": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "celková cena elektřiny ( kč kWh ) minulý rok": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "kWh) minulý rok": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.přirážka_za_diagram_odběru_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Přirážka za diagram odběru (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "přirážka za diagram odběru (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "přirážka za diagram odběru": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Přirážka za diagram (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
+			    "vw_yearly_hedging_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_yearly_hedging"
+			        }
+			      ]
+			    },
 			    "vw_cost_change_step_has_dim_date": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_cost_change_steps"
@@ -4483,6 +4595,72 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.přirážka_za_diagram_odběru_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.přirážka_za_diagram_odběru_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.přirážka_za_diagram_odběru_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_přirážka_za_diagram_odběru_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_kč_kWh_minulý_rok"
 			        }
 			      ]
 			    },
@@ -7140,52 +7318,6 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_dim_dates_are_weekend_dim_dates"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_yearly_hedging"
 			        }
 			      ]
 			    }

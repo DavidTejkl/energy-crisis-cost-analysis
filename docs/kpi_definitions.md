@@ -304,11 +304,15 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Cena za silovou elektřinu (Kč/kWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] / 1000` | — | 6.51 |
 | Celkový náklad na elektřinu (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[total_cost_czk])` | Total electricity cost | 200,924,897.61 |
 | Celková cena elektřiny (Kč/kWh) | `vw_monthly_cost` | `DIVIDE([Celkový náklad na elektřinu (Kč)], SUM(vw_monthly_cost[load_mwh])) / 1000` | All-in price | 7.19 |
+| Celkový náklad na elektřinu (mil. Kč) | `vw_monthly_cost` | `DIVIDE([Celkový náklad na elektřinu (Kč)], 1000000)` | Total electricity cost (card display) | 200.92 |
+| Celkový náklad na elektřinu minulý rok (mil. Kč) | `vw_monthly_cost` | `CALCULATE([Celkový náklad na elektřinu (mil. Kč)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Total electricity cost (comparison line) | 95.72 |
+| Celková cena elektřiny minulý rok (Kč/kWh) | `vw_monthly_cost` | `CALCULATE([Celková cena elektřiny (Kč/kWh)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | All-in price (comparison line) | 3.42 |
 | Podíl silové elektřiny (%) | `vw_monthly_cost` | `DIVIDE(SUM(vw_monthly_cost[power_cost_czk]), [Celkový náklad na elektřinu (Kč)])` | Power share | 90.6 % |
 | Průměrná tržní cena (Kč/MWh) | `vw_hourly_cost` | `AVERAGE(vw_hourly_cost[price_czk_mwh])` | Average market price | 6,082.84 |
 | Průměrná tržní cena minulý rok (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Average market price (comparison line) | 2,570.35 |
 | Přirážka za diagram odběru (Kč/MWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]` | Load profile premium | 426.45 |
 | Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
+| Přirážka za diagram odběru (mil. Kč) | `vw_hourly_cost` | `DIVIDE([Přirážka za diagram odběru (Kč)], 1000000)` | Load profile premium (card display) | 11.92 |
 | Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_band] = "extrémní") + 0` | Extreme hours | 3,694 |
 | Podíl extrémních hodin (%) | `vw_hourly_cost` | `DIVIDE([Extrémní hodiny], COUNTROWS(vw_hourly_cost))` | Extreme hours (share of the year) | 42.2 % |
 | Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |

@@ -113,6 +113,11 @@ table vw_hourly_cost
 		formatString: #,0
 		lineageTag: ce56579e-614f-4c51-8d90-a6ae2a33da67
 
+	/// Kolik firma za rok zaplatila za silovou elektřinu navíc proti průměrné tržní ceně, protože odebírá víc v dražších denních hodinách. V milionech Kč, pro zobrazení na kartě.
+	measure 'Přirážka za diagram odběru (mil. Kč)' = DIVIDE([Přirážka za diagram odběru (Kč)],1000000)
+		formatString: 0.00
+		lineageTag: 3d7f4ed7-3819-4c2f-9a7a-1959c761df50
+
 	column date_key
 		dataType: int64
 		formatString: 0

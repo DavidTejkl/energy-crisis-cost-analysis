@@ -205,7 +205,7 @@
                       "Entity": "vw_monthly_cost"
                     }
                   },
-                  "Property": "Celková cena elektřiny (Kč/kWh) minulý rok"
+                  "Property": "Celková cena elektřiny minulý rok (Kč/kWh)"
                 }
               }
             }

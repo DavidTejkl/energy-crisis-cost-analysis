@@ -23,13 +23,12 @@
                       "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+                  "Property": "Přirážka za diagram odběru (mil. Kč)"
                 }
               },
-              "queryRef": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)",
-              "nativeQueryRef": "Nejdražší hodina (Kč/MWh)",
-              "displayName": "Nejdražší hodina (Kč/MWh)",
-              "format": "#,0"
+              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
+              "nativeQueryRef": "Přirážka za diagram (mil. Kč)",
+              "displayName": "Přirážka za diagram (mil. Kč)"
             }
           ]
         }
@@ -44,7 +43,7 @@
                     "Entity": "vw_hourly_cost"
                   }
                 },
-                "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+                "Property": "Přirážka za diagram odběru (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -142,34 +141,6 @@
       "referenceLabel": [
         {
           "properties": {
-            "value": {
-              "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "vw_hourly_cost"
-                    }
-                  },
-                  "Property": "Nejdražší hodina – kdy"
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)",
-            "id": "field-1edfbbd1-64d8-4da5-bad6-b4370845f374",
-            "order": 0
-          }
-        },
-        {
-          "properties": {
             "paddingIndividual": {
               "expr": {
                 "Literal": {
@@ -216,54 +187,33 @@
           "selector": {
             "id": "default"
           }
-        }
-      ],
-      "referenceLabelTitle": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)"
-          }
         },
         {
           "properties": {
-            "show": {
+            "value": {
               "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "titleFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "titleFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#6B7280'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_hourly_cost"
                     }
-                  }
+                  },
+                  "Property": "Přirážka za diagram odběru (Kč/MWh)"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)",
-            "id": "field-1edfbbd1-64d8-4da5-bad6-b4370845f374"
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
+            "id": "field-2444f927-e4f8-a90f-89a1-41275bca8f4c",
+            "order": 0
           }
         }
       ],
@@ -321,55 +271,6 @@
           },
           "selector": {
             "id": "default"
-          }
-        }
-      ],
-      "referenceLabelValue": [
-        {
-          "properties": {
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "valueDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "valueFontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#6B7280'"
-                    }
-                  }
-                }
-              }
-            },
-            "valueFontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_hourly_cost.Nejvyšší hodinová cena (Kč/MWh)",
-            "id": "field-1edfbbd1-64d8-4da5-bad6-b4370845f374"
           }
         }
       ],
@@ -473,6 +374,30 @@
             "id": "default"
           }
         }
+      ],
+      "referenceLabelTitle": [
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Přirážka za MWh'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
+            "id": "field-2444f927-e4f8-a90f-89a1-41275bca8f4c"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -496,7 +421,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "08a15b0434c5107bb800",
+        "name": "7c8e1c45333c51b606c6",
         "ordinal": 0,
         "field": {
           "Measure": {
@@ -505,11 +430,10 @@
                 "Entity": "vw_hourly_cost"
               }
             },
-            "Property": "Průměrná tržní cena (Kč/MWh)"
+            "Property": "Přirážka za diagram odběru (mil. Kč)"
           }
         },
-        "type": "Advanced",
-        "howCreated": "User"
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"
