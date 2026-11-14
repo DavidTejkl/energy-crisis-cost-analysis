@@ -198,7 +198,7 @@ daytime hours — this is the part of the bill it can influence by moving load.
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
 | Main: monthly cost | stacked column, total labels on top (m CZK, 1 decimal) | `dim_date[month_start]`, 12 months of the selected year; power (`Náklad na silovou elektřinu (Kč)`), regulated (`Regulované platby (Kč)` = consumption-based charges + fixed charges + POZE) | m CZK (axis display units) | yes — the page answers "what did the selected year cost and from what"; the Y axis rescales per year, so axis labels stay visible | power amber, regulated grey | "Náklad na elektřinu po měsících (mil. Kč)" |
-| Company price vs market average | clustered column | year; market average, company price | CZK/MWh | no | company amber, market grey | "The company pays more than the market average because it uses power in expensive hours" |
+| Company price vs market average | clustered column | year; market average, company price | CZK/MWh (data labels, 0 decimals) | no | company amber, market grey | "Průměrná tržní cena vs. cena firmy (Kč/MWh)" · subtitle explains the gap = load profile premium (daytime load) |
 
 Tooltip on the monthly chart: every component in CZK (network use, system services, tax, reserved capacity,
 OTE fees, POZE).

@@ -64,7 +64,7 @@ table vw_monthly_cost
 
 	/// Všechny platby, které stanovuje ERÚ nebo zákon, ne trh: poplatky podle spotřeby, pevné platby a POZE. Bez DPH.
 	measure 'Regulované platby (Kč)' = [Pevné platby (Kč)] + [POZE (Kč)] + [Regulované poplatky podle spotřeby (Kč)]
-		formatString: 0.00
+		formatString: #,0.00
 		lineageTag: 58004907-9b5b-4ead-8542-240b4753dbe0
 
 	column date_key

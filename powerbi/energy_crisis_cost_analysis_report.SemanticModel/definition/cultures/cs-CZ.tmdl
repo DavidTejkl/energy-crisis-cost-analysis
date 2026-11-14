@@ -1644,6 +1644,16 @@ cultureInfo cs-CZ
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
+			        },
+			        {
+			          "Cena firmy (Kč/MWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -1723,6 +1733,16 @@ cultureInfo cs-CZ
 			          "MWh)": {
 			            "State": "Generated",
 			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Průměr trhu (Kč/MWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]

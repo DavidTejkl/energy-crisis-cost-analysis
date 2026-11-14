@@ -14,9 +14,8 @@ table vw_hourly_cost
 
 	/// Náklad na silovou elektřinu vydělený spotřebou.
 	measure 'Cena za silovou elektřinu (Kč/MWh)' = DIVIDE([Náklad na silovou elektřinu (Kč)],[Spotřeba (MWh)])
+		formatString: #,0.00
 		lineageTag: 315d0a2c-6006-4f96-b70a-b0aaa53e68dc
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	/// Náklad na silovou elektřinu vydělený spotřebou a přepočtený na kWh.
 	measure 'Cena za silovou elektřinu (Kč/kWh)' = ```
