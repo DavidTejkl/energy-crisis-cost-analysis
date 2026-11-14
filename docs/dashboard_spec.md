@@ -197,11 +197,15 @@ daytime hours — this is the part of the bill it can influence by moving load.
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: monthly cost | stacked column | month 2020-01 … 2024-12; power, regulated per MWh, fixed (reserved capacity, OTE fees), POZE | m CZK | no | power amber, the rest grey shades | "Only the power part of the bill exploded" |
+| Main: monthly cost | stacked column, total labels on top (m CZK, 1 decimal) | `dim_date[month_start]`, 12 months of the selected year; power (`Náklad na silovou elektřinu (Kč)`), regulated (`Regulované platby (Kč)` = consumption-based charges + fixed charges + POZE) | m CZK (axis display units) | yes — the page answers "what did the selected year cost and from what"; the Y axis rescales per year, so axis labels stay visible | power amber, regulated grey | "Náklad na elektřinu po měsících (mil. Kč)" |
 | Company price vs market average | clustered column | year; market average, company price | CZK/MWh | no | company amber, market grey | "The company pays more than the market average because it uses power in expensive hours" |
 
 Tooltip on the monthly chart: every component in CZK (network use, system services, tax, reserved capacity,
 OTE fees, POZE).
+
+Changed 2026-11-14: the first version (4 parts over all 60 months, not filtered) was unreadable — regulated charges are
+~1.5 m CZK a month against up to 31 m CZK of power, so three thin grey strips could not be told apart. The three regulated
+parts were merged into one series and the chart follows the year slicer.
 
 ### Acceptance
 

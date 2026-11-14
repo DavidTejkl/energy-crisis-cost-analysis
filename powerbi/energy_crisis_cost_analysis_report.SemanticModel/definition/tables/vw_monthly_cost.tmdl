@@ -45,6 +45,28 @@ table vw_monthly_cost
 		formatString: 0.00
 		lineageTag: 141ea787-68c2-40c8-845b-ef5291b1ca9b
 
+	/// Platby za distribuci, systémové služby a daň z elektřiny, které se platí za každou odebranou MWh. Bez DPH.
+	measure 'Regulované poplatky podle spotřeby (Kč)' = SUM(vw_monthly_cost[electricity_tax_czk]) + SUM(vw_monthly_cost[network_use_czk]) + SUM(vw_monthly_cost[system_services_czk])
+		formatString: #,0.00
+		lineageTag: ec12a4cf-b0fb-45dd-9e12-f2e3099667ff
+
+	/// Měsíční platby, které nezávisí na spotřebě: rezervovaná kapacita 5 MW a poplatky OTE. Bez DPH.
+	measure 'Pevné platby (Kč)' = ```
+			SUM(vw_monthly_cost[reserved_capacity_czk]) + SUM(vw_monthly_cost[ote_fees_czk]) 
+			```
+		formatString: #,0.00
+		lineageTag: 32ac6fb3-dcb3-46da-a22e-4c6ec4a3ba17
+
+	/// Příspěvek na podporované zdroje energie (obnovitelné zdroje), počítaný z rezervované kapacity, nejvýš však podle limitu za MWh. Od 10/2022 do konce 2023 nulový. Bez DPH.
+	measure 'POZE (Kč)' = SUM(vw_monthly_cost[poze_czk])
+		formatString: #,0.00
+		lineageTag: cbd61d66-1c4f-4db6-aa5f-e1c4b0f64ed0
+
+	/// Všechny platby, které stanovuje ERÚ nebo zákon, ne trh: poplatky podle spotřeby, pevné platby a POZE. Bez DPH.
+	measure 'Regulované platby (Kč)' = [Pevné platby (Kč)] + [POZE (Kč)] + [Regulované poplatky podle spotřeby (Kč)]
+		formatString: 0.00
+		lineageTag: 58004907-9b5b-4ead-8542-240b4753dbe0
+
 	column date_key
 		dataType: int64
 		formatString: 0

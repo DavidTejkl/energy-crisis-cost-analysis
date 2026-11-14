@@ -307,6 +307,10 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Celkový náklad na elektřinu (mil. Kč) | `vw_monthly_cost` | `DIVIDE([Celkový náklad na elektřinu (Kč)], 1000000)` | Total electricity cost (card display) | 200.92 |
 | Celkový náklad na elektřinu minulý rok (mil. Kč) | `vw_monthly_cost` | `CALCULATE([Celkový náklad na elektřinu (mil. Kč)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Total electricity cost (comparison line) | 95.72 |
 | Celková cena elektřiny minulý rok (Kč/kWh) | `vw_monthly_cost` | `CALCULATE([Celková cena elektřiny (Kč/kWh)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | All-in price (comparison line) | 3.42 |
+| Regulované poplatky podle spotřeby (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[electricity_tax_czk]) + SUM(vw_monthly_cost[network_use_czk]) + SUM(vw_monthly_cost[system_services_czk])` | Monthly cost (component) | Jan 2020: 360,896.19 |
+| Pevné platby (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[reserved_capacity_czk]) + SUM(vw_monthly_cost[ote_fees_czk])` | Monthly cost (component) | Jan 2020: 885,157.69 |
+| POZE (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[poze_czk])` | Monthly cost (component) | Jan 2020: 288,372.60 |
+| Regulované platby (Kč) | `vw_monthly_cost` | `[Pevné platby (Kč)] + [POZE (Kč)] + [Regulované poplatky podle spotřeby (Kč)]` | Monthly cost (regulated part) | Aug 2022 with power: 32,303,995.75 |
 | Podíl silové elektřiny (%) | `vw_monthly_cost` | `DIVIDE(SUM(vw_monthly_cost[power_cost_czk]), [Celkový náklad na elektřinu (Kč)])` | Power share | 90.6 % |
 | Průměrná tržní cena (Kč/MWh) | `vw_hourly_cost` | `AVERAGE(vw_hourly_cost[price_czk_mwh])` | Average market price | 6,082.84 |
 | Průměrná tržní cena minulý rok (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Average market price (comparison line) | 2,570.35 |

@@ -1572,6 +1572,16 @@ cultureInfo cs-CZ
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "Silová elektřina (Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -4041,6 +4051,16 @@ cultureInfo cs-CZ
 			            },
 			            "Weight": 0.476
 			          }
+			        },
+			        {
+			          "Měsíc": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "SemanticType": "Time"
@@ -4300,7 +4320,7 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			    "vw_monthly_cost.celková_cena_elektřiny_minulý_rok_kč_kWh": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "vw_monthly_cost",
@@ -4310,24 +4330,30 @@ cultureInfo cs-CZ
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "celková cena elektřiny (kč/kWh) minulý rok": {
+			          "celková cena elektřiny minulý rok (kč/kWh)": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "celková cena elektřiny (kč": {
+			          "celková cena elektřiny minulý rok": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "celková cena elektřiny minulý rok (kč": {
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
 			        },
 			        {
-			          "celková cena elektřiny ( kč kWh ) minulý rok": {
+			          "celková cena elektřiny minulý rok ( kč kWh )": {
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
 			        },
 			        {
-			          "kWh) minulý rok": {
+			          "kWh)": {
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
@@ -4362,6 +4388,94 @@ cultureInfo cs-CZ
 			              "Agent": "PowerBI.VisualColumnRename"
 			            },
 			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.regulované_poplatky_podle_spotřeby_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Regulované poplatky podle spotřeby (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "regulované poplatky podle spotřeby (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "regulované poplatky podle spotřeby": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.pevné_platby_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Pevné platby (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "pevné platby (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "pevné platby": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.POZE_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "POZE (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "POZE (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "POZE": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.regulované_platby_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Regulované platby (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "regulované platby (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "regulované platby": {
+			            "State": "Generated",
+			            "Weight": 0.75
 			          }
 			        }
 			      ]
@@ -4598,6 +4712,138 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
+			    "vw_monthly_cost_has_regulované_platby_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.regulované_platby_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.regulované_platby_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.regulované_platby_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_regulované_platby_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_POZE_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.POZE_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.POZE_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.POZE_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_POZE_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_pevné_platby_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.pevné_platby_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.pevné_platby_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.pevné_platby_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_pevné_platby_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_regulované_poplatky_podle_spotřeby_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.regulované_poplatky_podle_spotřeby_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.regulované_poplatky_podle_spotřeby_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.regulované_poplatky_podle_spotřeby_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_regulované_poplatky_podle_spotřeby_kč"
+			        }
+			      ]
+			    },
 			    "vw_hourly_cost_has_přirážka_za_diagram_odběru_mil__kč": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_hourly_cost"
@@ -4631,7 +4877,7 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_monthly_cost_has_celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			    "vw_monthly_cost_has_celková_cena_elektřiny_minulý_rok_kč_kWh": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_monthly_cost"
 			      },
@@ -4642,9 +4888,9 @@ cultureInfo cs-CZ
 			            "Entity": "vw_monthly_cost"
 			          }
 			        },
-			        "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok": {
+			        "vw_monthly_cost.celková_cena_elektřiny_minulý_rok_kč_kWh": {
 			          "Target": {
-			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok"
+			            "Entity": "vw_monthly_cost.celková_cena_elektřiny_minulý_rok_kč_kWh"
 			          }
 			        }
 			      },
@@ -4655,12 +4901,12 @@ cultureInfo cs-CZ
 			              "Role": "vw_monthly_cost"
 			            },
 			            "Object": {
-			              "Role": "vw_monthly_cost.celková_cena_elektřiny_kč_kWh_minulý_rok"
+			              "Role": "vw_monthly_cost.celková_cena_elektřiny_minulý_rok_kč_kWh"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_kč_kWh_minulý_rok"
+			          "ID": "vw_monthly_costs_have_celková_cena_elektřiny_minulý_rok_kč_kWh"
 			        }
 			      ]
 			    },
