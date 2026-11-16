@@ -33,6 +33,24 @@
             }
           ]
         },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_monthly_cost"
+                    }
+                  },
+                  "Property": "Regulované platby (Kč)"
+                }
+              },
+              "queryRef": "vw_monthly_cost.Regulované platby (Kč)",
+              "nativeQueryRef": "Regulované platby (Kč)"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -267,7 +285,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Silová elektřina z trhu vs. regulované platby (distribuce, POZE, poplatky)'"
+                  "Value": "'Silová elektřina z trhu vs. regulované platby (distribuce, POZE, poplatky). Po najetí myší na sloupec se zobrazí rozklad nákladu na silovou elektřinu a regulované platby.'"
                 }
               }
             },
@@ -282,6 +300,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -322,7 +353,7 @@
         "type": "Advanced"
       },
       {
-        "name": "8caf363999c4a976722b",
+        "name": "e106500819088c08d56a",
         "field": {
           "Measure": {
             "Expression": {

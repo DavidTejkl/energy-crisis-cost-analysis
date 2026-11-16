@@ -33,29 +33,14 @@
               {
                 "textRuns": [
                   {
-                    "value": "V r. 2022 byla elektřina na trhu ",
+                    "value": "V r. 2022 stála elektřina firmu ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "7× dražší",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": " než v r. 2020 a extrémní cenu (od 5 821 Kč/MWh) mělo ",
-                    "textStyle": {
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": "42 % hodin",
+                    "value": "200,9 mil. Kč",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -63,7 +48,22 @@
                     }
                   },
                   {
-                    "value": ".",
+                    "value": ", ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "4,4×",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " víc než v r. 2020. ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
@@ -74,14 +74,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Pracovní dny od 8 do 20 h byly v r. 2022 o ",
-                    "textStyle": {
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": "1 472 Kč/MWh",
+                    "value": "91 %",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -89,14 +82,14 @@
                     }
                   },
                   {
-                    "value": " dražší než noci a víkendy. Od r. 2023 ceny klesly o ",
+                    "value": " nákladu tvořila silová elektřina z trhu, regulované platby se skoro nezměnily. Firma bere nejvíc elektřiny ve dne, kdy je dražší, a to ji v r. 2022 stálo ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "60–65 %",
+                    "value": "11,9 mil. Kč",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -104,7 +97,22 @@
                     }
                   },
                   {
-                    "value": ", extrémní hodiny se ale vrací (prosinec 2024).",
+                    "value": " navíc. V r. 2024 vzrostly regulované platby na ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "31 mil. Kč",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " (dražší síť a systémové služby, návrat POZE).",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
