@@ -117,6 +117,21 @@ table vw_hourly_cost
 		formatString: 0.00
 		lineageTag: 3d7f4ed7-3819-4c2f-9a7a-1959c761df50
 
+	/// Změna nákladu na silovou elektřinu proti minulému roku v milionech Kč.
+	/// 
+	/// 
+	measure 'Změna nákladu na silovou elektřinu (mil. Kč)' = DIVIDE([Změna nákladu na silovou elektřinu (Kč)],1000000)
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: e1a29f0b-8e33-4dea-9d30-0e90e2680b2f
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Změna nákladu na silovou elektřinu (%)' = DIVIDE( [Změna nákladu na silovou elektřinu (Kč)],[Náklad na silovou elektřinu minulý rok (Kč)] )
+		formatString: +0.0 %;-0.0 %;0.0 %
+		lineageTag: 468ba7f0-5434-442f-9db4-439cd1a2f45b
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

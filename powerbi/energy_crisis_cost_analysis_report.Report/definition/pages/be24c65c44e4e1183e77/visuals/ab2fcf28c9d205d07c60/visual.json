@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ab2fcf28c9d205d07c60",
+  "position": {
+    "x": 23.191819448061874,
+    "y": 107.61004223900709,
+    "z": 4000,
+    "height": 128.01884335330155,
+    "width": 256.96535948452555
+  },
+  "visualGroup": {
+    "displayName": "Skupina 1 - karta 1",
+    "groupMode": "ScaleMode"
+  }
+}

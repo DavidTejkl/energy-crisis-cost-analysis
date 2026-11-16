@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "be24c65c44e4e1183e77",
+  "displayName": "Příčiny změny",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "826e62a04cbd1a2809c5",
+      "target": "26fd9a34209072e6250b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "826e62a04cbd1a2809c5",
+      "target": "b6ff3350bbae067d2e59",
+      "type": "DataFilter"
+    },
+    {
+      "source": "826e62a04cbd1a2809c5",
+      "target": "78d973a7a06051b62d50",
+      "type": "DataFilter"
+    },
+    {
+      "source": "826e62a04cbd1a2809c5",
+      "target": "d3b08c62dc63da6cb26b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "826e62a04cbd1a2809c5",
+      "target": "b03f6e50d4ecd507068d",
+      "type": "NoFilter"
+    }
+  ]
+}

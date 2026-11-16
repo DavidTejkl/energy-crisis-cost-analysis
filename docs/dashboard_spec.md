@@ -244,10 +244,16 @@ was small next to the market price.
 
 | Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
 |---|---|---|---|---|---|---|
-| Main: waterfall | waterfall | previous year cost → volume → market price → load profile → exchange rate → selected year cost | m CZK | yes | increase amber, decrease teal green, start and end grey | "From {year−1} to {year}: what pushed the cost up and down" |
+| Main: waterfall | waterfall | volume → market price → load profile → exchange rate → total change (the step "Náklad minulý rok" is filtered out of the visual) | m CZK, 2 decimals | yes | increase amber, decrease teal green, total grey | "Co změnilo náklad na silovou elektřinu oproti minulému roku (mil. Kč)" |
 | Effects of all years | clustered column | year 2021–2024; volume, market price, load profile, exchange rate | m CZK | no | market price amber, the rest grey | "Every year, the market price was the main driver" |
 
 Tooltip on the waterfall: the same effect in EUR (query 10) and the effective rates `R0`, `R1` (query 11).
+
+Change 2026-11-16: the built-in waterfall colours bars only as increase / decrease / total, so a grey start bar is
+not possible (the previous-year cost would show as an amber "increase" from zero). The waterfall therefore shows only
+the change (2022: −0.11 / +104.75 / +8.16 / −6.98 → total +105.82 m CZK); the absolute costs are on the card. Step names
+are Czech values in `vw_cost_change_steps.step_name`, sorted by `step_order`. The page tab is "Příčiny změny"; the year
+slicer offers 2021–2024 only (no previous year for 2020).
 
 ### Acceptance
 
