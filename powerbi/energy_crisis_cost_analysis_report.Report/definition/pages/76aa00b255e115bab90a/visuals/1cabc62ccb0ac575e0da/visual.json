@@ -87,8 +87,99 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_date"
+                  }
+                },
+                "Property": "year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9f09eef004e89768040b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2ff5285266721c6e3702",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_cost_change_steps"
+              }
+            },
+            "Property": "Krok změny nákladu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f86e46766606b7b45cab",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_cost_change_steps"
+              }
+            },
+            "Property": "Vliv kurzu (Kč)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "14680653bc8d5088e006",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_yearly_hedging"
+              }
+            },
+            "Property": "Náklad na silovou elektřinu bez zajištění (EUR)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a46819d9aaeedbcd31e8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_monthly_cost"
+              }
+            },
+            "Property": "Násobek nákladu krize (2022 / 2020)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

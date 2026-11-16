@@ -7,7 +7,7 @@ table vw_cost_change_steps
 		lineageTag: 1bf3a75f-34c7-478e-801e-74f33bf33605
 
 	/// O kolik Kč změnil náklad na silovou elektřinu pohyb kurzu EUR/CZK oproti předchozímu roku. Záporné = silnější koruna snížila náklad.
-	measure 'Vliv kurzu (Kč)' = CALCULATE([Krok změny nákladu (Kč)],vw_cost_change_steps[step_name] = "Exchange rate")
+	measure 'Vliv kurzu (Kč)' = CALCULATE([Krok změny nákladu (Kč)],vw_cost_change_steps[step_name] = "Kurz EUR/CZK")
 		formatString: #,0.00
 		lineageTag: 8d1922dd-27c2-4fda-b9a9-b862faccdc27
 
@@ -31,10 +31,13 @@ table vw_cost_change_steps
 
 	column step_order
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 4e6f1cd2-c3a3-4cff-a17a-3a19f0d61c76
 		summarizeBy: sum
 		sourceColumn: step_order
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -43,6 +46,9 @@ table vw_cost_change_steps
 		lineageTag: fc5623c7-4079-46e0-8d81-2fd5bca48604
 		summarizeBy: none
 		sourceColumn: step_name
+		sortByColumn: step_order
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

@@ -295,14 +295,14 @@ CREATE OR ALTER VIEW dbo.vw_cost_change_steps AS
       WHERE v0 IS NOT NULL
   )
 
-SELECT year * 10000 + 101 AS date_key, year, 1 AS step_order, 'Previous year cost' AS step_name, cost_prev_czk AS amount_czk FROM effects
+SELECT year * 10000 + 101 AS date_key, year, 1 AS step_order, N'Náklad minulý rok' AS step_name, cost_prev_czk AS amount_czk FROM effects
 UNION ALL
-SELECT year * 10000 + 101 AS date_key, year, 2 AS step_order, 'Volume' AS step_name, volume_czk AS amount_czk FROM effects 
+SELECT year * 10000 + 101 AS date_key, year, 2 AS step_order, N'Spotřeba' AS step_name, volume_czk AS amount_czk FROM effects 
 UNION ALL
-SELECT year * 10000 + 101 AS date_key, year, 3 AS step_order, 'Market price' AS step_name, market_price_czk AS amount_czk FROM effects
+SELECT year * 10000 + 101 AS date_key, year, 3 AS step_order, N'Cena na trhu' AS step_name, market_price_czk AS amount_czk FROM effects
 UNION ALL
-SELECT year * 10000 + 101 AS date_key, year, 4 AS step_order, 'Load profile' AS step_name, load_profile_czk AS amount_czk FROM effects 
+SELECT year * 10000 + 101 AS date_key, year, 4 AS step_order, N'Diagram odběru' AS step_name, load_profile_czk AS amount_czk FROM effects 
 UNION ALL
-SELECT year * 10000 + 101 AS date_key, year, 5 AS step_order, 'Exchange rate' AS step_name, rate_czk AS amount_czk FROM effects 
+SELECT year * 10000 + 101 AS date_key, year, 5 AS step_order, N'Kurz EUR/CZK' AS step_name, rate_czk AS amount_czk FROM effects 
 
 GO
