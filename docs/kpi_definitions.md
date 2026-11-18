@@ -336,6 +336,17 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Náklad na silovou elektřinu se zajištěním - proxy (EUR) | `vw_yearly_hedging` | `VAR no_hedge = [Náklad na silovou elektřinu bez zajištění (EUR)] VAR parameter = [Hodnota parametru Podíl zajištění] VAR hedge_diff = SUM(vw_yearly_hedging[hedge_diff_proxy_eur]) RETURN no_hedge + parameter * hedge_diff` | Hedged cost | 6,374,240.95 at 25 % |
 | Náklad na silovou elektřinu se zajištěním - PXE (EUR) | `vw_yearly_hedging` | `VAR no_hedging = [Náklad na silovou elektřinu bez zajištění (EUR)] VAR param = [Hodnota parametru Podíl zajištění] VAR pxe = SUM(vw_yearly_hedging[hedge_diff_pxe_eur]) RETURN IF(ISBLANK(pxe), BLANK(), no_hedging + param * pxe)` | Hedged cost (PXE sensitivity) | 6,685,638.51 at 100 % |
 | Výsledek zajištění - proxy (EUR) | `vw_yearly_hedging` | `VAR no_hedging = [Náklad na silovou elektřinu bez zajištění (EUR)] VAR proxy = [Náklad na silovou elektřinu se zajištěním - proxy (EUR)] RETURN proxy - no_hedging` | Hedging result 2021–2024 | −4,102,833.18 at 100 % |
+| Vliv ceny na trhu (Kč) | `vw_cost_change_steps` | `CALCULATE([Krok změny nákladu (Kč)], vw_cost_change_steps[step_name] = "Cena na trhu")` | Market price effect | +104,753,598.23 |
+| Vliv ceny na trhu (mil. Kč) | `vw_cost_change_steps` | `DIVIDE([Vliv ceny na trhu (Kč)], 1000000)`, format `+#,0.00;-#,0.00;0.00` | Market price effect (card) | +104.75 |
+| Vliv kurzu (mil. Kč) | `vw_cost_change_steps` | `DIVIDE([Vliv kurzu (Kč)], 1000000)`, sign format | Exchange rate effect (card) | −6.98 |
+| Krok změny nákladu (mil. Kč) | `vw_cost_change_steps` | `DIVIDE([Krok změny nákladu (Kč)], 1000000)`, sign format | Waterfall / yearly matrix | +104.75 (Cena na trhu) |
+| Tržní cena – loni a letos | `vw_hourly_cost` | `VAR loni = [Průměrná tržní cena minulý rok (Kč/MWh)] VAR letos = [Průměrná tržní cena (Kč/MWh)] RETURN FORMAT(loni, "#,0") & " → " & FORMAT(letos, "#,0")` (text, card line) | Average market price | 2 570 → 6 083 |
+| Kurz – loni a letos | `vw_hourly_cost` | `VAR letos = AVERAGE(vw_hourly_cost[rate_czk_per_eur]) VAR loni = CALCULATE(AVERAGE(vw_hourly_cost[rate_czk_per_eur]), SAMEPERIODLASTYEAR(dim_date[full_date])) RETURN FORMAT(loni, "0.00") & " → " & FORMAT(letos, "0.00")` (text, card line) | Exchange rate effect | 25.65 → 24.56 |
+| Náklad na silovou elektřinu bez zajištění (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([Náklad na silovou elektřinu bez zajištění (EUR)], 1000000)` | Spot cost (card) | 7.40 |
+| Náklad na silovou elektřinu se zajištěním - proxy (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([… - proxy (EUR)], 1000000)` | Hedged cost (card, chart) | 5.35 at 50 % |
+| Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([… - PXE (EUR)], 1000000)` | Hedged cost, PXE (card) | 7.04 at 50 % |
+| Výsledek zajištění - proxy (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([Výsledek zajištění - proxy (EUR)], 1000000)`, sign format | Hedging result (card line) | −2.05 at 50 % |
+| Výsledek zajištění - PXE (mil. EUR) | `vw_yearly_hedging` | `VAR pxe = [… - PXE (mil. EUR)] VAR bez = [… bez zajištění (mil. EUR)] RETURN IF(ISBLANK(pxe), BLANK(), pxe - bez)` | Hedging result, PXE (card line) | −0.36 at 50 % (2021 blank) |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:

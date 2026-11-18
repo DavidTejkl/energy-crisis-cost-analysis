@@ -41,6 +41,42 @@ table vw_yearly_hedging
 		formatString: #,0.00
 		lineageTag: bb0b3f1d-786b-45ff-8ede-11f5705ca114
 
+	measure 'Náklad na silovou elektřinu bez zajištění (mil. EUR)' = DIVIDE([Náklad na silovou elektřinu bez zajištění (EUR)],1000000)
+		formatString: #,0.00
+		lineageTag: 46a9f2e6-b5b0-4511-a112-bbd0ab54575d
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Náklad na silovou elektřinu se zajištěním - proxy (mil. EUR)' = DIVIDE([Náklad na silovou elektřinu se zajištěním - proxy (EUR)],1000000)
+		formatString: #,0.00
+		lineageTag: 46ad7902-7a94-42e0-b9c1-15757f24ca0f
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Výsledek zajištění - proxy (mil. EUR)' = DIVIDE(vw_yearly_hedging[Výsledek zajištění - proxy (EUR)],1000000)
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: a16c506e-be3c-4d17-9aaa-d8199d0c533c
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR)' = DIVIDE([Náklad na silovou elektřinu se zajištěním - PXE (EUR)],1000000)
+		lineageTag: 9f8d14d7-b206-47e7-8b63-f00ce9179767
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Výsledek zajištění - PXE (mil. EUR)' = ```
+			
+			VAR pxe = [Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR)]
+			VAR bez = [Náklad na silovou elektřinu bez zajištění (mil. EUR)]
+			RETURN
+			    IF(ISBLANK(pxe), BLANK(), pxe - bez)
+			
+			```
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: c466e1c4-476b-4bfc-86f6-2f14b98f8dd5
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

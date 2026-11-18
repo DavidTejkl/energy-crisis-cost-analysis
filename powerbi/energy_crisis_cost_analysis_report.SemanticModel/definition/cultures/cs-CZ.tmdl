@@ -3617,6 +3617,16 @@ cultureInfo cs-CZ
 			            },
 			            "Weight": 0.736
 			          }
+			        },
+			        {
+			          "Rok": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "SemanticType": "Time"
@@ -4679,101 +4689,193 @@ cultureInfo cs-CZ
 			          }
 			        }
 			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu bez zajištění (mil. EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu bez zajištění (mil. EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu bez zajištění": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Bez zajištění": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Bez zajištění (mil. EUR)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu se zajištěním - proxy (mil. EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu se zajištěním - proxy (mil. EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním - proxy": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním proxy (mil. EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Se zajištěním (cena minulého roku)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Se zajištěním (mil. EUR)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Výsledek zajištění - proxy (mil. EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "výsledek zajištění - proxy (mil. EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "výsledek zajištění - proxy": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "výsledek zajištění proxy (mil. EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "náklad na silovou elektřinu se zajištěním - PXE (mil. EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním - PXE": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "náklad na silovou elektřinu se zajištěním PXE (mil. EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Za cenu PXE (mil. EUR)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Výsledek zajištění - PXE (mil. EUR)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "výsledek zajištění - PXE (mil. EUR)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "výsledek zajištění - PXE": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "výsledek zajištění PXE (mil. EUR)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "vw_yearly_hedging_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_yearly_hedging"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_cost_change_steps"
-			        }
-			      ]
-			    },
 			    "vw_monthly_cost_has_dim_date": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_monthly_cost"
@@ -4909,6 +5011,303 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_výsledek_zajištění__PXE_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_výsledek_zajištění__PXE_mil__EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_výsledek_zajištění__PXE_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__PXE_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_výsledek_zajištění__PXE_mil__EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__PXE_mil__EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_výsledek_zajištění__proxy_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_výsledek_zajištění__proxy_mil__EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_výsledek_zajištění__proxy_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.výsledek_zajištění__proxy_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_výsledek_zajištění__proxy_mil__EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			        }
+			      ]
+			    },
+			    "podíl_zajištění_has_vw_yearly_hedging_náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "Podíl zajištění"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "podíl_zajištění": {
+			          "Target": {
+			            "Entity": "podíl_zajištění"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "podíl_zajištění"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "podíl_zajištění_have_náklad_na_silovou_elektřinu_se_zajištěním__proxy_mil__EUR"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_náklad_na_silovou_elektřinu_bez_zajištění_mil__EUR"
 			        }
 			      ]
 			    },
@@ -7995,6 +8394,98 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_dim_dates_are_weekend_dim_dates"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_cost_change_steps"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_yearly_hedging"
 			        }
 			      ]
 			    }

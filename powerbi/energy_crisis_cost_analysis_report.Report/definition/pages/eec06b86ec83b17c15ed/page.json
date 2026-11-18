@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "eec06b86ec83b17c15ed",
+  "displayName": "Zajištění ceny",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "fcdf8d41ed70e3606392",
+      "type": "NoFilter"
+    },
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "894ed5ca201c29406a17",
+      "type": "DataFilter"
+    },
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "d388ae703020c7bdcaa7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "8739984c03ddab0d0b37",
+      "type": "DataFilter"
+    },
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "9687c671272a32c939e8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b592d8b878da4b5bd705",
+      "target": "339ccfa35d0e208a0c10",
+      "type": "DataFilter"
+    },
+    {
+      "source": "19f2a396b7e390613072",
+      "target": "339ccfa35d0e208a0c10",
+      "type": "NoFilter"
+    }
+  ]
+}

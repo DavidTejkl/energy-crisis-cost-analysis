@@ -255,6 +255,11 @@ the change (2022: −0.11 / +104.75 / +8.16 / −6.98 → total +105.82 m CZK); 
 are Czech values in `vw_cost_change_steps.step_name`, sorted by `step_order`. The page tab is "Příčiny změny"; the year
 slicer offers 2021–2024 only (no previous year for 2020).
 
+Change 2026-11-18: the second visual is a matrix (step × year 2021–2024, m CZK, total row grey) instead of a clustered
+column — four effects of very different size could not be read as columns, and the matrix gives exact numbers. Card 2 =
+market price effect with the line „loni → letos“ market price, card 3 = exchange rate effect with the yearly average rate
+„loni → letos“. A note under the waterfall says the volume step is ≈ 0 because the simulated load is the same every year.
+
 ### Acceptance
 
 - 2022: start 76.13 m CZK; volume −0.11 + market price +104.75 + load profile +8.16 = commodity +112.80 m CZK
@@ -294,6 +299,13 @@ flat contract does not match its load shape.
 | All years at the selected share | clustered column | year 2021–2024; spot, fixed at proxy price | m EUR | no (slider yes) | fixed amber, spot grey | "The 2022 shock gets smaller — and moves to 2023" |
 
 The PXE price exists for 2022–2024 only; for 2021 the PXE line is hidden and the card says "no PXE price".
+
+Change 2026-11-18 (built version): title „Nákup předem krizi nezruší, jen ji posune o rok“. Cards: cost without hedging,
+with hedging (proxy; line = difference), at the PXE price (line = difference) — the 2021–2024 total card was dropped (a sum
+over years hides the shift). One chart only: clustered column per year 2021–2024, cost without hedging (grey) vs with the
+proxy hedge (amber), follows the slider, not the year slicer. The line chart by share was dropped: the cost is linear in
+the share, so it repeated the cards. A text box explains the method (gradual purchase, flat block every hour, prior-year
+average as ASSUMPTION, PXE as comparison, why 2020 is missing). Check at 50 %: 2.98/2.04 · 7.40/5.35 · 2.97/5.02 · 2.53/2.75.
 
 ### Acceptance
 

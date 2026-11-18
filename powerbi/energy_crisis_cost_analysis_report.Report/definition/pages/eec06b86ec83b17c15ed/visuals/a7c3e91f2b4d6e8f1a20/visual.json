@@ -1,0 +1,174 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a7c3e91f2b4d6e8f1a20",
+  "position": {
+    "x": 371.78112102250032,
+    "y": 244.17307948342432,
+    "z": 8003,
+    "height": 110.43003594727733,
+    "width": 884.66728797763278,
+    "tabOrder": 6003
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Jak zajištění funguje: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#1e1f22"
+                    }
+                  },
+                  {
+                    "value": "firma během roku postupně nakoupí část elektřiny na příští rok za pevnou cenu, obvykle přes dodavatele. Kupuje stejné množství na každou hodinu, zbytek platí za cenu z trhu.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#374151"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Pevná cena: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#1e1f22"
+                    }
+                  },
+                  {
+                    "value": "průměrná tržní cena předchozího roku, což odpovídá postupnému nákupu (předpoklad). Karta PXE pro srovnání ukazuje poslední cenu ročního produktu na pražské burze z konce předchozího roku.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#374151"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Proč chybí rok 2020: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#1e1f22"
+                    }
+                  },
+                  {
+                    "value": "pro jeho zajištění by byla potřeba cena z roku 2019, která v datech není.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#374151"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E5E7EB'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
