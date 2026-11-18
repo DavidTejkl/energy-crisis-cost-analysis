@@ -209,7 +209,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Oranžová náklad zvýšila, zelená snížila · Celkem = změna proti minulému roku'"
+                  "Value": "'Oranžová náklad zvýšila, zelená snížila · Celkem = změna proti minulému roku.'"
                 }
               }
             },

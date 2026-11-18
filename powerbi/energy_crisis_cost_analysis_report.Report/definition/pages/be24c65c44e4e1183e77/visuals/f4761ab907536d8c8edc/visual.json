@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Co zvýšilo náklad firmy? Cena na trhu, nebo regulované platby? Zdroje: OTE, ČNB, ERÚ · simulovaný odběr 28 GWh/rok",
+                    "value": "Co hýbalo nákladem: trh, spotřeba, diagram odběru nebo kurz? Zdroje: OTE, ČNB · simulovaný odběr 28 GWh/rok",
                     "textStyle": {
                       "fontSize": "12pt",
                       "color": "#bfbfbf"

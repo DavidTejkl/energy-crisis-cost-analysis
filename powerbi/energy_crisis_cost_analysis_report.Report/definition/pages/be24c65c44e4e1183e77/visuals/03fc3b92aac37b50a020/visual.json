@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "03fc3b92aac37b50a020",
+  "position": {
+    "x": 44.285714285714292,
+    "y": 661.42857142857144,
+    "z": 9500,
+    "height": 21.428571428571431,
+    "width": 412.85714285714289,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Spotřeba ≈ 0 . Simulovaný odběr je každý rok stejný (28 GWH / rok)",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#6c6e70"
+                    }
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

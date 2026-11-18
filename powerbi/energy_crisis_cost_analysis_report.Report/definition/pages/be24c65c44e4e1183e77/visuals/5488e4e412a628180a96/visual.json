@@ -33,14 +33,14 @@
               {
                 "textRuns": [
                   {
-                    "value": "V r. 2022 stála elektřina firmu ",
+                    "value": "V r. 2022 vzrostl náklad o ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "200,9 mil. Kč",
+                    "value": "105,8 mil. Kč",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -48,14 +48,14 @@
                     }
                   },
                   {
-                    "value": ", ",
+                    "value": " a téměř celý růst způsobila cena na trhu (",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "4,4×",
+                    "value": "+104,8 mil.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -63,18 +63,14 @@
                     }
                   },
                   {
-                    "value": " víc než v r. 2020. ",
+                    "value": "). Odběr ve dne, kdy je elektřina dražší, přidal ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
+                  },
                   {
-                    "value": "91 %",
+                    "value": "8,2 mil.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -82,29 +78,14 @@
                     }
                   },
                   {
-                    "value": " nákladu tvořila silová elektřina z trhu, regulované platby se skoro nezměnily. Firma bere nejvíc elektřiny ve dne, kdy je dražší, a to ji v r. 2022 stálo ",
+                    "value": ", silnější koruna ubrala ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "11,9 mil. Kč",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": " navíc. V r. 2024 vzrostly regulované platby na ",
-                    "textStyle": {
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": "31 mil. Kč",
+                    "value": "7,0 mil.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -112,7 +93,22 @@
                     }
                   },
                   {
-                    "value": " (dražší síť a systémové služby, návrat POZE).",
+                    "value": " V letech 2023–2024 cena klesla a náklad s ní. ",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "Hlavní riziko je cena na trhu",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " a proti ní se firma může zajistit nákupem předem. ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"
