@@ -31,6 +31,12 @@ table vw_cost_change_steps
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
+	measure 'Krok změny nákladu (mil. Kč)' = DIVIDE([Krok změny nákladu (Kč)],1000000)
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: 09e69c4e-9093-4d67-888d-ac17b1f6de8e
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

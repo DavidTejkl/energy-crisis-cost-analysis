@@ -4534,6 +4534,151 @@ cultureInfo cs-CZ
 			          }
 			        }
 			      ]
+			    },
+			    "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Změna nákladu na silovou elektřinu (%)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "změna nákladu na silovou elektřinu": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "změna nákladu na silovou elektřinu (%)": {
+			            "State": "Generated"
+			          }
+			        }
+			      ],
+			      "Units": [
+			        "percentage",
+			        "%"
+			      ]
+			    },
+			    "vw_hourly_cost.tržní_cena__loni_a_letos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Tržní cena – loni a letos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tržní cena – loni a letos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.kurz__loni_a_letos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Kurz – loni a letos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "kurz – loni a letos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.vliv_ceny_na_trhu_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Vliv ceny na trhu (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vliv ceny na trhu (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vliv ceny na trhu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.vliv_ceny_na_trhu_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Vliv ceny na trhu (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vliv ceny na trhu (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vliv ceny na trhu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.vliv_kurzu_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Vliv kurzu (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vliv kurzu (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vliv kurzu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step.krok_změny_nákladu_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_cost_change_steps",
+			          "ConceptualProperty": "Krok změny nákladu (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "krok změny nákladu (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "krok změny nákladu": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -4764,6 +4909,237 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_krok_změny_nákladu_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.krok_změny_nákladu_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.krok_změny_nákladu_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.krok_změny_nákladu_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_krok_změny_nákladu_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_vliv_kurzu_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.vliv_kurzu_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.vliv_kurzu_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.vliv_kurzu_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_vliv_kurzu_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_vliv_ceny_na_trhu_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.vliv_ceny_na_trhu_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.vliv_ceny_na_trhu_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.vliv_ceny_na_trhu_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_vliv_ceny_na_trhu_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_vliv_ceny_na_trhu_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "vw_cost_change_step.vliv_ceny_na_trhu_kč": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step.vliv_ceny_na_trhu_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step.vliv_ceny_na_trhu_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_vliv_ceny_na_trhu_kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_kurz__loni_a_letos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.kurz__loni_a_letos": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.kurz__loni_a_letos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.kurz__loni_a_letos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_kurz__loni_a_letos"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_tržní_cena__loni_a_letos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.tržní_cena__loni_a_letos": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.tržní_cena__loni_a_letos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.tržní_cena__loni_a_letos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_tržní_cena__loni_a_letos"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_změna_nákladu_na_silovou_elektřinu": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.změna_nákladu_na_silovou_elektřinu"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_změna_nákladu_na_silovou_elektřinu"
 			        }
 			      ]
 			    },

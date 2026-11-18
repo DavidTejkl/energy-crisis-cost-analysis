@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Spotřeba ≈ 0 . Simulovaný odběr je každý rok stejný (28 GWH / rok)",
+                    "value": "Spotřeba ≈ 0. Simulovaný odběr je každý rok stejný (28 GWh / rok)",
                     "textStyle": {
                       "fontWeight": "bold",
                       "color": "#6c6e70"
