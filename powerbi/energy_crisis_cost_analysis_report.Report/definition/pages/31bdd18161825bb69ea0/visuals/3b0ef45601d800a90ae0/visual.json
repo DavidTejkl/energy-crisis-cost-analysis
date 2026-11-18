@@ -4,10 +4,10 @@
   "position": {
     "x": 24,
     "y": 482,
-    "z": 8002,
+    "z": 10000,
     "height": 214,
     "width": 1232,
-    "tabOrder": 5002
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -278,51 +278,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8e2a94b250801898b490",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "72611b1e63310516c0c2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Průměrná tržní cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f200f855cc9a2b845611",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Cena za silovou elektřinu (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

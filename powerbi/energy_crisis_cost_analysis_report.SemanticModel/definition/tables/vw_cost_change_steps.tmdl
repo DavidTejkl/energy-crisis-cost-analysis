@@ -11,6 +11,26 @@ table vw_cost_change_steps
 		formatString: #,0.00
 		lineageTag: 8d1922dd-27c2-4fda-b9a9-b862faccdc27
 
+	/// O kolik změnila náklad na silovou elektřinu oproti minulému roku samotná změna tržní ceny (OTE), při letošní spotřebě. Kladné číslo = náklad zvýšila.
+	measure 'Vliv ceny na trhu (Kč)' = CALCULATE([Krok změny nákladu (Kč)],vw_cost_change_steps[step_name] = "Cena na trhu")
+		formatString: 0.00
+		lineageTag: 1cbc63ae-1306-4f88-b634-e2878e9120e8
+
+	/// Vliv ceny na trhu převedený na miliony Kč pro zobrazení na kartě.
+	/// 
+	measure 'Vliv ceny na trhu (mil. Kč)' = DIVIDE([Vliv ceny na trhu (Kč)],1000000)
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: 13dcd101-8898-44be-ac42-efa2942c99bc
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	/// Vliv změny kurzu EUR/CZK převedený na miliony Kč pro zobrazení na kartě. Záporné číslo = silnější koruna náklad snížila.
+	measure 'Vliv kurzu (mil. Kč)' = DIVIDE([Vliv kurzu (Kč)],1000000)
+		formatString: +#,0.00;-#,0.00;0.00
+		lineageTag: a200d8fe-71dc-41b9-8e03-bace8d9a65f8
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	column date_key
 		dataType: int64
 		formatString: 0

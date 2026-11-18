@@ -511,20 +511,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "895101794651d144374a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"

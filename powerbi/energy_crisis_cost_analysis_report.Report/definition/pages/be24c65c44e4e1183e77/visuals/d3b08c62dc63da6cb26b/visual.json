@@ -20,15 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "vw_hourly_cost"
+                      "Entity": "vw_cost_change_steps"
                     }
                   },
-                  "Property": "Přirážka za diagram odběru (mil. Kč)"
+                  "Property": "Vliv kurzu (mil. Kč)"
                 }
               },
-              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-              "nativeQueryRef": "Přirážka za diagram (mil. Kč)",
-              "displayName": "Přirážka za diagram (mil. Kč)"
+              "queryRef": "vw_cost_change_steps.Vliv kurzu (mil. Kč)",
+              "nativeQueryRef": "Vliv kurzu (mil. Kč)"
             }
           ]
         }
@@ -40,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "vw_hourly_cost"
+                    "Entity": "vw_cost_change_steps"
                   }
                 },
-                "Property": "Přirážka za diagram odběru (mil. Kč)"
+                "Property": "Vliv kurzu (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -198,7 +197,7 @@
                       "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Přirážka za diagram odběru (Kč/MWh)"
+                  "Property": "Kurz – loni a letos"
                 }
               }
             }
@@ -211,8 +210,8 @@
                 }
               }
             ],
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-            "id": "field-2444f927-e4f8-a90f-89a1-41275bca8f4c",
+            "metadata": "vw_cost_change_steps.Vliv kurzu (mil. Kč)",
+            "id": "field-86f5c30f-56c7-d197-41bb-8ce0e0a3e618",
             "order": 0
           }
         }
@@ -388,14 +387,14 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Přirážka za MWh'"
+                  "Value": "'Kurz EUR/CZK'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-            "id": "field-2444f927-e4f8-a90f-89a1-41275bca8f4c"
+            "metadata": "vw_cost_change_steps.Vliv kurzu (mil. Kč)",
+            "id": "field-86f5c30f-56c7-d197-41bb-8ce0e0a3e618"
           }
         }
       ]
@@ -421,16 +420,16 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "7c8e1c45333c51b606c6",
+        "name": "0ee66c2b0e61e4d97466",
         "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "vw_hourly_cost"
+                "Entity": "vw_cost_change_steps"
               }
             },
-            "Property": "Přirážka za diagram odběru (mil. Kč)"
+            "Property": "Vliv kurzu (mil. Kč)"
           }
         },
         "type": "Advanced"

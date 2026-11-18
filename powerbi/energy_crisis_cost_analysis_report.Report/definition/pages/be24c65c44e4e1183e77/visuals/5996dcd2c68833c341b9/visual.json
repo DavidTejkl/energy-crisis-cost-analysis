@@ -4,10 +4,10 @@
   "position": {
     "x": 23.920317518682339,
     "y": 253.37817816085737,
-    "z": 8001,
+    "z": 9000,
     "height": 447.39853136794744,
     "width": 674.19857895249106,
-    "tabOrder": 5001
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "waterfallChart",
@@ -103,6 +103,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -134,6 +141,26 @@
               "expr": {
                 "Literal": {
                   "Value": "'BottomRight'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -276,7 +303,7 @@
         }
       },
       {
-        "name": "497bfc13a106e036d019",
+        "name": "0aa207934595bcc1b009",
         "field": {
           "Measure": {
             "Expression": {

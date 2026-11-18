@@ -285,37 +285,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "baa8fa9eb04a939110c0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "month_start"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "cd86aa5fbd9655ed3367",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Průměrná tržní cena (Kč/MWh)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

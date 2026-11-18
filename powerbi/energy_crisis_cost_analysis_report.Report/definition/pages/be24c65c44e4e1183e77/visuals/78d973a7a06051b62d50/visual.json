@@ -20,15 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "vw_monthly_cost"
+                      "Entity": "vw_cost_change_steps"
                     }
                   },
-                  "Property": "Celková cena elektřiny (Kč/kWh)"
+                  "Property": "Vliv ceny na trhu (mil. Kč)"
                 }
               },
-              "queryRef": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)",
-              "nativeQueryRef": "Celková cena (Kč/kWh)",
-              "displayName": "Celková cena (Kč/kWh)"
+              "queryRef": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+              "nativeQueryRef": "Vliv ceny na trhu (mil. Kč)"
             }
           ]
         }
@@ -40,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "vw_monthly_cost"
+                    "Entity": "vw_cost_change_steps"
                   }
                 },
-                "Property": "Celková cena elektřiny (Kč/kWh)"
+                "Property": "Vliv ceny na trhu (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -196,16 +195,46 @@
           }
         },
         {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-349db480-f64f-d2a3-72bd-98982853a054",
+            "order": 0
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-a861e7d5-b057-e6cf-79ed-88de3e793006",
+            "order": 0
+          }
+        },
+        {
           "properties": {
             "value": {
               "expr": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "vw_monthly_cost"
+                      "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Celková cena elektřiny minulý rok (Kč/kWh)"
+                  "Property": "Tržní cena – loni a letos"
                 }
               }
             }
@@ -218,8 +247,8 @@
                 }
               }
             ],
-            "metadata": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)",
-            "id": "field-007d9115-d8de-242d-468e-3ef07f0f0661",
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-fb197331-c295-3c7a-0a97-eeb4a529d8f9",
             "order": 0
           }
         }
@@ -395,14 +424,65 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Minulý rok'"
+                  "Value": "'Tržní cena (Kč/MWh)'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)",
-            "id": "field-007d9115-d8de-242d-468e-3ef07f0f0661"
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-349db480-f64f-d2a3-72bd-98982853a054"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Minulý rok (Kč/MWh)'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-a861e7d5-b057-e6cf-79ed-88de3e793006"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cena (Kč/MWh)'"
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10.5D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_cost_change_steps.Vliv ceny na trhu (mil.Kč)",
+            "id": "field-fb197331-c295-3c7a-0a97-eeb4a529d8f9"
           }
         }
       ]
@@ -428,19 +508,20 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1ca91016701601930dc7",
+        "name": "b8df73b314a8c5135110",
         "ordinal": 0,
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "vw_monthly_cost"
+                "Entity": "vw_cost_change_steps"
               }
             },
-            "Property": "Celková cena elektřiny (Kč/kWh)"
+            "Property": "Vliv ceny na trhu (Kč)"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"

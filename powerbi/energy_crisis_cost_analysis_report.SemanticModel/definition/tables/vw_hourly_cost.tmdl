@@ -132,6 +132,24 @@ table vw_hourly_cost
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
+	/// Průměrná tržní cena (Kč/MWh) v minulém a ve vybraném roce jako text „loni → letos“. Jen pro popisek karty.
+	measure 'Tržní cena – loni a letos' =
+			
+			VAR loni = [Průměrná tržní cena minulý rok (Kč/MWh)]
+			VAR letos = [Průměrná tržní cena (Kč/MWh)]
+			RETURN
+			    FORMAT(loni, "#,0") & " → " & FORMAT(letos, "#,0")
+		lineageTag: ea4ef28b-61cd-44b2-a6ec-5d24f4dc0af6
+
+	/// Průměrný kurz EUR/CZK (ČNB) v minulém a ve vybraném roce jako text „loni → letos“. Jen pro popisek karty.
+	measure 'Kurz – loni a letos' =
+			
+			VAR letos = AVERAGE(vw_hourly_cost[rate_czk_per_eur])
+			VAR loni = CALCULATE(AVERAGE(vw_hourly_cost[rate_czk_per_eur]), SAMEPERIODLASTYEAR(dim_date[full_date]))
+			RETURN
+			    FORMAT(loni, "0.00") & " → " & FORMAT(letos, "0.00")
+		lineageTag: 54b10d18-91de-465e-9e67-09de65d4172d
+
 	column date_key
 		dataType: int64
 		formatString: 0
