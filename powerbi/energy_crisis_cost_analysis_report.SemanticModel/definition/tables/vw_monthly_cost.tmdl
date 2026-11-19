@@ -67,6 +67,41 @@ table vw_monthly_cost
 		formatString: #,0.00
 		lineageTag: 58004907-9b5b-4ead-8542-240b4753dbe0
 
+	/// Text pro kartu na stránce Shrnutí: náklad roku 2020 a kolikrát byl náklad 2022 vyšší.
+	measure 'Karta – náklad 2020 a násobek' = ```
+			
+			VAR celkem2020 = CALCULATE([Celkový náklad na elektřinu (mil. Kč)],dim_date[year] = 2020)
+			VAR nasobek = [Násobek nákladu krize (2022 / 2020)]
+			RETURN
+			"2020: " & FORMAT(celkem2020, "0.00") & " mil. Kč · " & FORMAT(nasobek, "0.0") & "× více "
+			
+			```
+		lineageTag: 6cc400cc-ad6b-45f8-b92f-046f0b8b59b2
+
+	/// Text pro kartu na stránce Shrnutí: celková cena elektřiny v roce 2020 v Kč/kWh (srovnání s kartou za rok 2022).
+	measure 'Karta – cena 2020' =
+			
+			VAR cena2020 = CALCULATE([Celková cena elektřiny (Kč/kWh)], dim_date[year] = 2020)
+			RETURN
+			"2020: " & FORMAT(cena2020, "0.00") & " Kč/kWh"
+		lineageTag: 85cc8db7-7c5c-4fef-b0e9-c9ceeb6aff90
+
+	/// Regulované platby (distribuce, systémové služby, daň, rezervovaný příkon, POZE, poplatky OTE) v milionech Kč.
+	measure 'Regulované platby (mil. Kč)' = DIVIDE([Regulované platby (Kč)],1000000)
+		formatString: #0.00
+		lineageTag: a63278e4-0811-482b-84e0-8feaa0f00efc
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	/// Text pro kartu na stránce Shrnutí: regulované platby v roce 2024 a kolikrát byly vyšší než ve vybraném roce (na kartě 2022).
+	measure 'Karta – regulované platby 2024' =
+			
+			VAR reg2024 = CALCULATE([Regulované platby (mil. Kč)],dim_date[year] = 2024)
+			VAR reg2022 = [Regulované platby (mil. Kč)]
+			RETURN
+			"2024: " & FORMAT(reg2024, "0.00") & " mil. Kč · " & FORMAT(DIVIDE(reg2024,reg2022), "0.0") & "× více"
+		lineageTag: 459f3698-6f74-4416-b370-c43120994869
+
 	column date_key
 		dataType: int64
 		formatString: 0

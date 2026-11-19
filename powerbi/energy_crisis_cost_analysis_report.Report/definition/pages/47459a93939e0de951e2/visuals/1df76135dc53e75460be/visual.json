@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "1df76135dc53e75460be",
+  "position": {
+    "x": 44,
+    "y": 66,
+    "z": 2000,
+    "height": 24,
+    "width": 890,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Co zvýšilo náklad firmy? Cena na trhu, nebo regulované platby? Zdroje: OTE, ČNB, ERÚ · simulovaný odběr 28 GWh/rok",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#bfbfbf"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

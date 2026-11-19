@@ -347,6 +347,11 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([… - PXE (EUR)], 1000000)` | Hedged cost, PXE (card) | 7.04 at 50 % |
 | Výsledek zajištění - proxy (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([Výsledek zajištění - proxy (EUR)], 1000000)`, sign format | Hedging result (card line) | −2.05 at 50 % |
 | Výsledek zajištění - PXE (mil. EUR) | `vw_yearly_hedging` | `VAR pxe = [… - PXE (mil. EUR)] VAR bez = [… bez zajištění (mil. EUR)] RETURN IF(ISBLANK(pxe), BLANK(), pxe - bez)` | Hedging result, PXE (card line) | −0.36 at 50 % (2021 blank) |
+| Regulované platby (mil. Kč) | `vw_monthly_cost` | `DIVIDE([Regulované platby (Kč)], 1000000)` | Regulated charges (Summary card) | 18.97 (2022), 31.28 (2024) |
+| Karta – náklad 2020 a násobek | `vw_monthly_cost` | `VAR celkem2020 = CALCULATE([Celkový náklad na elektřinu (mil. Kč)], dim_date[year] = 2020) VAR nasobek = [Násobek nákladu krize (2022 / 2020)] RETURN "2020: " & FORMAT(celkem2020, "0.00") & " mil. Kč · " & FORMAT(nasobek, "0.0") & "× více"` (text, card line) | Crisis cost multiple | 2020: 45,46 mil. Kč · 4,4× více |
+| Karta – cena 2020 | `vw_monthly_cost` | `VAR cena2020 = CALCULATE([Celková cena elektřiny (Kč/kWh)], dim_date[year] = 2020) RETURN "2020: " & FORMAT(cena2020, "0.00") & " Kč/kWh"` (text, card line) | All-in price | 2020: 1,62 Kč/kWh |
+| Karta – regulované platby 2024 | `vw_monthly_cost` | `VAR reg2024 = CALCULATE([Regulované platby (mil. Kč)], dim_date[year] = 2024) VAR reg2022 = [Regulované platby (mil. Kč)] RETURN "2024: " & FORMAT(reg2024, "0.00") & " mil. Kč · " & FORMAT(DIVIDE(reg2024, reg2022), "0.0") & "× více"` (text, card line; the card filters 2022) | Regulated charges | 2024: 31,28 mil. Kč · 1,6× více |
+| Karta – přirážka popisek | `vw_hourly_cost` | `"odběr v dražších denních hodinách"` (text, card line) | — (display only) | same text in every year |
 | Karta – bez zajištění popisek | `vw_yearly_hedging` | `"Celý odběr za cenu z trhu"` (text, card line; the new card visual takes only a field as reference label) | — (display only) | same text in every year |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across

@@ -301,20 +301,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "0aa207934595bcc1b009",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_cost_change_steps"
-              }
-            },
-            "Property": "Krok změny nákladu (Kč)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

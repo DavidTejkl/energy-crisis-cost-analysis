@@ -150,6 +150,10 @@ table vw_hourly_cost
 			    FORMAT(loni, "0.00") & " → " & FORMAT(letos, "0.00")
 		lineageTag: 54b10d18-91de-465e-9e67-09de65d4172d
 
+	/// Text pro kartu přirážky za diagram odběru na stránce Shrnutí.
+	measure 'Karta – přirážka popisek' = "odběr v dražších denních hodinách"
+		lineageTag: ba90470a-acb4-499a-9523-234eff528560
+
 	column date_key
 		dataType: int64
 		formatString: 0

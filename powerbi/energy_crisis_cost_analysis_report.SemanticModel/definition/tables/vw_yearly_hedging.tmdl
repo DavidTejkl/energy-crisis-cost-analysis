@@ -77,6 +77,7 @@ table vw_yearly_hedging
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
+	/// Text pro kartu nákladu bez zajištění na stránce Zajištění ceny.
 	measure 'Karta – bez zajištění popisek' = "Celý odběr za cenu z trhu"
 		lineageTag: 5e84bdd3-4bc3-47d9-b09b-16949f318cc8
 

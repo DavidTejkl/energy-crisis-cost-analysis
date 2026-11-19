@@ -1864,7 +1864,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Cena (Kč/MWh)": {
+			          "Nejdražší hodina (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1874,7 +1874,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Nejdražší hodina (Kč/MWh)": {
+			          "Cena (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -2706,6 +2706,16 @@ cultureInfo cs-CZ
 			          "kWh)": {
 			            "State": "Generated",
 			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Celková cena 2022 (Kč/kWh)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        },
 			        {
@@ -4320,6 +4330,16 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
+			          "Celkový náklad 2022 (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "Celkový náklad za rok (mil. Kč)": {
 			            "State": "Suggested",
 			            "Source": {
@@ -4411,6 +4431,16 @@ cultureInfo cs-CZ
 			          "přirážka za diagram odběru": {
 			            "State": "Generated",
 			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Přirážka za diagram 2022 (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        },
 			        {
@@ -4759,7 +4789,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Se zajištěním (cena minulého roku)": {
+			          "Se zajištěním (mil. EUR)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4769,7 +4799,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Se zajištěním (mil. EUR)": {
+			          "Se zajištěním (cena minulého roku)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4873,9 +4903,213 @@ cultureInfo cs-CZ
 			          }
 			        }
 			      ]
+			    },
+			    "vw_monthly_cost.karta__náklad_2020_a_násobek": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Karta – náklad 2020 a násobek"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta – náklad 2020 a násobek": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging.karta__bez_zajištění_popisek": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_yearly_hedging",
+			          "ConceptualProperty": "Karta – bez zajištění popisek"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta – bez zajištění popisek": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.karta__cena_2020": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Karta – cena 2020"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta – cena 2020": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.karta__přirážka_popisek": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Karta – přirážka popisek"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta – přirážka popisek": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.regulované_platby_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Regulované platby (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "regulované platby (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "regulované platby": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Regulované platby 2022 (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.karta_regulované_platby_2024": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Karta – regulované platby 2024"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta regulované platby 2024": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
+			    "vw_yearly_hedging_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_yearly_hedging"
+			        }
+			      ]
+			    },
+			    "vw_cost_change_step_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_cost_change_steps"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_cost_change_step": {
+			          "Target": {
+			            "Entity": "vw_cost_change_step"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_cost_change_step"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_cost_change_steps_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_cost_change_step"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_vw_cost_change_steps"
+			        }
+			      ]
+			    },
 			    "vw_monthly_cost_has_dim_date": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_monthly_cost"
@@ -5011,6 +5245,204 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_vw_hourly_costs"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_karta_regulované_platby_2024": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.karta_regulované_platby_2024": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.karta_regulované_platby_2024"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.karta_regulované_platby_2024"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_karta_regulované_platby_2024"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_regulované_platby_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.regulované_platby_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.regulované_platby_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.regulované_platby_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_regulované_platby_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_karta__přirážka_popisek": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.karta__přirážka_popisek": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.karta__přirážka_popisek"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.karta__přirážka_popisek"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_karta__přirážka_popisek"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_karta__cena_2020": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.karta__cena_2020": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.karta__cena_2020"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.karta__cena_2020"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_karta__cena_2020"
+			        }
+			      ]
+			    },
+			    "vw_yearly_hedging_has_karta__bez_zajištění_popisek": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_yearly_hedging"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_yearly_hedging": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging"
+			          }
+			        },
+			        "vw_yearly_hedging.karta__bez_zajištění_popisek": {
+			          "Target": {
+			            "Entity": "vw_yearly_hedging.karta__bez_zajištění_popisek"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_yearly_hedging"
+			            },
+			            "Object": {
+			              "Role": "vw_yearly_hedging.karta__bez_zajištění_popisek"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_yearly_hedging_have_karta__bez_zajištění_popisek"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_karta__náklad_2020_a_násobek": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.karta__náklad_2020_a_násobek": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.karta__náklad_2020_a_násobek"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.karta__náklad_2020_a_násobek"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_karta__náklad_2020_a_násobek"
 			        }
 			      ]
 			    },
@@ -8394,98 +8826,6 @@ cultureInfo cs-CZ
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_dim_dates_are_weekend_dim_dates"
-			        }
-			      ]
-			    },
-			    "vw_cost_change_step_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_cost_change_steps"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_cost_change_step": {
-			          "Target": {
-			            "Entity": "vw_cost_change_step"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_cost_change_step"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_cost_change_steps_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_cost_change_step"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_cost_change_steps"
-			        }
-			      ]
-			    },
-			    "vw_yearly_hedging_has_dim_date": {
-			      "Binding": {
-			        "ConceptualEntity": "vw_yearly_hedging"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "vw_yearly_hedging": {
-			          "Target": {
-			            "Entity": "vw_yearly_hedging"
-			          }
-			        },
-			        "dim_date": {
-			          "Target": {
-			            "Entity": "dim_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "vw_yearly_hedging"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "vw_yearly_hedging_have_dim_dates"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_date"
-			            },
-			            "Object": {
-			              "Role": "vw_yearly_hedging"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_dates_have_vw_yearly_hedging"
 			        }
 			      ]
 			    }
