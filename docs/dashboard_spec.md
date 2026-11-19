@@ -167,6 +167,32 @@ The plan above was changed while building the page:
   (planned x 24, y 436, 1232 × 224). Navigation tiles dropped; a separate intro page „O projektu“ is planned instead
   (question, why, how, list of pages) — it will be a sixth page before the Summary.
 
+### Changes 2026-11-19 evening
+
+- **Cards replaced.** Three of the four cards (total cost 2022, all-in price 2022, load profile premium 2022) repeated
+  the cards of page 2 „Náklad firmy“ one to one (David). A summary card must not repeat a detail page, so the Summary
+  now shows the extremes of the whole period 2020–2024. Only the regulated charges card (not on any other page) stays:
+
+  | Card | Value | Reference line | Check |
+  |---|---|---|---|
+  | Nejdražší měsíc celkově (mil. Kč) | 32,30 | Srpen 2022 · 12,75 Kč/kWh | `vw_monthly_cost` MAX of `total_cost_czk` = 32,303,995.75 (Aug 2022); 32,303,995.75 / 2,533.293 MWh = 12.75 CZK/kWh |
+  | Nejlevnější měsíc celkově (mil. Kč) | 2,91 | Duben 2020 (Covid) · 1,20 Kč/kWh | MIN = 2,911,201.48 (Apr 2020, lockdown); / 2,433.427 MWh = 1.20 CZK/kWh |
+  | Nejdražší den (mil. Kč) | 1,66 | 30. 8. 2022 · pouze silová elektřina | `vw_hourly_cost` summed by day, top day 1,657,482.83 CZK (power only — regulated charges exist only per month) |
+  | Regulované platby 2022 (mil. Kč) | 18,97 | 2024: 31,28 mil. Kč · 1,6× více | unchanged |
+
+  Month cards compare **months**, not days: the cheapest day (2020-04-13) has a negative power cost (−28,460 CZK,
+  negative market prices), so a ratio would make no sense, and a month equals one invoice. Load is almost the same in
+  both months (2,533 vs 2,433 MWh), so the gap comes from the price — the main point of the project (SIMULATED load).
+  The month and day in the reference lines are fixed text: the Summary page has no slicer and the data 2020–2024 do not
+  change.
+- **Yearly cost chart built** (stacked column, x 24, y 437, 1232 × 242): `dim_date[year]` (categorical axis) ×
+  `Náklad na silovou elektřinu (Kč)` (amber) and `Regulované platby (Kč)` (grey), total labels in m CZK, legend on the
+  right, no Y axis. Title „Náklad na elektřinu po letech (mil. Kč)“. Check: 45,5 · 95,7 · 200,9 · 87,9 · 94,8 mil. Kč
+  (query 08), power part 76 · 182 · 71 · 64 mil. Kč (2021–2024).
+- **Interactions:** the chart filters nothing (NoFilter towards all 4 cards, 3 text boxes and the footer) — otherwise a
+  click on 2020 would change the card value while the fixed reference line still says „Srpen 2022“.
+- Still open: intro page „O projektu“.
+
 ## Page 1 — Market
 
 **Question:** how extreme was the electricity market in each year?

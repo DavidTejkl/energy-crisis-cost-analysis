@@ -353,6 +353,15 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Karta – regulované platby 2024 | `vw_monthly_cost` | `VAR reg2024 = CALCULATE([Regulované platby (mil. Kč)], dim_date[year] = 2024) VAR reg2022 = [Regulované platby (mil. Kč)] RETURN "2024: " & FORMAT(reg2024, "0.00") & " mil. Kč · " & FORMAT(DIVIDE(reg2024, reg2022), "0.0") & "× více"` (text, card line; the card filters 2022) | Regulated charges | 2024: 31,28 mil. Kč · 1,6× více |
 | Karta – přirážka popisek | `vw_hourly_cost` | `"odběr v dražších denních hodinách"` (text, card line) | — (display only) | same text in every year |
 | Karta – bez zajištění popisek | `vw_yearly_hedging` | `"Celý odběr za cenu z trhu"` (text, card line; the new card visual takes only a field as reference label) | — (display only) | same text in every year |
+| Nejdražší měsíc – celkový náklad (Kč) | `vw_monthly_cost` | `MAX(vw_monthly_cost[total_cost_czk])` (one row = one month, so MAX picks a month) | Total electricity cost | 32,303,995.75 (Aug 2022, 2020–2024) |
+| Nejdražší měsíc karta – celkový náklad (mil. Kč) | `vw_monthly_cost` | `DIVIDE([Nejdražší měsíc – celkový náklad (Kč)], 1000000)` | Total electricity cost (Summary card) | 32.30 |
+| Nejdražší měsíc karta – spodni | `vw_monthly_cost` | `VAR cena = CALCULATE([Celková cena elektřiny (Kč/kWh)], vw_monthly_cost[year] = 2022, vw_monthly_cost[month] = 8) RETURN "Srpen 2022" & " · " & FORMAT(cena, "0.00") & " Kč/kWh"` (text, card line; month fixed, the Summary page has no slicer) | All-in price | Srpen 2022 · 12,75 Kč/kWh |
+| Nejlevnější měsíc - celkový náklad | `vw_monthly_cost` | `MIN(vw_monthly_cost[total_cost_czk])` | Total electricity cost | 2,911,201.48 (Apr 2020) |
+| Nejlevnější měsíc karta - celkový náklad (mil. Kč) | `vw_monthly_cost` | `DIVIDE([Nejlevnější měsíc - celkový náklad], 1000000)` | Total electricity cost (Summary card) | 2.91 |
+| Nejlevnější měsíc karta - spodní | `vw_monthly_cost` | `VAR cena = CALCULATE([Celková cena elektřiny (Kč/kWh)], vw_monthly_cost[year] = 2020, vw_monthly_cost[month] = 4) RETURN "Duben 2020 (Covid)" & " · " & FORMAT(cena, "0.00") & " Kč/kWh"` (text, card line) | All-in price | Duben 2020 (Covid) · 1,20 Kč/kWh |
+| Nejdražší den – silová elektřina (Kč) | `vw_hourly_cost` | `MAXX(VALUES(dim_date[full_date]), [Náklad na silovou elektřinu (Kč)])` (iterates the days, sums the hours of each day, keeps the largest) | Spot cost (power only) | 1,657,482.83 (30 Aug 2022) |
+| Nejdražší den – silová elektřina (mil. Kč) | `vw_hourly_cost` | `DIVIDE([Nejdražší den – silová elektřina (Kč)], 1000000)` | Spot cost (Summary card) | 1.66 |
+| Karta – nejdražší den | `vw_hourly_cost` | `"30. 8. 2022 · pouze silová elektřina"` (text, card line) | — (display only) | same text |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
