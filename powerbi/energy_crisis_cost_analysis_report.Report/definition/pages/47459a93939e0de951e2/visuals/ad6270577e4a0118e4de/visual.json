@@ -4,9 +4,10 @@
   "position": {
     "x": 24,
     "y": 115,
-    "z": 8002,
+    "z": 6000,
     "height": 129,
-    "width": 296
+    "width": 296,
+    "tabOrder": 7000
   },
   "visualGroup": {
     "displayName": "Skupina karta 1",

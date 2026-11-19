@@ -1864,7 +1864,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Nejdražší hodina (Kč/MWh)": {
+			          "Cena (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1874,7 +1874,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Cena (Kč/MWh)": {
+			          "Nejdražší hodina (Kč/MWh)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4789,7 +4789,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Se zajištěním (mil. EUR)": {
+			          "Se zajištěním (cena minulého roku)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4799,7 +4799,7 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Se zajištěním (cena minulého roku)": {
+			          "Se zajištěním (mil. EUR)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

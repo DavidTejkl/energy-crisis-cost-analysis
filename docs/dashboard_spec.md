@@ -310,6 +310,10 @@ average as ASSUMPTION, PXE as comparison, why 2020 is missing). Check at 50 %: 2
 Change 2026-11-19: title „Plné zajištění by v r. 2022 ušetřilo 4,1 mil. EUR, v r. 2023 by stejnou částku stálo navíc“
 (hedging result proxy at 100 %: 2022 −4.10, 2023 +4.10 m EUR; names the share, so it holds for any slider position).
 Card 1 got the reference line „Celý odběr za cenu z trhu“ (text measure), so all three cards line up.
+The yearly chart became a line chart (linear, markers, Y from 0; without hedging grey, with hedging amber): the clustered
+column looked the same as the company vs market chart on page 2, and the crossing of the two lines between 2022 and 2023
+shows the one-year shift directly. A ribbon chart was tried and dropped: it stacks the two alternatives, so its height
+(e.g. 12.75 in 2022) means nothing.
 
 ### Acceptance
 

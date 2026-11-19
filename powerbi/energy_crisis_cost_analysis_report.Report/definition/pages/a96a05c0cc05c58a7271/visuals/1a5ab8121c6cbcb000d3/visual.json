@@ -348,7 +348,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Extrémních hodin přibylo z nuly v roce 2020 na 42 % v roce 2022'"
+                  "Value": "'Extrémních hodin přibylo z 0 % v roce 2020 na 42 % v roce 2022'"
                 }
               }
             },
