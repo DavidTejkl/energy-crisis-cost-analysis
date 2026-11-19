@@ -53,7 +53,7 @@ table vw_yearly_hedging
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
-	measure 'Výsledek zajištění - proxy (mil. EUR)' = DIVIDE(vw_yearly_hedging[Výsledek zajištění - proxy (EUR)],1000000)
+	measure 'Výsledek zajištění - proxy (mil. EUR)' = DIVIDE([Výsledek zajištění - proxy (EUR)],1000000)
 		formatString: +#,0.00;-#,0.00;0.00
 		lineageTag: a16c506e-be3c-4d17-9aaa-d8199d0c533c
 
@@ -76,6 +76,9 @@ table vw_yearly_hedging
 		lineageTag: c466e1c4-476b-4bfc-86f6-2f14b98f8dd5
 
 		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Karta – bez zajištění popisek' = "Celý odběr za cenu z trhu"
+		lineageTag: 5e84bdd3-4bc3-47d9-b09b-16949f318cc8
 
 	column date_key
 		dataType: int64

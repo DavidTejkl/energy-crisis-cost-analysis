@@ -194,6 +194,34 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_yearly_hedging"
+                    }
+                  },
+                  "Property": "Karta – bez zajištění popisek"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "vw_yearly_hedging.Náklad na silovou elektřinu bez zajištění (mil. EUR)",
+            "id": "field-2c5a8173-bfd1-6734-57b3-a25396681978",
+            "order": 0
+          }
         }
       ],
       "layout": [
@@ -351,6 +379,43 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "referenceLabelTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_yearly_hedging.Náklad na silovou elektřinu bez zajištění (mil. EUR)"
+          }
+        }
+      ],
+      "referenceLabelValue": [
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_yearly_hedging.Náklad na silovou elektřinu bez zajištění (mil. EUR)"
           }
         }
       ]

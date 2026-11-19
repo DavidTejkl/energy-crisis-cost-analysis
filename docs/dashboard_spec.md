@@ -307,6 +307,10 @@ proxy hedge (amber), follows the slider, not the year slicer. The line chart by 
 the share, so it repeated the cards. A text box explains the method (gradual purchase, flat block every hour, prior-year
 average as ASSUMPTION, PXE as comparison, why 2020 is missing). Check at 50 %: 2.98/2.04 · 7.40/5.35 · 2.97/5.02 · 2.53/2.75.
 
+Change 2026-11-19: title „Plné zajištění by v r. 2022 ušetřilo 4,1 mil. EUR, v r. 2023 by stejnou částku stálo navíc“
+(hedging result proxy at 100 %: 2022 −4.10, 2023 +4.10 m EUR; names the share, so it holds for any slider position).
+Card 1 got the reference line „Celý odběr za cenu z trhu“ (text measure), so all three cards line up.
+
 ### Acceptance
 
 - 0 % = spot cost for every year (2022: 7,399,949.24 EUR).

@@ -347,6 +347,7 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([… - PXE (EUR)], 1000000)` | Hedged cost, PXE (card) | 7.04 at 50 % |
 | Výsledek zajištění - proxy (mil. EUR) | `vw_yearly_hedging` | `DIVIDE([Výsledek zajištění - proxy (EUR)], 1000000)`, sign format | Hedging result (card line) | −2.05 at 50 % |
 | Výsledek zajištění - PXE (mil. EUR) | `vw_yearly_hedging` | `VAR pxe = [… - PXE (mil. EUR)] VAR bez = [… bez zajištění (mil. EUR)] RETURN IF(ISBLANK(pxe), BLANK(), pxe - bez)` | Hedging result, PXE (card line) | −0.36 at 50 % (2021 blank) |
+| Karta – bez zajištění popisek | `vw_yearly_hedging` | `"Celý odběr za cenu z trhu"` (text, card line; the new card visual takes only a field as reference label) | — (display only) | same text in every year |
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
