@@ -129,7 +129,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Auto'"
+                  "Value": "'Under'"
                 }
               }
             },
@@ -161,7 +161,7 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Auto'"
+                  "Value": "'Under'"
                 }
               }
             },
@@ -175,7 +175,7 @@
             "labelDensity": {
               "expr": {
                 "Literal": {
-                  "Value": "53L"
+                  "Value": "100L"
                 }
               }
             },
@@ -196,7 +196,21 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'Above'"
+                  "Value": "'Under'"
+                }
+              }
+            },
+            "maximumOffset": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "minimumOffset": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
                 }
               }
             }

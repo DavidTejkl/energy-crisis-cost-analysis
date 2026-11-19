@@ -134,6 +134,39 @@ in tooltips.
 - Yearly totals equal query 08: 45.46 · 95.72 · 200.92 · 87.93 · 94.84 m CZK; 200.92 / 45.46 = 4.4×.
 - 99 % = market price effect 104.75 / power cost change 105.82 m CZK (2021 → 2022).
 
+### Built version (2026-11-19)
+
+The plan above was changed while building the page:
+
+- **Title:** „Krize 2021–2023 stála firmu 385 mil. Kč místo 136 mil. při cenách roku 2020, tedy 248 mil. Kč navíc“.
+  **Subtitle** shows the calculation: 95,72 + 200,92 + 87,93 = 384,57 mil. Kč vs 3 × 45,46 = 136,38 mil. Kč.
+  Check: yearly total cost from query 08; 384.57 − 136.38 = 248.18 m CZK.
+- **Four KPI cards, year 2022** (visual filter year = 2022 on each card; the page has no slicer). The reference line
+  is a text measure (the new card visual cannot show static text):
+
+  | Card | Value | Reference line | Measure of the reference line |
+  |---|---|---|---|
+  | Celkový náklad 2022 (mil. Kč) | 200,92 | 2020: 45,46 mil. Kč · 4,4× více | `Karta – náklad 2020 a násobek` |
+  | Celková cena 2022 (Kč/kWh) | 7,19 | 2020: 1,62 Kč/kWh | `Karta – cena 2020` |
+  | Přirážka za diagram 2022 (mil. Kč) | 11,92 | odběr v dražších denních hodinách | `Karta – přirážka popisek` |
+  | Regulované platby 2022 (mil. Kč) | 18,97 | 2024: 31,28 mil. Kč · 1,6× více | `Karta – regulované platby 2024` |
+
+  The planned card „market price share of the 2022 increase“ was replaced by the regulated charges card: the share is
+  already in the first text box, and the 2024 increase of regulated charges is a separate risk.
+- **Three text boxes** (400 × 160, graphite, bullets „•“) instead of one „What this means“ box:
+  1. *Příčina růstu nákladu* — power cost +105.8 m CZK in 2022, of it +104.8 m from the market price; market price
+     almost 7× 2020 (6,082.84 / 886.55); power 91 % of the total cost; stronger koruna saved 7.0 m CZK.
+  2. *Rizika po skončení krize* — 2024 cost 94.8 m CZK = 2.1× 2020; market price still 2.4× 2020 (2,138.04 / 886.55);
+     regulated charges 31.3 m CZK (network use, system services, POZE back); a forward purchase does not cover this part.
+  3. *Doporučení* (RECOMMENDATION) — fix only part of the volume (a full proxy hedge saved 4.1 m EUR in 2022 and lost
+     the same in 2023, query 12); buy in several steps (PXE CAL-23 traded at 984.00 EUR/MWh on 26 Aug 2022 and
+     241.98 on 28 Dec 2022, ADR-003); shift load out of the peak (load profile premium 11.9 m CZK in 2022).
+- **Footer** (8 pt grey): real data (OTE, ČNB, ERÚ — ČEZ Distribuce, VN 22 kV) vs simulated data (load 28 GWh/year),
+  prices without VAT and supplier margin, hedging uses a proxy price, not a real contract.
+- **Not built yet:** the yearly cost chart (stacked column power + regulated, 2020–2024) under the text boxes
+  (planned x 24, y 436, 1232 × 224). Navigation tiles dropped; a separate intro page „O projektu“ is planned instead
+  (question, why, how, list of pages) — it will be a sixth page before the Summary.
+
 ## Page 1 — Market
 
 **Question:** how extreme was the electricity market in each year?

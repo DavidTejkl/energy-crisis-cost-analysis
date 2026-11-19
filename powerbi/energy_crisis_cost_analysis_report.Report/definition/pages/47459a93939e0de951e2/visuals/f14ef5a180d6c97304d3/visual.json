@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "f14ef5a180d6c97304d3",
   "position": {
-    "x": 44,
-    "y": 24,
+    "x": 44.17201437891093,
+    "y": 24.54000798828385,
     "z": 3000,
-    "height": 44,
-    "width": 890,
+    "height": 42.945013979496736,
+    "width": 1019.637331913194,
     "tabOrder": 2000
   },
   "visual": {
@@ -19,9 +19,8 @@
               {
                 "textRuns": [
                   {
-                    "value": "2020–2022: náklad vzrostl ze 45 na 201 mil. Kč, regulované platby zůstaly kolem 19 mil.",
+                    "value": "Krize 2021–2023 stála firmu 385 mil. Kč místo 136 mil. při cenách roku 2020, tedy 248 mil. Kč navíc",
                     "textStyle": {
-                      "fontWeight": "bold",
                       "fontFamily": "Segoe (Bold)",
                       "fontSize": "16pt",
                       "color": "#ffffff"

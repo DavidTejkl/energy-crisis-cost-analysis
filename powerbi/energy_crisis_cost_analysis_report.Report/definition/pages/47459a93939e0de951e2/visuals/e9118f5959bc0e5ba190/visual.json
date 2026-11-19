@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "e9118f5959bc0e5ba190",
   "position": {
-    "x": 24.645396247328,
-    "y": 276.28786319372972,
+    "x": 24,
+    "y": 260,
     "z": 4000,
-    "height": 128,
-    "width": 413,
+    "height": 160,
+    "width": 400,
     "tabOrder": 4000
   },
   "visual": {
@@ -19,11 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Co to znamená ",
+                    "value": "Příčina růstu nákladu",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontFamily": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
-                      "fontSize": "10pt",
+                      "fontSize": "12pt",
                       "color": "#5edd92"
                     }
                   }
@@ -33,39 +32,54 @@
               {
                 "textRuns": [
                   {
-                    "value": "V r. 2022 stála elektřina firmu ",
+                    "value": " • V r. 2022 vzrostl náklad na silovou elektřinu o ",
                     "textStyle": {
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "200,9 mil. Kč",
+                    "value": "105,8 mil.",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": ", ",
+                    "value": " ",
                     "textStyle": {
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": "4,4×",
+                    "value": "Kč",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": " víc než v r. 2020. ",
+                    "value": ", z toho ",
                     "textStyle": {
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "104,8 mil. Kč",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": " způsobila cena na trhu. ",
+                    "textStyle": {
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   }
@@ -74,47 +88,69 @@
               {
                 "textRuns": [
                   {
+                    "value": " • Cena na trhu byla téměř ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "7× ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "vyšší než v r. 2020.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " • Silová elektřina tvořila ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
                     "value": "91 %",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": " nákladu tvořila silová elektřina z trhu, regulované platby se skoro nezměnily. Firma bere nejvíc eektřiny ve dne, kdy je dražší, a to ji v r. 2022 stálo ",
+                    "value": " celkového nákladu,                    regulované platby se skoro nezměnily. ",
                     "textStyle": {
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
-                  },
+                  }
+                ]
+              },
+              {
+                "textRuns": [
                   {
-                    "value": "11,9 mil. Kč",
+                    "value": " • Silnější koruna ušetřila ",
                     "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   },
                   {
-                    "value": " navíc. V r. 2024 vzrostly regulované platby na ",
-                    "textStyle": {
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": "31 mil. Kč",
+                    "value": "7,0 mil. Kč.",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
-                      "color": "#ffffff"
-                    }
-                  },
-                  {
-                    "value": " (dražší síť a systémové služby, návrat POZE).",
-                    "textStyle": {
-                      "fontSize": "9pt",
+                      "fontSize": "11pt",
                       "color": "#ffffff"
                     }
                   }
