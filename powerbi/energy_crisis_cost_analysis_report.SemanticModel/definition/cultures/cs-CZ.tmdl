@@ -5138,11 +5138,65 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_hourly_cost.karta__nejdražší_den": {
+			    "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "vw_hourly_cost",
 			          "ConceptualProperty": "Nejdražší den – silová elektřina (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší den – silová elektřina (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejdražší den – silová elektřina": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Nejdražší den (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejlevnější_měsíc_karta__spodní": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejlevnější měsíc karta - spodní"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejlevnější měsíc karta - spodní": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejlevnější měsíc karta spodní": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.karta__nejdražší_den": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Karta – nejdražší den"
 			        }
 			      },
 			      "State": "Generated",
@@ -5250,60 +5304,6 @@ cultureInfo cs-CZ
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.499
-			          }
-			        },
-			        {
-			          "Nejdražší den (mil. Kč)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "vw_monthly_cost.nejlevnější_měsíc_karta__spodní": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "vw_monthly_cost",
-			          "ConceptualProperty": "Nejlevnější měsíc karta - spodní"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "nejlevnější měsíc karta - spodní": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "nejlevnější měsíc karta spodní": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "vw_hourly_cost",
-			          "ConceptualProperty": "Karta – nejdražší den"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "nejdražší den karta – silová elektřina (mil. kč)": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "nejdražší den karta – silová elektřina": {
-			            "State": "Generated",
-			            "Weight": 0.75
 			          }
 			        }
 			      ]
@@ -5540,7 +5540,7 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_hourly_cost_has_nejdražší_den_karta__silová_elektřina_mil__kč": {
+			    "vw_hourly_cost_has_karta__nejdražší_den": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_hourly_cost"
 			      },
@@ -5551,9 +5551,9 @@ cultureInfo cs-CZ
 			            "Entity": "vw_hourly_cost"
 			          }
 			        },
-			        "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč": {
+			        "vw_hourly_cost.karta__nejdražší_den": {
 			          "Target": {
-			            "Entity": "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč"
+			            "Entity": "vw_hourly_cost.karta__nejdražší_den"
 			          }
 			        }
 			      },
@@ -5564,12 +5564,12 @@ cultureInfo cs-CZ
 			              "Role": "vw_hourly_cost"
 			            },
 			            "Object": {
-			              "Role": "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč"
+			              "Role": "vw_hourly_cost.karta__nejdražší_den"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_nejdražší_den_karta__silová_elektřina_mil__kč"
+			          "ID": "vw_hourly_costs_have_karta__nejdražší_den"
 			        }
 			      ]
 			    },
@@ -5606,7 +5606,7 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_hourly_cost_has_karta__nejdražší_den": {
+			    "vw_hourly_cost_has_nejdražší_den__silová_elektřina_mil__kč": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_hourly_cost"
 			      },
@@ -5617,9 +5617,9 @@ cultureInfo cs-CZ
 			            "Entity": "vw_hourly_cost"
 			          }
 			        },
-			        "vw_hourly_cost.karta__nejdražší_den": {
+			        "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč": {
 			          "Target": {
-			            "Entity": "vw_hourly_cost.karta__nejdražší_den"
+			            "Entity": "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč"
 			          }
 			        }
 			      },
@@ -5630,16 +5630,16 @@ cultureInfo cs-CZ
 			              "Role": "vw_hourly_cost"
 			            },
 			            "Object": {
-			              "Role": "vw_hourly_cost.karta__nejdražší_den"
+			              "Role": "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_hourly_costs_have_karta__nejdražší_den"
+			          "ID": "vw_hourly_costs_have_nejdražší_den__silová_elektřina_mil__kč"
 			        }
 			      ]
 			    },
-			    "dim_date_has_vw_hourly_cost_karta__nejdražší_den": {
+			    "dim_date_has_vw_hourly_cost_nejdražší_den__silová_elektřina_mil__kč": {
 			      "Binding": {
 			        "ConceptualEntity": "dim_date"
 			      },
@@ -5650,9 +5650,9 @@ cultureInfo cs-CZ
 			            "Entity": "dim_date"
 			          }
 			        },
-			        "vw_hourly_cost.karta__nejdražší_den": {
+			        "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč": {
 			          "Target": {
-			            "Entity": "vw_hourly_cost.karta__nejdražší_den"
+			            "Entity": "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč"
 			          }
 			        }
 			      },
@@ -5663,12 +5663,12 @@ cultureInfo cs-CZ
 			              "Role": "dim_date"
 			            },
 			            "Object": {
-			              "Role": "vw_hourly_cost.karta__nejdražší_den"
+			              "Role": "vw_hourly_cost.nejdražší_den__silová_elektřina_mil__kč"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dim_dates_have_karta__nejdražší_den"
+			          "ID": "dim_dates_have_nejdražší_den__silová_elektřina_mil__kč"
 			        }
 			      ]
 			    },
