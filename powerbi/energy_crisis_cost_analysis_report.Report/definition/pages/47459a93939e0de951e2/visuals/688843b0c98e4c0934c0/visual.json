@@ -23,12 +23,12 @@
                       "Entity": "vw_monthly_cost"
                     }
                   },
-                  "Property": "Celková cena elektřiny (Kč/kWh)"
+                  "Property": "Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
                 }
               },
-              "queryRef": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)",
-              "nativeQueryRef": "Celková cena 2022 (Kč/kWh)",
-              "displayName": "Celková cena 2022 (Kč/kWh)"
+              "queryRef": "vw_monthly_cost.Nejlevnější měsíc karta - celkový náklad (mil. Kč)",
+              "nativeQueryRef": "Nejlevnější měsíc celkově (mil. Kč)",
+              "displayName": "Nejlevnější měsíc celkově (mil. Kč)"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "vw_monthly_cost"
                   }
                 },
-                "Property": "Celková cena elektřiny (Kč/kWh)"
+                "Property": "Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -205,7 +205,7 @@
                       "Entity": "vw_monthly_cost"
                     }
                   },
-                  "Property": "Karta – cena 2020"
+                  "Property": "Nejlevnější měsíc karta - spodní"
                 }
               }
             }
@@ -218,8 +218,8 @@
                 }
               }
             ],
-            "metadata": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)",
-            "id": "field-692a0526-3c98-6f90-4a0a-feaf6b4b20a3",
+            "metadata": "vw_monthly_cost.Nejlevnější měsíc karta - celkový náklad (mil. Kč)",
+            "id": "field-d3eba8ac-dbc8-d1a6-d130-5c515630c639",
             "order": 0
           }
         }
@@ -394,20 +394,13 @@
             }
           },
           "selector": {
-            "metadata": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)"
+            "metadata": "vw_monthly_cost.Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
           }
         }
       ],
       "referenceLabelValue": [
         {
           "properties": {
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "valueFontColor": {
               "solid": {
                 "color": {
@@ -419,17 +412,10 @@
                   }
                 }
               }
-            },
-            "valueFontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
             }
           },
           "selector": {
-            "metadata": "vw_monthly_cost.Celková cena elektřiny (Kč/kWh)"
+            "metadata": "vw_monthly_cost.Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
           }
         }
       ]
@@ -462,63 +448,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a047786baca716b3913e",
+        "name": "2cf2d3b3066ab7c4b453",
         "ordinal": 0,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "d",
-              "Entity": "dim_date",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "d"
-                          }
-                        },
-                        "Property": "year"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "2022L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
-      {
-        "name": "893f380779032baae8e2",
-        "ordinal": 1,
         "field": {
           "Measure": {
             "Expression": {
@@ -526,7 +457,7 @@
                 "Entity": "vw_monthly_cost"
               }
             },
-            "Property": "Celková cena elektřiny (Kč/kWh)"
+            "Property": "Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
           }
         },
         "type": "Advanced"

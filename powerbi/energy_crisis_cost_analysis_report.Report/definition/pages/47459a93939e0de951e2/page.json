@@ -4,5 +4,47 @@
   "displayName": "Shrnutí",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "c4f90d75bee35370032c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "a0f5b420d276d5aa90c4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "e9118f5959bc0e5ba190",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "23418f7d18e9444de756",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "688843b0c98e4c0934c0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "dc8d68d2b3a100e02848",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "727b830a8ba004640453",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8f5e3a2601580020765a",
+      "target": "f14ef5a180d6c97304d3",
+      "type": "NoFilter"
+    }
+  ]
 }

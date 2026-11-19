@@ -23,12 +23,12 @@
                       "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Přirážka za diagram odběru (mil. Kč)"
+                  "Property": "Nejdražší den – silová elektřina (mil. Kč)"
                 }
               },
-              "queryRef": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-              "nativeQueryRef": "Přirážka za diagram 2022 (mil. Kč)",
-              "displayName": "Přirážka za diagram 2022 (mil. Kč)"
+              "queryRef": "vw_hourly_cost.Nejdražší den – silová elektřina (mil. Kč)",
+              "nativeQueryRef": "Nejdražší den (mil. Kč)",
+              "displayName": "Nejdražší den (mil. Kč)"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "vw_hourly_cost"
                   }
                 },
-                "Property": "Přirážka za diagram odběru (mil. Kč)"
+                "Property": "Nejdražší den – silová elektřina (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -196,21 +196,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-            "id": "field-7a0c3139-7006-fb8c-2312-4a2dbabf6948",
-            "order": 0
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -220,7 +205,7 @@
                       "Entity": "vw_hourly_cost"
                     }
                   },
-                  "Property": "Karta – přirážka popisek"
+                  "Property": "Karta – nejdražší den"
                 }
               }
             }
@@ -233,8 +218,8 @@
                 }
               }
             ],
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-            "id": "field-d2188d46-34b6-afae-c876-87e7422d0008",
+            "metadata": "vw_hourly_cost.Nejdražší den – silová elektřina (mil. Kč)",
+            "id": "field-3d466871-c7af-b44d-51a8-6faf920b418c",
             "order": 0
           }
         }
@@ -409,49 +394,13 @@
             }
           },
           "selector": {
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "' '"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)",
-            "id": "field-7a0c3139-7006-fb8c-2312-4a2dbabf6948"
+            "metadata": "vw_hourly_cost.Nejdražší den – silová elektřina (mil. Kč)"
           }
         }
       ],
       "referenceLabelValue": [
         {
           "properties": {
-            "valueFontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "valueFontColor": {
               "solid": {
                 "color": {
@@ -466,7 +415,7 @@
             }
           },
           "selector": {
-            "metadata": "vw_hourly_cost.Přirážka za diagram odběru (mil. Kč)"
+            "metadata": "vw_hourly_cost.Nejdražší den – silová elektřina (mil. Kč)"
           }
         }
       ]
@@ -499,63 +448,8 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a047786baca716b3913e",
+        "name": "2ac8a281b849a1317ab6",
         "ordinal": 0,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "d",
-              "Entity": "dim_date",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "d"
-                          }
-                        },
-                        "Property": "year"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "2022L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
-      {
-        "name": "24536dae15816044053a",
-        "ordinal": 1,
         "field": {
           "Measure": {
             "Expression": {
@@ -563,7 +457,7 @@
                 "Entity": "vw_hourly_cost"
               }
             },
-            "Property": "Přirážka za diagram odběru (mil. Kč)"
+            "Property": "Nejdražší den – silová elektřina (mil. Kč)"
           }
         },
         "type": "Advanced"

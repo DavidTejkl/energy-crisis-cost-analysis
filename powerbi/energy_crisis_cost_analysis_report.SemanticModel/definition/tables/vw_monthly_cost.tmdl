@@ -102,6 +102,47 @@ table vw_monthly_cost
 			"2024: " & FORMAT(reg2024, "0.00") & " mil. Kč · " & FORMAT(DIVIDE(reg2024,reg2022), "0.0") & "× více"
 		lineageTag: 459f3698-6f74-4416-b370-c43120994869
 
+	measure 'Nejdražší měsíc – celkový náklad (Kč)' = MAX(vw_monthly_cost[total_cost_czk])
+		formatString: #,0.00
+		lineageTag: 334522f5-98cf-4e27-a92a-9a92239fb142
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Nejdražší měsíc karta – celkový náklad (mil. Kč)' = DIVIDE([Nejdražší měsíc – celkový náklad (Kč)],1000000)
+		formatString: #,0.00
+		lineageTag: c28115e5-6115-4763-a335-e2f20adaaed9
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Nejdražší měsíc karta – spodni' = ```
+			
+			VAR cena = CALCULATE([Celková cena elektřiny (Kč/kWh)],vw_monthly_cost[year] = 2022,vw_monthly_cost[month] = 8)
+			RETURN 
+			"Srpen 2022" & " · " & FORMAT(cena, "0.00") & " Kč/kWh"
+			```
+		lineageTag: ac0be9a9-5366-4066-9d07-130518af83e3
+
+	measure 'Nejlevnější měsíc - celkový náklad' = ```
+			MIN(vw_monthly_cost[total_cost_czk]) 
+			```
+		lineageTag: ea6fc093-2f4b-4c7d-82c0-4dd77b6bb66d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nejlevnější měsíc karta - celkový náklad (mil. Kč)' = ```
+			DIVIDE([Nejlevnější měsíc - celkový náklad],1000000) 
+			```
+		lineageTag: 1445da4b-dd7e-4432-a8b3-285a1b101996
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nejlevnější měsíc karta - spodní' =
+			
+			VAR cena = CALCULATE([Celková cena elektřiny (Kč/kWh)],vw_monthly_cost[year] = 2020, vw_monthly_cost[month] = 4)
+			RETURN
+			"Duben 2020 (Covid)" & " · " & FORMAT(cena, "0.00") & " Kč/kWh"
+		lineageTag: bd979ffb-780a-48b6-bece-810eff7d6282
+
 	column date_key
 		dataType: int64
 		formatString: 0
@@ -214,6 +255,8 @@ table vw_monthly_cost
 		lineageTag: 38c9d17d-50d9-4741-9e31-0e659b8febfb
 		summarizeBy: sum
 		sourceColumn: total_cost_czk
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

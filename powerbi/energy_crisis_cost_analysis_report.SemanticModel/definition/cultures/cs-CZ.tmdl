@@ -2709,16 +2709,6 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Celková cena 2022 (Kč/kWh)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Celková cena (Kč/kWh)": {
 			            "State": "Suggested",
 			            "Source": {
@@ -4330,16 +4320,6 @@ cultureInfo cs-CZ
 			          }
 			        },
 			        {
-			          "Celkový náklad 2022 (mil. Kč)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Celkový náklad za rok (mil. Kč)": {
 			            "State": "Suggested",
 			            "Source": {
@@ -4431,16 +4411,6 @@ cultureInfo cs-CZ
 			          "přirážka za diagram odběru": {
 			            "State": "Generated",
 			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "Přirážka za diagram 2022 (mil. Kč)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        },
 			        {
@@ -5000,7 +4970,7 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_monthly_cost.karta_regulované_platby_2024": {
+			    "vw_monthly_cost.karta__regulované_platby_2024": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "vw_monthly_cost",
@@ -5010,8 +4980,330 @@ cultureInfo cs-CZ
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "karta regulované platby 2024": {
+			          "karta – regulované platby 2024": {
 			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejdražší_měsíc__celkový_náklad_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejdražší měsíc – celkový náklad (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší měsíc – celkový náklad (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejdražší měsíc – celkový náklad": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejdražší_měsíc_karta__celkový_náklad_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejdražší měsíc karta – celkový náklad (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší měsíc karta – celkový náklad (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejdražší měsíc karta – celkový náklad": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Nejdražší měsíc celkově (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejdražší_měsíc_karta__spodni": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejdražší měsíc karta – spodni"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší měsíc karta – spodni": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejlevnější_měsíc__celkový_náklad": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejlevnější měsíc - celkový náklad"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejlevnější měsíc - celkový náklad": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejlevnější měsíc celkový náklad": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejlevnější_měsíc_karta__celkový_náklad_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejlevnější měsíc karta - celkový náklad (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejlevnější měsíc karta - celkový náklad (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejlevnější měsíc karta - celkový náklad": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "nejlevnější měsíc karta celkový náklad (mil. kč)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Nejlevnější měsíc celkově (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.nejdražší_den__silová_elektřina_kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Nejdražší den – silová elektřina (Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší den – silová elektřina (kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejdražší den – silová elektřina": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.karta__nejdražší_den": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Nejdražší den – silová elektřina (mil. Kč)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "karta – nejdražší den": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "karta – nejdražší sett": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "karta – nejdražší warren": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "karta – nejdražší hole": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší lair": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší retreat": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší burrow": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší run": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší earth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší nest": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "karta – nejdražší cave": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "Nejdražší den (mil. Kč)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost.nejlevnější_měsíc_karta__spodní": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_monthly_cost",
+			          "ConceptualProperty": "Nejlevnější měsíc karta - spodní"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejlevnější měsíc karta - spodní": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejlevnější měsíc karta spodní": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_hourly_cost",
+			          "ConceptualProperty": "Karta – nejdražší den"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nejdražší den karta – silová elektřina (mil. kč)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nejdražší den karta – silová elektřina": {
+			            "State": "Generated",
+			            "Weight": 0.75
 			          }
 			        }
 			      ]
@@ -5248,7 +5540,40 @@ cultureInfo cs-CZ
 			        }
 			      ]
 			    },
-			    "vw_monthly_cost_has_karta_regulované_platby_2024": {
+			    "vw_hourly_cost_has_nejdražší_den_karta__silová_elektřina_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejdražší_den_karta__silová_elektřina_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_nejdražší_den_karta__silová_elektřina_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejlevnější_měsíc_karta__spodní": {
 			      "Binding": {
 			        "ConceptualEntity": "vw_monthly_cost"
 			      },
@@ -5259,9 +5584,9 @@ cultureInfo cs-CZ
 			            "Entity": "vw_monthly_cost"
 			          }
 			        },
-			        "vw_monthly_cost.karta_regulované_platby_2024": {
+			        "vw_monthly_cost.nejlevnější_měsíc_karta__spodní": {
 			          "Target": {
-			            "Entity": "vw_monthly_cost.karta_regulované_platby_2024"
+			            "Entity": "vw_monthly_cost.nejlevnější_měsíc_karta__spodní"
 			          }
 			        }
 			      },
@@ -5272,12 +5597,342 @@ cultureInfo cs-CZ
 			              "Role": "vw_monthly_cost"
 			            },
 			            "Object": {
-			              "Role": "vw_monthly_cost.karta_regulované_platby_2024"
+			              "Role": "vw_monthly_cost.nejlevnější_měsíc_karta__spodní"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "vw_monthly_costs_have_karta_regulované_platby_2024"
+			          "ID": "vw_monthly_costs_have_nejlevnější_měsíc_karta__spodní"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_karta__nejdražší_den": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.karta__nejdražší_den": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.karta__nejdražší_den"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.karta__nejdražší_den"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_karta__nejdražší_den"
+			        }
+			      ]
+			    },
+			    "dim_date_has_vw_hourly_cost_karta__nejdražší_den": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "vw_hourly_cost.karta__nejdražší_den": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.karta__nejdražší_den"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.karta__nejdražší_den"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_karta__nejdražší_den"
+			        }
+			      ]
+			    },
+			    "vw_hourly_cost_has_nejdražší_den__silová_elektřina_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_hourly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_hourly_cost": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost"
+			          }
+			        },
+			        "vw_hourly_cost.nejdražší_den__silová_elektřina_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejdražší_den__silová_elektřina_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_hourly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejdražší_den__silová_elektřina_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_hourly_costs_have_nejdražší_den__silová_elektřina_kč"
+			        }
+			      ]
+			    },
+			    "dim_date_has_vw_hourly_cost_nejdražší_den__silová_elektřina_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "vw_hourly_cost.nejdražší_den__silová_elektřina_kč": {
+			          "Target": {
+			            "Entity": "vw_hourly_cost.nejdražší_den__silová_elektřina_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "vw_hourly_cost.nejdražší_den__silová_elektřina_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_nejdražší_den__silová_elektřina_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejlevnější_měsíc_karta__celkový_náklad_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.nejlevnější_měsíc_karta__celkový_náklad_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.nejlevnější_měsíc_karta__celkový_náklad_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.nejlevnější_měsíc_karta__celkový_náklad_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_nejlevnější_měsíc_karta__celkový_náklad_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejlevnější_měsíc__celkový_náklad": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.nejlevnější_měsíc__celkový_náklad": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.nejlevnější_měsíc__celkový_náklad"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.nejlevnější_měsíc__celkový_náklad"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_nejlevnější_měsíc__celkový_náklad"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejdražší_měsíc_karta__spodni": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.nejdražší_měsíc_karta__spodni": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.nejdražší_měsíc_karta__spodni"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.nejdražší_měsíc_karta__spodni"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_nejdražší_měsíc_karta__spodni"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejdražší_měsíc_karta__celkový_náklad_mil__kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.nejdražší_měsíc_karta__celkový_náklad_mil__kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.nejdražší_měsíc_karta__celkový_náklad_mil__kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.nejdražší_měsíc_karta__celkový_náklad_mil__kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_nejdražší_měsíc_karta__celkový_náklad_mil__kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_nejdražší_měsíc__celkový_náklad_kč": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.nejdražší_měsíc__celkový_náklad_kč": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.nejdražší_měsíc__celkový_náklad_kč"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.nejdražší_měsíc__celkový_náklad_kč"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_nejdražší_měsíc__celkový_náklad_kč"
+			        }
+			      ]
+			    },
+			    "vw_monthly_cost_has_karta__regulované_platby_2024": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_monthly_cost"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_monthly_cost": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost"
+			          }
+			        },
+			        "vw_monthly_cost.karta__regulované_platby_2024": {
+			          "Target": {
+			            "Entity": "vw_monthly_cost.karta__regulované_platby_2024"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_monthly_cost"
+			            },
+			            "Object": {
+			              "Role": "vw_monthly_cost.karta__regulované_platby_2024"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_monthly_costs_have_karta__regulované_platby_2024"
 			        }
 			      ]
 			    },

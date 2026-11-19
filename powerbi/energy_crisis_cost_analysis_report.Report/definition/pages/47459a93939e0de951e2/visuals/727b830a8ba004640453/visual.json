@@ -320,6 +320,20 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_monthly_cost.Regulované platby (mil. Kč)"
+          }
         }
       ],
       "cardCalloutArea": [

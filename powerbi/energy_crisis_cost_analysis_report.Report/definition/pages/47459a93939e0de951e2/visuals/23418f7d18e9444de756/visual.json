@@ -23,12 +23,12 @@
                       "Entity": "vw_monthly_cost"
                     }
                   },
-                  "Property": "Celkový náklad na elektřinu (mil. Kč)"
+                  "Property": "Nejdražší měsíc karta – celkový náklad (mil. Kč)"
                 }
               },
-              "queryRef": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-              "nativeQueryRef": "Celkový náklad 2022 (mil. Kč)",
-              "displayName": "Celkový náklad 2022 (mil. Kč)"
+              "queryRef": "vw_monthly_cost.Nejdražší měsíc karta – celkový náklad (mil. Kč)",
+              "nativeQueryRef": "Nejdražší měsíc celkově (mil. Kč)",
+              "displayName": "Nejdražší měsíc celkově (mil. Kč)"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "vw_monthly_cost"
                   }
                 },
-                "Property": "Celkový náklad na elektřinu (mil. Kč)"
+                "Property": "Nejdražší měsíc karta – celkový náklad (mil. Kč)"
               }
             },
             "direction": "Descending"
@@ -196,21 +196,6 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4e7d4b69-2f4d-9bc9-1329-e1a12c350064",
-            "order": 0
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -220,7 +205,7 @@
                       "Entity": "vw_monthly_cost"
                     }
                   },
-                  "Property": "Karta – náklad 2020 a násobek"
+                  "Property": "Nejdražší měsíc karta – spodni"
                 }
               }
             }
@@ -233,8 +218,8 @@
                 }
               }
             ],
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4b5546a7-818c-9ef5-3f9c-ccf72ab6c8aa",
+            "metadata": "vw_monthly_cost.Nejdražší měsíc karta – celkový náklad (mil. Kč)",
+            "id": "field-e1831e12-ee7e-22bd-f040-0ccfab333f2d",
             "order": 0
           }
         }
@@ -335,6 +320,20 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_monthly_cost.Nejdražší měsíc karta – celkový náklad (mil. Kč)"
+          }
         }
       ],
       "cardCalloutArea": [
@@ -403,96 +402,23 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Minulý rok'"
-                }
-              }
-            },
-            "titleBold": {
-              "expr": {
-                "Literal": {
                   "Value": "false"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4e7d4b69-2f4d-9bc9-1329-e1a12c350064"
-          }
-        },
-        {
-          "properties": {
-            "titleContentType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'custom'"
-                }
-              }
-            },
-            "titleText": {
-              "expr": {
-                "Literal": {
-                  "Value": "''"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4b5546a7-818c-9ef5-3f9c-ccf72ab6c8aa"
+            "metadata": "vw_monthly_cost.Nejdražší měsíc karta – celkový náklad (mil. Kč)"
           }
         }
       ],
       "referenceLabelValue": [
         {
           "properties": {
-            "valueBold": {
+            "valueFontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4e7d4b69-2f4d-9bc9-1329-e1a12c350064"
-          }
-        },
-        {
-          "properties": {
-            "valueBold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "11D"
                 }
               }
             },
@@ -507,25 +433,10 @@
                   }
                 }
               }
-            },
-            "valueFontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "valueFontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
             }
           },
           "selector": {
-            "metadata": "vw_monthly_cost.Celkový náklad na elektřinu (mil. Kč)",
-            "id": "field-4b5546a7-818c-9ef5-3f9c-ccf72ab6c8aa"
+            "metadata": "vw_monthly_cost.Nejdražší měsíc karta – celkový náklad (mil. Kč)"
           }
         }
       ]
@@ -543,6 +454,32 @@
             }
           }
         }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -551,7 +488,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "3dd4f2ee92a3879cd8c2",
+        "name": "32efb885807212a09160",
         "ordinal": 0,
         "field": {
           "Measure": {
@@ -560,65 +497,10 @@
                 "Entity": "vw_monthly_cost"
               }
             },
-            "Property": "Celkový náklad na elektřinu (mil. Kč)"
+            "Property": "Nejdražší měsíc karta – celkový náklad (mil. Kč)"
           }
         },
         "type": "Advanced"
-      },
-      {
-        "name": "a047786baca716b3913e",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "d",
-              "Entity": "dim_date",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "d"
-                          }
-                        },
-                        "Property": "year"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "2022L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"

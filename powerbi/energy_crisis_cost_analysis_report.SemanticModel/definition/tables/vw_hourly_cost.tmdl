@@ -154,6 +154,21 @@ table vw_hourly_cost
 	measure 'Karta – přirážka popisek' = "odběr v dražších denních hodinách"
 		lineageTag: ba90470a-acb4-499a-9523-234eff528560
 
+	measure 'Nejdražší den – silová elektřina (Kč)' = MAXX( VALUES(dim_date[full_date]), [Náklad na silovou elektřinu (Kč)] )
+		lineageTag: e0fb44ea-d75a-4b07-b1b2-d0ec842e24a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nejdražší den – silová elektřina (mil. Kč)' = DIVIDE([Nejdražší den – silová elektřina (Kč)],1000000)
+		lineageTag: ff947372-fa70-4fd3-ad52-9ca1d33a7f7b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Karta – nejdražší den' =
+			
+			"30. 8. 2022 · pouze silová elektřina"
+		lineageTag: bbaae76a-b550-4893-ba8a-e2622ebc073d
+
 	column date_key
 		dataType: int64
 		formatString: 0
