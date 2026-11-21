@@ -321,51 +321,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0175171ae20c9266b60d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "month_start"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "617f98054a86bc897d32",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_monthly_cost"
-              }
-            },
-            "Property": "Regulované platby (Kč)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ef6ad50376874dbe33b7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Náklad na silovou elektřinu (Kč)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

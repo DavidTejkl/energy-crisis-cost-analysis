@@ -4,10 +4,10 @@
   "position": {
     "x": 24.09795678233052,
     "y": 436.77546667974065,
-    "z": 9003,
+    "z": 12000,
     "height": 241.98364935590229,
     "width": 1232.0080404966477,
-    "tabOrder": 5003
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "columnChart",
@@ -341,51 +341,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "29517804aca88579d6b8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_monthly_cost"
-              }
-            },
-            "Property": "Regulované platby (Kč)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "89b2089edb923c959a17",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_hourly_cost"
-              }
-            },
-            "Property": "Náklad na silovou elektřinu (Kč)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6a0c3116ccd17866ae12",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

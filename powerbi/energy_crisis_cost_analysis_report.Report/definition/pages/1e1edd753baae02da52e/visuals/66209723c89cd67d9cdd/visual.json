@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "66209723c89cd67d9cdd",
+  "position": {
+    "x": 270,
+    "y": 65.714285714285722,
+    "z": 2000,
+    "height": 25.767008387698045,
+    "width": 1009.8213287178804,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Analýza nákladů na elektřinu modelové české firmy · 2020–2024 · zdroje OTE, ČNB, ERÚ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#bfbfbf"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
