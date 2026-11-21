@@ -10,7 +10,8 @@ in 30 seconds from the Summary page and finds the evidence for it in the next fo
 
 ## The story
 
-The report is one story in five chapters. Read only the page titles and you have the whole result.
+The report is one story in five chapters, opened by an intro page „O projektu“ (added 2026-11-21, see below).
+Read only the page titles and you have the whole result.
 
 | # | Page | Reader's question | Title for 2022 (dynamic) |
 |---|---|---|---|
@@ -191,7 +192,33 @@ The plan above was changed while building the page:
   (query 08), power part 76 · 182 · 71 · 64 mil. Kč (2021–2024).
 - **Interactions:** the chart filters nothing (NoFilter towards all 4 cards, 3 text boxes and the footer) — otherwise a
   click on 2020 would change the card value while the fixed reference line still says „Srpen 2022“.
-- Still open: intro page „O projektu“.
+- Intro page „O projektu“ built 2026-11-21 (section below).
+
+## Intro page — „O projektu“ (built 2026-11-21)
+
+**Purpose:** the first page a reader opens. It says what the report is about, which questions it answers, how it
+was built and lets the reader jump to any page. No charts, no numbers to check except the facts named in the text.
+**Order of the pages:** O projektu · Shrnutí · Trh · Náklad firmy · Příčiny změny · Zajištění ceny (the test page
+`KONTROLA` was deleted on 2026-11-21; the consistency check 4.7 compares the visuals with SQL directly).
+
+**Look:** light page (#F3F4F6) with the graphite header of the other pages. Every content box is white with a grey
+border (#D7DBE0) and the same mint top edge as the KPI cards: a mint rounded shape (#5EDD92) 4 px higher behind the
+box. Headings 12 pt bold graphite (#1E1F22), body 10 pt #374151. Mint is never used as text on white (contrast 1.7 : 1).
+
+| Block | Position (x, y, w × h) | Content |
+|---|---|---|
+| Header | 24, 20, 1232 × 72 | Title „Kolik stála energetická krize 2021–2023 průmyslovou firmu a dalo se jí bránit?“, subtitle „Analýza nákladů na elektřinu modelové české firmy · 2020–2024 · zdroje OTE, ČNB, ERÚ“ |
+| O čem report je | 24, 107, 1232 × 125 | One paragraph in full sentences: what the report shows, the OTE day-ahead market, power vs regulated charges (set by ERÚ and law, not negotiable), the load profile premium, what the hedging page shows |
+| Na co report odpovídá | 24, 248, 608 × 140 | The 4 business questions of the brief as bullets |
+| Proč je to důležité | 648, 248, 608 × 140 | 7× market price 2022 vs 2020 · budget risk for the CFO · how much to fix in advance for purchasing |
+| Postup projektu | 24, 404, 1232 × 150 | 5 bullets: Data (Python) · Databáze (SQL Server) · Analýza (SQL) · Report (Power BI) · Ověřitelnost |
+| Page navigator | 24, 570, 1232 × 44 | Built-in page navigator (all pages). Selected page: graphite fill, mint text and outline; others white with graphite text and grey outline; hover #F3F4F6, press #E5E7EB; rounded 10 |
+| Footer | 24, 652, 1232 × 60 | Real data vs simulated data (as on the Summary), prices without VAT and supplier margin, hedging uses a proxy price; author and repo link |
+
+Numbers named on the page come from earlier checks: 7× = 6,083 / 887 CZK/MWh (page Trh), 7 tables and 43,848 hours
+(load), 18 DQ checks (`dq_results` per run), 6 ADRs. The navigator is only on this page (the other pages keep their
+year slicers in the header). In Power BI Desktop a navigator button works with Ctrl + click; in the published report
+with a plain click.
 
 ## Page 1 — Market
 

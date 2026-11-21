@@ -75,5 +75,5 @@
   nebo z nich odvozených dat je zakázané → nahrazen repo sazbou.
 
 ## Rozsah
-- Ano: pipeline, hvězdicové schéma, DQ testy, inkrementální načítání, analytické dotazy, Power BI s 5 stránkami (shrnutí + 4 detailní), README CZ/EN.
+- Ano: pipeline, hvězdicové schéma, DQ testy, inkrementální načítání, analytické dotazy, Power BI se 6 stránkami (úvod + shrnutí + 4 detailní), README CZ/EN.
 - Ne: data z Kaggle, čtení PDF faktur, Airflow, Docker, dbt, Spark, cloudová DB.
