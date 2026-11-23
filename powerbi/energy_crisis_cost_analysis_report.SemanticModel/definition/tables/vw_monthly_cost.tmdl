@@ -156,19 +156,19 @@ table vw_monthly_cost
 		dataType: int64
 		formatString: 0
 		lineageTag: dd4f6b52-b1d8-4135-8ea3-55cdaeeede14
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column month
 		dataType: int64
 		formatString: 0
 		lineageTag: 0e845f33-08e0-4a7a-8167-756e3206c74f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: month
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column load_mwh
 		dataType: double

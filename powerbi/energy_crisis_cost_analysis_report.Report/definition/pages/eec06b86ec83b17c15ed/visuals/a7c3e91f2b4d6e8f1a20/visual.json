@@ -57,18 +57,16 @@
               {
                 "textRuns": [
                   {
-                    "value": "Proč chybí rok 2020: ",
+                    "value": "Proč chybí rok 2020 a PXE 2021",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "9pt",
-                      "color": "#1e1f22"
+                      "fontSize": "9pt"
                     }
                   },
                   {
-                    "value": "pro jeho zajištění by byla potřeba cena z roku 2019, která v datech není.",
+                    "value": ": chybí cena z roku 2019 a výroční zpráva PXE za rok 2020 neuvádí cenu na rok 2021.",
                     "textStyle": {
-                      "fontSize": "9pt",
-                      "color": "#374151"
+                      "fontSize": "9pt"
                     }
                   }
                 ]

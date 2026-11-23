@@ -94,10 +94,10 @@ table vw_yearly_hedging
 		dataType: int64
 		formatString: 0
 		lineageTag: 332bf974-aa6d-4066-b587-9ae561e0dc68
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column volume_mwh
 		dataType: double
@@ -122,30 +122,30 @@ table vw_yearly_hedging
 	column market_price_eur_mwh
 		dataType: double
 		lineageTag: 909a9d18-a0d5-40a4-93d7-e9b604ba5076
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: market_price_eur_mwh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column hedge_price_eur_mwh
 		dataType: double
 		lineageTag: 3101f08c-1e8f-4c7d-92fb-b15662621d2d
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: hedge_price_eur_mwh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column pxe_price_eur_mwh
 		dataType: double
 		lineageTag: 0515f6b6-c98b-4a2b-a2e6-c52065d62c10
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: pxe_price_eur_mwh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

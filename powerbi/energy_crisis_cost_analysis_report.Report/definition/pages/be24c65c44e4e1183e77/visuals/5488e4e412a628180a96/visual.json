@@ -100,7 +100,7 @@
                     }
                   },
                   {
-                    "value": "Hlavní riziko je cena na trhu",
+                    "value": "Hlavní riziko je cena na trhu.",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "9pt",
@@ -108,7 +108,7 @@
                     }
                   },
                   {
-                    "value": " a proti ní se firma může zajistit nákupem předem. ",
+                    "value": " Nákup předem ho nezruší, jen rozloží do delšího období. ",
                     "textStyle": {
                       "fontSize": "9pt",
                       "color": "#ffffff"

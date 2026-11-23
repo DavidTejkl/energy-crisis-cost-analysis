@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Skutečný náklad: 95,72 (2021) + 200,92 (2022) + 87,93 (2023) = 384,57 mil. Kč · Při cenách roku 2020: 3 × 45,46 = 136,38 mil. Kč",
+                    "value": "Skutečný náklad: 95,72 + 200,92 + 87,93 = 384,57 mil. Kč · Při cenách roku 2020 (levný covidový rok, horní odhad): 3 × 45,46 = 136,39 mil. Kč",
                     "textStyle": {
                       "fontSize": "12pt",
-                      "color": "#bfbfbf"
+                      "color": "#bdbdbd"
                     }
                   }
                 ]

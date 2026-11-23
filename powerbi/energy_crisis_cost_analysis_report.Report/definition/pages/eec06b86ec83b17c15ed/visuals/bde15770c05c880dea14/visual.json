@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Vyplatí se koupit část elektřiny předem? Zdroje: OTE, PXE · simulovaný odběr 28 GWh/rok",
+                    "value": "Vyplatí se koupit část elektřiny předem? Zdroje: OTE, PXE · simulovaný odběr 28 GWh/rok · v EUR, měně burzy",
                     "textStyle": {
                       "fontSize": "12pt",
                       "color": "#bfbfbf"

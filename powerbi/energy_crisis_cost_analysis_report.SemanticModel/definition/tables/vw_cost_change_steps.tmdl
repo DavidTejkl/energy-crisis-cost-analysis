@@ -50,10 +50,10 @@ table vw_cost_change_steps
 		dataType: int64
 		formatString: 0
 		lineageTag: fb228d17-06d7-4560-b28a-c263b549243f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column step_order
 		dataType: int64

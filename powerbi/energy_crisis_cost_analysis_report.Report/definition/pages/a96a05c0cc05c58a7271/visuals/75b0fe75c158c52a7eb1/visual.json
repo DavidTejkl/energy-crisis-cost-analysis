@@ -210,7 +210,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tržní ceny se v letech 2021–2022 znásobily a v roce 2023 spadly zpět'"
+                  "Value": "'Tržní ceny se v letech 2021–2022 znásobily a v roce 2023 výrazně klesly'"
                 }
               }
             },
@@ -285,5 +285,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e05af88aff04d43aaf4b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "month_start"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3a37cca8dc8b399d1cb0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Průměrná tržní cena (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

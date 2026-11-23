@@ -190,30 +190,30 @@ table vw_hourly_cost
 	column price_eur_mwh
 		dataType: double
 		lineageTag: 3d0719c8-2983-4a6d-a8e0-06371918a60c
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: price_eur_mwh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column rate_czk_per_eur
 		dataType: double
 		lineageTag: 602a588e-bf62-455f-84aa-a79c7164c74d
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: rate_czk_per_eur
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column price_czk_mwh
 		dataType: double
 		lineageTag: d033c39e-f4a2-49d9-bcae-b9985a1fc6f4
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: price_czk_mwh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

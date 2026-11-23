@@ -144,5 +144,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "564401524d4d3c61f5f5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Podíl zajištění"
+              }
+            },
+            "Property": "Podíl zajištění"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

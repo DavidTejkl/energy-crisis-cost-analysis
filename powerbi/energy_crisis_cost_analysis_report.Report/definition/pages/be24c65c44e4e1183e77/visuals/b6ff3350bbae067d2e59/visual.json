@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "vw_hourly_cost.Změna nákladu na silovou elektřinu (mil. Kč)",
-              "nativeQueryRef": "Změna nákladů (mil. Kč)",
-              "displayName": "Změna nákladů (mil. Kč)"
+              "nativeQueryRef": "Silová el. – změna (mil. Kč)",
+              "displayName": "Silová el. – změna (mil. Kč)"
             }
           ]
         }

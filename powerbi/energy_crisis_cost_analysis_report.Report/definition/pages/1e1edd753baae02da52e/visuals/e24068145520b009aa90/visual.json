@@ -121,7 +121,7 @@
                     }
                   },
                   {
-                    "value": " celý postup se spustí jedním příkazem, GitHub Actions ověřuje výsledky, neobvyklé hodnoty jsou dohledané ve zdroji.",
+                    "value": " celý postup se spustí jedním příkazem, GitHub Actions ověřuje stažení a čištění dat, neobvyklé hodnoty jsou dohledané ve zdroji.",
                     "textStyle": {
                       "fontSize": "11pt",
                       "color": "#374151"

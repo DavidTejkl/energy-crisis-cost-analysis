@@ -32,55 +32,28 @@
               {
                 "textRuns": [
                   {
-                    "value": "• V r. 2022 byla elektřina na trhu ",
-                    "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#374151"
-                    }
-                  },
-                  {
-                    "value": "7×",
-                    "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#1e1f22"
-                    }
-                  },
-                  {
-                    "value": " ",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "11pt",
-                      "color": "#374151"
-                    }
-                  },
-                  {
-                    "value": "dražší než v r. 2020. ",
-                    "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#374151"
-                    }
+                    "value": "• Cena elektřiny na trhu byla v r. 2022 7× vyšší než v r. 2020. "
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "• Finanční ředitel potřebuje vědět, jak velké riziko nese rozpočet. ",
-                    "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#374151"
-                    }
+                    "value": "• Náklad firmy na elektřinu vzrostl ze 45 na 201 mil. Kč za rok. "
                   }
                 ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "• Nákup rozhoduje, kolik elektřiny na další rok fixovat předem.",
-                    "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#374151"
-                    }
+                    "value": "• Finanční ředitel: jak velké riziko nese rozpočet na energie. "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Nákup: kolik elektřiny na další rok koupit předem za pevnou cenu."
                   }
                 ]
               }
