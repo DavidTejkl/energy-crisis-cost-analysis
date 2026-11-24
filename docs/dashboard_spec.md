@@ -220,6 +220,22 @@ Numbers named on the page come from earlier checks: 7× = 6,083 / 887 CZK/MWh (p
 year slicers in the header). In Power BI Desktop a navigator button works with Ctrl + click; in the published report
 with a plain click.
 
+**Back button (added 2026-11-24):** every other page has a „Zpět na úvod“ button (page navigation → O projektu) at
+x 24, y 690, 109 × 26, styled like the selected navigator tile (graphite fill #1E1F22, mint bold text and outline
+#5EDD92, hover #33353A). To make room, all five pages were re-laid out: KPI cards at y 100, content ends at y 684
+(Summary footer at 688).
+
+## Sharing (step 4.8, 2026-11-24)
+
+- `docs/report/energy_crisis_cost_analysis_report_final.pdf` — PDF export of all 6 pages (slicers on 2022, hedging slider
+  at 50 %).
+- `docs/screenshots/report/report_01_o_projektu.png` … `report_06_zajisteni_ceny.png` — page images rendered from the PDF.
+- `docs/report/energy_crisis_cost_analysis_demo_1920.mp4` — 2 min 15 s screen recording of the published report
+  (1920 × 1080, H.264, 7.2 MB, under the 10 MB limit for a video in a GitHub README).
+- Public link (Publish to web, no sign-in) from a Power BI Pro trial: it works only while the author holds a Pro licence
+  (trial ends around 2027-01-22). The PDF, images and video are the permanent way to show the report; a `.pbix` with
+  the imported data is planned as a GitHub Release attachment (not in git).
+
 ## Page 1 — Market
 
 **Question:** how extreme was the electricity market in each year?
