@@ -3,7 +3,7 @@
   "name": "16171530041a048e3732",
   "position": {
     "x": 698,
-    "y": 458,
+    "y": 438,
     "z": 11000,
     "height": 246,
     "width": 558,
@@ -502,6 +502,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "27c201b65951ab3ade95",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "full_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3f02a63fdc112e1c52d3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "hour_of_day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "099f2e08b2483cddd0a1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_hourly_cost"
+              }
+            },
+            "Property": "Nejvyšší hodinová cena (Kč/MWh)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

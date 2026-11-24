@@ -769,23 +769,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "75306e63471910d449c1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "year"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "b592d8b878da4b5bd705",
   "position": {
-    "x": 29.448009585940621,
-    "y": 251.53508187990948,
+    "x": 27.582521331934636,
+    "y": 242.58250781359837,
     "z": 9000,
-    "height": 96.654625982465376,
-    "width": 327.13873409449815,
+    "height": 97,
+    "width": 327,
     "tabOrder": 7000
   },
   "visual": {
@@ -144,23 +144,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "564401524d4d3c61f5f5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Podíl zajištění"
-              }
-            },
-            "Property": "Podíl zajištění"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
