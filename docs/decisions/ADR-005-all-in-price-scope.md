@@ -1,6 +1,8 @@
-# ADR-005: All-in price — ČEZ Distribuce area, VN voltage level, no VAT, 2023 price cap per month
+# ADR-005: All-in price (ČEZ Distribuce area, VN voltage level, no VAT, 2023 price cap per month)
+
+**English** · [Čeština](ADR-005-all-in-price-scope_cz.md)
+
 - Date: 2026-10-14
-- Status: accepted
 
 ## Context
 Business question 1 asks what electricity really cost per kWh: the power price from the market plus
@@ -30,24 +32,25 @@ Facts found on 2026-10-14:
 - Price cap: ignored · applied per hour · applied to the monthly average power price.
 
 ## Decision
-- **Distribution area: ČEZ Distribuce** — the largest area, covering the Olomouc region.
-- **Voltage level: VN** — typical for an energy-intensive plant with three shifts.
-- **Without VAT** — the company is a VAT payer and deducts it, so VAT is not a cost for the CFO.
-- **No supplier margin** — no public value exists; inventing one would add a new fictional
+- **Distribution area: ČEZ Distribuce**, the largest area, covering the Olomouc region.
+- **Voltage level: VN**, typical for an energy-intensive plant with three shifts.
+- **Without VAT**: the company is a VAT payer and deducts it, so VAT is not a cost for the CFO.
+- **No supplier margin**: no public value exists, and inventing one would add a new fictional
   assumption. Findings state that the all-in price excludes the supplier's margin.
 - **2023 price cap: applied to the monthly volume-weighted power price** (ASSUMPTION): the company pays
   `MIN(monthly power price, 5,000 CZK/MWh)` for each month of 2023.
 
-Both the area and the voltage level extend the SCENARIO in `docs/01_project_brief.md` (approved by
+Both the area and the voltage level extend the SCENARIO in [the brief](../01_project_brief.md) (approved by
 the project owner on 2026-10-14).
 
 ## Consequences
 - Tariff values (2020–2024) are collected from the ERÚ price decisions for ČEZ Distribuce, VN, into
-  `config/` with `valid_from` / `valid_to` (ROADMAP 2.2). Nothing is hard-coded in scripts.
+  [config/tariffs.csv](../../config/tariffs.csv) with `valid_from` / `valid_to`. Nothing is hard-coded in scripts.
 - The VN distribution price includes a monthly charge for reserved capacity, so it needs the maximum
-  load of the simulated profile (ROADMAP 2.3).
-- With the monthly rule and the 2023 prices, the cap is expected not to bind in any month. Query 08
-  (ROADMAP 2.5) checks this with the company's volume-weighted price. If a month is above the cap,
-  this ADR is revisited, including the 80 % volume rule.
+  load of the simulated profile (reserved capacity 5 MW, see the [methodology](../methodology.md)).
+- With the monthly rule and the 2023 prices, the cap was expected not to bind in any month. Query
+  [sql/08_query_allin_price.sql](../../sql/08_query_allin_price.sql) checked this with the company's volume-weighted price on 2026-10-18: the highest monthly power price
+  in 2023 was 3,572.47 CZK/MWh (January), so the cap never applied and the 80 % volume rule did not
+  need to be modelled. The query therefore has no cap column.
 - The all-in price is a model price for one area and one voltage level, not a price for every Czech
   company. Findings say so.

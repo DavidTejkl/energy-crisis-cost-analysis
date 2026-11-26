@@ -1,6 +1,8 @@
-# ADR-004: Cost variance split — volume, market price and load profile effect
+# ADR-004: Cost variance split (volume, market price and load profile effect)
+
+**English** · [Čeština](ADR-004-cost-variance-split_cz.md)
+
 - Date: 2026-10-14
-- Status: accepted
 
 ## Context
 Business question 2 asks why the electricity cost changed year over year: because of the market price,
@@ -8,7 +10,7 @@ the volume, or the load profile (in which hours the company takes its electricit
 
 The first draft of the split worked with yearly volume and a yearly average price only. Hourly
 information was lost, so the load profile effect was 0 by construction and the question could not be
-answered. ROADMAP 2.7 requires that the effects sum exactly to the total change and that the load
+answered. The new split must meet two rules: the effects sum exactly to the total change, and the load
 profile effect is not zero by construction.
 
 Definitions (per year, from hourly data):
@@ -16,15 +18,15 @@ Definitions (per year, from hourly data):
 - `C` = power cost = `SUM(volume_h × price_h)`
 - `Pw` = volume-weighted price the company paid = `C / V`
 - `Pb` = market base price = simple average of all hourly prices (a flat profile, same as the
-  base load proxy in ADR-003)
+  base load proxy in [ADR-003](ADR-003-forward-price-proxy.md))
 - `S` = load profile premium = `Pw − Pb`. Positive: the company takes more in expensive hours.
   Negative: more in cheap hours. A flat profile has `S = 0`.
 
 So `C = V × Pw = V × (Pb + S)`.
 
 ## Options considered
-1. Volume and average price only — load profile effect always 0, rejected.
-2. Hour-by-hour split (volume and price change in every hour) — exact, but hard to explain and the
+1. Volume and average price only. The load profile effect is always 0, rejected.
+2. Hour-by-hour split (volume and price change in every hour). Exact, but hard to explain, and the
    result depends on 8,760 small terms.
 3. Split through the load profile premium `S` with a fixed order: volume, then market price,
    then load profile.
@@ -53,8 +55,9 @@ the company pays 25 EUR/MWh more than the market average, because it takes most 
 in the expensive hour.
 
 The split is calculated in EUR, so the exchange rate does not enter it. The EUR/CZK effect is split
-separately in query 11 (ROADMAP 2.8). It covers the power (commodity) cost only; regulated components
-are part of the all-in price (ADR-005).
+separately ([ADR-006](ADR-006-fx-effect-split.md)). It covers the power (commodity) cost only.
+Regulated components are part of the all-in price ([ADR-005](ADR-005-all-in-price-scope.md)). The split is
+computed by [sql/10_query_variance_split.sql](../../sql/10_query_variance_split.sql).
 
 ## Consequences
 - The order matters: volume is valued at the old price, the price change at the new volume. Another
@@ -64,7 +67,8 @@ are part of the all-in price (ADR-005).
   hourly price pattern changes (for example cheaper midday hours with more solar). This is intended:
   it measures how the company's profile fits the market's price pattern.
 - The company's load profile is SIMULATED (`is_simulated = 1`). The volume effect and the load
-  profile effect therefore reflect the generator's assumptions (`docs/methodology.md`), not a real
-  company. The market price effect uses real OTE prices (FACT). Findings must state this.
-- Checks for query 10: the three effects sum to `C1 − C0` for every pair of years, and the load
-  profile effect is not 0 for the simulated profile.
+  profile effect therefore reflect the generator's assumptions ([methodology](../methodology.md)), not a
+  real company. The market price effect uses real OTE prices (FACT). Findings must state this.
+- Checks in query 10: the three effects sum to `C1 − C0` for every pair of years, and the load
+  profile effect is not 0 for the simulated profile. SQL Server rounds `Pw` to 6 decimals in the division,
+  so the check difference is at most 0.03 EUR, not exactly 0. This is rounding, not a gap in the method.

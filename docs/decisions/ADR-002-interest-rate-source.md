@@ -1,12 +1,14 @@
-# ADR-002: Interest rate context — ČNB 2-week repo rate instead of PRIBOR; ČEZ share price to backlog
+# ADR-002: Interest rate context (ČNB 2-week repo rate instead of PRIBOR, ČEZ share price to the backlog)
+
+**English** · [Čeština](ADR-002-interest-rate-source_cz.md)
+
 - Date: 2026-09-21
-- Status: accepted
 
 ## Context
 The brief listed two optional context sources: PRIBOR (interbank interest rate) and the ČEZ share price.
 Neither answers one of the four business questions directly, and each extra source adds extract,
 transform, a table, DQ tests and documentation. An interest rate still helps the story for the CFO
-(cost of money rose together with energy) and gives context to the EUR/CZK movement (question 3).
+(the cost of money rose together with energy) and gives context to the EUR/CZK movement (question 3).
 
 Facts found on 2026-09-21:
 - The ČNB PRIBOR page states that the rates are published with the consent of the administrator
@@ -28,6 +30,7 @@ Option 3 with the ČNB 2-week repo rate instead of PRIBOR. The ČEZ share price 
 
 ## Consequences
 - The repo rate is stored as validity periods (valid from a date until the next change), the same
-  pattern as the ERÚ tariffs; the rate valid on 1 January 2020 was set on 3 May 2019.
+  pattern as the ERÚ tariffs. The rate valid on 1 January 2020 was set on 3 May 2019.
 - It is context only: any link between the repo rate and EUR/CZK is described as correlation, not cause.
-- The repo rate is the central bank's policy rate, not a market lending rate; findings must say so.
+- The repo rate is the central bank's policy rate, not a market lending rate. Findings must say so.
+- So far the repo rate is loaded and tested, but no analysis query or report page uses it.
