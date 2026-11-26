@@ -1,452 +1,398 @@
-# Dashboard specification — Power BI report
+# Power BI report specification
 
-Version 2 (step 4.0b). Requirements and user stories: [requirements.md](requirements.md).
-KPI formulas: [kpi_definitions.md](kpi_definitions.md). Every KPI on a page links to its definition there.
+**English** · [Čeština](dashboard_spec_cz.md)
+
+This file describes how I built the report and why. Requirements and user stories are in
+[requirements.md](requirements.md), the formulas of all KPIs and DAX measures in [kpi_definitions.md](kpi_definitions.md).
+The report itself is in Czech, so page titles and labels are quoted in Czech with an English translation.
 
 ## Goal
 
-Anyone — a CFO, an energy manager or a reader with no energy background — understands the result of the project
-in 30 seconds from the Summary page and finds the evidence for it in the next four pages.
+A CFO, an energy buyer or a reader with no energy background should understand from the Summary page in 30 seconds
+what the crisis cost the company and why. The evidence is on the four pages after it.
 
 ## The story
 
-The report is one story in five chapters, opened by an intro page „O projektu“ (added 2026-11-21, see below).
-Read only the page titles and you have the whole result.
+The report has 6 pages. Every page title is a conclusion, so reading only the titles gives the whole result.
 
-| # | Page | Reader's question | Title for 2022 (dynamic) |
+| # | Page | Reader's question | Page title (translated) |
 |---|---|---|---|
-| 0 | Summary | What happened and what does it mean? | "The energy crisis made electricity 4.4× more expensive for the company" (fixed, not by year) |
-| 1 | Market | What happened on the market? | "2022: prices were extreme in 42 % of all hours" |
-| 2 | Company cost | What did it do to the company? | "2022: the company paid 200.9 m CZK, 90.6 % of it for power" |
-| 3 | Why it changed | Why? | "2022: 99 % of the power cost increase came from the market price" |
-| 4 | Hedging | What to do next time? | "Fixing the price in advance moves the shock, it does not remove it" |
+| 1 | O projektu (About) | What is the report about and how was it built? | "What did the 2021–2023 energy crisis cost an industrial company and could it have been prevented?" |
+| 2 | Shrnutí (Summary) | What happened and what does it mean? | "The 2021–2023 crisis cost the company 385 m CZK instead of 136 m at 2020 prices, so 248 m CZK extra" |
+| 3 | Trh (Market) | What happened on the market? | "The crisis started in autumn 2021, and in 2022 electricity was 7× more expensive than in 2020" |
+| 4 | Náklad firmy (Company cost) | How much did the company pay and for what? | "2020–2022: the cost rose from 45 to 201 m CZK, regulated charges stayed at about 19 m" |
+| 5 | Příčiny změny (Why it changed) | Why did the cost change? | "2022: the market price caused the 106 m CZK increase, the stronger koruna saved 7 m CZK" |
+| 6 | Zajištění ceny (Hedging) | Does buying in advance pay off? | "A full hedge would have saved 4.1 m EUR in 2022 and cost the same amount extra in 2023" |
+
+The order follows how an analyst would explain it: context and result first, then the market, the company, the causes
+and finally what to do about it. I built the Summary last, from the finished detail pages.
 
 ## Rules for all pages
 
-**Structure**
-- Same template on every page (below), canvas 16:9 (1280 × 720). The reader learns it once.
-- Title = the conclusion, written as a sentence. Pages 1–3 have a dynamic title for the selected year
-  (DAX measure in the title's *fx*). Subtitle = the page question + labels.
-- Three KPI cards plus one text box **"What this means"**: 2–3 plain sentences for the CFO.
-  The text is true for the whole period 2020–2024, so it never contradicts the selected year.
-- One main chart and at most two supporting visuals.
-- Navigation buttons at the bottom; one year slicer synced across pages 1–3 (*sync slicers*).
-- Charts that compare years always show all five years: the year slicer does not filter them
-  (*edit interactions* = none).
+**Layout**
+- Canvas 1280 × 720 (16 : 9). All pages use the same template, so the reader learns it once.
+- The header is a rounded graphite rectangle with a mint top edge (two rectangles on top of each other, the mint one
+  4 px higher). Title on the left, subtitle below it, year slicer on the right.
+- The title is a conclusion written as a sentence and it is static. I considered a dynamic title per year and dropped
+  it, because the charts compare years and the cards show the selected year. A static title must therefore hold for
+  every year the slicer offers, or name its period (for example "2020–2022: …"). Every title was checked in SQL first.
+- The subtitle holds the page question, the data sources and the simulated-load label.
+- Detail pages have three KPI cards under the header and a "Co to znamená" (What this means) box with two or three
+  sentences for the CFO. Below them one main chart and at most two more visuals.
+- Every card has a 4 px mint strip on top (same technique as the header). Under the main value there is a comparison
+  line, for example "Minulý rok" (previous year). The new card visual cannot show static text there, so the comparison
+  lines are text measures.
+- Money on cards is in m CZK or m EUR through separate "(mil. Kč)" measures, because the card cannot set display units
+  for its main value. The CZK measures stay for calculations and tooltips.
 
-**Visual**
-- Every colour has one meaning (theme file in Power BI):
+**Year slicer and interactions**
+- Every detail page has its own year slicer (Tab style). The slicers are not synced, because the pages Příčiny změny
+  and Zajištění ceny offer only 2021–2024 (2020 has no previous year). All pages are saved on 2022.
+- The year slicer filters the cards. Charts that compare years always show the whole period and the slicer does not
+  filter them. A click in a chart does not filter the cards (interaction "None"), otherwise the cards would go blank or
+  show a different year than the slicer.
+- The O projektu page has a page navigator. All other pages have a "Zpět na úvod" (back to intro) button at the bottom
+  left (x 24, y 690, 109 × 26). In Power BI Desktop the buttons react to Ctrl + click, in the published report to a
+  plain click.
 
-  | Colour | Hex | Meaning | Where |
-  |---|---|---|---|
-  | Graphite | `#1E1F22` | frame | page header band, "What this means" box, active page button |
-  | Amber | `#D97706` | cost, increase, problem | power cost, increases in the waterfall, extreme band, fixed-price line |
-  | Teal green | `#0D9488` | decrease, saving, what the company can influence | decreases in the waterfall, negative-price band, short notes on cards |
-  | Mint | `#5EDD92` | accent of the frame | 4 px strip on top of the three KPI cards, SIMULATED label as an outline, selected year, "What this means" heading |
-  | Greys | `#868E9A`, `#A7AEB8`, `#B5BBC4`, `#D7DBE0` | everything else | regulated charges, market average, spot cost |
-  | Background / cards | `#F3F4F6` / `#FFFFFF` | — | cards with 18 px rounded corners and a light shadow |
-  | Text / muted text | `#1E1F22` / `#6B7280` | — | numbers and labels; never in a data colour |
+**Colours** (theme `powerbi/theme/energy_crisis_theme_g.json`, one meaning per colour)
 
-- Header band: page title in white on one full-width line (24 pt bold); subtitle, labels and the year slicer
-  share the second line. A green title was tried and dropped: it competed with the KPI numbers and read as
-  "good" on a cost increase.
-- Rules: teal green and mint never fill a large area; mint never in a chart (contrast 1.7 : 1 on white).
-  Amber and teal pass the colour-blind check (ΔE 12.5 protan, target ≥ 8); pure green next to amber would not.
-  Never red/green (~8 % of men are colour-blind).
-- Data labels on the data instead of legends where possible; no gridlines; no pie, gauge or 3D charts.
-- Title 20 pt or more, card numbers 28 pt or more.
-- Money: m CZK (or m EUR on page 4) with one decimal on cards and charts; full precision in tooltips.
+| Colour | Hex | Meaning | Where |
+|---|---|---|---|
+| Graphite | `#1E1F22` | frame | header, "Co to znamená" boxes, buttons |
+| Amber | `#D97706` | cost, increase, problem | power cost, market price, increases in the waterfall, extreme band |
+| Teal | `#0D9488` | decrease, saving | decreases in the waterfall, negative-price band |
+| Mint | `#5EDD92` | frame accent | top edge of the header and cards, selected year, button text |
+| Greys | `#B5BBC4`, `#D7DBE0` and others | everything else | regulated charges, market average, cost without hedging |
+| Background / cards | `#F3F4F6` / `#FFFFFF` | | |
+| Text / muted text | `#1E1F22` / `#6B7280` | | numbers and labels |
 
-**Words**
-- Chart titles are sentences with the finding, not topic names.
-- Plain words on the page, the technical term and definition in an ⓘ tooltip:
+- No red next to green (about 8 % of men cannot tell them apart). Amber and teal pass the colour-blind check
+  (ΔE 12.5, target at least 8). Pure green next to amber would not.
+- Mint is never used in a chart or as text on white, because its contrast is only 1.7 : 1.
+- Total rows in tables are grey, never green, because green means a saving.
 
-  | On the page | Technical term (tooltip) |
-  |---|---|
-  | How much more expensive day is than night | peak/off-peak spread |
-  | Extra cost of using power in expensive hours | load profile premium |
-  | Fixed in advance | hedged |
-  | Price fixed one year ahead (estimate) | hedging proxy price (ASSUMPTION, ADR-003) |
-
-**Language** — everything the user sees is in Czech: page titles, axis labels, tooltips and measure names
-(e.g. `Náklad na silovou elektřinu (Kč)`, `Celková cena elektřiny (Kč/kWh)`). The users are a Czech CFO and energy
-manager. Tables and columns keep their English names from SQL (technical layer, hidden from the report). Every
-measure has a short Czech description, shown as its tooltip in the report.
-
-**Currency** — one currency per page. Pages 0–3 in CZK (the users are a Czech CFO and energy manager; price bands
-are defined in CZK). Page 4 in EUR, because power contracts are traded in EUR/MWh. The other currency appears only
-in tooltips.
+**Language and currency**
+- Everything the user sees is in Czech: titles, axis labels, measure names and their descriptions. The users in the
+  scenario are a Czech CFO and energy manager. Tables and columns keep their English names from SQL (technical layer).
+- One currency per page. Pages 1–5 are in CZK, because the company pays in koruna and the price bands are defined in
+  CZK. The hedging page is in EUR, because electricity is traded on the exchange in EUR/MWh.
+- The pages use plain words (for example "load profile premium" is called "přirážka za diagram odběru", "hedged" is
+  "koupeno předem"). The exact definition is in the measure description and in [kpi_definitions.md](kpi_definitions.md).
 
 **Trust**
-- Labels: market data are FACT. Anything built on the simulated load says SIMULATED with one sentence in the
-  tooltip: "Real load curves are trade secrets; the load is a simulated 28 GWh/year profile, prices are real."
-  The hedging proxy price says ASSUMPTION.
-- Footer on every page: data sources and "prices without VAT".
-- Every number on the report equals the SQL result (step 4.7); the check values are listed per page below.
+- Market data are real (FACT). Everything built on the company's load is SIMULATED and the subtitle says so. The
+  hedging price is an ASSUMPTION ([ADR-003](decisions/ADR-003-forward-price-proxy.md)).
+- A footer with the data sources, the split into real and simulated data and "without VAT and supplier margin" is on
+  the O projektu and Shrnutí pages.
+- On 2026-11-23 I compared every number in the report with a fresh SQL result (step 4.7), for every year and on the
+  hedging page also for slider positions 0, 50 and 100 %. The check values are listed per page below.
 
 ### Page template
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ TITLE = CONCLUSION (sentence)                          [Year ▾]   ⓘ    │
-│ subtitle = page question · SIMULATED / ASSUMPTION labels               │
+│ TITLE = CONCLUSION (sentence)                      [2021 2022 2023 …]  │
+│ subtitle = question · sources · simulated load                         │
 ├──────────────┬──────────────┬──────────────┬───────────────────────────┤
 │ KPI card     │ KPI card     │ KPI card     │ WHAT THIS MEANS           │
-│              │              │              │ 2–3 plain sentences       │
+│ comparison   │ comparison   │ comparison   │ 2–3 sentences             │
 ├──────────────┴──────────────┴──────────────┴───────────────────────────┤
 │ MAIN CHART                                                             │
 ├───────────────────────────────────┬────────────────────────────────────┤
 │ SUPPORTING VISUAL                 │ SUPPORTING VISUAL (optional)       │
 ├───────────────────────────────────┴────────────────────────────────────┤
-│ ◀ Summary · Market · Cost · Why · Hedging ▶          source · no VAT   │
+│ [Zpět na úvod]                                                         │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Page 0 — Summary
+## Page O projektu (About)
 
-**Question:** what did the energy crisis cost the company, why, and what does it mean for next year?
-**User:** everyone (CFO first). **User stories:** all (US-01 – US-06.2 in short). **Labels:** SIMULATED.
-**Currency:** CZK. **Year slicer:** none — the page tells the whole 2020–2024 story.
-**Title (fixed):** "The energy crisis made electricity 4.4× more expensive for the company".
+**Purpose:** the first page a reader opens. It says what the report is about, which questions it answers and how it
+was built, and it lets the reader jump to any page. No charts.
 
-### KPI cards
-
-| Card | KPI | Value | SQL check |
-|---|---|---|---|
-| Cost 2022 vs 2020 | [Crisis cost multiple](kpi_definitions.md#crisis-cost-multiple) | 200.9 m CZK vs 45.5 m CZK (4.4×) | `sql/08_query_allin_price.sql` |
-| Market price share of the 2022 increase | [Market price, volume and load profile effects](kpi_definitions.md#market-price-volume-and-load-profile-effects) | 99 % | waterfall query in `kpi_definitions.md` |
-| Extra cost of using power in expensive hours, 2022 | [Load profile premium](kpi_definitions.md#load-profile-premium) | 11.9 m CZK | premium query in `kpi_definitions.md` |
-
-### What this means (text box)
-
-1. The crisis was a market price shock: consumption hardly changed, the price did.
-2. The company pays extra because it uses most power in expensive daytime hours — that part it can influence.
-3. Fixing the price a year ahead is insurance against swings, not a way to save: it lowered 2022 but raised 2023.
-
-### Visuals
-
-| Visual | Type | Axis / legend | Values | Colour | Chart title |
-|---|---|---|---|---|---|
-| Main: yearly cost | stacked column | year 2020–2024; power, regulated | m CZK | power amber, regulated grey; 2021–2023 shaded | "Power drove the cost up; regulated charges stayed at 17–20 m CZK until 2024" |
-| Navigation tiles | 4 buttons | one per detail page with its question | — | grey | — |
-
-### Acceptance
-
-- Yearly totals equal query 08: 45.46 · 95.72 · 200.92 · 87.93 · 94.84 m CZK; 200.92 / 45.46 = 4.4×.
-- 99 % = market price effect 104.75 / power cost change 105.82 m CZK (2021 → 2022).
-
-### Built version (2026-11-19)
-
-The plan above was changed while building the page:
-
-- **Title:** „Krize 2021–2023 stála firmu 385 mil. Kč místo 136 mil. při cenách roku 2020, tedy 248 mil. Kč navíc“.
-  **Subtitle** shows the calculation: 95,72 + 200,92 + 87,93 = 384,57 mil. Kč vs 3 × 45,46 = 136,38 mil. Kč.
-  Check: yearly total cost from query 08; 384.57 − 136.38 = 248.18 m CZK.
-- **Four KPI cards, year 2022** (visual filter year = 2022 on each card; the page has no slicer). The reference line
-  is a text measure (the new card visual cannot show static text):
-
-  | Card | Value | Reference line | Measure of the reference line |
-  |---|---|---|---|
-  | Celkový náklad 2022 (mil. Kč) | 200,92 | 2020: 45,46 mil. Kč · 4,4× více | `Karta – náklad 2020 a násobek` |
-  | Celková cena 2022 (Kč/kWh) | 7,19 | 2020: 1,62 Kč/kWh | `Karta – cena 2020` |
-  | Přirážka za diagram 2022 (mil. Kč) | 11,92 | odběr v dražších denních hodinách | `Karta – přirážka popisek` |
-  | Regulované platby 2022 (mil. Kč) | 18,97 | 2024: 31,28 mil. Kč · 1,6× více | `Karta – regulované platby 2024` |
-
-  The planned card „market price share of the 2022 increase“ was replaced by the regulated charges card: the share is
-  already in the first text box, and the 2024 increase of regulated charges is a separate risk.
-- **Three text boxes** (400 × 160, graphite, bullets „•“) instead of one „What this means“ box:
-  1. *Příčina růstu nákladu* — power cost +105.8 m CZK in 2022, of it +104.8 m from the market price; market price
-     almost 7× 2020 (6,082.84 / 886.55); power 91 % of the total cost; stronger koruna saved 7.0 m CZK.
-  2. *Rizika po skončení krize* — 2024 cost 94.8 m CZK = 2.1× 2020; market price still 2.4× 2020 (2,138.04 / 886.55);
-     regulated charges 31.3 m CZK (network use, system services, POZE back); a forward purchase does not cover this part.
-  3. *Doporučení* (RECOMMENDATION) — fix only part of the volume (a full proxy hedge saved 4.1 m EUR in 2022 and lost
-     the same in 2023, query 12); buy in several steps (PXE CAL-23 traded at 984.00 EUR/MWh on 26 Aug 2022 and
-     241.98 on 28 Dec 2022, ADR-003); shift load out of the peak (load profile premium 11.9 m CZK in 2022).
-- **Footer** (8 pt grey): real data (OTE, ČNB, ERÚ — ČEZ Distribuce, VN 22 kV) vs simulated data (load 28 GWh/year),
-  prices without VAT and supplier margin, hedging uses a proxy price, not a real contract.
-- **Not built yet:** the yearly cost chart (stacked column power + regulated, 2020–2024) under the text boxes
-  (planned x 24, y 436, 1232 × 224). Navigation tiles dropped; a separate intro page „O projektu“ is planned instead
-  (question, why, how, list of pages) — it will be a sixth page before the Summary.
-
-### Changes 2026-11-19 evening
-
-- **Cards replaced.** Three of the four cards (total cost 2022, all-in price 2022, load profile premium 2022) repeated
-  the cards of page 2 „Náklad firmy“ one to one (David). A summary card must not repeat a detail page, so the Summary
-  now shows the extremes of the whole period 2020–2024. Only the regulated charges card (not on any other page) stays:
-
-  | Card | Value | Reference line | Check |
-  |---|---|---|---|
-  | Nejdražší měsíc celkově (mil. Kč) | 32,30 | Srpen 2022 · 12,75 Kč/kWh | `vw_monthly_cost` MAX of `total_cost_czk` = 32,303,995.75 (Aug 2022); 32,303,995.75 / 2,533.293 MWh = 12.75 CZK/kWh |
-  | Nejlevnější měsíc celkově (mil. Kč) | 2,91 | Duben 2020 (Covid) · 1,20 Kč/kWh | MIN = 2,911,201.48 (Apr 2020, lockdown); / 2,433.427 MWh = 1.20 CZK/kWh |
-  | Nejdražší den (mil. Kč) | 1,66 | 30. 8. 2022 · pouze silová elektřina | `vw_hourly_cost` summed by day, top day 1,657,482.83 CZK (power only — regulated charges exist only per month) |
-  | Regulované platby 2022 (mil. Kč) | 18,97 | 2024: 31,28 mil. Kč · 1,6× více | unchanged |
-
-  Month cards compare **months**, not days: the cheapest day (2020-04-13) has a negative power cost (−28,460 CZK,
-  negative market prices), so a ratio would make no sense, and a month equals one invoice. Load is almost the same in
-  both months (2,533 vs 2,433 MWh), so the gap comes from the price — the main point of the project (SIMULATED load).
-  The month and day in the reference lines are fixed text: the Summary page has no slicer and the data 2020–2024 do not
-  change.
-- **Yearly cost chart built** (stacked column, x 24, y 437, 1232 × 242): `dim_date[year]` (categorical axis) ×
-  `Náklad na silovou elektřinu (Kč)` (amber) and `Regulované platby (Kč)` (grey), total labels in m CZK, legend on the
-  right, no Y axis. Title „Náklad na elektřinu po letech (mil. Kč)“. Check: 45,5 · 95,7 · 200,9 · 87,9 · 94,8 mil. Kč
-  (query 08), power part 76 · 182 · 71 · 64 mil. Kč (2021–2024).
-- **Interactions:** the chart filters nothing (NoFilter towards all 4 cards, 3 text boxes and the footer) — otherwise a
-  click on 2020 would change the card value while the fixed reference line still says „Srpen 2022“.
-- Intro page „O projektu“ built 2026-11-21 (section below).
-
-## Intro page — „O projektu“ (built 2026-11-21)
-
-**Purpose:** the first page a reader opens. It says what the report is about, which questions it answers, how it
-was built and lets the reader jump to any page. No charts, no numbers to check except the facts named in the text.
-**Order of the pages:** O projektu · Shrnutí · Trh · Náklad firmy · Příčiny změny · Zajištění ceny (the test page
-`KONTROLA` was deleted on 2026-11-21; the consistency check 4.7 compares the visuals with SQL directly).
-
-**Look:** light page (#F3F4F6) with the graphite header of the other pages. Every content box is white with a grey
-border (#D7DBE0) and the same mint top edge as the KPI cards: a mint rounded shape (#5EDD92) 4 px higher behind the
-box. Headings 12 pt bold graphite (#1E1F22), body 10 pt #374151. Mint is never used as text on white (contrast 1.7 : 1).
+**Look:** light page with the graphite header of the other pages. Every block is a white box with a grey border
+`#D7DBE0` and the same mint top edge as the cards. Block headings 12 pt bold graphite, body 10 pt.
 
 | Block | Position (x, y, w × h) | Content |
 |---|---|---|
-| Header | 24, 20, 1232 × 72 | Title „Kolik stála energetická krize 2021–2023 průmyslovou firmu a dalo se jí bránit?“, subtitle „Analýza nákladů na elektřinu modelové české firmy · 2020–2024 · zdroje OTE, ČNB, ERÚ“ |
-| O čem report je | 24, 107, 1232 × 125 | One paragraph in full sentences: what the report shows, the OTE day-ahead market, power vs regulated charges (set by ERÚ and law, not negotiable), the load profile premium, what the hedging page shows |
-| Na co report odpovídá | 24, 248, 608 × 140 | The 4 business questions of the brief as bullets |
-| Proč je to důležité | 648, 248, 608 × 140 | 7× market price 2022 vs 2020 · budget risk for the CFO · how much to fix in advance for purchasing |
-| Postup projektu | 24, 404, 1232 × 150 | 5 bullets: Data (Python) · Databáze (SQL Server) · Analýza (SQL) · Report (Power BI) · Ověřitelnost |
-| Page navigator | 24, 570, 1232 × 44 | Built-in page navigator (all pages). Selected page: graphite fill, mint text and outline; others white with graphite text and grey outline; hover #F3F4F6, press #E5E7EB; rounded 10 |
-| Footer | 24, 652, 1232 × 60 | Real data vs simulated data (as on the Summary), prices without VAT and supplier margin, hedging uses a proxy price; author and repo link |
+| Header | 24, 20, 1232 × 72 | title and subtitle "Analysis of the electricity cost of a model Czech company · 2020–2024 · sources OTE, ČNB, ERÚ" |
+| O čem report je (What the report is about) | 24, 107, 1232 × 125 | one paragraph in full sentences: OTE day-ahead market, power vs regulated charges (set by ERÚ and law, not negotiable), the load profile premium, what the hedging page shows |
+| Na co report odpovídá (What it answers) | 24, 248, 608 × 140 | the four business questions of the brief |
+| Proč je to důležité (Why it matters) | 648, 248, 608 × 140 | market price 2022 7× higher than 2020, company cost from 45 to 201 m CZK, budget risk for the CFO, purchasing decision |
+| Postup projektu (How it was built) | 24, 404, 1232 × 150 | five bullets: Data (Python), Database (SQL Server), Analysis (SQL), Report (Power BI), Reproducibility |
+| Page navigator | 24, 570, 1232 × 44 | built-in navigator. Selected page graphite with mint text and outline, the others white with graphite text |
+| Footer | 24, 652, 1232 × 60 | real and simulated data, prices without VAT and margin, hedging with a proxy price, author and repo link |
 
-Numbers named on the page come from earlier checks: 7× = 6,083 / 887 CZK/MWh (page Trh), 7 tables and 43,848 hours
-(load), 18 DQ checks (`dq_results` per run), 6 ADRs. The navigator is only on this page (the other pages keep their
-year slicers in the header). In Power BI Desktop a navigator button works with Ctrl + click; in the published report
-with a plain click.
+**Check:** the numbers in the text come from earlier checks. 7× = 6,083 / 887 CZK/MWh (page Trh), 45 and 201 m CZK
+(query 08), 7 tables and 43,848 hours (load), 18 automated data quality checks (one run in `dq_results`),
+9 analysis queries (04–12), 6 ADRs.
 
-**Back button (added 2026-11-24):** every other page has a „Zpět na úvod“ button (page navigation → O projektu) at
-x 24, y 690, 109 × 26, styled like the selected navigator tile (graphite fill #1E1F22, mint bold text and outline
-#5EDD92, hover #33353A). To make room, all five pages were re-laid out: KPI cards at y 100, content ends at y 684
-(Summary footer at 688).
+## Page Shrnutí (Summary)
 
-## Sharing (step 4.8, 2026-11-24)
+**Question:** what did the crisis cost the company, why, and what does it mean for next year?
+**User:** everyone, the CFO first. It takes the main numbers from all detail pages. **Currency:** CZK.
+**Year slicer:** none, the page tells the whole 2020–2024 story.
 
-- `docs/report/energy_crisis_cost_analysis_report_final.pdf` — PDF export of all 6 pages (slicers on 2022, hedging slider
-  at 50 %).
-- `docs/screenshots/report/report_01_o_projektu.png` … `report_06_zajisteni_ceny.png` — page images rendered from the PDF.
-- `docs/report/energy_crisis_cost_analysis_demo_1920.mp4` — 2 min 15 s screen recording of the published report
-  (1920 × 1080, H.264, 7.2 MB, under the 10 MB limit for a video in a GitHub README).
-- Public link (Publish to web, no sign-in) from a Power BI Pro trial: it works only while the author holds a Pro licence
-  (trial ends around 2027-01-22). The PDF, images and video are the permanent way to show the report; a `.pbix` with
-  the imported data is planned as a GitHub Release attachment (not in git).
+**Title and subtitle:** the title states the extra cost of the crisis. The subtitle shows the calculation so it can be
+checked: "Actual cost: 95.72 + 200.92 + 87.93 = 384.57 m CZK · At 2020 prices (cheap COVID year, upper estimate):
+3 × 45.46 = 136.39 m CZK". 2020 was a cheap year because of COVID, so this is an upper estimate.
 
-## Page 1 — Market
+### Cards
+
+The Summary must not repeat the cards of the detail pages. It shows the extremes of the whole period and the regulated
+charges, which are not on any other card.
+
+| Card | Value | Comparison line | SQL check |
+|---|---|---|---|
+| Most expensive month overall (m CZK) | 32.30 | August 2022 · 12.75 CZK/kWh | `vw_monthly_cost`, highest `total_cost_czk` = 32,303,995.75 CZK, / 2,533.293 MWh = 12.75 CZK/kWh |
+| Cheapest month overall (m CZK) | 2.91 | April 2020 (COVID) · 1.20 CZK/kWh | lowest = 2,911,201.48 CZK, / 2,433.427 MWh = 1.20 CZK/kWh |
+| Most expensive day (m CZK) | 1.66 | 30 Aug 2022 · power only | `vw_hourly_cost` by day, top day 1,657,482.83 CZK |
+| Regulated charges 2022 (m CZK) | 18.97 | 2024: 31.28 m CZK · 1.6× more | `vw_monthly_cost`, years 2022 and 2024 |
+
+The cards compare months, not days. The cheapest day (2020-04-13) has a negative power cost (−28,460 CZK), so a ratio
+would make no sense, and a month equals one invoice. The day is power only, because regulated charges exist only per
+month. The month and day in the comparison lines are fixed text, because the page has no year slicer and the data
+2020–2024 do not change.
+
+### Text boxes
+
+Instead of one "Co to znamená" box the Summary has three bullet boxes (400 × 160):
+1. **Cause of the increase:** in 2022 the power cost rose by 105.8 m CZK, 104.8 m CZK of it from the market price.
+   The market price was almost 7× the 2020 level, power was 91 % of the total cost, the stronger koruna saved 7.0 m CZK.
+2. **Risks after the crisis:** in 2024 the cost was 94.8 m CZK, 2.1× the 2020 level. The market price was still 2.4×
+   higher and regulated charges rose to 31.3 m CZK. Buying in advance does not cover this part.
+3. **Recommendation** (RECOMMENDATION): fix only part of the volume (a full hedge saved 4.1 m EUR in 2022 and lost it
+   in 2023, query 12), buy in several steps (the yearly product for 2023 traded at 984 EUR/MWh in August 2022 and at
+   242 EUR/MWh in December 2022, [ADR-003](decisions/ADR-003-forward-price-proxy.md)), move part of the load out of the
+   peak (load profile premium 11.9 m CZK in 2022).
+
+The recommendations contain only what the project actually computed. FX hedging is not there, because I did not
+compute it.
+
+### Chart
+
+| Visual | Type | Axis and values | Interaction | Colours | Chart title |
+|---|---|---|---|---|---|
+| Cost by year | stacked column | year (categorical axis), power and regulated charges, totals in m CZK | filters nothing | power amber, regulated grey | "Náklad na elektřinu po letech (mil. Kč)" (electricity cost by year) |
+
+The chart filters neither the cards nor the text boxes. Otherwise a click on 2020 would change a card value while its
+fixed comparison line still says "August 2022".
+
+**Check:** totals 45.5 · 95.7 · 200.9 · 87.9 · 94.8 m CZK (query 08), crisis extra cost 384.57 − 136.39 = 248.18 m CZK.
+
+## Page Trh (Market)
 
 **Question:** how extreme was the electricity market in each year?
-**User:** energy manager. **User stories:** US-06.1, US-06.2. **Labels:** FACT (OTE, ČNB). **Currency:** CZK.
-**Dynamic title (2022):** "2022: prices were extreme in 42 % of all hours".
+**User:** energy purchasing (US-06.1, US-06.2). **Data:** real (OTE, ČNB). **Currency:** CZK.
 
-### KPI cards (selected year)
+### Cards (selected year)
 
-| Card | KPI | Unit | Comparison line | Check value 2022 | SQL check |
-|---|---|---|---|---|---|
-| Average market price | [Average market price](kpi_definitions.md#average-market-price) | CZK/MWh | previous year | 6,082.84 (2021: 2,570.35) | yearly AVG of `price_czk_mwh`, run 2026-11-03 |
-| Hours with extreme prices | [Extreme hours](kpi_definitions.md#extreme-hours) | hours | share of the year | 3,694 (42.2 %) | `sql/05_query_price_bands.sql` |
-| Most expensive hour | [Highest hourly price](kpi_definitions.md#highest-hourly-price) | CZK/MWh | date and hour | 21,422.25 (2022-08-29, 19:00–20:00) | `sql/07_query_top_hours.sql` |
+| Card | Measure | Comparison line | Check 2022 |
+|---|---|---|---|
+| Average market price (CZK/MWh) | `Průměrná tržní cena (Kč/MWh)` | previous year | 6,083 (2021: 2,570) |
+| Extreme hours | `Extrémní hodiny` | share of the year | 3,694 (42.2 %) |
+| Most expensive hour (CZK/MWh) | `Nejvyšší hodinová cena (Kč/MWh)` | date and hour | 21,422 (29 Aug 2022, hour 20) |
 
 ### What this means
 
-Prices rose already in 2021 and peaked in 2022, when four hours in ten were extreme. Daytime working hours were
-1,472 CZK/MWh more expensive than nights and weekends in 2022 (peak/off-peak spread) — moving load matters most
-in a crisis. After 2023 prices fell, but single extreme hours still occur (December 2024).
+In 2022 electricity on the market was 7× more expensive than in 2020 and 42 % of hours had an extreme price (from
+5,821 CZK/MWh). Weekdays from 8:00 to 20:00 were 1,472 CZK/MWh more expensive than nights and weekends in 2022. From
+2023 prices fell by 60–65 %, but extreme hours appeared again (December 2024).
 
-### Visuals
+### Charts
 
-| Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
-|---|---|---|---|---|---|---|
-| Main: price trend | line (linear, not smoothed), axis `dim_date[month_start]` (year labels, month in the tooltip) | month 2020-01 … 2024-12 | Average market price, CZK/MWh, axis from 0 | no (chart filters nothing either) | amber line — the market price is the problem this page is about (grey was too weak as the only series); no shading | "Market prices multiplied in 2021–2022 and fell back in 2023" |
-| Hours by price band | 100 % stacked bar | year; band negative → extreme | count of hours (`Počet hodin` = COUNTROWS; the legend filters each band) | no (chart filters nothing either) | teal → grey → amber scale: negative `#0D9488`, low `#7FCDC4`, normal `#D7DBE0`, high `#F5C27A`, extreme `#D97706` (three greys were too close to tell apart) | "Extreme hours: 0 in 2020, 3,694 in 2022" |
-| Top 5 hours | table | rank, date, hour, CZK/MWh | `RANK` within the year | yes | — | "The most expensive hours of {year}" |
+| Visual | Type | Axis and values | Year slicer | Colours | Chart title (translated) |
+|---|---|---|---|---|---|
+| Price trend | line, linear | `dim_date[month_start]`, 60 months, average market price, axis from 0 | no, the chart filters nothing | amber line | "Market prices multiplied in 2021–2022 and fell sharply in 2023" |
+| Hours by price band | 100 % stacked bar | year × price band, `Počet hodin` | no, the chart filters nothing | teal, light teal, grey, light amber, amber (negative to extreme) | "Extreme hours grew from 0 % in 2020 to 42 % in 2022" |
+| Most expensive hours | table | day, hour, price, top 5 by `hour_key` | yes | | "The most expensive hours of the selected year" |
 
-Tooltip on the bands chart: hours per band and the peak/off-peak spread and hours of the year (US-06.2).
-Band order: negative → low → normal → high → extreme (sort-by column, decision 2026-09-30).
+The line is amber because the market price is the problem the page is about (grey was too weak as the only series).
+The bands are sorted from negative to extreme with the helper column `price_band_order`. Three greys could not be told
+apart, so the scale is teal, grey, amber.
 
-### Acceptance (from requirements.md)
+**Check:** extreme hours 0 / 577 / 3,694 / 30 / 84 (0.0 / 6.6 / 42.2 / 0.3 / 1.0 %), the bands of every year sum to the
+hours of the year (2022: 8,760), the top hours of all years and the spread 1,471.75 CZK/MWh equal queries 05, 07 and 09.
+Extreme hours in 2021 by month, 0 (January to August), 1, 78, 155, 343, show that the crisis started in autumn 2021.
 
-- 2022: 3,694 extreme hours; all bands of a year sum to the hours of the year (2022: 8,760).
-- Most expensive hour 2022-08-29, hour 20, 21,422.25 CZK/MWh.
-- 2022 spread 1,471.75 CZK/MWh (60.04 EUR/MWh) in the text and tooltip; peak + off-peak hours = 3,120 + 5,640 = 8,760.
-
-## Page 2 — Company cost
+## Page Náklad firmy (Company cost)
 
 **Question:** how much did the company pay for electricity, and for what?
-**User:** CFO. **User stories:** US-01, US-05. **Labels:** SIMULATED (load), FACT (prices, tariffs). **Currency:** CZK.
-**Dynamic title (2022):** "2022: the company paid 200.9 m CZK, 90.6 % of it for power".
+**User:** CFO (US-01, US-05). **Data:** load SIMULATED, prices and tariffs real. **Currency:** CZK.
 
-### KPI cards (selected year)
+### Cards (selected year)
 
-| Card | KPI | Unit | Comparison line | Check value 2022 | SQL check |
-|---|---|---|---|---|---|
-| Total cost | [Total electricity cost](kpi_definitions.md#total-electricity-cost) | m CZK | previous year | 200.92 (2021: 95.72) | `sql/08_query_allin_price.sql` |
-| Price per kWh, everything included | [All-in price](kpi_definitions.md#all-in-price) | CZK/kWh | previous year | 7.19 (2021: 3.42) | `sql/08_query_allin_price.sql` |
-| Extra cost of using power in expensive hours | [Load profile premium](kpi_definitions.md#load-profile-premium) | m CZK | per MWh | 11.92 (426.45 CZK/MWh) | premium query in `kpi_definitions.md` |
-
-The power share (90.6 % in 2022, [Power share](kpi_definitions.md#power-share)) is in the dynamic title.
+| Card | Measure | Comparison line | Check 2022 |
+|---|---|---|---|
+| Total cost per year (m CZK) | `Celkový náklad na elektřinu (mil. Kč)` | previous year | 200.92 (2021: 95.72) |
+| All-in price (CZK/kWh) | `Celková cena elektřiny (Kč/kWh)` | previous year | 7.19 (2021: 3.42) |
+| Load profile premium (m CZK) | `Přirážka za diagram odběru (mil. Kč)` | premium per MWh | 11.92 (426.45 CZK/MWh) |
 
 ### What this means
 
-In a crisis the budget risk is the market price, not regulation: regulated charges stayed at 17–20 m CZK a year
-until 2024 while power cost multiplied. The company also pays extra every year because it runs most of its load in expensive
-daytime hours — this is the part of the bill it can influence by moving load.
+In 2022 electricity cost the company 200.9 m CZK, 4.4× more than in 2020. 91 % of the cost was power from the market,
+regulated charges hardly changed. The company uses most power in the daytime, when it is more expensive, and that cost
+it 11.9 m CZK extra in 2022. In 2024 regulated charges rose to 31 m CZK (more expensive network and system services,
+POZE back).
 
-### Visuals
+### Charts
 
-| Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
-|---|---|---|---|---|---|---|
-| Main: monthly cost | stacked column, total labels on top (m CZK, 1 decimal) | `dim_date[month_start]`, 12 months of the selected year; power (`Náklad na silovou elektřinu (Kč)`), regulated (`Regulované platby (Kč)` = consumption-based charges + fixed charges + POZE) | m CZK (axis display units) | yes — the page answers "what did the selected year cost and from what"; the Y axis rescales per year, so axis labels stay visible | power amber, regulated grey | "Náklad na elektřinu po měsících (mil. Kč)" |
-| Company price vs market average | clustered column | year; market average, company price | CZK/MWh (data labels, 0 decimals) | no | company amber, market grey | "Průměrná tržní cena vs. cena firmy (Kč/MWh)" · subtitle explains the gap = load profile premium (daytime load) |
-
-Tooltip on the monthly chart: every component in CZK (network use, system services, tax, reserved capacity,
-OTE fees, POZE).
-
-Changed 2026-11-14: the first version (4 parts over all 60 months, not filtered) was unreadable — regulated charges are
-~1.5 m CZK a month against up to 31 m CZK of power, so three thin grey strips could not be told apart. The three regulated
-parts were merged into one series and the chart follows the year slicer.
-
-### Acceptance
-
-- Yearly totals equal query 08 (2022: 200,924,897.61 CZK, power share 90.6 %); components sum to the total.
-- 2022 premium 426.45 CZK/MWh, 11.92 m CZK, labelled SIMULATED (requirements.md quotes the EUR value of query 10:
-  +17.29 EUR/MWh, 483,333 EUR; the CZK value is the same premium priced in koruna, cross-checked 2026-11-03).
-
-## Page 3 — Why it changed
-
-**Question:** why did the power cost change from the previous year — market price, volume, load profile or the
-EUR/CZK rate?
-**User:** CFO. **User stories:** US-02, US-03. **Labels:** SIMULATED (volume and load profile effects).
-**Currency:** CZK; EUR split of query 10 in the tooltip. **Year slicer:** "Change into" 2021–2024.
-**Dynamic title (2022):** "2022: 99 % of the power cost increase came from the market price".
-
-**Method:** one waterfall in CZK answers both stories. ADR-006 prices the commodity effect as
-`(C_eur1 − C_eur0) × R0`, and ADR-004 splits `C_eur1 − C_eur0` into volume, market price and load profile.
-Each EUR effect × the previous year's effective rate `R0` gives the same effect in CZK; the three sum to the
-commodity effect of query 11. No new method, only ADR-004 and ADR-006 in one picture.
-
-### KPI cards (change from the previous year into the selected year)
-
-| Card | KPI | Unit | Comparison line | Check value 2022 | SQL check |
+| Visual | Type | Axis and values | Year slicer | Colours | Chart title (translated) |
 |---|---|---|---|---|---|
-| Change in power cost | [Power cost change](kpi_definitions.md#power-cost-change) | m CZK | % vs previous year | +105.82 (+139.0 %) | `sql/11_query_fx_effect.sql` |
-| Caused by the market price | [Market price effect](kpi_definitions.md#market-price-volume-and-load-profile-effects) | m CZK | share of the change | +104.75 (99.0 %) | waterfall query in `kpi_definitions.md` |
-| Caused by the EUR/CZK rate | [Exchange rate effect](kpi_definitions.md#exchange-rate-effect) | m CZK | "koruna helped" / "koruna hurt" | −6.98 (helped) | `sql/11_query_fx_effect.sql` |
+| Monthly cost | stacked column, totals in m CZK | 12 months of the selected year, `Náklad na silovou elektřinu (Kč)` and `Regulované platby (Kč)` | yes | power amber, regulated grey | "Electricity cost by month (m CZK)" |
+| Company price vs market average | clustered column | year, average market price and company price (CZK/MWh) | no | company amber, market grey | "Average market price vs company price (CZK/MWh)" |
+
+Hovering over a month shows the split into power and regulated charges. The subtitle of the second chart explains that
+the gap between the columns is the load profile premium.
+
+**Why this way:** the first version of the monthly chart had 60 months and four cost parts. Regulated charges are about
+1.5 m CZK a month against up to 31 m CZK of power, so three thin grey strips could not be told apart. I merged them into
+one series and connected the chart to the year slicer, so the axis rescales to one year. The price chart compares years,
+so the slicer does not filter it. Neither chart filters the cards (a click in a chart used to blank them).
+
+**Check:** all 60 monthly totals equal `vw_monthly_cost` (power + regulated = total cost, difference 0.00 CZK), August
+2022 32.3 m CZK, market and company prices 887/947 · 2,570/2,720 · 6,083/6,509 · 2,416/2,550 · 2,138/2,266 CZK/MWh.
+Regulated charges 18.91 / 19.58 / 18.97 / 16.67 / 31.28 m CZK, so the title holds only for 2020–2022 and says so.
+
+## Page Příčiny změny (Why it changed)
+
+**Question:** why did the power cost change from the previous year? Because of the market price, volume, load profile,
+or the exchange rate?
+**User:** CFO (US-02, US-03). **Data:** volume and load profile effects are SIMULATED. **Currency:** CZK.
+**Year slicer:** 2021–2024 (2020 has nothing to compare with).
+
+**Method:** one CZK waterfall answers both questions. [ADR-004](decisions/ADR-004-cost-variance-split.md) splits the
+EUR cost change into volume, market price and load profile. [ADR-006](decisions/ADR-006-fx-effect-split.md) values the
+EUR change at the previous year's rate, and the rest is the exchange rate effect. Each EUR effect times the previous
+year's effective rate gives the same effect in CZK. The steps live in the view `vw_cost_change_steps` with Czech names
+(`step_name`) and an order (`step_order`).
+
+### Cards (change from the previous year into the selected year)
+
+| Card | Measure | Comparison line | Check 2022 |
+|---|---|---|---|
+| Power cost change (m CZK) | `Změna nákladu na silovou elektřinu (mil. Kč)` | vs previous year | +105.82 (+139.0 %) |
+| Market price effect (m CZK) | `Vliv ceny na trhu (mil. Kč)` | market price last year and this year | +104.75 (2,570 and 6,083 CZK/MWh) |
+| Exchange rate effect (m CZK) | `Vliv kurzu (mil. Kč)` | EUR/CZK rate last year and this year | −6.98 (25.65 and 24.56) |
+
+The first card is power only (the total cost rose by 105.20 m CZK, regulated charges by −0.62 m CZK), so its title says
+"Silová el." (power).
 
 ### What this means
 
-Almost the whole change in every year came from the market price. Consumption was stable (simulated), so the
-volume effect is close to zero. The stronger koruna softened the crisis a little (−7.0 m CZK in 2022), but it
-was small next to the market price.
+In 2022 the cost rose by 105.8 m CZK and almost all of it came from the market price (+104.8 m). Daytime load, when
+electricity is more expensive, added 8.2 m, the stronger koruna took off 7.0 m. In 2023–2024 the price fell and the cost
+with it. The main risk is the market price. Buying in advance does not remove it, it only spreads it over a longer
+period.
 
-### Visuals
+### Charts
 
-| Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
-|---|---|---|---|---|---|---|
-| Main: waterfall | waterfall | volume → market price → load profile → exchange rate → total change (the step "Náklad minulý rok" is filtered out of the visual) | m CZK, 2 decimals | yes | increase amber, decrease teal green, total grey | "Co změnilo náklad na silovou elektřinu oproti minulému roku (mil. Kč)" |
-| Effects of all years | clustered column | year 2021–2024; volume, market price, load profile, exchange rate | m CZK | no | market price amber, the rest grey | "Every year, the market price was the main driver" |
-
-Tooltip on the waterfall: the same effect in EUR (query 10) and the effective rates `R0`, `R1` (query 11).
-
-Change 2026-11-16: the built-in waterfall colours bars only as increase / decrease / total, so a grey start bar is
-not possible (the previous-year cost would show as an amber "increase" from zero). The waterfall therefore shows only
-the change (2022: −0.11 / +104.75 / +8.16 / −6.98 → total +105.82 m CZK); the absolute costs are on the card. Step names
-are Czech values in `vw_cost_change_steps.step_name`, sorted by `step_order`. The page tab is "Příčiny změny"; the year
-slicer offers 2021–2024 only (no previous year for 2020).
-
-Change 2026-11-18: the second visual is a matrix (step × year 2021–2024, m CZK, total row grey) instead of a clustered
-column — four effects of very different size could not be read as columns, and the matrix gives exact numbers. Card 2 =
-market price effect with the line „loni → letos“ market price, card 3 = exchange rate effect with the yearly average rate
-„loni → letos“. A note under the waterfall says the volume step is ≈ 0 because the simulated load is the same every year.
-
-### Acceptance
-
-- 2022: start 76.13 m CZK; volume −0.11 + market price +104.75 + load profile +8.16 = commodity +112.80 m CZK
-  (= query 11); exchange rate −6.98 m CZK (= query 11); end 181.96 m CZK.
-- Every year the four effects sum to the change within 2 CZK (run 2026-11-03: 1.52 / −0.62 / 1.31 / −1.80 CZK).
-- Tooltip shows the EUR effects of US-02: market price +4,102,833, load profile +319,538, volume −4,286 EUR.
-
-## Page 4 — Hedging
-
-**Question:** how much of next year's volume should the company fix in advance?
-**User:** energy manager, CFO. **User story:** US-04. **Labels:** SIMULATED, ASSUMPTION (proxy price).
-**Currency:** EUR (power contracts are traded in EUR/MWh). **Controls:** year slicer 2021–2024 and a
-"Share fixed in advance" slider 0–100 % in steps of 25 %, default 50 % (*what-if parameter*). Steps of 25 % because the cost is linear
-in the share (finer steps add no information) and every position has a check value in query 12.
-**Title (fixed):** "Fixing the price in advance moves the shock, it does not remove it".
-
-### KPI cards (selected year and share)
-
-| Card | KPI | Unit | Comparison line | Check value 2022, 50 % | SQL check |
+| Visual | Type | Axis and values | Year slicer | Colours | Chart title (translated) |
 |---|---|---|---|---|---|
-| Cost without fixing | [Spot cost](kpi_definitions.md#spot-cost) | m EUR | — | 7.40 | `sql/12_query_hedging.sql` |
-| Cost with {share} fixed | [Hedged cost](kpi_definitions.md#hedged-cost) | m EUR | difference to spot; with PXE price | 5.35 (−2.05; PXE 7.04) | `sql/12_query_hedging.sql` |
-| 2021–2024 total with {share} fixed | [Hedging result 2021–2024](kpi_definitions.md#hedging-result-20212024) | m EUR | vs spot | −0.72 (cheaper) | `sql/12_query_hedging.sql`, sum of years |
+| Waterfall | waterfall | volume, market price, load profile, EUR/CZK rate, total, in m CZK with 2 decimals | yes | increase amber, decrease teal, total grey | "What changed the power cost compared with the previous year (m CZK)" |
+| Change by year | matrix | step × year 2021–2024, m CZK, grey total row | no | | "Cost change by year (m CZK)" |
+
+A note under the waterfall says "Volume ≈ 0. The simulated load is the same every year (28 GWh / year)".
+
+**Why this way:** the built-in waterfall colours bars only as increase, decrease and total, so a grey start bar
+"Náklad minulý rok" (previous-year cost) is not possible (it would look like an amber increase from zero). I filter it
+out of the visual, the waterfall shows only the change and the absolute cost is on the card. I kept the volume step
+although it is almost zero, because otherwise the sum would not match and "did the volume change?" belongs to the
+analysis. The second visual is a matrix, because four effects of very different size could not be read as columns and
+the matrix gives exact numbers.
+
+**Check:** 2022: −0.11 + 104.75 + 8.16 − 6.98 = +105.82 m CZK (query 11). The steps sum to the change in every year
+within 2 CZK (rounding of the effective rate). Changes 2021–2024 +49.58 / +105.82 / −110.70 / −7.70 m CZK.
+
+## Page Zajištění ceny (Hedging)
+
+**Question:** how much of next year's volume should the company buy in advance at a fixed price?
+**User:** energy purchasing and the CFO (US-04). **Data:** SIMULATED load, fixed price is an ASSUMPTION.
+**Currency:** EUR. **Controls:** year slicer 2021–2024 and a slider "Podíl zajištění" (share hedged) 0–100 % in steps
+of 25 %, default 50 %. Steps of 25 % are enough, because the cost is linear in the share and every position has a check
+value in query 12.
+
+### Cards (selected year and share)
+
+| Card | Measure | Comparison line | Check 2022 at 50 % |
+|---|---|---|---|
+| Without hedging (m EUR) | `Náklad na silovou elektřinu bez zajištění (mil. EUR)` | whole volume at the market price | 7.40 |
+| With hedging (m EUR) | `Náklad na silovou elektřinu se zajištěním - proxy (mil. EUR)` | vs without hedging | 5.35 (−2.05) |
+| At the PXE price (m EUR) | `Náklad na silovou elektřinu se zajištěním - PXE (mil. EUR)` | vs without hedging | 7.04 (−0.36) |
+
+2021 has no PXE price, so the PXE card shows "--", not the cost without hedging.
 
 ### What this means
 
-Fixing the price a year ahead uses last year's price. In 2022 that was cheap and saved money; at the end of 2022
-the company would have fixed the crisis price, so 2023 cost more than spot. Fixing is insurance against swings,
-not a way to save. Even at 100 % the company still pays the extra cost of its daytime load (page 2), because a
-flat contract does not match its load shape.
+Without hedging the company paid 7.40 m EUR in 2022. With half of the volume bought in advance it would have been
+5.35 m, but in 2023 it would have paid 5.02 m instead of 2.97, because it fixed the expensive crisis price. Hedging does
+not lower the cost, it spreads it over two years and gives the company time to prepare. At the PXE exchange price the
+saving in 2022 would have been only 0.36 m.
 
-### Visuals
+### Method box
 
-| Visual | Type | Axis / legend | Values | Year slicer | Colour | Chart title |
-|---|---|---|---|---|---|---|
-| Main: cost by share fixed | line | share 0–100 %; spot (flat), proxy price, PXE price | m EUR | yes | proxy amber, PXE dark grey, spot light grey; marker at the slider value | "{year}: what the company would have paid at each share fixed in advance" |
-| All years at the selected share | clustered column | year 2021–2024; spot, fixed at proxy price | m EUR | no (slider yes) | fixed amber, spot grey | "The 2022 shock gets smaller — and moves to 2023" |
+Next to the slider a box "Jak zajištění funguje" (how hedging works) explains: during the year the company gradually
+buys part of next year's electricity at a fixed price, the same amount for every hour, and pays the rest at the market
+price. The fixed price is the average market price of the previous year (an assumption that matches gradual buying).
+The PXE card shows, for comparison, the last price of the yearly product on the Prague exchange at the end of the
+previous year. The box also explains why 2020 and PXE 2021 are missing.
 
-The PXE price exists for 2022–2024 only; for 2021 the PXE line is hidden and the card says "no PXE price".
+### Chart
 
-Change 2026-11-18 (built version): title „Nákup předem krizi nezruší, jen ji posune o rok“. Cards: cost without hedging,
-with hedging (proxy; line = difference), at the PXE price (line = difference) — the 2021–2024 total card was dropped (a sum
-over years hides the shift). One chart only: clustered column per year 2021–2024, cost without hedging (grey) vs with the
-proxy hedge (amber), follows the slider, not the year slicer. The line chart by share was dropped: the cost is linear in
-the share, so it repeated the cards. A text box explains the method (gradual purchase, flat block every hour, prior-year
-average as ASSUMPTION, PXE as comparison, why 2020 is missing). Check at 50 %: 2.98/2.04 · 7.40/5.35 · 2.97/5.02 · 2.53/2.75.
+| Visual | Type | Axis and values | Year slicer / slider | Colours | Chart title (translated) |
+|---|---|---|---|---|---|
+| Cost by year | line, linear, markers, axis from 0 | year 2021–2024, cost without and with hedging (m EUR) | slicer no, slider yes | without hedging grey, with hedging amber | "Cost without and with hedging by year (m EUR)" |
 
-Change 2026-11-19: title „Plné zajištění by v r. 2022 ušetřilo 4,1 mil. EUR, v r. 2023 by stejnou částku stálo navíc“
-(hedging result proxy at 100 %: 2022 −4.10, 2023 +4.10 m EUR; names the share, so it holds for any slider position).
-Card 1 got the reference line „Celý odběr za cenu z trhu“ (text measure), so all three cards line up.
-The yearly chart became a line chart (linear, markers, Y from 0; without hedging grey, with hedging amber): the clustered
-column looked the same as the company vs market chart on page 2, and the crossing of the two lines between 2022 and 2023
-shows the one-year shift directly. A ribbon chart was tried and dropped: it stacks the two alternatives, so its height
-(e.g. 12.75 in 2022) means nothing.
+**Why this way:** I tried a chart of the cost by share, but the cost is linear in the share, so it only repeated the
+cards. Clustered columns looked the same as the chart on the Náklad firmy page. A ribbon chart stacks the two
+alternatives on each other, so its height means nothing. The line chart shows the main point: the lines cross between
+2022 and 2023, because hedging moves the crisis by one year. I dropped a card with the 2021–2024 total, because a sum
+over years hides that shift.
 
-### Acceptance
+**Check** (query 12, m EUR, years 2021–2024): at 50 % with hedging 2.04 / 5.35 / 5.02 / 2.75, PXE – / 7.04 / 4.95 /
+2.72. At 100 % 1.11 / 3.30 / 7.07 / 2.97, PXE – / 6.69 / 6.92 / 2.92. At 0 % with hedging = without hedging (2022:
+7,399,949.24 EUR). Title: result of a full hedge 2022 −4.10 and 2023 +4.10 m EUR.
 
-- 0 % = spot cost for every year (2022: 7,399,949.24 EUR).
-- 2022 at 100 %: 3,297,116.06 EUR with the proxy price, 6,685,638.51 EUR with the PXE price (query 12).
-- 2022 at 50 %: 5,348,532.65 (proxy), 7,042,793.88 (PXE).
-- 2021–2024 at 100 % proxy: 14,442,596.70 vs spot 15,883,549.87 EUR (−1.44 m); at 50 %: 15,163,073.28 (−0.72 m).
-- The proxy price is labelled ASSUMPTION.
+## Sharing the report (step 4.8)
+
+- [docs/report/energy_crisis_cost_analysis_report_final.pdf](report/energy_crisis_cost_analysis_report_final.pdf):
+  export of all 6 pages (year slicers on 2022, slider at 50 %).
+- [docs/screenshots/report/](screenshots/report/): page images `report_01_o_projektu.png` to
+  `report_06_zajisteni_ceny.png`, rendered from the PDF.
+- [docs/report/energy_crisis_cost_analysis_demo_1920.mp4](report/energy_crisis_cost_analysis_demo_1920.mp4): screen
+  recording of the published report (2 min 15 s, 1920 × 1080, 7.2 MB, under the 10 MB limit for a video in a GitHub
+  README).
+- The public link (Publish to web, no sign-in) comes from a Power BI Pro trial. It works only while I hold a Pro licence
+  (the trial ends around 2027-01-22). The PDF, images and video are the permanent way to show the report. The `.pbix`
+  with the imported data will be attached to a GitHub Release (it is not in git).
 
 ## Data sources for Power BI
 
-**Source = SQL Server database `EnergyCrisisCostAnalysis`, Import mode.** Power BI never reads the CSV files.
-The database is the single source of truth: it has the keys, the DQ tests and the views whose numbers were
-checked in SQL. The "gold" layer of this project is therefore the set of views below, not a folder of files.
-After the pipeline runs, one *Refresh* in Power BI updates the report.
+**Source = SQL Server database `EnergyCrisisCostAnalysis`, Import mode.** Power BI never reads the CSV files. The
+database is the single source of truth: it has the keys, the data quality tests and the views whose numbers I checked
+in SQL. The "gold" layer is therefore the set of views below, not a folder of files. After the pipeline runs, one
+Refresh in Power BI updates the report.
 
-| Model table | Source in SQL | Grain (1 row =) | Used on | Status |
+| Model table | Source in SQL | Grain (1 row =) | Rows | Used on |
 |---|---|---|---|---|
-| `dim_date` | table `dim_date` | 1 day | all pages (year slicer, month axis, weekend flag) | exists |
-| `dim_hour` | table `dim_hour` | 1 hour of the day | page 1 (peak / off-peak, top hours) | exists |
-| Hourly fact | view `vw_hourly_cost`: price EUR and CZK, rate, load, cost EUR and CZK, price band (Czech label + sort order 1–5) per hour (`fact_energy_prices` + `fact_fx` + `fact_load`) | 1 hour | pages 0–2 (market price, bands, top hours, power cost, load profile premium) | exists (43,848 rows, 419,457,499.00 CZK = query 08) |
-| Monthly cost | new view from query 08 (power, regulated per MWh, fixed, POZE, total) | 1 month | pages 0 and 2 | to write |
-| Cost change steps | new view from queries 10 + 11 (previous-year cost, volume, market price, load profile, exchange rate) | 1 year + 1 step | page 3 waterfall and table | to write |
-| Hedging inputs | new view from query 12 (V, C, Pb, proxy price Ph, PXE price) | 1 year | page 4; the hedged cost is a DAX measure with the what-if share | to write |
+| `dim_date` | table `dim_date` + DAX column `month_start` | 1 day | 1,827 | all pages (year slicer, month axis) |
+| `dim_hour` | table `dim_hour` | 1 hour of the day | 25 | Trh (peak, top hours) |
+| `vw_hourly_cost` | view: price EUR and CZK, rate, load, cost EUR and CZK, price band | 1 hour | 43,848 | Shrnutí, Trh, Náklad firmy |
+| `vw_monthly_cost` | view from query 08: power, regulated, fixed charges, POZE, total | 1 month | 60 | Shrnutí, Náklad firmy |
+| `vw_cost_change_steps` | view from queries 10 and 11: previous-year cost and four change steps | 1 year and 1 step | 20 | Příčiny změny |
+| `vw_yearly_hedging` | view from query 12: cost, hedging difference at the proxy price and at the PXE price | 1 year | 4 | Zajištění ceny |
+| `Podíl zajištění` | what-if parameter (GENERATESERIES 0–1 step 0.25), no relationship | 1 share | 5 | Zajištění ceny |
 
-- Relationships: `dim_date` 1 → * every fact on `date_key`; `dim_hour` 1 → * the hourly fact on `hour_of_day`.
-  Monthly and yearly views carry the `date_key` of the first day of their month / year, so the same year slicer
-  filters them. Several facts sharing the same dimensions = star schema with more than one fact (galaxy).
-- Prices are never stored as averages: every price on the report is a DAX ratio of two sums (cost / volume),
-  so it stays correct for any filter.
-- Logic over validity periods (regulated tariffs) and year-over-year effects stays in SQL, where it was tested;
-  DAX does sums, ratios and the what-if hedge only.
-- `vw_energy_prices_czk` and `vw_daily_summary` are not imported: the hourly view covers both at a finer grain,
-  and two tables with the same content could give two different answers.
+- Relationships: `dim_date` 1 : many to every fact on `date_key`, `dim_hour` 1 : many to the hourly fact on
+  `hour_of_day`, always single direction (5 relationships, none between facts). Monthly and yearly views carry the
+  `date_key` of the first day of their month or year, so the same year slicer filters them. Several facts sharing the
+  same dimensions is a star schema with more than one fact (galaxy).
+- Auto date/time is off and `dim_date` is marked as the date table.
+- Prices are never stored as averages. Every price in the report is a DAX ratio of two sums (cost / volume), so it
+  stays correct for any filter. Columns whose sum means nothing (prices, rates, year, month) are set to "Do not
+  summarize".
+- Logic over validity periods (regulated tariffs) and the year-over-year splits stay in SQL, where I tested them. DAX
+  does sums, ratios and the hedged cost for the slider.
+- `vw_energy_prices_czk` and `vw_daily_summary` are not imported. The hourly view covers both at a finer grain, and two
+  tables with the same content could give two different answers.

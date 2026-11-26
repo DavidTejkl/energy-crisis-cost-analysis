@@ -1,200 +1,280 @@
 # Findings
 
-Market prices only (OTE day-ahead, CZ). The company cost comes in phase 2.
-Labels: FACT = read from a query output, with the query named.
+**English** · [Čeština](findings_cz.md)
 
-## 1.2 Daily overview (`sql/04_query_daily_overview.sql`)
+These are all the findings from the analysis queries. Every section links the query the numbers come from, so anyone
+can run it and check the numbers.
 
-- **FACT:** The most expensive day was 26 Aug 2022 with an average of 17,325 CZK/MWh (703 EUR/MWh).
-  In the whole of 2020 no day averaged more than 2,116 CZK/MWh, so the peak day was about 8 times
+Market prices, exchange rates and regulated prices are real data (OTE, ČNB, ERÚ). The load of the model company is
+simulated (28 GWh a year, [methodology](methodology.md)). Everything about the company's cost therefore holds for
+this model company, not for a specific real plant.
+
+Every point has a label:
+
+- **FACT:** a number read directly from a query result
+- **FINDING:** a conclusion I draw from the numbers
+- **ASSUMPTION:** a choice I had to make because the data does not exist
+- **RECOMMENDATION:** advice for the company
+
+## Part 1: The electricity market
+
+Only real OTE day-ahead prices for the Czech Republic, without the model company.
+
+### Daily overview
+
+Query: [`sql/04_query_daily_overview.sql`](../sql/04_query_daily_overview.sql)
+
+- **FACT:** The most expensive day was 26 Aug 2022 with an average price of 17,325 CZK/MWh (703 EUR/MWh). No day in
+  the whole of 2020 averaged more than 2,116 CZK/MWh, so the most expensive day of the crisis was about eight times
   the most expensive day of 2020.
-  (`avg_czk_price_per_day`, max per year)
-- **FACT:** The value traded on the day-ahead market (sum of `traded_value_czk`) was 20.7 bn CZK in 2020
-  and 155.8 bn CZK in 2022, 7.5 times more. Volume grew only from 22.4 to 24.3 TWh (+8 %),
-  so almost all of the jump came from the price.
-  (`traded_value_czk` and `volume_mwh_per_day` summed per year)
+- **FACT:** The value of electricity traded on the day-ahead market was 20.7 bn CZK in 2020 and 155.8 bn CZK in 2022,
+  7.5 times more. The traded volume grew only from 22.4 to 24.3 TWh (+8 %), so almost all of the jump came from the
+  price.
 
-## 1.3 Price bands (`sql/05_query_price_bands.sql`)
+### Price bands
 
-- **FACT:** In 2020 only 1 hour was in the high or extreme band (≥ 3,374 CZK/MWh); in 2022 it was
-  6,951 hours, 79 % of the year. Cheap hours (low band, 0 – < 1,217 CZK/MWh) fell from 7,045 (80 % of 2020)
-  to 237 (3 % of 2022). By 2024 the market was back to mostly normal hours (6,462) with 84 extreme hours.
-  (`count_of_hours` per `year` and `price_band`, bands from `docs/kpi_definitions.md`)
-- **FACT:** Negative-price hours dropped to 8 in 2022 and rose to 315 in 2024, the most of all five years.
-  (same query, band `negative`)
+Query: [`sql/05_query_price_bands.sql`](../sql/05_query_price_bands.sql) · band limits are in the
+[KPI definitions](kpi_definitions.md#price-band)
 
-## 1.4 Price changes (`sql/06_query_price_changes.sql`)
+- **FACT:** In 2020 only one hour was in the high or extreme band (3,374 CZK/MWh or more). In 2022 there were 6,951,
+  79 % of the year. Cheap hours (from 0 to less than 1,217 CZK/MWh) fell from 7,045 (80 % of 2020) to 237 (3 % of
+  2022). By 2024 most hours were back in the normal band (6,462) and 84 hours were extreme.
+- **FACT:** There were only 8 hours with a negative price in 2022. In 2024 there were 315, the most of all five years.
 
-- **FACT:** The largest day-to-day rise of the daily average price was on 11 Jul 2022: +6,844 CZK/MWh
-  (2,265 → 9,109). The largest drop was on 1 Oct 2022: −5,266 CZK/MWh (8,697 → 3,430).
-  (`absolute_change`, max and min)
-- **FACT:** 18 of the 20 largest daily rises in 2022 fell on a Monday, so the day-to-day change mostly shows
-  the weekly pattern (cheap weekend, rebound on Monday) at a very high price level, not separate market events.
-  (`absolute_change` of 2022, top 20, counted by `dim_date.weekday_num`)
-- **Method note:** `pct_change` is NULL when the previous day's price is ≤ 0 (5 days), because dividing by
-  a negative price flips the sign (e.g. 22 Mar 2020: −0.98 EUR/MWh on a Sunday with 11 negative hours,
-  confirmed in the raw OTE file). Changes are therefore compared in CZK.
+### Day-to-day price changes
 
-## 1.5 Top hours and days (`sql/07_query_top_hours.sql`)
+Query: [`sql/06_query_price_changes.sql`](../sql/06_query_price_changes.sql)
 
-- **FACT:** The most expensive hour of 2024 (12 Dec 2024, hour 18: 21,171 CZK/MWh) was almost as high as the
-  most expensive hour of the crisis (29 Aug 2022, hour 20: 21,422 CZK/MWh). The most expensive day of 2024
-  averaged 9,035 CZK/MWh, about half of the 2022 peak day (26 Aug 2022: 17,325 CZK/MWh).
-  (`price_czk_mwh` and `avg_price_czk`, rank 1 per year)
-- **FACT:** All 5 most expensive days of 2022 fell within one week, 24–31 Aug 2022 (15,535 – 17,325 CZK/MWh).
-  (`avg_price_czk`, rank 1–5 of 2022)
-- **FINDING:** 2022 was a long period of very high prices; the 2024 peak was a short shock of a few hours
-  (low wind and solar output, see the DQ report). Single-hour spikes at crisis level are still possible after
-  the crisis, so spot price risk did not disappear with it.
+- **FACT:** The daily average price jumped the most on 11 Jul 2022, by 6,844 CZK/MWh (from 2,265 to 9,109). It fell
+  the most on 1 Oct 2022, by 5,266 CZK/MWh (from 8,697 to 3,430).
+- **FACT:** 18 of the 20 largest daily rises in 2022 fell on a Monday. The day-to-day change therefore mostly shows the
+  weekly rhythm at a very high price level: power is cheap at the weekend and the price jumps back on Monday. These are
+  mostly not separate market events.
+- **Method note:** I leave the percentage change (`pct_change`) empty when the previous day's price was zero or
+  negative (5 days), because dividing by a negative price flips the sign. For example, on 22 Mar 2020 the average
+  price was −0.98 EUR/MWh (a Sunday with 11 negative hours, confirmed in the raw OTE file). That is why changes are
+  compared in CZK.
 
-## 2.5 All-in price per month (`sql/08_query_allin_price.sql`)
+### Most expensive hours and days
 
-All-in = power from the day-ahead market + regulated components (network use, system services, electricity tax,
-reserved capacity 5 MW, POZE, OTE fees), ČEZ Distribuce, VN, **without VAT and without a supplier margin**
-(ADR-005). Load is **SIMULATED** (28 GWh/year, `docs/methodology.md`); prices and tariffs are FACT.
+Query: [`sql/07_query_top_hours.sql`](../sql/07_query_top_hours.sql)
 
-- **FINDING (SIMULATED load):** the all-in price rose from **1.62 CZK/kWh in 2020 to 7.19 CZK/kWh in 2022**
-  (4.4×), then 3.15 (2023) and 3.38 (2024). With almost the same volume (27.95–28.05 GWh), the yearly cost went
-  from 45.5 m CZK (2020) to 200.9 m CZK (2022).
-- **FINDING (SIMULATED load):** the power price drove the crisis: power was 58 % of the all-in cost in 2020 and
-  91 % in 2022. The most expensive month was August 2022 (12.75 CZK/kWh all-in, power 12,084 CZK/MWh).
-- **FINDING (SIMULATED load):** 2024 was more expensive than 2023 (3.38 vs 3.15 CZK/kWh) although power was
-  cheaper (2,266 vs 2,550 CZK/MWh): the regulated part grew (network use 2.2×, system services 1.9× vs 2023,
-  POZE back after being 0 from October 2022 to December 2023).
-- **FINDING (SIMULATED load):** the company pays more than the market average because it uses more power in
-  the expensive daytime hours: January 2020 load-weighted power price 1,148.10 vs simple average 1,054.47 CZK/MWh.
-- **FACT:** the 2023 state price cap (5,000 CZK/MWh, applied to the monthly weighted power price, ADR-005) never
-  binds: the most expensive month of 2023 was January at 3,572.47 CZK/MWh. In 2022, when no cap existed,
-  6 months were above 5,000 CZK/MWh (highest August 2022, 12,084). For a company buying at spot prices, the cap
-  came after the prices had already fallen.
-- **FACT:** POZE was always cheaper by reserved capacity than by consumption (0 of 60 months chose the per-MWh
-  cap): a continuous process uses many MWh per reserved MW.
+- **FACT:** The most expensive hour of 2024 (12 Dec 2024, 17:00–18:00, 21,171 CZK/MWh) was almost as expensive as the
+  most expensive hour of the crisis (29 Aug 2022, 19:00–20:00, 21,422 CZK/MWh). The most expensive day of 2024,
+  however, averaged only 9,035 CZK/MWh, about half of the most expensive day of 2022 (26 Aug 2022, 17,325 CZK/MWh).
+- **FACT:** All five most expensive days of 2022 fell within the eight days from 24 to 31 Aug 2022 (15,535 to
+  17,325 CZK/MWh).
+- **FINDING:** 2022 was a long period of very high prices. The 2024 peak was a short shock of a few hours with little
+  wind and sun (see the [data quality report](data_quality_report.md)). Hours priced like the crisis can still come
+  after it, and the risk of buying on the spot market did not go away with the crisis.
 
-## 2.6 Peak vs offpeak (`sql/09_query_peak_offpeak.sql`)
+### Peak and off-peak
 
-Peak = Monday–Friday 08:00–20:00 (`hour_of_day` 9–20), the market definition of the peak load product; every other
-hour is offpeak. ASSUMPTION: weekday public holidays count as peak (no holiday flag in `dim_date`). Simple averages
-of market prices (every hour has the same weight, as in a market product).
+Query: [`sql/09_query_peak_offpeak.sql`](../sql/09_query_peak_offpeak.sql)
 
-- **FACT:** the peak/offpeak spread rose from **12.53 EUR/MWh in 2020 to 60.04 EUR/MWh in 2022** (4.8×), then
-  21.82 (2023) and 14.89 (2024). In CZK: 330.09 → 1,471.75 → 526.54 → 374.52 CZK/MWh.
-- **FACT:** in relative terms the peak premium fell: peak was 43 % above offpeak in 2020, 38 % in 2021, 27 % in
-  2022, 23 % in 2023 and 19 % in 2024. The spread grew in 2022 because the whole price level rose, not because
-  daytime hours became relatively more expensive.
-- **FINDING (SIMULATED load):** the company runs its crushing and offices in daytime shifts, so the absolute spread
-  is the price of its schedule; this is why its load-weighted price is above the market average (+17.29 EUR/MWh in
-  2022). The split into price, volume and load-profile effects follows in 2.7.
+Peak is Monday to Friday 08:00–20:00 (`hour_of_day` 9–20), the same as the market's peak load product. All other
+hours are off-peak. **ASSUMPTION:** public holidays on weekdays count as peak, because `dim_date` has no holiday flag.
+Prices are simple averages, every hour has the same weight, as in a market product.
 
-## 2.7 Cost variance split (`sql/10_query_variance_split.sql`)
+- **FACT:** The gap between peak and the rest of the week grew from 12.53 EUR/MWh in 2020 to **60.04 EUR/MWh in 2022**
+  (4.8 times), then fell to 21.82 (2023) and 14.89 (2024). In CZK it was 330.09 CZK/MWh in 2020, 1,471.75 in 2022,
+  526.54 in 2023 and 374.52 in 2024.
+- **FACT:** In percent, however, the peak premium kept falling. Peak was more expensive by 43 % in 2020, 38 % in 2021,
+  27 % in 2022, 23 % in 2023 and 19 % in 2024. The gap grew in 2022 because the whole price level rose. Daytime hours
+  did not become more expensive relative to the others.
 
-Method ADR-004: year-over-year change of the power (commodity) cost in EUR, split in a fixed order into volume
-`(V1 − V0) × Pw0`, market price `V1 × (Pb1 − Pb0)` and load profile `V1 × (S1 − S0)`. Load is SIMULATED, market
-prices are real OTE data. Check: the three effects sum to the total change in every year (difference ≤ 0.03 EUR,
-DECIMAL rounding of `Pw`).
+## Part 2: The model company (simulated load)
 
-| Change | Total (EUR) | Volume | Market price | Load profile |
-|---|---:|---:|---:|---:|
-| 2020 → 2021 | +1,976,267 | −2,052 | +1,876,652 | +101,667 |
-| 2021 → 2022 | +4,418,085 | −4,286 | +4,102,833 | +319,538 |
-| 2022 → 2023 | −4,427,762 | −1,194 | −4,098,657 | −327,911 |
-| 2023 → 2024 | −442,638 | +11,073 | −439,875 | −13,836 |
+The company's load is simulated (`SIMULATED`), while prices, exchange rates and regulated prices are real. Unless
+stated otherwise, the company buys all its power at the day-ahead spot price.
 
-- **FINDING (SIMULATED load):** the price of the company's daytime schedule tripled in the crisis. The load profile
-  premium `S` rose from +2.23 EUR/MWh (2020) and +5.86 (2021) to **+17.29 EUR/MWh in 2022**, then 5.56 (2023) and
-  5.06 (2024). Over the whole year 2022 this is **483,333 EUR** above the cost of the same volume taken evenly in
-  every hour (`C − V × Pb`: 62,491 / 164,030 / 483,333 / 155,343 / 142,087 EUR in 2020–2024, about 5–6.5 % of the
-  power cost every year).
-- **FINDING (SIMULATED load):** the load profile is the part of the cost the company can influence; the market price
-  is not. The profile itself did not change between years: the premium grew because the market's hourly price
-  pattern made daytime hours more expensive when the whole price level rose. The yearly premium is the upper limit of
-  what moving shifts to night and weekend hours could save.
-- **FINDING:** the market price explains 93–99 % of every yearly change (95.0 / 92.9 / 92.6 / 99.4 %). With a
-  simulated volume of about 28 GWh every year this is expected, not a discovery: the volume effect stays between
-  −4,286 and +11,073 EUR. With real company data the same query would separate production changes from market moves.
-- **To be tested in 2.9:** a base load hedge fixes a price for the same power in every hour, close to `Pb`. It does
-  not cover the load profile premium `S`, so part of the cost would stay exposed even at 100 % fixed volume.
+### All-in price per kWh
 
-## 2.8 EUR/CZK effect (`sql/11_query_fx_effect.sql`)
+Query: [`sql/08_query_allin_price.sql`](../sql/08_query_allin_price.sql)
 
-Method ADR-006: year-over-year change of the power cost in CZK, split into commodity `(C_eur1 − C_eur0) × R0` and
-exchange rate `C_eur1 × (R1 − R0)`, where `R = C_czk / C_eur` is the cost-weighted rate. Load is SIMULATED, prices
-and ČNB rates are real data. Check: the two effects sum to the total change (difference ≤ 2.05 CZK, DECIMAL rounding
-of `R`); `C_czk` over 5 years = 419,457,499 CZK = power cost of query 08.
+The all-in price is power from the day-ahead market plus the regulated charges: network use, system services,
+electricity tax, reserved capacity of 5 MW, POZE and OTE fees. It applies to the ČEZ Distribuce area at high voltage,
+**without VAT and without a supplier margin** ([what the price includes](decisions/ADR-005-all-in-price-scope.md)).
 
-| Change | Total (CZK) | Commodity | Exchange rate |
-|---|---:|---:|---:|
-| 2020 → 2021 | +49,581,580 | +52,180,598 | −2,599,020 |
-| 2021 → 2022 | +105,823,772 | +112,802,613 | −6,978,840 |
-| 2022 → 2023 | −110,696,659 | −108,873,893 | −1,822,768 |
-| 2023 → 2024 | −7,703,937 | −10,612,537 | +2,908,602 |
+- **FINDING:** The all-in price rose from **1.62 CZK/kWh in 2020 to 7.19 CZK/kWh in 2022** (4.4 times), then fell to
+  3.15 (2023) and 3.38 (2024). The company used almost the same amount every year (27.95–28.05 GWh), and the yearly
+  cost went up from 45.5 m CZK (2020) to 200.9 m CZK (2022).
+- **FINDING:** Power drove the crisis. It was 58 % of the total cost in 2020 and 91 % in 2022. The most expensive month
+  was August 2022: all-in price 12.75 CZK/kWh, power 12,084 CZK/MWh.
+- **FINDING:** 2024 was more expensive than 2023 (3.38 vs 3.15 CZK/kWh) although power got cheaper (2,266 vs
+  2,550 CZK/MWh). The regulated part went up. The company paid 2.2 times more for network use and 1.9 times more for
+  system services than in 2023, and the POZE fee, which had been zero from October 2022 to December 2023, came back.
+- **FINDING:** The company pays more than the market average because it takes the most power in the expensive daytime
+  hours. In January 2020 its load-weighted power price was 1,148.10 CZK/MWh, while the simple market average was
+  1,054.47 CZK/MWh.
+- **FACT:** The 2023 state price cap of 5,000 CZK/MWh, which applies to the monthly weighted power price, never reached
+  the model company. The most expensive month of 2023 was January at 3,572.47 CZK/MWh. In 2022, when there was no cap
+  yet, six months were above 5,000 CZK/MWh (highest August, 12,084 CZK/MWh). For a company buying on the spot market,
+  the cap came only after prices had already fallen.
+- **FACT:** The POZE fee was always cheaper when charged by reserved capacity than by consumption (the per-MWh option
+  was cheaper in none of the 60 months). A continuous process uses a lot of MWh for every reserved MW.
 
-- **FACT:** direction from data (resolves open decision 3): the cost-weighted rate fell from 26.40 CZK/EUR (2020)
-  to 25.53 (2021), 24.59 (2022) and 23.98 (2023), then rose to 25.13 (2024). The koruna strengthened during the
-  crisis and weakened in 2024.
-- **FINDING (SIMULATED load):** the stronger koruna lowered the CZK cost by **6.98 m CZK in 2022**, which offset only
-  **6.2 %** of the commodity increase (+112.80 m CZK). The rate softened the crisis, it did not stop it.
-- **FINDING (SIMULATED load):** in 2024 the weaker koruna worked the other way: +2.91 m CZK, eating 27 % of the
-  commodity saving (−10.61 m CZK).
+### Why regulated charges jumped in 2024
 
-## 2.9 Hedging (`sql/12_query_hedging.sql`)
+| Regulated charges of the model company (m CZK) |      2022 |      2023 |      2024 |
+| ---------------------------------------------- | --------: | --------: | --------: |
+| Distribution (reserved capacity and network use) |   12.69 |     12.71 |     17.57 |
+| System services                                |      3.17 |      3.17 |      5.97 |
+| POZE                                           |      2.32 |      0.00 |      6.95 |
+| Electricity tax                                |      0.79 |      0.79 |      0.79 |
+| **Total**                                      | **18.97** | **16.67** | **31.28** |
 
-Method ADR-003: a share of the yearly volume (0 / 25 / 50 / 75 / 100 %) is fixed in advance as a base load contract
-(same power in every hour); the rest is settled on the spot market, so the hedged cost is
-`C + share × V × (Ph − Pb)`. Two hedge prices `Ph`: the simple spot average of the prior year (proxy, ASSUMPTION) and
-the PXE CZ CAL base last trade of the prior year (FACT, quoted in ADR-003, 2022–2024 only). Load is SIMULATED, prices
-are real OTE / PXE data. Checks: at 0 % both variants equal the spot cost; at 100 % the remaining spot part equals
-`C − V × Pb` of query 10 (2022: 483,332.58 EUR); the proxy difference equals the market price effect of query 10
+POZE for 2022 covers January to September only. OTE fees are only tens of CZK a year, so they are not in the table.
+
+- **FACT:** In the crisis years the state paid part of the regulated charges for the customers. From October 2022 to
+  the end of 2023 it paid the whole support for renewable sources from the state budget, so the POZE fee was zero. In
+  2023 state subsidies also kept the price of system services and of network losses at the 2022 level. For 2024 the
+  government ended almost all of these subsidies, and the regulated prices fully reflected that high power prices had
+  also made running the grid more expensive, mainly covering network losses and system services
+  ([ERÚ press release of 30 Nov 2023, in Czech](https://eru.gov.cz/sites/default/files/obsah/prilohy/20231130tzcreruproelektroenergetikuaplynarenstvi.pdf)).
+- **FINDING:** Compared with 2022, the company paid 12.31 m CZK more for regulated charges in 2024: distribution
+  +4.88 m CZK, POZE +4.63 m CZK and system services +2.80 m CZK. The electricity tax did not change.
+- **FINDING:** Compared with 2023, the company's regulated charges rose by 88 %. In November 2023 ERÚ expected an
+  average increase of 105.5 % for high-voltage customers. The model company's increase is lower mainly because its
+  largest item, reserved capacity, went up by only 19 %.
+
+### Why the cost changed
+
+Query: [`sql/10_query_variance_split.sql`](../sql/10_query_variance_split.sql) ·
+method: [cost variance split](decisions/ADR-004-cost-variance-split.md)
+
+I split the year-over-year change of the power cost in EUR into three parts, always in the same order:
+
+- volume: `(V1 − V0) × Pw0`
+- market price: `V1 × (Pb1 − Pb0)`
+- load profile: `V1 × (S1 − S0)`
+
+V is the company's load, Pb the average market price, Pw the price weighted by the company's load and S = Pw − Pb the
+load profile premium. In every year the three parts add up to the total change, with a difference of at most
+0.03 EUR from rounding Pw.
+
+| Change       | Total (EUR) |  Volume | Market price | Load profile |
+| ------------ | ----------: | ------: | -----------: | -----------: |
+| 2020 to 2021 |  +1,976,267 |  −2,052 |   +1,876,652 |     +101,667 |
+| 2021 to 2022 |  +4,418,085 |  −4,286 |   +4,102,833 |     +319,538 |
+| 2022 to 2023 |  −4,427,762 |  −1,194 |   −4,098,657 |     −327,911 |
+| 2023 to 2024 |    −442,638 | +11,073 |     −439,875 |      −13,836 |
+
+- **FINDING:** The load profile premium almost tripled in the crisis. It was +2.23 EUR/MWh in 2020 and +5.86 in 2021,
+  jumped to **+17.29 EUR/MWh in 2022**, then fell to 5.56 (2023) and 5.06 (2024). For the whole of 2022 that is
+  **483,333 EUR** more than if the company had taken the same amount evenly in every hour. In 2020–2024 it was
+  62,491 / 164,030 / 483,333 / 155,344 / 142,087 EUR (`C − V × Pb`), about 5–6.5 % of the power cost every year.
+- **FINDING:** The load profile is the part of the cost the company can influence itself. It cannot influence the
+  market price. The profile itself did not change between years. The premium grew because the gap between daytime and
+  night prices grew together with the whole price level. The yearly premium is the upper limit of what the company
+  could save by moving shifts to nights and weekends.
+- **FINDING:** The market price explains 93–99 % of every yearly change (95.0 / 92.9 / 92.6 / 99.4 %). With a
+  simulated load of about 28 GWh every year this was to be expected and is not a discovery: the volume effect stays
+  between −4,286 and +11,073 EUR. With real company data the same query would separate changes in production from
+  market moves.
+
+### Effect of the EUR/CZK rate
+
+Query: [`sql/11_query_fx_effect.sql`](../sql/11_query_fx_effect.sql) ·
+method: [exchange rate effect](decisions/ADR-006-fx-effect-split.md)
+
+I split the year-over-year change of the power cost in CZK into the commodity effect `(C_eur1 − C_eur0) × R0` and the
+exchange rate effect `C_eur1 × (R1 − R0)`. R = C_czk / C_eur is the cost-weighted rate: days with a high EUR cost
+count more than days with a low one. The two parts add up to the total change, with a difference of at most 2.05 CZK
+from rounding R. The CZK cost over all five years is 419,457,499 CZK, the same as the power cost in query 08.
+
+| Change       | Total (CZK)  |    Commodity | Exchange rate |
+| ------------ | -----------: | -----------: | ------------: |
+| 2020 to 2021 |  +49,581,580 |  +52,180,598 |    −2,599,020 |
+| 2021 to 2022 | +105,823,772 | +112,802,613 |    −6,978,840 |
+| 2022 to 2023 | −110,696,659 | −108,873,893 |    −1,822,768 |
+| 2023 to 2024 |   −7,703,937 |  −10,612,537 |    +2,908,602 |
+
+- **FACT:** The cost-weighted rate fell from 26.40 CZK/EUR (2020) to 25.53 (2021), 24.59 (2022) and 23.98 (2023), then
+  rose to 25.13 in 2024. The koruna got stronger during the crisis and weaker in 2024.
+- **FINDING:** The stronger koruna lowered the cost in 2022 by **6.98 m CZK**. That offset only **6.2 %** of the
+  commodity increase (+112.80 m CZK), so the exchange rate softened the crisis only a little.
+- **FINDING:** In 2024 it worked the other way. The weaker koruna added 2.91 m CZK and ate 27 % of the commodity saving
+  (−10.61 m CZK).
+- **Method note:** The report page Příčiny změny (Why it changed) also shows the plain yearly average rate (in 2022 from
+  25.65 to 24.56 CZK/EUR). For the exchange rate effect, however, I use the cost-weighted rate, because only with it
+  do the two parts add up exactly to the real CZK cost.
+
+### Hedging by buying in advance
+
+Query: [`sql/12_query_hedging.sql`](../sql/12_query_hedging.sql) ·
+method: [hedging price](decisions/ADR-003-forward-price-proxy.md)
+
+The company buys part of its yearly volume (0, 25, 50, 75 or 100 %) in advance as base load, the same power in every
+hour. It pays the rest on the spot market. The hedged cost is `C + share × V × (Ph − Pb)`. I compute the hedging
+price Ph in two ways:
+
+- the simple spot average of the previous year (**ASSUMPTION**, a proxy, because OTE has no forward prices)
+- the last trade of the PXE CZ CAL base yearly product at the end of the previous year (**FACT** from the PXE annual
+  reports, only for 2022–2024)
+
+Checks: at 0 % both variants equal the spot cost. At 100 % the part the company still pays on the spot market equals
+`C − V × Pb` from query 10 (2022: 483,332.58 EUR). The proxy difference equals the market price effect of query 10
 with the opposite sign.
 
-Difference of the 100 % hedged cost against the pure spot cost (EUR, negative = saving):
+Difference of the cost with 100 % of the volume hedged against buying only on the spot market (EUR, negative = saving):
 
-| Delivery year | Spot cost | Proxy price | Proxy difference | PXE price | PXE difference |
-|---|---:|---:|---:|---:|---:|
-| 2021 | 2,981,864 | 33.62 | −1,876,652 (−63 %) | – | – |
-| 2022 | 7,399,949 | 100.66 | −4,102,833 (−55 %) | 221.88 | −714,311 (−10 %) |
-| 2023 | 2,972,187 | 247.43 | +4,098,657 (+138 %) | 241.98 | +3,946,234 (+133 %) |
-| 2024 | 2,529,549 | 100.79 | +439,875 (+17 %) | 99.03 | +390,630 (+15 %) |
-| 2022–2024 | 12,901,686 | | +435,699 | | **+3,622,554** |
+| Delivery year | Spot cost  | Proxy price (EUR/MWh) | Proxy difference   | PXE price (EUR/MWh) | PXE difference     |
+| ------------- | ---------: | --------------------: | -----------------: | ------------------: | -----------------: |
+| 2021          |  2,981,864 |                 33.62 | −1,876,652 (−63 %) |                   – |                  – |
+| 2022          |  7,399,949 |                100.66 | −4,102,833 (−55 %) |              221.88 |   −714,311 (−10 %) |
+| 2023          |  2,972,187 |                247.43 | +4,098,657 (+138 %) |             241.98 | +3,946,234 (+133 %) |
+| 2024          |  2,529,549 |                100.79 |   +439,875 (+17 %) |               99.03 |   +390,630 (+15 %) |
+| 2022–2024     | 12,901,686 |                       |           +435,699 |                     |     **+3,622,554** |
 
-- **FINDING (SIMULATED load):** fixing the whole volume once at year end does not remove the crisis, it moves it by one
-  year. The highest yearly cost is 7.40 m EUR on spot (2022) and 7.07 m EUR at 100 % fixed (2023), because the hedge
-  for 2023 was bought at the 2022 price level and the market fell by 59 % in 2023.
-- **FINDING (SIMULATED load):** the proxy overstates the benefit in the crisis year. With the real PXE year-end price
-  the 2022 saving is 0.71 m EUR instead of 4.10 m EUR, because forward prices had already risen in autumn 2021. Over
-  2022–2024 a 100 % year-end hedge at PXE prices costs **3.62 m EUR more** than spot.
-- **FINDING (SIMULATED load):** a base load hedge does not cover the load profile premium. Even at 100 % the company
-  still pays `C − V × Pb` on the spot market: 164,030 / 483,333 / 155,344 / 142,087 EUR in 2021–2024, which is
-  14.8 / 14.7 / 2.2 / 4.8 % of the hedged cost.
-- **RECOMMENDATION:** not "do not hedge", but do not fix everything on one day. Buying in tranches over one to three
-  years (ADR-003, limits) spreads the purchase price; this was not calculated here.
+The 2022–2024 row is added up from the exact values, so it can differ by 1 EUR from the sum of the rounded numbers.
 
-## 4.1 Most expensive day for the company (`dbo.vw_hourly_cost`, grouped by day)
+- **FINDING:** If the company fixes its whole volume once at the end of the year, the crisis does not go away, it only
+  moves by one year. The highest yearly cost is 7.40 m EUR on spot (2022) and 7.07 m EUR fully hedged (2023). The
+  company would have bought its power for 2023 still at 2022 prices, and the market then fell by 59 % in 2023.
+- **FINDING:** The proxy overstates the benefit of hedging in the crisis year. With the real PXE year-end price the
+  saving for 2022 is only 0.71 m EUR instead of 4.10 m EUR, because forward prices had already jumped in autumn 2021.
+  Over 2022–2024 a full hedge at PXE year-end prices would have cost **3.62 m EUR more** than buying on spot.
+- **FINDING:** A base load hedge does not cover the load profile premium. Even fully hedged, the company still pays
+  `C − V × Pb` on the spot market: 164,030 / 483,333 / 155,344 / 142,087 EUR in 2021–2024, which is 14.8 / 14.7 /
+  2.2 / 4.8 % of the hedged cost.
+- **FACT:** The purchase date matters. Power for 2023 traded on PXE at 123.88 EUR/MWh on the first trading day of
+  2022, at 984.00 EUR/MWh on 26 Aug 2022 and at 241.98 EUR/MWh in the last trade of the year on 28 Dec 2022 (PXE
+  Annual Report 2022, [ADR-003](decisions/ADR-003-forward-price-proxy.md)).
+- **RECOMMENDATION:** Hedging makes sense, but not everything should be bought on one day. It is better to buy next
+  year's power in parts during the whole year before delivery, for example power for 2027 in quarters during 2026,
+  and to keep a part on spot. I did not calculate such gradual buying in this project, because daily PXE prices are
+  not a free download.
 
-Power (commodity) cost per day = sum of hourly load × day-ahead price × EUR/CZK rate, without regulated components,
-margin and VAT. Load is SIMULATED (28 GWh/year, ASSUMPTION), prices and rates are real OTE / ČNB data. The company
-buys 100 % on the spot market (worst case, no hedge). Query: `vw_hourly_cost` JOIN `dim_date`, GROUP BY day,
-`RANK() OVER (PARTITION BY year ORDER BY SUM(power_cost_czk) DESC)`.
+### Most expensive day for the company
 
-| Year | Most expensive day | Load MWh | Power cost CZK | Weighted price CZK/MWh | × average day of 2020 |
-|---|---|---:|---:|---:|---:|
-| 2020 | 2020-12-09 (Wed) | 78.753 | 186,946 | 2,374 | 2.6 |
-| 2021 | 2021-12-21 (Tue) | 78.565 | 912,097 | 11,609 | 12.6 |
-| 2022 | 2022-08-30 (Tue) | 97.792 | **1,657,483** | 16,949 | **22.8** |
-| 2023 | 2023-01-23 (Mon) | 78.511 | 406,854 | 5,182 | 5.6 |
-| 2024 | 2024-12-12 (Thu) | 78.535 | 830,802 | 10,579 | 11.5 |
+Query: view `dbo.vw_hourly_cost` ([`sql/03_create_views.sql`](../sql/03_create_views.sql)) grouped by day
 
-Average day (power cost / days): 72,545 / 208,584 / 498,512 / 195,233 / 173,651 CZK in 2020–2024.
-Check: the 2022 top 3 days are equal when computed directly from the fact tables (practice query, same result to the
-haléř).
+The power cost per day is the sum of hourly load × day-ahead price × EUR/CZK rate, without regulated charges, margin
+and VAT. The company buys everything on the spot market without a hedge, so this is the worst case. The most expensive
+day of each year is picked with `RANK() OVER (PARTITION BY year ORDER BY SUM(power_cost_czk) DESC)`.
 
-- **FINDING (SIMULATED load):** at the peak of the crisis one day of operation cost the unhedged company 1.66 m CZK
-  for power alone, 22.8 times an average day of 2020 (72,545 CZK). In 2022 the *average* day cost 0.50 m CZK.
-- **FINDING (SIMULATED load):** the most expensive day for the company is not the most expensive day of the market.
-  The market peak was Friday 2022-08-26 (query 07), but the company paid most on Tuesday 2022-08-30 (1,657,483 vs
-  1,629,833 CZK), because on Friday the milling stops at 22:00 and the load was lower (93.8 vs 97.8 MWh).
-  Cost = price × load shape, not price alone.
-- **FINDING (SIMULATED load):** the crisis ended, the spikes did not. The most expensive day of 2024 (Dunkelflaute,
-  2024-12-12) cost 0.83 m CZK, close to the most expensive day of 2021.
-- **Limit:** real energy-intensive companies usually buy most of their volume in advance (one to two years), so they
-  did not pay such daily amounts in 2022; the hit came when their fixed contracts ended. This is the worst case that
-  page 4 (hedging, query 12) compares with partly fixed volumes.
+| Year | Most expensive day | Load (MWh) | Power cost (CZK) | Weighted price (CZK/MWh) | × average day of 2020 |
+| ---- | ------------------ | ---------: | ---------------: | -----------------------: | --------------------: |
+| 2020 | Wed 9 Dec 2020     |     78.753 |          186,946 |                    2,374 |                   2.6 |
+| 2021 | Tue 21 Dec 2021    |     78.565 |          912,097 |                   11,609 |                  12.6 |
+| 2022 | Tue 30 Aug 2022    |     97.792 |    **1,657,483** |                   16,949 |              **22.8** |
+| 2023 | Mon 23 Jan 2023    |     78.511 |          406,854 |                    5,182 |                   5.6 |
+| 2024 | Thu 12 Dec 2024    |     78.535 |          830,802 |                   10,579 |                  11.5 |
+
+An average day (yearly cost / number of days) cost 72,545 / 208,584 / 498,512 / 195,233 / 173,651 CZK in 2020–2024.
+Check: the three most expensive days of 2022 come out the same to the haléř when computed directly from the fact
+tables.
+
+- **FINDING:** At the peak of the crisis one day of operation cost the unhedged company 1.66 m CZK for power alone,
+  22.8 times an average day of 2020 (72,545 CZK). Even an average day of 2022 cost 0.50 m CZK.
+- **FINDING:** The most expensive day for the company was not the most expensive day of the market. The market peaked
+  on Friday 26 Aug 2022 (query 07), but the company paid the most on Tuesday 30 Aug 2022 (1,657,483 vs 1,629,833 CZK).
+  On Friday the milling stops at 22:00, so the company took less power (93.8 vs 97.8 MWh). What the company pays
+  therefore depends on the price and on how much power it takes in the expensive hours.
+- **FINDING:** The crisis ended, but the price spikes stayed. The most expensive day of 2024 (12 Dec 2024,
+  Dunkelflaute) cost 0.83 m CZK, almost as much as the most expensive day of 2021.
+- **Limit:** Real companies often fix their price in advance, so most of them did not pay such daily amounts in
+  2022. In a [survey by the Confederation of Industry of the Czech Republic](https://www.spcr.cz/drahe-energie-na-firmy-dopadnou-zejmena-v-pristim-roce)
+  from September 2022 (114 mostly industrial firms), almost two thirds had a fixed electricity price for 2022, but only
+  20 % for 2023. The report page Zajištění ceny (Hedging) compares this worst case with a partly hedged volume.

@@ -1,6 +1,8 @@
-# Methodology — simulated load profile
+# Methodology: simulated load profile
 
-Status: SIMULATED. Real hourly load curves of companies are trade secrets, so the model company from the
+**English** · [Čeština](methodology_cz.md)
+
+Companies do not publish their real hourly load curves, so the model company from the
 [project brief](01_project_brief.md) gets a generated profile. Every row carries `is_simulated = 1`.
 Any number that depends on this profile (volumes, CZK costs, load-shape effect) is labelled SIMULATED.
 
@@ -34,10 +36,10 @@ Steps:
 
 | Item | Value | Basis |
 |------|-------|-------|
-| Yearly consumption | 28 GWh | ASSUMPTION. Order of magnitude for a kiln plant producing a few hundred thousand tonnes per year: electricity use for lime production is 40–140 kWh/t depending on kiln type and milling ([IPCC AR4, 7.4.5.2](https://archive.ipcc.ch/publications_and_data/ar4/wg3/en/ch7s7-4-5-2.html)), so 28 GWh is within the range for such a plant |
+| Yearly consumption | 28 GWh | ASSUMPTION. Order of magnitude for a kiln plant producing a few hundred thousand tonnes per year: electricity use for lime production is 40–140 kWh/t depending on the type of kiln and the required fineness of the lime ([IPCC AR4, WG III, chapter 7, section 7.4.5.2, p. 468](https://www.ipcc.ch/site/assets/uploads/2018/02/ar4-wg3-chapter7.pdf#page=22)), so 28 GWh is within the range for such a plant |
 | Layer weights | 1.3 / 2.1 / 0.6 | ASSUMPTION. Kilns use comparatively little electricity (most of the energy is fuel), crushing and milling use most of it |
 | Shift pattern | as in the table | ASSUMPTION based on a typical continuous plant |
-| Reserved capacity | 5 MW | ASSUMPTION. Highest hourly load of the profile is 4.665 MWh → about 7 % headroom |
+| Reserved capacity | 5 MW | ASSUMPTION. Highest hourly load of the profile is 4.665 MWh, so about 7 % headroom |
 
 ## Simplifications (not modelled)
 
@@ -50,7 +52,7 @@ Steps:
 
 ## Checks (run 2026-10-17)
 
-- 43,848 rows, 1,827 days; two runs give byte-identical files (same SHA-256).
+- 43,848 rows, 1,827 days. Two runs give byte-identical files (same SHA-256).
 - Yearly totals: 28,050.9 / 27,993.7 / 27,953.4 / 27,948.9 / 28,053.0 MWh (2020–2024).
 - Hourly load 1.428–4.665 MWh. Saturday average 1.47 MWh (base layer only).
 - Load-weighted price minus simple average price is positive in every year (load-shape effect is not

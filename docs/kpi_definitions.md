@@ -1,5 +1,7 @@
 # KPI definitions
 
+**English** · [Čeština](kpi_definitions_cz.md)
+
 ## Price band
 - Business question it answers: how many hours per year were negative, cheap, normal, expensive or extreme,
   and how did this mix change during the 2021–2023 energy crisis?
@@ -16,7 +18,7 @@
 
   Lower bound is inclusive, upper bound exclusive → every hour falls into exactly one band.
 - Formula (SQL / DAX reference): `price_czk_mwh` from `dbo.vw_energy_prices_czk`
-  (`sql/03_create_views.sql`), band assigned with `CASE WHEN` in `sql/05_query_price_bands.sql` (step 1.3).
+  (`sql/03_create_views.sql`), band assigned with `CASE WHEN` in `sql/05_query_price_bands.sql`.
 - Unit & time grain: CZK/MWh, one row per delivery hour (`date_key`, `hour_of_day`).
 - Filters / exclusions: none; all 43,848 hours 2020–2024.
 - How to read it: a rising share of high and extreme hours means higher and less predictable purchase cost;
@@ -47,10 +49,10 @@
 ## Average market price
 - Business question it answers: how expensive was electricity on the market in a year or month?
 - Business definition: plain average of the hourly day-ahead prices; every hour has the same weight.
-  This is the market's price level, not what the company paid (that is the load-weighted price, page 2).
+  This is the market's price level, not what the company paid (that is the load-weighted price on the Náklad firmy page).
 - Formula (SQL / DAX reference): `AVG(price_czk_mwh)` over the hours of the period (`vw_energy_prices_czk`).
   In Power BI as a sum of hourly prices / number of hours, which gives the same result for any period
-  (sum / sum, never an average of daily averages). EUR version: `AVG(price_eur_mwh)` (tooltip).
+  (sum / sum, never an average of daily averages). EUR version: `AVG(price_eur_mwh)`.
 - Unit & time grain: CZK/MWh; card = selected year, trend line = month.
 - Filters / exclusions: none; negative and zero hours are included (valid market prices).
 - How to read it: CZK/MWh 2020 886.55 · 2021 2,570.35 · 2022 6,082.84 · 2023 2,416.13 · 2024 2,138.04
@@ -87,11 +89,12 @@
   definition (PXE / EEX). Off-peak = all other hours. Weekday public holidays count as peak (ASSUMPTION).
 - Formula (SQL / DAX reference): `AVG(CASE WHEN peak THEN price END) − AVG(CASE WHEN off-peak THEN price END)`
   (`sql/09_query_peak_offpeak.sql`).
-- Unit & time grain: CZK/MWh per year (EUR/MWh in the tooltip).
+- Unit & time grain: CZK/MWh per year.
 - Filters / exclusions: none.
 - How to read it: CZK/MWh 2020 330.09 · 2021 858.42 · 2022 1,471.75 · 2023 526.54 · 2024 374.52
   (EUR/MWh 12.53 · 33.71 · 60.04 · 21.82 · 14.89). The upper limit of what one MWh moved from peak to off-peak
-  could save; the company's real extra cost is the load profile premium (page 2).
+  could save; the company's real extra cost is the load profile premium. In the report, the 2022 spread
+  (1,472 CZK/MWh) is in the "Co to znamená" text on the Trh page.
 - Known limitations: plain averages over hours; no holiday calendar (backlog).
 
 ## Total electricity cost
@@ -132,8 +135,8 @@
   the same hours. Total premium = premium per MWh × consumed MWh = what the company paid above "the same volume
   bought flat at the market average". The part of the power cost the company can influence by moving load.
 - Formula (SQL / DAX reference): per MWh `S = SUM(load × price) / SUM(load) − AVG(price)`; total
-  `C − V × Pb = SUM(load × price) − SUM(load) × AVG(price)` (ADR-004). Page 2 uses CZK prices
-  (`price_czk_mwh`), page 3 and query 10 use EUR. Cross-check query (run 2026-11-03):
+  `C − V × Pb = SUM(load × price) − SUM(load) × AVG(price)` (ADR-004). The Náklad firmy page uses CZK prices
+  (`price_czk_mwh`), query 10 uses EUR. Cross-check query (run 2026-11-03):
 
   ```sql
   SELECT d.year,
@@ -149,7 +152,7 @@
 - Filters / exclusions: none.
 - How to read it: CZK/MWh 2020 59.99 · 2021 149.30 · 2022 426.45 · 2023 133.52 · 2024 127.53; total 1.68 · 4.18 ·
   11.92 · 3.73 · 3.58 m CZK (EUR in query 10: 2022 +17.29 EUR/MWh, 483,332.58 EUR). The yearly power cost of the
-  same query sums to 419,457,499 CZK over 5 years (= queries 08 and 11). A base-load hedge does not remove it (2.9).
+  same query sums to 419,457,499 CZK over 5 years (= queries 08 and 11). A base-load hedge does not remove it (`sql/12_query_hedging.sql`).
 - Known limitations: SIMULATED load shape; the CZK and EUR totals differ slightly more than one yearly rate would
   explain, because every hour is converted at its own daily rate. Not additive across years (the market average
   is per period) → shown per year, see DAX measures.
@@ -157,7 +160,7 @@
 ## Power cost change
 - Business question it answers: how much more or less did the company pay for power than in the previous year?
 - Business definition: power (commodity) cost in CZK of the selected year minus the previous year. Regulated
-  components are not part of it (they are on page 2).
+  components are not part of it (they are on the Náklad firmy page).
 - Formula (SQL / DAX reference): `C_czk1 − C_czk0`, `C_czk = SUM(load_mwh × price_czk_mwh)` per year
   (`sql/11_query_fx_effect.sql`).
 - Unit & time grain: CZK; year over year (2021–2024).
@@ -166,7 +169,7 @@
 - Known limitations: SIMULATED load.
 
 ## Market price, volume and load profile effects
-These three are the split of the power cost change into its drivers, shown as one waterfall in CZK on page 3.
+These three are the split of the power cost change into its drivers, shown as one waterfall in CZK on the Příčiny změny page.
 - Business question it answers: which part of the change came from the market price level, from the consumed
   volume, and from when the company consumed (load shape)?
 - Business definition (ADR-004, then priced at the previous year's effective rate `R0`, ADR-006):
@@ -236,19 +239,20 @@ These three are the split of the power cost change into its drivers, shown as on
 - Business definition: the part of the CZK cost change caused by the effective EUR/CZK rate
   (`R = C_czk / C_eur`, cost-weighted) moving from the previous year: `C_eur1 × (R1 − R0)` (ADR-006).
   Negative = a stronger koruna made power cheaper.
-- Formula (SQL / DAX reference): `rate_effect_czk` in `sql/11_query_fx_effect.sql`.
+- Formula (SQL / DAX reference): `fx_effect_czk` in `sql/11_query_fx_effect.sql`.
 - Unit & time grain: CZK; year over year (2021–2024).
 - Filters / exclusions: none.
 - How to read it: 2021 −2.60 · 2022 −6.98 · 2023 −1.82 · 2024 +2.91 m CZK. In 2022 the koruna offset 6.2 % of the
   commodity increase.
 - Known limitations: the effective rate weights days by cost, so it differs slightly from the yearly average
-  ČNB rate.
+  ČNB rate. The card on the Příčiny změny page shows the simple yearly average for orientation (for 2022:
+  25.65 in 2021 and 24.56 in 2022), the effect itself uses the effective rate.
 
 ## Spot cost
 - Business question it answers: what did power cost the company when it bought everything on the day-ahead market?
 - Business definition: load-weighted power cost without any hedge, `C = SUM(load × price)`.
 - Formula (SQL / DAX reference): `spot_cost_eur` in `sql/12_query_hedging.sql` (= yearly C of query 10).
-- Unit & time grain: EUR per year (2021–2024 on page 4).
+- Unit & time grain: EUR per year (2021–2024 on the Zajištění ceny page).
 - Filters / exclusions: none.
 - How to read it: 2021 2.98 · 2022 7.40 · 2023 2.97 · 2024 2.53 m EUR.
 - Known limitations: SIMULATED load; power only (no regulated components).
@@ -275,7 +279,8 @@ These three are the split of the power cost change into its drivers, shown as on
   Negative = hedging was cheaper.
 - Formula (SQL / DAX reference): sum over years of `hedged_cost_eur − spot_cost_eur` from `sql/12_query_hedging.sql`.
 - Unit & time grain: EUR, period 2021–2024.
-- Filters / exclusions: PXE variant only 2022–2024 (shown separately in the tooltip).
+- Filters / exclusions: PXE variant only 2022–2024. The report has no separate card for this total, the measure
+  `Výsledek zajištění - proxy (EUR)` returns it when no year filter applies.
 - How to read it: proxy price at 100 % −1.44 m EUR (14,442,596.70 vs 15,883,549.87), at 50 % −0.72 m EUR.
   PXE price 2022–2024 at 100 % +3.62 m EUR (more expensive).
 - Known limitations: as Hedged cost; the result depends on which price the hedge used.
@@ -285,16 +290,18 @@ These three are the split of the power cost change into its drivers, shown as on
 - Business definition: total electricity cost 2022 / total electricity cost 2020.
 - Formula (SQL / DAX reference): yearly `total_cost_czk` of `sql/08_query_allin_price.sql`:
   200,924,897.61 / 45,464,435.44 = 4.42.
-- Unit & time grain: ratio, fixed years 2022 and 2020 (Summary page title).
+- Unit & time grain: ratio, fixed years 2022 and 2020.
 - Filters / exclusions: none.
-- How to read it: 4.4× — the headline number of the report.
+- How to read it: 4.4×. In the report it is in the "Co to znamená" text on the Náklad firmy page.
 - Known limitations: SIMULATED load; regulated tariffs changed too (POZE was 0 from 2022-10-01 to 2023-12-31).
 
 ## DAX measures in Power BI
-Measures of the report (`powerbi/`, step 4.2). Names and descriptions are Czech (report language,
+Measures of the report (`powerbi/`): 65 in the model, 64 written by hand and 1 generated by Power BI for the
+what-if parameter. Names and descriptions are Czech (report language,
 `docs/dashboard_spec.md`); columns are referenced with the table name, measures without it. Every ratio takes its
 numerator and denominator from the same table, so a filter on one table cannot change only half of it.
-Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared 2026-11-07 and 2026-11-08 (query 05 extreme hours, 07 top hour, 09 peak/off-peak, 11 cost change).
+Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compared when each measure was written
+and again for every report page in the consistency check on 2026-11-23.
 
 | Measure | Home table | DAX | KPI | Check 2022 |
 |---------|------------|-----|-----|------------|
@@ -310,13 +317,14 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Regulované poplatky podle spotřeby (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[electricity_tax_czk]) + SUM(vw_monthly_cost[network_use_czk]) + SUM(vw_monthly_cost[system_services_czk])` | Monthly cost (component) | Jan 2020: 360,896.19 |
 | Pevné platby (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[reserved_capacity_czk]) + SUM(vw_monthly_cost[ote_fees_czk])` | Monthly cost (component) | Jan 2020: 885,157.69 |
 | POZE (Kč) | `vw_monthly_cost` | `SUM(vw_monthly_cost[poze_czk])` | Monthly cost (component) | Jan 2020: 288,372.60 |
-| Regulované platby (Kč) | `vw_monthly_cost` | `[Pevné platby (Kč)] + [POZE (Kč)] + [Regulované poplatky podle spotřeby (Kč)]` | Monthly cost (regulated part) | Aug 2022 with power: 32,303,995.75 |
+| Regulované platby (Kč) | `vw_monthly_cost` | `[Pevné platby (Kč)] + [POZE (Kč)] + [Regulované poplatky podle spotřeby (Kč)]` | Monthly cost (regulated part) | 18,968,121.97 (Jan 2020: 1,534,426.48) |
 | Podíl silové elektřiny (%) | `vw_monthly_cost` | `DIVIDE(SUM(vw_monthly_cost[power_cost_czk]), [Celkový náklad na elektřinu (Kč)])` | Power share | 90.6 % |
 | Průměrná tržní cena (Kč/MWh) | `vw_hourly_cost` | `AVERAGE(vw_hourly_cost[price_czk_mwh])` | Average market price | 6,082.84 |
 | Průměrná tržní cena minulý rok (Kč/MWh) | `vw_hourly_cost` | `CALCULATE([Průměrná tržní cena (Kč/MWh)], SAMEPERIODLASTYEAR(dim_date[full_date]))` | Average market price (comparison line) | 2,570.35 |
 | Přirážka za diagram odběru (Kč/MWh) | `vw_hourly_cost` | `[Cena za silovou elektřinu (Kč/MWh)] - [Průměrná tržní cena (Kč/MWh)]` | Load profile premium | 426.45 |
 | Přirážka za diagram odběru (Kč) | `vw_hourly_cost` | `[Přirážka za diagram odběru (Kč/MWh)] * [Spotřeba (MWh)]` | Load profile premium | 11,920,639.66 |
 | Přirážka za diagram odběru (mil. Kč) | `vw_hourly_cost` | `DIVIDE([Přirážka za diagram odběru (Kč)], 1000000)` | Load profile premium (card display) | 11.92 |
+| Počet hodin | `vw_hourly_cost` | `COUNTROWS(vw_hourly_cost)` | Price band (bands chart on the Trh page) | 8,760 |
 | Extrémní hodiny | `vw_hourly_cost` | `CALCULATE(COUNTROWS(vw_hourly_cost), vw_hourly_cost[price_band] = "extrémní") + 0` | Extreme hours | 3,694 |
 | Podíl extrémních hodin (%) | `vw_hourly_cost` | `DIVIDE([Extrémní hodiny], COUNTROWS(vw_hourly_cost))` | Extreme hours (share of the year) | 42.2 % |
 | Nejvyšší hodinová cena (Kč/MWh) | `vw_hourly_cost` | `MAX(vw_hourly_cost[price_czk_mwh])` | Highest hourly price | 21,422.25 |
@@ -362,6 +370,12 @@ Check values = yearly SQL results (queries 08 and 11, `vw_hourly_cost`), compare
 | Nejdražší den – silová elektřina (Kč) | `vw_hourly_cost` | `MAXX(VALUES(dim_date[full_date]), [Náklad na silovou elektřinu (Kč)])` (iterates the days, sums the hours of each day, keeps the largest) | Spot cost (power only) | 1,657,482.83 (30 Aug 2022) |
 | Nejdražší den – silová elektřina (mil. Kč) | `vw_hourly_cost` | `DIVIDE([Nejdražší den – silová elektřina (Kč)], 1000000)` | Spot cost (Summary card) | 1.66 |
 | Karta – nejdražší den | `vw_hourly_cost` | `"30. 8. 2022 · pouze silová elektřina"` (text, card line) | — (display only) | same text |
+
+Six measures are not shown on any report page. They were built while the report took shape, did not make it onto
+a page, and their values match SQL: `Cena za silovou elektřinu (Kč/kWh)`, `Podíl silové elektřiny (%)`,
+`Rozdíl špička – mimo špičku (Kč/MWh)` (with the peak and off-peak measures it uses), and `Karta – přirážka popisek`,
+`Karta – náklad 2020 a násobek`, `Karta – cena 2020` (from the first version of the Summary page, before its cards
+were replaced by the most and least expensive month and the most expensive day).
 
 Off-peak = weekend **or** an hour outside 9–20. Filters inside `CALCULATE` combine only with AND, and an OR across
 two tables (`dim_date`, `dim_hour`) is not simple, so off-peak is computed as all hours minus peak hours:
@@ -413,11 +427,10 @@ Checked 2026-11-11 against a `RANK` query on `vw_hourly_cost`: 2020-09-22 h20 ·
   `price_band_order` 1–5). Since 2026-11-10 Extrémní hodiny filters on the band instead of `price_czk_mwh >= 5821`,
   so the bounds live only in SQL; same values as before (0 / 577 / 3,694 / 30 / 84).
 - Podíl extrémních hodin reuses `[Extrémní hodiny]`, so it needs no threshold of its own.
-- Card numbers: the card visual shortens numbers by default (display units Auto: 3,694 → "4 tis."). Since 2026-11-11
-  the report theme sets `cardVisual → value → labelDisplayUnits = 1` (None) for every card, so cards use the numeric
-  measures directly. The measure keeps its full format (`#,0.00` for prices, used in tables and tooltips); each card
-  overrides it with the visual format `#,0` (whole number). The text measure `Průměrná tržní cena – karta`
-  (`FORMAT(…, "#,0")`, 2026-11-10) was removed.
+- Card numbers: the card visual shortens numbers by default (display units Auto: 3,694 → "4 tis."). The report
+  theme sets `cardVisual` value `labelDisplayUnits = 1` (None) for every card. Amounts in millions are shown through
+  separate `(mil. Kč)` and `(mil. EUR)` measures, because the new card visual cannot show its main value in millions
+  by itself. The CZK measure stays for other measures, tables and tooltips.
 - Průměrná tržní cena minulý rok: same pattern as the previous-year cost; 2020 is BLANK (no 2019 data). Checked
   2026-11-11: 886.55 / 2,570.35 / 6,082.84 / 2,416.13 for 2021–2024. The total row (2,987.53) is the average of
   2020–2023, not a meaningful number → shown per year only.
@@ -426,7 +439,7 @@ Checked 2026-11-11 against a `RANK` query on `vw_hourly_cost`: 2020-09-22 h20 ·
 - `/ 1000` divides by a constant (MWh → kWh), so it cannot fail; `DIVIDE` is used wherever the denominator is a measure.
 - Load profile premium (Kč) is correct for one year. Over several years the market average is taken over all their
   hours, not per year: 2020–2024 shows 25,028,480.44 CZK, the sum of the five years is 25,092,615.49 CZK. The report
-  shows it per year (page 2 year slicer); visuals by year hide the total row.
+  shows it per year (year slicer on the Náklad firmy page); visuals by year hide the total row.
 - Power BI and SQL differ by up to 0.02 CZK in the premium (SQL rounds `AVG` of DECIMAL to 6 decimals).
 
 ## <KPI name>
