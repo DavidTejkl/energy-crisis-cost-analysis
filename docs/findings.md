@@ -270,7 +270,7 @@ tables.
   22.8 times an average day of 2020 (72,545 CZK). Even an average day of 2022 cost 0.50 m CZK.
 - **FINDING:** The most expensive day for the company was not the most expensive day of the market. The market peaked
   on Friday 26 Aug 2022 (query 07), but the company paid the most on Tuesday 30 Aug 2022 (1,657,483 vs 1,629,833 CZK).
-  On Friday the milling stops at 22:00, so the company took less power (93.8 vs 97.8 MWh). What the company pays
+  On Friday the shift work stops at 22:00, so the company took less power (93.8 vs 97.8 MWh). What the company pays
   therefore depends on the price and on how much power it takes in the expensive hours.
 - **FINDING:** The crisis ended, but the price spikes stayed. The most expensive day of 2024 (12 Dec 2024,
   Dunkelflaute) cost 0.83 m CZK, almost as much as the most expensive day of 2021.

@@ -263,7 +263,7 @@ Kontrola: tři nejdražší dny roku 2022 vyjdou na haléř stejně i při výpo
 - **FINDING:** Na vrcholu krize stál jeden den provozu nezajištěnou firmu 1,66 mil. Kč jen za silovou elektřinu,
   22,8× víc než průměrný den roku 2020 (72 545 Kč). I průměrný den roku 2022 stál 0,50 mil. Kč.
 - **FINDING:** Nejdražší den firmy nebyl nejdražším dnem trhu. Trh měl vrchol v pátek 26. 8. 2022 (dotaz 07), firma
-  ale zaplatila nejvíc v úterý 30. 8. 2022 (1 657 483 proti 1 629 833 Kč). V pátek ve 22:00 totiž končí mletí, takže
+  ale zaplatila nejvíc v úterý 30. 8. 2022 (1 657 483 proti 1 629 833 Kč). V pátek ve 22:00 totiž končí směnový provoz, takže
   firma odebrala méně (93,8 proti 97,8 MWh). Kolik firma zaplatí, tedy záleží na ceně i na tom, kolik elektřiny
   odebírá v drahých hodinách.
 - **FINDING:** Krize skončila, cenové špičky ale zůstaly. Nejdražší den roku 2024 (12. 12. 2024, Dunkelflaute) stál

@@ -16,7 +16,7 @@ Energetická krize byla pro české průmyslové firmy velké téma a chtěl jse
 
 Ceny elektřiny, kurzy a regulované poplatky jsou skutečná data z let 2020–2024. Odběr firmy je simulovaný (28 GWh za rok), protože firmy svoje odběrové diagramy nezveřejňují. Každé číslo v reportu jsem si ověřil v SQL.
 
-**Projekt v číslech:** 43 848 hodinových cen · 5 let · 3 veřejné zdroje dat · 7 tabulek a 6 pohledů v SQL Serveru · 9 analytických dotazů · 31 kontrol kvality dat · 6 záznamů o rozhodnutí (ADR) · 64 měr DAX · 6 stránek reportu
+**Projekt v číslech:** 43 848 hodinových cen · 5 let · 3 veřejné zdroje dat · 7 datových tabulek a 6 pohledů v SQL Serveru · 9 analytických dotazů · 31 kontrol kvality dat · 6 záznamů o rozhodnutí (ADR) · 64 měr DAX · 6 stránek reportu
 
 ![Stránka Shrnutí z reportu v Power BI](docs/screenshots/report/report_02_shrnuti.png)
 
@@ -181,7 +181,7 @@ Další pravidla v [python/02_transform.py](python/02_transform.py):
 
 Data hlídá 31 kontrol v [sql/91_dq_tests.sql](sql/91_dq_tests.sql). Kontrolují, že žádný den, hodina ani cena nechybí, že dny s 23 a 25 hodinami připadnou na poslední neděli v březnu a v říjnu, že nic není v datech dvakrát, že ceny a kurzy jsou v rozumném rozsahu a že víkendy a svátky mají kurz z posledního pracovního dne. Sloupce kalendáře, které spočítal Python, navíc přepočítám v SQL a porovnám.
 
-18 kontrol z celkových 31 kontrol, zapíše při každém běhu výsledek do tabulky `dq_results`. Poslední běh skončil 17× PASS a 1× WARN, varování hlásí 609 hodin se zápornou cenou, které jsou skutečné, proto je v datech nechávám. Zbylé kontroly vypisují přehledy, například pět nejdražších hodin každého roku. Výsledky: [docs/data_quality_report_cz.md](docs/data_quality_report_cz.md).
+18 z těchto 31 kontrol zapíše při každém běhu výsledek do tabulky `dq_results`. Poslední běh skončil 17× PASS a 1× WARN, varování hlásí 609 hodin se zápornou cenou, které jsou skutečné, proto je v datech nechávám. Zbylé kontroly vypisují přehledy, například pět nejdražších hodin každého roku. Výsledky: [docs/data_quality_report_cz.md](docs/data_quality_report_cz.md).
 
 V přehledu nejdražších hodin jsem si při první kontrole všiml 12. 12. 2024 mezi 17 a 18 h: **844,63 EUR/MWh**. Ve stejné hodině to 10. 12. bylo 199,29 EUR/MWh a 11. 12. 442,45 EUR/MWh, tak jsem nejdřív hledal chybu. Otevřel jsem surový soubor OTE v Excelu a hodnota tam byla stejná. Sedí i cena v korunách, kterou OTE v souboru uvádí (844,63 × 25,065 = 21 170,65 Kč/MWh). Cena navíc nevyskočila v jediné hodině, celý podvečer plynule rostla a zase klesala, což by překlep neudělal. Příčina: ve stejné hodině vrcholila v Německu Dunkelflaute, tedy chladné dny skoro bez větru a slunce, a cena denního trhu tam dosáhla 936 EUR/MWh ([článek o Dunkelflaute](https://www.cleanenergywire.org/news/short-term-power-prices-spike-amid-new-dunkelflaute-germany-most-customers-unaffected)). Český a německý trh jsou propojené, což cenu vysvětluje. V datech jsem ji nechal.
 

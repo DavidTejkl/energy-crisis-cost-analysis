@@ -16,7 +16,7 @@ The energy crisis was a big topic for Czech industrial companies, and I wanted t
 
 Electricity prices, exchange rates and regulated charges are real data from 2020–2024. The company's load is simulated (28 GWh a year), because companies do not publish their load curves. I checked every number in the report in SQL.
 
-**Project in numbers:** 43,848 hourly prices · 5 years · 3 public data sources · 7 tables and 6 views in SQL Server · 9 analysis queries · 31 data quality checks · 6 decision records (ADR) · 64 DAX measures · 6 report pages
+**Project in numbers:** 43,848 hourly prices · 5 years · 3 public data sources · 7 data tables and 6 views in SQL Server · 9 analysis queries · 31 data quality checks · 6 decision records (ADR) · 64 DAX measures · 6 report pages
 
 ![Summary page of the Power BI report](docs/screenshots/report/report_02_shrnuti.png)
 
@@ -181,7 +181,7 @@ Other rules in [python/02_transform.py](python/02_transform.py):
 
 The data is guarded by 31 checks in [sql/91_dq_tests.sql](sql/91_dq_tests.sql). They check that no day, hour or price is missing, that the days with 23 and 25 hours fall on the last Sunday of March and October, that nothing is in the data twice, that prices and rates are in a sensible range and that weekends and holidays have the rate of the last working day. I also recompute in SQL the calendar columns that Python calculated, and compare them.
 
-18 of them write their result into the `dq_results` table on every run. The latest run ended with 17 PASS and 1 WARN. The warning reports 609 hours with a negative price, which are real, so I keep them in the data. The other checks print overviews, for example the five most expensive hours of every year. Results: [docs/data_quality_report.md](docs/data_quality_report.md).
+18 of these 31 checks write their result into the `dq_results` table on every run. The latest run ended with 17 PASS and 1 WARN. The warning reports 609 hours with a negative price, which are real, so I keep them in the data. The other checks print overviews, for example the five most expensive hours of every year. Results: [docs/data_quality_report.md](docs/data_quality_report.md).
 
 In the list of the most expensive hours I noticed, during the first check, 12 Dec 2024 between 17:00 and 18:00: **844.63 EUR/MWh**. In the same hour it was 199.29 EUR/MWh on 10 Dec and 442.45 EUR/MWh on 11 Dec, so I first looked for an error. I opened the raw OTE file in Excel and the value was the same there. The CZK price that OTE gives in the file also agrees (844.63 × 25.065 = 21,170.65 CZK/MWh). The price also did not jump in a single hour, it rose and fell smoothly over the whole evening, which a typo would not do. The cause: in the same hour Germany was at the peak of a Dunkelflaute, cold days with almost no wind and sun, and the day-ahead price there reached 936 EUR/MWh ([article on the Dunkelflaute](https://www.cleanenergywire.org/news/short-term-power-prices-spike-amid-new-dunkelflaute-germany-most-customers-unaffected)). The Czech and German markets are coupled, which explains the price. I kept it in the data.
 
