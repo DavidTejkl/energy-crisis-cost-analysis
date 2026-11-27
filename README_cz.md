@@ -27,6 +27,8 @@ Ceny elektřiny, kurzy a regulované poplatky jsou skutečná data z let 2020–
 3. [PDF se všemi 6 stránkami](docs/report/energy_crisis_cost_analysis_report_final.pdf)
 4. [soubor .pbix](https://github.com/DavidTejkl/energy-crisis-cost-analysis/releases/latest) (stačí bezplatný Power BI Desktop, data jsou přímo v souboru, databázi nepotřebujete)
 
+https://github.com/user-attachments/assets/b589d228-a87d-4386-b068-cc21a584d698
+
 Report je v češtině. Dokumentace ve složce `docs/` je česky i anglicky, kód je anglicky.
 
 ---
