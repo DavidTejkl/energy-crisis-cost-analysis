@@ -4,9 +4,9 @@
 
 ## Scénář (vymyšlená firma)
 
-- **Firma:** energeticky náročný český výrobce s nepřetržitým vysokoteplotním procesem. Pece jedou 24 hodin denně
-  celý rok. Drcení a mletí běží ve třech směnách od neděle 22:00 do pátku 22:00 (v zimě ve dvou směnách), expedice
-  a kanceláře pracují ve všední dny na ranní směně. Firma spotřebuje zhruba 28 GWh elektřiny za rok (předpoklad).
+- **Firma:** energeticky náročný český výrobce s nepřetržitým provozem, který běží 24 hodin denně celý rok.
+  Výrobní linky jedou ve třech směnách od neděle 22:00 do pátku 22:00 (v zimě ve dvou směnách), expedice a kanceláře
+  pracují ve všední dny na ranní směně. Firma spotřebuje zhruba 28 GWh elektřiny za rok (předpoklad).
 - **Připojení k síti:** distribuční území ČEZ Distribuce, vysoké napětí (VN, 22 kV). Všechny ceny jsou bez DPH
   ([ADR-005](decisions/ADR-005-all-in-price-scope_cz.md)).
 - **Odběr:** simulovaný hodinový odběr (`is_simulated = 1`), protože firmy svoje skutečné odběrové diagramy

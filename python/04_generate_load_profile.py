@@ -1,6 +1,6 @@
 # Purpose: build the SIMULATED hourly load profile of the model company for 2020-2024.
 # Real load curves are trade secrets, so the profile is generated from three layers
-# (continuous kilns, shift-based crushing and milling, day-shift dispatch) described in
+# (continuous base, production lines in shifts, day-shift dispatch and offices) described in
 # docs/methodology.md. Output: data/silver/fact_load.csv, one row per delivery day and hour.
 
 import numpy as np

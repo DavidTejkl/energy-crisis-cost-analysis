@@ -10,13 +10,13 @@ Skript: `python/04_generate_load_profile.py` · konstanty: `python/config.py` ·
 
 ## Nápad: tři vrstvy
 
-Nepřetržitý vysokoteplotní proces se v noci ani o víkendu nezastaví, provoz kolem něj ale ano. Odběr jsem proto složil
+Nepřetržitý provoz se v noci ani o víkendu nezastaví, provoz kolem něj ale ano. Odběr jsem proto složil
 ze tří vrstev. Každá vrstva v dané hodině buď běží (1), nebo stojí (0), a má pevný poměrný příkon (váhu).
 
 | Vrstva                          | Co běží                                 | Kdy                                        | Váha |
 | ------------------------------- | --------------------------------------- | ------------------------------------------ | ---: |
-| Základ                          | pece, ventilátory, odprášení, dmychadla | každou hodinu v roce                       |  1,3 |
-| Směny                           | drcení, mletí, třídění, balení          | od neděle 22:00 do pátku 22:00 (tři směny) |  2,1 |
+| Základ                          | nepřetržité technologie, ventilátory, čerpadla, stlačený vzduch | každou hodinu v roce |  1,3 |
+| Směny                           | výrobní linky                           | od neděle 22:00 do pátku 22:00 (tři směny) |  2,1 |
 | Směny v zimě (prosinec až únor) | totéž                                   | pondělí až pátek 6:00–22:00 (dvě směny)    |  2,1 |
 | Den                             | expedice, kanceláře                     | pondělí až pátek 6:00–14:00                |  0,6 |
 
@@ -35,8 +35,8 @@ Postup:
 
 | Položka              | Hodnota         | Z čeho vychází                                                                                                                                                                                                                                                                                                |
 | -------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Roční spotřeba       | 28 GWh          | `ASSUMPTION`. Řádově odpovídá závodu s pecemi, který vyrobí několik set tisíc tun ročně. Výroba vápna spotřebuje 40–140 kWh elektřiny na tunu podle typu pece a toho, jak jemné vápno má být ([IPCC AR4, WG III, kapitola 7, oddíl 7.4.5.2, s. 468](https://www.ipcc.ch/site/assets/uploads/2018/02/ar4-wg3-chapter7.pdf#page=22)), takže 28 GWh do tohoto rozsahu spadá. |
-| Váhy vrstev          | 1,3 / 2,1 / 0,6 | `ASSUMPTION`. Pece spotřebují elektřiny poměrně málo (většinu energie dodává palivo), nejvíc jí spotřebuje drcení a mletí.                                                                                                                                                                                    |
+| Roční spotřeba       | 28 GWh          | `ASSUMPTION`. Velikost středně velkého energeticky náročného závodu připojeného na vysoké napětí (22 kV). 28 GWh za rok je průměrný příkon 3,2 MW a nejvyšší hodina odběru (4,665 MWh) zůstává pod rezervovanou kapacitou 5 MW. |
+| Váhy vrstev          | 1,3 / 2,1 / 0,6 | `ASSUMPTION`. Nejvíc elektřiny berou výrobní linky ve směnách, méně nepřetržitý základ, nejméně expedice a kanceláře.                                                                                                                                                                                    |
 | Rozvrh směn          | podle tabulky   | `ASSUMPTION` podle běžného nepřetržitého provozu.                                                                                                                                                                                                                                                             |
 | Rezervovaná kapacita | 5 MW            | `ASSUMPTION`. Nejvyšší hodinový odběr je 4,665 MWh, takže zbývá rezerva asi 7 %.                                                                                                                                                                                                                              |
 

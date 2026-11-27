@@ -4,9 +4,9 @@
 
 ## Scenario (fictional company)
 
-- **The company:** an energy-intensive Czech manufacturer with a continuous high-temperature process. Its kilns run
-  24 hours a day all year. Crushing and milling run in three shifts from Sunday 22:00 to Friday 22:00 (two shifts in
-  winter), dispatch and offices work the weekday morning shift. It uses about 28 GWh of electricity a year (ASSUMPTION).
+- **The company:** an energy-intensive Czech manufacturer with a continuous process that runs 24 hours a day
+  all year. Production lines work in three shifts from Sunday 22:00 to Friday 22:00 (two shifts in winter), dispatch
+  and offices work the weekday morning shift. It uses about 28 GWh of electricity a year (ASSUMPTION).
 - **Grid connection:** ČEZ Distribuce area, high voltage (VN, 22 kV). All prices are without VAT
   ([ADR-005](decisions/ADR-005-all-in-price-scope.md)).
 - **Load profile:** a simulated hourly profile (`is_simulated = 1`), because companies do not publish their real load

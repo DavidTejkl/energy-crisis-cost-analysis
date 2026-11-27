@@ -47,10 +47,10 @@ EXPECTED_PRICE_ROWS = 43848    # 1,827 days x 24 hours; DST +5 and -5 hours canc
 
 # SIMULATED load profile of the model company (docs/methodology.md). Real load curves are trade
 # secrets, so the profile is built from three layers whose relative power levels are ASSUMPTIONS.
-LOAD_BASE_WEIGHT = 1.3     # kilns, fans, dedusting, blowers: every hour of the year
-LOAD_SHIFT_WEIGHT = 2.1    # crushing, milling, screening, packing: Sunday 22:00 to Friday 22:00
+LOAD_BASE_WEIGHT = 1.3     # continuous process equipment, fans, pumps, compressed air: every hour of the year
+LOAD_SHIFT_WEIGHT = 2.1    # production lines in shifts: Sunday 22:00 to Friday 22:00
 LOAD_DAY_WEIGHT = 0.6      # dispatch and offices: weekday morning shift 06:00-14:00
-WINTER_MONTHS = [12, 1, 2]  # construction slowdown: shift layer runs only 06:00-22:00 on weekdays
+WINTER_MONTHS = [12, 1, 2]  # lower winter demand: shift layer runs only 06:00-22:00 on weekdays
 LOAD_TARGET_MWH_PER_YEAR = 28000   # average yearly consumption of the model company (ASSUMPTION)
 LOAD_NOISE = 0.03          # +-3 % random variation per hour, so the curve does not look artificial
 LOAD_RANDOM_SEED = 42      # fixed seed: every run produces exactly the same profile

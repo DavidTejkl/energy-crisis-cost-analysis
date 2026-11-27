@@ -10,14 +10,13 @@ Script: `python/04_generate_load_profile.py` · constants: `python/config.py` ·
 
 ## Idea: three layers
 
-A continuous high-temperature process does not stop at night or at weekends, but the operations around
-it do. The profile is the sum of three layers. Each layer is either running (1) or stopped (0) in a given
+A continuous process does not stop at night or at weekends, but the operations around it do. The profile is the sum of three layers. Each layer is either running (1) or stopped (0) in a given
 hour and has a fixed relative power level (weight).
 
 | Layer | What runs | When | Weight |
 |-------|-----------|------|--------|
-| Base | kilns, fans, dedusting, blowers | every hour of the year | 1.3 |
-| Shift | crushing, milling, screening, packing | Sunday 22:00 to Friday 22:00 (three shifts) | 2.1 |
+| Base | continuous process equipment, fans, pumps, compressed air | every hour of the year | 1.3 |
+| Shift | production lines | Sunday 22:00 to Friday 22:00 (three shifts) | 2.1 |
 | Shift, winter (Dec–Feb) | same | Monday to Friday 06:00–22:00 (two shifts) | 2.1 |
 | Day | dispatch, offices | Monday to Friday 06:00–14:00 | 0.6 |
 
@@ -36,8 +35,8 @@ Steps:
 
 | Item | Value | Basis |
 |------|-------|-------|
-| Yearly consumption | 28 GWh | ASSUMPTION. Order of magnitude for a kiln plant producing a few hundred thousand tonnes per year: electricity use for lime production is 40–140 kWh/t depending on the type of kiln and the required fineness of the lime ([IPCC AR4, WG III, chapter 7, section 7.4.5.2, p. 468](https://www.ipcc.ch/site/assets/uploads/2018/02/ar4-wg3-chapter7.pdf#page=22)), so 28 GWh is within the range for such a plant |
-| Layer weights | 1.3 / 2.1 / 0.6 | ASSUMPTION. Kilns use comparatively little electricity (most of the energy is fuel), crushing and milling use most of it |
+| Yearly consumption | 28 GWh | ASSUMPTION. Size of a mid-sized energy-intensive plant connected at high voltage (22 kV): 28 GWh a year is an average load of 3.2 MW, and the highest hour of the profile (4.665 MWh) stays below the reserved capacity of 5 MW |
+| Layer weights | 1.3 / 2.1 / 0.6 | ASSUMPTION. The production lines in shifts take the most electricity, the continuous base less, dispatch and offices the least |
 | Shift pattern | as in the table | ASSUMPTION based on a typical continuous plant |
 | Reserved capacity | 5 MW | ASSUMPTION. Highest hourly load of the profile is 4.665 MWh, so about 7 % headroom |
 
