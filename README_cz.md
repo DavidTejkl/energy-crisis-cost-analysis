@@ -6,13 +6,15 @@
 
 [![pipeline-check](https://github.com/DavidTejkl/energy-crisis-cost-analysis/actions/workflows/pipeline-check.yml/badge.svg)](https://github.com/DavidTejkl/energy-crisis-cost-analysis/actions/workflows/pipeline-check.yml)
 
+`Python (pandas, requests, pyodbc)` · `SQL Server / T-SQL` · `hvězdicové schéma` · `Power BI (DAX, what-if)` · `testy kvality dat` · `GitHub Actions` · `REST API (JSON)`
+
+Autor: David Tejkl · [O mně](#o-mně) · [LinkedIn](https://www.linkedin.com/in/david-tejkl)
+
 **Energetická krize 2021–2023 stála modelovou českou průmyslovou firmu 385 mil. Kč za elektřinu. To je o 248 mil. Kč víc, než kdyby platila ceny z roku 2020. Skoro celé zdražení způsobila cena elektřiny na trhu. Kdyby firma kupovala celou spotřebu vždy rok dopředu za pevnou cenu, v roce 2022 by ušetřila, ale v roce 2023 by stejnou částku prodělala.**
 
-Energetická krize byla pro české průmyslové firmy velké téma a chtěl jsem si na ní vyzkoušet celou práci datového analytika, od stažení dat až po report pro vedení firmy. Dnes, v roce 2026, je snadné říct, že krize skončila a ceny zase klesly. Firmy se ale musely rozhodovat v době, kdy to nikdo nevěděl. V srpnu 2022 se elektřina na rok 2023 obchodovala na burze PXE až za 984 EUR/MWh. Průměrná cena na denním trhu v roce 2023 pak byla 101 EUR/MWh. Proto nákup dopředu počítám jen s cenou, kterou firma v době rozhodnutí znala, a ne s tím, jak to nakonec dopadlo.
+Energetická krize byla pro české průmyslové firmy velké téma a chtěl jsem si na ní vyzkoušet kompletní a detailní datovou analýzu, od stažení dat až po report pro vedení firmy. Dnes, v roce 2026, je snadné říct, že krize skončila a ceny zase klesly. Firmy se ale musely rozhodovat v době, kdy to nikdo nevěděl. V srpnu 2022 se elektřina na rok 2023 obchodovala na burze PXE až za 984 EUR/MWh. Průměrná cena na denním trhu v roce 2023 pak byla 101 EUR/MWh. Proto nákup dopředu počítám jen s cenou, kterou firma v době rozhodnutí znala, a ne s tím, jak to nakonec dopadlo.
 
 Ceny elektřiny, kurzy a regulované poplatky jsou skutečná data z let 2020–2024. Odběr firmy je simulovaný (28 GWh za rok), protože firmy svoje odběrové diagramy nezveřejňují. Každé číslo v reportu jsem si ověřil v SQL.
-
-`Python (pandas, requests, pyodbc)` · `SQL Server / T-SQL` · `hvězdicové schéma` · `Power BI (DAX, what-if)` · `testy kvality dat` · `GitHub Actions` · `REST API (JSON)`
 
 **Projekt v číslech:** 43 848 hodinových cen · 5 let · 3 veřejné zdroje dat · 7 tabulek a 6 pohledů v SQL Serveru · 9 analytických dotazů · 31 kontrol kvality dat · 6 záznamů o rozhodnutí (ADR) · 64 měr DAX · 6 stránek reportu
 
@@ -97,7 +99,7 @@ Po krizi se to otočilo. Silová elektřina v roce 2024 zlevnila, ale regulovan�
 | Přirážka za diagram odběru (Kč/MWh)   |   60 |       426 |   128 |
 | Přirážka za celý rok (mil. Kč)        | 1,68 | **11,92** |  3,58 |
 
-Firma jede nepřetržitě, ale ve dne k tomu přibývají směny a kanceláře, a to zrovna v hodinách, kdy je elektřina nejdražší. Proto platí víc, než je průměrná cena na trhu, a tento rozdíl nazývám přirážka za diagram odběru. V roce 2022 stála firmu 7× víc než v roce 2020, i když odebírala pořád stejně. S cenou totiž narostl i rozdíl mezi drahými a levnými hodinami: pracovní dny od 8 do 20 h byly v roce 2020 dražší než zbytek týdne o 330 Kč/MWh, v roce 2022 o 1 472 Kč/MWh.
+Firma jede nepřetržitě, ale ve dne k tomu přibývají směny a kanceláře, a to zrovna v hodinách, kdy je elektřina nejdražší. Proto platí víc, než je průměrná cena na trhu, a tento rozdíl nazývám přirážka za diagram odběru. V roce 2022 stála tato přirážka firmu 7× víc než v roce 2020, i když odebírala pořád stejně. S cenou totiž narostl i rozdíl mezi drahými a levnými hodinami: pracovní dny od 8 do 20 h byly v roce 2020 dražší než zbytek týdne o 330 Kč/MWh, v roce 2022 o 1 472 Kč/MWh.
 
 Nákup předem přirážku neodstraní. Roční smlouva (base load) dodá stejné množství v každé hodině, takže firma ve dne chybějící elektřinu dokupuje na spotu draho a v noci přebytek prodává levně, ať smlouvu koupila za jakoukoli cenu. I s celou spotřebou koupenou předem by v roce 2022 zaplatila přirážku celou (483 333 EUR, zajištění počítám v eurech). Tuhle část nákladu ale firma může ovlivnit sama, když přesune část odběru do nocí a víkendů. Přirážka za rok je horní hranice toho, kolik by tím ušetřila. (`sql/09`, `sql/10`, `sql/12`)
 
@@ -179,7 +181,7 @@ Další pravidla v [python/02_transform.py](python/02_transform.py):
 
 Data hlídá 31 kontrol v [sql/91_dq_tests.sql](sql/91_dq_tests.sql). Kontrolují, že žádný den, hodina ani cena nechybí, že dny s 23 a 25 hodinami připadnou na poslední neděli v březnu a v říjnu, že nic není v datech dvakrát, že ceny a kurzy jsou v rozumném rozsahu a že víkendy a svátky mají kurz z posledního pracovního dne. Sloupce kalendáře, které spočítal Python, navíc přepočítám v SQL a porovnám.
 
-18 z nich zapíše při každém běhu výsledek do tabulky `dq_results`. Poslední běh skončil 17× PASS a 1× WARN, varování hlásí 609 hodin se zápornou cenou, které jsou skutečné, proto je v datech nechávám. Zbylé kontroly vypisují přehledy, například pět nejdražších hodin každého roku. Výsledky: [docs/data_quality_report_cz.md](docs/data_quality_report_cz.md).
+18 kontrol z celkových 31 kontrol, zapíše při každém běhu výsledek do tabulky `dq_results`. Poslední běh skončil 17× PASS a 1× WARN, varování hlásí 609 hodin se zápornou cenou, které jsou skutečné, proto je v datech nechávám. Zbylé kontroly vypisují přehledy, například pět nejdražších hodin každého roku. Výsledky: [docs/data_quality_report_cz.md](docs/data_quality_report_cz.md).
 
 V přehledu nejdražších hodin jsem si při první kontrole všiml 12. 12. 2024 mezi 17 a 18 h: **844,63 EUR/MWh**. Ve stejné hodině to 10. 12. bylo 199,29 EUR/MWh a 11. 12. 442,45 EUR/MWh, tak jsem nejdřív hledal chybu. Otevřel jsem surový soubor OTE v Excelu a hodnota tam byla stejná. Sedí i cena v korunách, kterou OTE v souboru uvádí (844,63 × 25,065 = 21 170,65 Kč/MWh). Cena navíc nevyskočila v jediné hodině, celý podvečer plynule rostla a zase klesala, což by překlep neudělal. Příčina: ve stejné hodině vrcholila v Německu Dunkelflaute, tedy chladné dny skoro bez větru a slunce, a cena denního trhu tam dosáhla 936 EUR/MWh ([článek o Dunkelflaute](https://www.cleanenergywire.org/news/short-term-power-prices-spike-amid-new-dunkelflaute-germany-most-customers-unaffected)). Český a německý trh jsou propojené, což cenu vysvětluje. V datech jsem ji nechal.
 
@@ -306,7 +308,7 @@ Se skutečnými daty firmy by stejná pipeline místo simulovaného odběru nač
 
 ## O mně
 
-Jmenuji se David Tejkl. 15 let pracuji v průmyslu a od roku 2022 provádím analýzu požadavků na změny řídicích systémů výroby a pracuji s daty z provozu které poté analyzuji. Sbírám požadavky od operátorů, píšu specifikace pro externího programátora, testuju hotové změny a v historii alarmů a signálů (AVEVA InTouch, Siemens S7) hledám, kde se poruchy opakují. S daty z provozu pracuju roky, tady jsem si vyzkoušel celou cestu od surových dat po report.
+Jmenuji se David Tejkl. 15 let pracuji v průmyslu a od roku 2022 provádím analýzu požadavků na změny řídicích systémů výroby a interních aplikací. Sbírám požadavky od operátorů, píšu specifikace pro externí programátory a testuji hotové změny. V historii alarmů a signálů (AVEVA InTouch, Siemens S7) analyzuji data a logy o poruchách. Pracuji také s daty ze SAP o revizích, plánované údržbě a pravidelných kontrolách zařízení. Páruji je podle zařízení s poruchami z historie alarmů v InTouchi a sleduji, jestli po kontrole poruch ubývá. Tak najdu zařízení, kterým se poruchy množí i přes pravidelné kontroly, a mám podklad pro úpravu intervalů údržby. S daty z provozu pracuji roky, tady jsem si vyzkoušel celou cestu od surových dat po report.
 
 Podívejte se i na můj druhý projekt, [analýzu procesu změnového požadavku](https://github.com/DavidTejkl/bpmn-change-request-process-analysis) (BPMN, specifikace, UAT).
 

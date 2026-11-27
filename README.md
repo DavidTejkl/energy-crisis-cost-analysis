@@ -6,13 +6,15 @@
 
 [![pipeline-check](https://github.com/DavidTejkl/energy-crisis-cost-analysis/actions/workflows/pipeline-check.yml/badge.svg)](https://github.com/DavidTejkl/energy-crisis-cost-analysis/actions/workflows/pipeline-check.yml)
 
+`Python (pandas, requests, pyodbc)` · `SQL Server / T-SQL` · `star schema` · `Power BI (DAX, what-if)` · `data quality tests` · `GitHub Actions` · `REST API (JSON)`
+
+Author: David Tejkl · [About me](#about-me) · [LinkedIn](https://www.linkedin.com/in/david-tejkl)
+
 **The 2021–2023 energy crisis cost a model Czech industrial company 385 m CZK for electricity. That is 248 m CZK more than if it had paid 2020 prices. Almost all of the increase came from the market price of electricity. If the company had always bought its whole consumption a year ahead at a fixed price, it would have saved in 2022, but lost the same amount in 2023.**
 
-The energy crisis was a big topic for Czech industrial companies, and I wanted to use it to try the whole job of a data analyst, from downloading the data to a report for management. Today, in 2026, it is easy to say that the crisis ended and prices fell again. But companies had to decide at a time when nobody knew that. In August 2022, electricity for 2023 traded on the PXE exchange at up to 984 EUR/MWh. The average day-ahead price in 2023 then turned out to be 101 EUR/MWh. That is why I calculate buying in advance only with the price the company knew when it made the decision, not with how things turned out in the end.
+The energy crisis was a big topic for Czech industrial companies, and I wanted to use it to try a complete and detailed data analysis, from downloading the data to a report for management. Today, in 2026, it is easy to say that the crisis ended and prices fell again. But companies had to decide at a time when nobody knew that. In August 2022, electricity for 2023 traded on the PXE exchange at up to 984 EUR/MWh. The average day-ahead price in 2023 then turned out to be 101 EUR/MWh. That is why I calculate buying in advance only with the price the company knew when it made the decision, not with how things turned out in the end.
 
 Electricity prices, exchange rates and regulated charges are real data from 2020–2024. The company's load is simulated (28 GWh a year), because companies do not publish their load curves. I checked every number in the report in SQL.
-
-`Python (pandas, requests, pyodbc)` · `SQL Server / T-SQL` · `star schema` · `Power BI (DAX, what-if)` · `data quality tests` · `GitHub Actions` · `REST API (JSON)`
 
 **Project in numbers:** 43,848 hourly prices · 5 years · 3 public data sources · 7 tables and 6 views in SQL Server · 9 analysis queries · 31 data quality checks · 6 decision records (ADR) · 64 DAX measures · 6 report pages
 
@@ -97,7 +99,7 @@ After the crisis it turned around. Power got cheaper in 2024, but regulated char
 | Load profile premium (CZK/MWh) | 60 | 426 | 128 |
 | Premium for the whole year (m CZK) | 1.68 | **11.92** | 3.58 |
 
-The company runs non-stop, but during the day shifts and offices are added, exactly in the hours when electricity is most expensive. That is why it pays more than the average market price, and I call this difference the load profile premium. In 2022 it cost the company 7 times more than in 2020, although its consumption stayed the same. The gap between expensive and cheap hours grew with the price: weekdays from 8:00 to 20:00 were 330 CZK/MWh more expensive than the rest of the week in 2020, and 1,472 CZK/MWh in 2022.
+The company runs non-stop, but during the day shifts and offices are added, exactly in the hours when electricity is most expensive. That is why it pays more than the average market price, and I call this difference the load profile premium. In 2022 this premium cost the company 7 times more than in 2020, although its consumption stayed the same. The gap between expensive and cheap hours grew with the price: weekdays from 8:00 to 20:00 were 330 CZK/MWh more expensive than the rest of the week in 2020, and 1,472 CZK/MWh in 2022.
 
 Buying in advance does not remove the premium. A yearly contract (base load) delivers the same amount in every hour, so the company buys the missing daytime power on spot at high prices and sells the night surplus cheaply, whatever price it paid for the contract. Even with its whole consumption bought in advance it would have paid the full premium in 2022 (483,333 EUR, I calculate hedging in euros). This part of the cost, however, the company can influence itself by moving part of its load to nights and weekends. The yearly premium is the upper limit of what it could save that way. (`sql/09`, `sql/10`, `sql/12`)
 
@@ -306,7 +308,7 @@ With real company data the same pipeline would load metered 15-minute consumptio
 
 ## About me
 
-My name is David Tejkl. I have worked in industry for 15 years, and since 2022 I have been doing requirements analysis for changes of production control systems and working with operational data, which I then analyse. I collect requirements from operators, write specifications for an external programmer, test finished changes and search alarm and signal histories (AVEVA InTouch, Siemens S7) for faults that keep repeating. I have worked with operational data for years, and in this project I tried the whole path from raw data to a report.
+My name is David Tejkl. I have worked in industry for 15 years, and since 2022 I have been doing requirements analysis for changes of production control systems and internal applications. I collect requirements from operators, write specifications for external programmers and test finished changes. In alarm and signal histories (AVEVA InTouch, Siemens S7) I analyse fault data and logs. I also work with SAP data on electrical inspections, planned maintenance and regular equipment checks. I match them by equipment with the faults from the InTouch alarm history and check whether faults drop after a check. This shows me which equipment keeps failing despite regular checks and gives me a basis for adjusting maintenance intervals. I have worked with operational data for years, and in this project I tried the whole path from raw data to a report.
 
 Also take a look at my second project, the [change request process analysis](https://github.com/DavidTejkl/bpmn-change-request-process-analysis) (BPMN, specification, UAT).
 
