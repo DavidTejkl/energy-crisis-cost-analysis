@@ -92,8 +92,9 @@
 - Unit & time grain: CZK/MWh per year.
 - Filters / exclusions: none.
 - How to read it: CZK/MWh 2020 330.09 · 2021 858.42 · 2022 1,471.75 · 2023 526.54 · 2024 374.52
-  (EUR/MWh 12.53 · 33.71 · 60.04 · 21.82 · 14.89). The upper limit of what one MWh moved from peak to off-peak
-  could save; the company's real extra cost is the load profile premium. In the report, the 2022 spread
+  (EUR/MWh 12.53 · 33.71 · 60.04 · 21.82 · 14.89). On average, one MWh moved from peak to off-peak saves this
+  much (moved from the most expensive to the cheapest hours it saves more). The company's real extra cost is the load
+  profile premium. In the report, the 2022 spread
   (1,472 CZK/MWh) is in the "Co to znamená" text on the Trh page.
 - Known limitations: plain averages over hours; no holiday calendar (backlog).
 

@@ -16,7 +16,7 @@ The energy crisis was a big topic for Czech industrial companies, and I wanted t
 
 Electricity prices, exchange rates and regulated charges are real data from 2020–2024. The company's load is simulated (28 GWh a year), because companies do not publish their load curves. I checked every number in the report in SQL.
 
-**Project in numbers:** 43,848 hourly prices · 5 years · 3 public data sources · 7 data tables and 6 views in SQL Server · 9 analysis queries · 31 data quality checks · 6 decision records (ADR) · 64 DAX measures · 6 report pages
+**Project in numbers:** 43,848 hourly prices · 5 years · 4 public data sources · 7 data tables and 6 views in SQL Server · 9 analysis queries · 31 data quality checks · 6 decision records (ADR) · 64 DAX measures · 6 report pages
 
 ![Summary page of the Power BI report](docs/screenshots/report/report_02_shrnuti.png)
 
@@ -25,7 +25,7 @@ Electricity prices, exchange rates and regulated charges are real data from 2020
 1. [interactive report](https://app.powerbi.com/view?r=eyJrIjoiYWZjZGQ2NWMtYzYyMS00OGFjLWI0ZmQtOTcyYzM1Mzg2YTU5IiwidCI6ImRjZGU2NWY3LTMxZjctNGRhMC04MWViLTY4MTM1YjE3NjkwNCIsImMiOjl9) (Power BI, no sign-in, available until January 2027)
 2. [2-minute video](https://github.com/user-attachments/assets/b589d228-a87d-4386-b068-cc21a584d698)
 3. [PDF with all 6 pages](docs/report/energy_crisis_cost_analysis_report_final.pdf)
-4. [.pbix file](https://github.com/DavidTejkl/energy-crisis-cost-analysis/releases/latest) (the free Power BI Desktop is enough, the data is inside the file, you do not need the database)
+4. [.pbix file](https://github.com/DavidTejkl/energy-crisis-cost-analysis/releases/latest) (the free Power BI Desktop is enough: the data is inside the file, so you do not need the database)
 
 https://github.com/user-attachments/assets/b589d228-a87d-4386-b068-cc21a584d698
 
@@ -53,7 +53,7 @@ The analysis answers the questions a CFO and the energy purchasing manager deal 
 | Question | Answer | Query |
 |---|---|---|
 | **1. What did electricity really cost per kWh?** | **7.19 CZK/kWh** all-in (power, distribution, system services, POZE and tax, without VAT). In 2020 it was **1.62 CZK/kWh**, 4.4 times less. Power from the market made up 91 % of the bill. | [`sql/08`](sql/08_query_allin_price.sql) |
-| **2. Why did the cost change?** | The power cost rose by **105.82 m CZK**. The market price added **104.75 m CZK**, the daily load profile 8.16 m CZK, the stronger koruna took off 6.98 m CZK and a slightly lower consumption 0.11 m CZK. | [`sql/10`](sql/10_query_variance_split.sql) |
+| **2. Why did the cost change?** | The power cost rose by **105.82 m CZK**. The market price added **104.75 m CZK**, the daily load profile 8.16 m CZK, the stronger koruna took off 6.98 m CZK and a slightly lower consumption 0.11 m CZK. | [`sql/10`](sql/10_query_variance_split.sql) (EUR), [`vw_cost_change_steps`](sql/03_create_views.sql) (CZK) |
 | **3. How did the EUR/CZK rate affect the cost in CZK?** | The koruna strengthened and that **saved the company 6.98 m CZK**. I use the cost-weighted rate, which fell from 25.53 to 24.59 CZK/EUR ([why weighted](docs/decisions/ADR-006-fx-effect-split.md)). | [`sql/11`](sql/11_query_fx_effect.sql) |
 | **4. Could the loss have been prevented by hedging?** | Not by buying the whole consumption a year ahead. At the prior-year average price the company would have **saved 4.10 m EUR in 2022, but paid 4.10 m EUR extra in 2023**. With the real PXE year-end prices, a full hedge would have cost **3.62 m EUR more** than buying on spot over 2022–2024. | [`sql/12`](sql/12_query_hedging.sql) |
 
@@ -90,7 +90,7 @@ The findings are based on real OTE, ČNB and ERÚ data and on the simulated load
 
 The company used almost the same amount of electricity every year (27.95–28.05 GWh), and yet its bill rose 4.4 times between 2020 and 2022. Power got more expensive in step with the market, almost 7 times. Regulated charges (distribution, system services, POZE and tax) stayed around 19 m CZK, because they are set by ERÚ and by law. In 2020 they made up 42 % of the bill, which is why the whole bill rose less than the market price: 0.58 × 6.9 + 0.42 × 1.0 = 4.4.
 
-After the crisis it turned around. Power got cheaper in 2024, but regulated charges jumped to 31.3 m CZK. The state ended almost all the subsidies from which it had paid POZE during the crisis and kept the price of system services and network losses low. That is why electricity was more expensive in 2024 than in 2023 (3.38 vs 3.15 CZK/kWh). The breakdown by item is in the [findings](docs/findings.md#why-regulated-charges-jumped-in-2024). (`sql/08`)
+After the crisis it turned around. Power got cheaper in 2024, but regulated charges jumped to 31.3 m CZK. During the crisis the state paid POZE from subsidies and used them to keep the prices of system services and network losses low. In 2024 it ended almost all of these subsidies. That is why electricity was more expensive in 2024 than in 2023 (3.38 vs 3.15 CZK/kWh). The breakdown by item is in the [findings](docs/findings.md#why-regulated-charges-jumped-in-2024). ([`sql/08`](sql/08_query_allin_price.sql))
 
 ### 2. Daytime load cost the company an extra 11.9 m CZK in 2022, and buying in advance does not solve it
 
@@ -103,7 +103,7 @@ After the crisis it turned around. Power got cheaper in 2024, but regulated char
 
 The company runs non-stop, but during the day shifts and offices are added, exactly in the hours when electricity is most expensive. That is why it pays more than the average market price, and I call this difference the load profile premium. In 2022 this premium cost the company 7 times more than in 2020, although its consumption stayed the same. The gap between expensive and cheap hours grew with the price: weekdays from 8:00 to 20:00 were 330 CZK/MWh more expensive than the rest of the week in 2020, and 1,472 CZK/MWh in 2022.
 
-Buying in advance does not remove the premium. A yearly contract (base load) delivers the same amount in every hour, so the company buys the missing daytime power on spot at high prices and sells the night surplus cheaply, whatever price it paid for the contract. Even with its whole consumption bought in advance it would have paid the full premium in 2022 (483,333 EUR, I calculate hedging in euros). This part of the cost, however, the company can influence itself by moving part of its load to nights and weekends. The yearly premium is the upper limit of what it could save that way. (`sql/09`, `sql/10`, `sql/12`)
+Buying in advance does not remove the premium. A yearly contract (base load) delivers the same amount in every hour, so the company buys the missing daytime power on spot at high prices and sells the night surplus cheaply, whatever price it paid for the contract. Even with its whole consumption bought in advance it would have paid the full premium in 2022 (483,333 EUR, I calculate hedging in euros). The company can, however, influence this part of the cost itself by moving part of its load to nights and weekends. If it took the same amount in every hour, it would save exactly the yearly premium. ([`sql/09`](sql/09_query_peak_offpeak.sql), [`sql/10`](sql/10_query_variance_split.sql), [`sql/12`](sql/12_query_hedging.sql))
 
 ### 3. Buying a year ahead: a saving in 2022, an equally large loss in 2023
 
@@ -119,7 +119,7 @@ A negative number is a saving against spot. Both differences assume that the com
 
 The company would have gone through the crisis anyway, just a year later. Without a hedge it paid 7.40 m EUR in 2022. With a full hedge it would have paid 7.07 m EUR in 2023, because it would have bought the electricity for 2023 still at crisis prices. The day of purchase also matters a lot. Electricity for 2023 cost **123.88 EUR/MWh** on the PXE exchange on the first trading day of 2022, **984.00 EUR/MWh** on 26 Aug 2022 and **241.98 EUR/MWh** in the last trade of the year on 28 Dec 2022.
 
-Recommendation (`RECOMMENDATION`): do not buy the whole consumption at once, but in parts during the whole year before delivery, and leave a part on spot. Then the price is not decided by one day when the market happened to be high. I did not calculate such gradual buying, because daily PXE prices are not freely downloadable. (`sql/12`)
+Recommendation (`RECOMMENDATION`): do not buy the whole consumption at once, but in parts during the whole year before delivery, and leave a part on spot. Then the price is not decided by one day when the market happened to be high. I did not calculate such gradual buying, because daily PXE prices are not freely downloadable. ([`sql/12`](sql/12_query_hedging.sql))
 
 ### 4. The most expensive day cost the company 22.8 times more than an average day of 2020
 
@@ -133,13 +133,13 @@ For every year the table shows the day on which the company paid the most for po
 | 2023 | Mon 23 Jan 2023 | 78.5 | 406,854 | 5,182 | 5.6 |
 | 2024 | Thu 12 Dec 2024 | 78.5 | 830,802 | 10,579 | 11.5 |
 
-An average day cost 72,545 CZK in 2020 and 498,512 CZK in 2022. The company's most expensive day was not the market's most expensive day. The market peaked on Friday 26 Aug 2022, but the company paid more on Tuesday 30 Aug (1,657,483 vs 1,629,833 CZK), because shift work ends on Friday at 22:00 and the company used less (93.8 vs 97.8 MWh). A company with a fixed price would not have paid such daily amounts, this is the worst case. ([details](docs/findings.md#most-expensive-day-for-the-company))
+An average day cost 72,545 CZK in 2020 and 498,512 CZK in 2022. The company's most expensive day was not the market's most expensive day. The market peaked on Friday 26 Aug 2022, but the company paid more on Tuesday 30 Aug (1,657,483 vs 1,629,833 CZK), because shift work ends on Friday at 22:00 and the company used less (93.8 vs 97.8 MWh). A company with a fixed price would not have paid such daily amounts. This is the worst case. ([details](docs/findings.md#most-expensive-day-for-the-company))
 
 ### 5. What remained after the crisis
 
-- Regulated charges stayed high. In 2024 they were 31.3 m CZK, 1.6 times more than in 2022, and buying electricity in advance does not protect against them at all. (`sql/08`)
-- Price spikes are coming back. The most expensive hour of 2024 (12 Dec 2024, 17:00–18:00, 21,171 CZK/MWh) was almost as expensive as the peak of the crisis (29 Aug 2022, 19:00–20:00, 21,422 CZK/MWh). I explain why in the [Data quality](#data-quality) section. (`sql/07`)
-- The state cap of 5,000 CZK/MWh applied in 2023, when prices had already fallen. The company's monthly power price in 2023 was at most 3,572 CZK/MWh (January), so the cap never reached it. In 2022, when there was no cap yet, it was above this limit in six months. (`sql/08`)
+- Regulated charges jumped after the crisis. In 2024 they were 31.3 m CZK, 1.6 times more than in 2022, and buying electricity in advance does not protect against them at all. ([`sql/08`](sql/08_query_allin_price.sql))
+- Price spikes are coming back. The most expensive hour of 2024 (12 Dec 2024, 17:00–18:00, 21,171 CZK/MWh) was almost as expensive as the peak of the crisis (29 Aug 2022, 19:00–20:00, 21,422 CZK/MWh). I explain why in the [Data quality](#data-quality) section. ([`sql/07`](sql/07_query_top_hours.sql))
+- The state cap of 5,000 CZK/MWh applied in 2023, when prices had already fallen. The company's monthly power price in 2023 was at most 3,572 CZK/MWh (January), so the cap never reached it. In 2022, when there was no cap yet, it was above this limit in six months. ([`sql/08`](sql/08_query_allin_price.sql))
 
 ## How I checked the numbers
 
@@ -149,7 +149,8 @@ I did not want a single number in the report that I was not sure about. This is 
 - A split must add up to the whole. When I split the cost change into consumption, market price and load profile, the sum differs from the total change by at most 0.03 EUR. For the split into price and exchange rate it is at most 2.05 CZK. The difference comes from rounding in the division.
 - For every query I check the row count first. One of my first queries taught me that: in the daily overview I put the expression `volume * price` into GROUP BY instead of a sum, and instead of 1,827 days I got 43,809 rows.
 - I calculate prices as a weighted average, the whole cost divided by the whole load. A simple average of the hourly prices would give 6,083 CZK/MWh in 2022 instead of the real 6,509 CZK/MWh, because the company takes the most electricity in the more expensive hours.
-- The whole process can be repeated from scratch. GitHub Actions downloads the raw data on a clean Windows machine, cleans it and compares the SHA-256 checksums with the ones stored in the repository. The first run failed because the Windows console on GitHub could not print the letter "Č". I built the project on two computers and the database came out the same on both, I checked it with a checksum of every table.
+- The whole process can be repeated from scratch. GitHub Actions downloads the raw data on a clean Windows machine, cleans it and compares the SHA-256 checksums with the ones stored in the repository. The first run failed because the Windows console on GitHub could not print the letter "Č". I built the project on two computers and the database came out the same on both. I checked it with a checksum of every table.
+- I also tested it from zero. I cloned the repository into an empty folder, followed How to run, and all 7 tables had the same row counts and the same checksums as my original database. A second run of the load inserted no rows.
 - I also checked the exchange rates another way, through the ČNB REST API, on 6 days where a mistake is most likely (details in How to run).
 
 ## Data
@@ -163,7 +164,7 @@ I did not want a single number in the report that I was not sure about. This is 
 | [ČNB](https://www.cnb.cz/cs/casto-kladene-dotazy/.galleries/vyvoj_repo_historie.txt) 2-week repo rate | monetary policy rate (context only, see Limits) | validity period | 2019–2024 |
 | Own generator | hourly load of the model company, `SIMULATED` ([methodology](docs/methodology.md)) | hour | 2020–2024 |
 
-The data is not in the repository, the scripts download it.
+The data is not in the repository, the scripts download it. The data belongs to its publishers (OTE, a.s., ČNB, ERÚ and PXE) and I use it with the source named. The MIT licence in [LICENSE](LICENSE) covers my code and documentation, not the source data.
 
 ## Data cleaning
 
@@ -185,7 +186,7 @@ The data is guarded by 31 checks in [sql/91_dq_tests.sql](sql/91_dq_tests.sql). 
 
 18 of these 31 checks write their result into the `dq_results` table on every run. The latest run ended with 17 PASS and 1 WARN. The warning reports 609 hours with a negative price, which are real, so I keep them in the data. The other checks print overviews, for example the five most expensive hours of every year. Results: [docs/data_quality_report.md](docs/data_quality_report.md).
 
-In the list of the most expensive hours I noticed, during the first check, 12 Dec 2024 between 17:00 and 18:00: **844.63 EUR/MWh**. In the same hour it was 199.29 EUR/MWh on 10 Dec and 442.45 EUR/MWh on 11 Dec, so I first looked for an error. I opened the raw OTE file in Excel and the value was the same there. The CZK price that OTE gives in the file also agrees (844.63 × 25.065 = 21,170.65 CZK/MWh). The price also did not jump in a single hour, it rose and fell smoothly over the whole evening, which a typo would not do. The cause: in the same hour Germany was at the peak of a Dunkelflaute, cold days with almost no wind and sun, and the day-ahead price there reached 936 EUR/MWh ([article on the Dunkelflaute](https://www.cleanenergywire.org/news/short-term-power-prices-spike-amid-new-dunkelflaute-germany-most-customers-unaffected)). The Czech and German markets are coupled, which explains the price. I kept it in the data.
+In the list of the most expensive hours I noticed, during the first check, 12 Dec 2024 between 17:00 and 18:00: **844.63 EUR/MWh**. In the same hour it was 199.29 EUR/MWh on 10 Dec and 442.45 EUR/MWh on 11 Dec, so I first looked for an error. I opened the raw OTE file in Excel and the value was the same there. The CZK price that OTE gives in the file also agrees (844.63 × 25.065 = 21,170.65 CZK/MWh). The price also did not jump in a single hour. It rose and fell smoothly over the whole evening, which a typo would not do. The cause: in the same hour Germany was at the peak of a Dunkelflaute, cold days with almost no wind and sun, and the day-ahead price there reached 936 EUR/MWh ([article on the Dunkelflaute](https://www.cleanenergywire.org/news/short-term-power-prices-spike-amid-new-dunkelflaute-germany-most-customers-unaffected)). The Czech and German markets are coupled, which explains the price. I kept it in the data.
 
 ![Raw OTE file, 12 Dec 2024](docs/screenshots/bronze_ote_2024-12-12_price_peak_excel.png)
 
@@ -204,9 +205,9 @@ flowchart LR
 ```
 
 - The data is in a star schema ([data model](docs/data_model.md)). OTE prices and the simulated load have one row per hour, ČNB rates one row per day, and they are linked by shared calendar and hour dimensions. I store regulated prices and the repo rate as validity periods. I wrote down the grain of every table, what one row means, before I loaded any data into it.
-- Power BI reads the data from views in SQL Server, that is my gold layer. Costs and MWh in them can be summed over any period. I never sum prices, I calculate them as a ratio of sums.
+- Power BI reads the data from views in SQL Server (that is my gold layer) and from the two dimension tables, the calendar and the hours. Costs and MWh in them can be summed over any period. I never sum prices, I calculate them as a ratio of sums.
 - In the Power BI model the dimensions are linked to the facts one-to-many and in one direction, and several fact tables share the same dimensions (galaxy schema). I turned off auto date/time and marked `dim_date` as the date table. All 64 DAX measures are written down with their formula and a check value ([DAX measures](docs/kpi_definitions.md#dax-measures-in-power-bi)).
-- I run the whole pipeline with one command. The load is incremental: the script finds the highest key already loaded and loads only newer rows, so a second run inserts nothing. Every run is logged in the `etl_run_log` table ([sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)). [GitHub Actions](.github/workflows/pipeline-check.yml) also checks the Python part on every code change, the SQL Server part runs only locally on my computer.
+- I run the whole pipeline with one command. The load is incremental: the script finds the highest key already loaded and loads only newer rows, so a second run inserts nothing. Every run is logged in the `etl_run_log` table ([sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)). [GitHub Actions](.github/workflows/pipeline-check.yml) also checks the Python part on every code change. The SQL Server part runs only locally on my computer.
 - The report is saved as PBIP, which means as text files, so every change of a visual or a measure is visible in the git history.
 
 ### Key decisions
@@ -257,6 +258,7 @@ sqlcmd -S localhost -E -C -b -f 65001 -i sql/08_query_allin_price.sql     # quer
 py python/05_check_fx_api.py     # 6 edge-case days, prints OK / DIFFERENCE for each
 
 # 6. Report: open powerbi/energy_crisis_cost_analysis_report.pbip in Power BI Desktop and click Refresh
+#    When asked, choose Windows credentials. If Power BI cannot connect with encryption, allow the unencrypted connection (local server).
 ```
 
 Expected row counts after the load: `dim_date` 1,827 · `dim_hour` 25 · `repo_rate` 22 · `regulated_price` 41 · `fact_energy_prices` 43,848 · `fact_fx` 1,827 · `fact_load` 43,848.
@@ -299,12 +301,12 @@ data/      bronze (raw) and silver (cleaned), created by the scripts, not in git
 ## Limits
 
 - **Simulated load.** One model company with 28 GWh a year and the same weekly pattern. The consumption effect therefore comes out almost zero, and the findings about the load profile reflect the generator's settings, not a real operation.
-- **Worst case on power.** The company buys everything at spot prices. Real companies often fix their price in advance. In a [survey by the Confederation of Industry of the Czech Republic](https://www.spcr.cz/drahe-energie-na-firmy-dopadnou-zejmena-v-pristim-roce) from September 2022 (114 mostly industrial companies), almost two thirds had a fixed electricity price for 2022, for 2023 only 20 %.
+- **Worst case on power.** The company buys everything at spot prices. Real companies often fix their price in advance. In a [survey by the Confederation of Industry of the Czech Republic](https://www.spcr.cz/drahe-energie-na-firmy-dopadnou-zejmena-v-pristim-roce) from September 2022 (114 mostly industrial companies), almost two thirds had a fixed electricity price for 2022, but only 20 % for 2023.
 - **Hedging with a substitute price.** OTE does not publish forward prices. The hedging price is the prior-year average spot price (`ASSUMPTION`), the PXE year-end prices are taken from the annual reports. Buying in parts during the year is not calculated.
 - **All-in price scope.** Without VAT, supplier margin and the small ERÚ activity fee. Reserved capacity of 5 MW is an assumption, and the distribution prices apply only to ČEZ Distribuce at high voltage.
 - **Public holidays.** Public holidays on weekdays count as peak hours, the calendar has no holiday flag yet.
 - **Repo rate.** I loaded the ČNB repo rate as context ([why not PRIBOR](docs/decisions/ADR-002-interest-rate-source.md)), but I do not use it in the analysis or the report yet.
-- **Local database.** SQL Server runs locally, GitHub Actions checks only the Python part. The link to the interactive report works until January 2027, the PDF, video, screenshots and the `.pbix` file stay.
+- **Local database.** SQL Server runs locally, GitHub Actions checks only the Python part. The link to the interactive report works until January 2027. The PDF, video, screenshots and the `.pbix` file stay.
 
 With real company data the same pipeline would load metered 15-minute consumption instead of the simulated load, the supplier's contract terms instead of 100 % spot, and a plan of buying in parts instead of a one-off hedge.
 

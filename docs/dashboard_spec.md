@@ -85,7 +85,7 @@ and finally what to do about it. I built the Summary last, from the finished det
   hedging price is an ASSUMPTION ([ADR-003](decisions/ADR-003-forward-price-proxy.md)).
 - A footer with the data sources, the split into real and simulated data and "without VAT and supplier margin" is on
   the O projektu and Shrnutí pages.
-- On 2026-11-23 I compared every number in the report with a fresh SQL result (step 4.7), for every year and on the
+- On 2026-11-23 I compared every number in the report with a fresh SQL result, for every year and on the
   hedging page also for slider positions 0, 50 and 100 %. The check values are listed per page below.
 
 ### Page template
@@ -354,7 +354,7 @@ over years hides that shift.
 2.72. At 100 % 1.11 / 3.30 / 7.07 / 2.97, PXE – / 6.69 / 6.92 / 2.92. At 0 % with hedging = without hedging (2022:
 7,399,949.24 EUR). Title: result of a full hedge 2022 −4.10 and 2023 +4.10 m EUR.
 
-## Sharing the report (step 4.8)
+## Sharing the report
 
 - [docs/report/energy_crisis_cost_analysis_report_final.pdf](report/energy_crisis_cost_analysis_report_final.pdf):
   export of all 6 pages (year slicers on 2022, slider at 50 %).

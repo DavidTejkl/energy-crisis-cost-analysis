@@ -84,7 +84,7 @@ nakonec co s tím dělat. Shrnutí jsem stavěl až nakonec, z hotových detailn
   zajištění je PŘEDPOKLAD ([ADR-003](decisions/ADR-003-forward-price-proxy_cz.md)).
 - Patička se zdroji dat, rozdělením na skutečná a simulovaná data a poznámkou „bez DPH a bez marže dodavatele“ je na
   stránkách O projektu a Shrnutí.
-- Každé číslo v reportu jsem 23. 11. 2026 porovnal s čerstvým výsledkem SQL (krok 4.7), pro každý rok a na stránce
+- Každé číslo v reportu jsem 23. 11. 2026 porovnal s čerstvým výsledkem SQL, pro každý rok a na stránce
   Zajištění ceny i pro polohy posuvníku 0, 50 a 100 %. Kontrolní hodnoty jsou níže u každé stránky.
 
 ### Šablona stránky
@@ -346,7 +346,7 @@ posune krizi o rok. Kartu se součtem za 2021–2024 jsem vypustil, protože sou
 4,95 / 2,72. Při 100 % 1,11 / 3,30 / 7,07 / 2,97, PXE – / 6,69 / 6,92 / 2,92. Při 0 % se zajištěním = bez zajištění
 (2022: 7 399 949,24 EUR). Nadpis: výsledek plného zajištění 2022 −4,10 a 2023 +4,10 mil. EUR.
 
-## Sdílení reportu (krok 4.8)
+## Sdílení reportu
 
 - [docs/report/energy_crisis_cost_analysis_report_final.pdf](report/energy_crisis_cost_analysis_report_final.pdf):
   export všech 6 stránek (výběr roku na 2022, posuvník na 50 %).

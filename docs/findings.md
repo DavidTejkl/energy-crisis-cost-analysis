@@ -166,8 +166,8 @@ load profile premium. In every year the three parts add up to the total change, 
   62,491 / 164,030 / 483,333 / 155,344 / 142,087 EUR (`C − V × Pb`), about 5–6.5 % of the power cost every year.
 - **FINDING:** The load profile is the part of the cost the company can influence itself. It cannot influence the
   market price. The profile itself did not change between years. The premium grew because the gap between daytime and
-  night prices grew together with the whole price level. The yearly premium is the upper limit of what the company
-  could save by moving shifts to nights and weekends.
+  night prices grew together with the whole price level. If the company took the same amount in every hour, it would
+  save exactly the yearly premium. Moving shifts to nights and weekends brings it closer to that.
 - **FINDING:** The market price explains 93–99 % of every yearly change (95.0 / 92.9 / 92.6 / 99.4 %). With a
   simulated load of about 28 GWh every year this was to be expected and is not a discovery: the volume effect stays
   between −4,286 and +11,073 EUR. With real company data the same query would separate changes in production from

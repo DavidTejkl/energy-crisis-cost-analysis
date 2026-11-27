@@ -163,8 +163,8 @@ Tři části dají v každém roce dohromady celkovou změnu, rozdíl je nejvý�
   silovou elektřinu.
 - **FINDING:** Diagram odběru je ta část nákladu, kterou firma může ovlivnit sama. Cenu na trhu ovlivnit nemůže.
   Samotný diagram se mezi roky neměnil. Přirážka rostla, protože se s celou cenovou hladinou zvětšil i rozdíl mezi
-  cenou ve dne a v noci. Roční přirážka je horní hranice toho, co by firma mohla ušetřit přesunem směn do nocí
-  a víkendů.
+  cenou ve dne a v noci. Kdyby firma odebírala v každé hodině stejně, ušetřila by přesně roční přirážku. Přesunem
+  směn do nocí a víkendů se k tomu může přiblížit.
 - **FINDING:** Cena na trhu vysvětluje 93–99 % každé meziroční změny (95,0 / 92,9 / 92,6 / 99,4 %). U simulovaného
   odběru, který je každý rok kolem 28 GWh, se to dalo čekat a není to žádný objev: vliv spotřeby je jen mezi −4 286
   a +11 073 EUR. Se skutečnými daty firmy by stejný dotaz oddělil změny ve výrobě od pohybu trhu.

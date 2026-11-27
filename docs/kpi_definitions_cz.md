@@ -105,8 +105,9 @@ Všechny částky jsou bez DPH. Ceny a kurzy jsou skutečná data, odběr firmy 
 - **Jednotka a období:** Kč/MWh za rok.
 - **Co se počítá a co ne:** nic nevyřazuji.
 - **Jak to číst:** Kč/MWh 2020 330,09 · 2021 858,42 · 2022 1 471,75 · 2023 526,54 · 2024 374,52 (EUR/MWh 12,53 ·
-  33,71 · 60,04 · 21,82 · 14,89). Je to horní hranice toho, kolik by mohla ušetřit jedna MWh přesunutá ze špičky mimo
-  ni. Kolik firma skutečně platí navíc, ukazuje přirážka za diagram odběru. V reportu je rozdíl 1 472 Kč/MWh v textu
+  33,71 · 60,04 · 21,82 · 14,89). Tolik v průměru ušetří jedna MWh přesunutá ze špičky mimo ni
+  (přesunutá z nejdražších do nejlevnějších hodin ušetří víc). Kolik firma skutečně platí navíc, ukazuje přirážka za
+  diagram odběru. V reportu je rozdíl 1 472 Kč/MWh v textu
   „Co to znamená“ na stránce Trh.
 - **Omezení:** prosté průměry přes hodiny, bez kalendáře svátků.
 

@@ -16,7 +16,7 @@ Energetická krize byla pro české průmyslové firmy velké téma a chtěl jse
 
 Ceny elektřiny, kurzy a regulované poplatky jsou skutečná data z let 2020–2024. Odběr firmy je simulovaný (28 GWh za rok), protože firmy svoje odběrové diagramy nezveřejňují. Každé číslo v reportu jsem si ověřil v SQL.
 
-**Projekt v číslech:** 43 848 hodinových cen · 5 let · 3 veřejné zdroje dat · 7 datových tabulek a 6 pohledů v SQL Serveru · 9 analytických dotazů · 31 kontrol kvality dat · 6 záznamů o rozhodnutí (ADR) · 64 měr DAX · 6 stránek reportu
+**Projekt v číslech:** 43 848 hodinových cen · 5 let · 4 veřejné zdroje dat · 7 datových tabulek a 6 pohledů v SQL Serveru · 9 analytických dotazů · 31 kontrol kvality dat · 6 záznamů o rozhodnutí (ADR) · 64 měr DAX · 6 stránek reportu
 
 ![Stránka Shrnutí z reportu v Power BI](docs/screenshots/report/report_02_shrnuti.png)
 
@@ -53,7 +53,7 @@ Analýza odpovídá na otázky, které ve firmě řeší finanční ředitel a n
 | Otázka                                              | Odpověď                                                                                                                                                                                                                                                                                                       | Dotaz                                       |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | **1. Kolik elektřina skutečně stála za kWh?**       | **7,19 Kč/kWh** se vším všudy (silová elektřina, distribuce, systémové služby, POZE a daň, bez DPH). V roce 2020 to bylo **1,62 Kč/kWh**, tedy 4,4× méně. Silová elektřina z trhu tvořila 91 % účtu.                                                                                                          | [`sql/08`](sql/08_query_allin_price.sql)    |
-| **2. Proč se náklad změnil?**                       | Náklad na silovou elektřinu vzrostl o **105,82 mil. Kč**. Cena na trhu ho zvýšila o **104,75 mil. Kč**, denní diagram odběru o 8,16 mil. Kč, silnější koruna ho snížila o 6,98 mil. Kč a o něco nižší spotřeba o 0,11 mil. Kč.                                                                                | [`sql/10`](sql/10_query_variance_split.sql) |
+| **2. Proč se náklad změnil?**                       | Náklad na silovou elektřinu vzrostl o **105,82 mil. Kč**. Cena na trhu ho zvýšila o **104,75 mil. Kč**, denní diagram odběru o 8,16 mil. Kč, silnější koruna ho snížila o 6,98 mil. Kč a o něco nižší spotřeba o 0,11 mil. Kč.                                                                                | [`sql/10`](sql/10_query_variance_split.sql) (EUR), [`vw_cost_change_steps`](sql/03_create_views.sql) (Kč) |
 | **3. Jak náklad v korunách ovlivnil kurz EUR/CZK?** | Koruna posílila a firma díky tomu **ušetřila 6,98 mil. Kč**. Počítám s kurzem váženým náklady, ten klesl z 25,53 na 24,59 Kč/EUR ([proč vážený](docs/decisions/ADR-006-fx-effect-split_cz.md)).                                                                                                               | [`sql/11`](sql/11_query_fx_effect.sql)      |
 | **4. Dalo se ztrátě předejít zajištěním?**          | Nákupem celé spotřeby rok dopředu ne. Za průměrnou cenu předchozího roku by firma **v roce 2022 ušetřila 4,10 mil. EUR, ale v roce 2023 by zaplatila 4,10 mil. EUR navíc**. Se skutečnými cenami burzy PXE z konce roku by plné zajištění za roky 2022–2024 stálo **o 3,62 mil. EUR víc** než nákup na spotu. | [`sql/12`](sql/12_query_hedging.sql)        |
 
@@ -90,7 +90,7 @@ Zjištění vycházejí ze skutečných dat OTE, ČNB a ERÚ a ze simulovaného 
 
 Firma spotřebovala každý rok skoro stejně elektřiny (27,95–28,05 GWh), a přesto se jí účet mezi lety 2020 a 2022 zvedl 4,4×. Silová elektřina zdražila stejně jako trh, skoro 7×. Regulované platby (distribuce, systémové služby, POZE a daň) ale zůstaly kolem 19 mil. Kč, protože je určuje ERÚ a zákon. V roce 2020 tvořily 42 % účtu, a proto celý účet vzrostl méně než cena na trhu: 0,58 × 6,9 + 0,42 × 1,0 = 4,4.
 
-Po krizi se to otočilo. Silová elektřina v roce 2024 zlevnila, ale regulované platby vyskočily na 31,3 mil. Kč. Stát totiž skoro úplně ukončil dotace, ze kterých v krizi platil POZE a držel nízko cenu systémových služeb a ztrát v sítích. Proto vyšla elektřina v roce 2024 dráž než v roce 2023 (3,38 proti 3,15 Kč/kWh). Rozpis po položkách je ve [zjištěních](docs/findings_cz.md#proč-regulované-platby-v-roce-2024-vyskočily). (`sql/08`)
+Po krizi se to otočilo. Silová elektřina v roce 2024 zlevnila, ale regulované platby vyskočily na 31,3 mil. Kč. Stát totiž skoro úplně ukončil dotace, ze kterých v krizi platil POZE a držel nízko cenu systémových služeb a ztrát v sítích. Proto vyšla elektřina v roce 2024 dráž než v roce 2023 (3,38 proti 3,15 Kč/kWh). Rozpis po položkách je ve [zjištěních](docs/findings_cz.md#proč-regulované-platby-v-roce-2024-vyskočily). ([`sql/08`](sql/08_query_allin_price.sql))
 
 ### 2. Odběr ve dne stál firmu v roce 2022 navíc 11,9 mil. Kč a nákup předem to nevyřeší
 
@@ -103,7 +103,7 @@ Po krizi se to otočilo. Silová elektřina v roce 2024 zlevnila, ale regulovan�
 
 Firma jede nepřetržitě, ale ve dne k tomu přibývají směny a kanceláře, a to zrovna v hodinách, kdy je elektřina nejdražší. Proto platí víc, než je průměrná cena na trhu, a tento rozdíl nazývám přirážka za diagram odběru. V roce 2022 stála tato přirážka firmu 7× víc než v roce 2020, i když odebírala pořád stejně. S cenou totiž narostl i rozdíl mezi drahými a levnými hodinami: pracovní dny od 8 do 20 h byly v roce 2020 dražší než zbytek týdne o 330 Kč/MWh, v roce 2022 o 1 472 Kč/MWh.
 
-Nákup předem přirážku neodstraní. Roční smlouva (base load) dodá stejné množství v každé hodině, takže firma ve dne chybějící elektřinu dokupuje na spotu draho a v noci přebytek prodává levně, ať smlouvu koupila za jakoukoli cenu. I s celou spotřebou koupenou předem by v roce 2022 zaplatila přirážku celou (483 333 EUR, zajištění počítám v eurech). Tuhle část nákladu ale firma může ovlivnit sama, když přesune část odběru do nocí a víkendů. Přirážka za rok je horní hranice toho, kolik by tím ušetřila. (`sql/09`, `sql/10`, `sql/12`)
+Nákup předem přirážku neodstraní. Roční smlouva (base load) dodá stejné množství v každé hodině, takže firma ve dne chybějící elektřinu dokupuje na spotu draho a v noci přebytek prodává levně, ať smlouvu koupila za jakoukoli cenu. I s celou spotřebou koupenou předem by v roce 2022 zaplatila přirážku celou (483 333 EUR, zajištění počítám v eurech). Tuhle část nákladu ale firma může ovlivnit sama, když přesune část odběru do nocí a víkendů. Kdyby odebírala v každé hodině stejně, ušetřila by přesně roční přirážku. ([`sql/09`](sql/09_query_peak_offpeak.sql), [`sql/10`](sql/10_query_variance_split.sql), [`sql/12`](sql/12_query_hedging.sql))
 
 ### 3. Nákup na rok dopředu: v roce 2022 úspora, v roce 2023 stejně velká ztráta
 
@@ -119,7 +119,7 @@ Záporné číslo je úspora proti spotu. Oba rozdíly počítají s tím, že f
 
 Krizi by firma zažila stejně, jen o rok později. Bez zajištění zaplatila 7,40 mil. EUR v roce 2022, s plným zajištěním by zaplatila 7,07 mil. EUR v roce 2023, protože elektřinu na rok 2023 by kupovala ještě za krizové ceny. Hodně záleží i na dni nákupu. Elektřina na rok 2023 stála na burze PXE první obchodní den roku 2022 **123,88 EUR/MWh**, 26. 8. 2022 **984,00 EUR/MWh** a při posledním obchodu roku 28. 12. 2022 **241,98 EUR/MWh**.
 
-Doporučení (`RECOMMENDATION`): nekupovat celou spotřebu najednou, ale po částech během celého roku před dodávkou a část nechat na spotu. O ceně pak nerozhodne jeden den, kdy byl trh zrovna nahoře. Takový postupný nákup jsem nepočítal, protože denní ceny z PXE nejsou volně ke stažení. (`sql/12`)
+Doporučení (`RECOMMENDATION`): nekupovat celou spotřebu najednou, ale po částech během celého roku před dodávkou a část nechat na spotu. O ceně pak nerozhodne jeden den, kdy byl trh zrovna nahoře. Takový postupný nákup jsem nepočítal, protože denní ceny z PXE nejsou volně ke stažení. ([`sql/12`](sql/12_query_hedging.sql))
 
 ### 4. Nejdražší den stál firmu 22,8× víc než průměrný den roku 2020
 
@@ -137,9 +137,9 @@ Průměrný den stál v roce 2020 72 545 Kč, v roce 2022 už 498 512 Kč. Nejdr
 
 ### 5. Co po krizi zůstalo
 
-- Regulované platby zůstaly vysoko. V roce 2024 to bylo 31,3 mil. Kč, 1,6× víc než v roce 2022, a nákup elektřiny předem je nijak nechrání. (`sql/08`)
-- Cenové špičky se vracejí. Nejdražší hodina roku 2024 (12. 12. 2024, 17–18 h, 21 171 Kč/MWh) byla skoro stejně drahá jako vrchol krize (29. 8. 2022, 19–20 h, 21 422 Kč/MWh). Proč, popisuju v části [Kvalita dat](#kvalita-dat). (`sql/07`)
-- Státní strop 5 000 Kč/MWh platil v roce 2023, kdy už ceny klesly. Měsíční cena silové elektřiny firmy byla v roce 2023 nejvýš 3 572 Kč/MWh (leden), takže se jí strop nedotkl. V roce 2022, kdy strop ještě neplatil, byla nad touto hranicí v šesti měsících. (`sql/08`)
+- Regulované platby po krizi vyskočily. V roce 2024 to bylo 31,3 mil. Kč, 1,6× víc než v roce 2022, a nákup elektřiny předem je nijak nechrání. ([`sql/08`](sql/08_query_allin_price.sql))
+- Cenové špičky se vracejí. Nejdražší hodina roku 2024 (12. 12. 2024, 17–18 h, 21 171 Kč/MWh) byla skoro stejně drahá jako vrchol krize (29. 8. 2022, 19–20 h, 21 422 Kč/MWh). Proč, popisuju v části [Kvalita dat](#kvalita-dat). ([`sql/07`](sql/07_query_top_hours.sql))
+- Státní strop 5 000 Kč/MWh platil v roce 2023, kdy už ceny klesly. Měsíční cena silové elektřiny firmy byla v roce 2023 nejvýš 3 572 Kč/MWh (leden), takže se jí strop nedotkl. V roce 2022, kdy strop ještě neplatil, byla nad touto hranicí v šesti měsících. ([`sql/08`](sql/08_query_allin_price.sql))
 
 ## Jak jsem čísla ověřoval
 
@@ -150,6 +150,7 @@ Nechtěl jsem, aby v reportu bylo jediné číslo, u kterého nevím, jestli sed
 - U každého dotazu si nejdřív zkontroluju počet řádků. Naučil mě to jeden z prvních dotazů: v denním přehledu jsem dal do GROUP BY výraz `volume * price` místo součtu a místo 1 827 dní mi vyšlo 43 809 řádků.
 - Ceny počítám jako vážený průměr, tedy celý náklad děleno celým odběrem. Prostý průměr hodinových cen by v roce 2022 dal 6 083 Kč/MWh místo skutečných 6 509 Kč/MWh, protože firma bere nejvíc elektřiny v dražších hodinách.
 - Celý postup jde zopakovat od nuly. GitHub Actions na čistém počítači s Windows stáhne surová data, vyčistí je a porovná kontrolní součty SHA-256 se součty uloženými v repozitáři. První běh spadl, protože konzole Windows na GitHubu neuměla vypsat písmeno „Č“. Projekt jsem stavěl na dvou počítačích a databáze vyšla na obou stejně, ověřil jsem to kontrolním součtem každé tabulky.
+- Test jsem udělal i úplně od nuly. Repozitář jsem naklonoval do prázdné složky, postupoval podle části Jak projekt spustit a všech 7 tabulek mělo stejný počet řádků i stejný kontrolní součet jako moje původní databáze. Druhé spuštění načítání už nevložilo ani jeden řádek.
 - Kurzy jsem ověřil ještě jinou cestou, přes REST API ČNB, na 6 dnech, kde se chyba stane nejsnáz (podrobnosti v části Jak projekt spustit).
 
 ## Data
@@ -163,7 +164,7 @@ Nechtěl jsem, aby v reportu bylo jediné číslo, u kterého nevím, jestli sed
 | [ČNB](https://www.cnb.cz/cs/casto-kladene-dotazy/.galleries/vyvoj_repo_historie.txt) dvoutýdenní repo sazba | měnověpolitická sazba (jen kontext, viz Omezení)                                                                                             | období platnosti | 2019–2024 |
 | Vlastní generátor                                                                                           | hodinový odběr modelové firmy, `SIMULATED` ([metodika](docs/methodology_cz.md))                                                              | hodina           | 2020–2024 |
 
-Data v repozitáři nejsou, skripty si je stáhnou.
+Data v repozitáři nejsou, skripty si je stáhnou. Data patří jejich vydavatelům (OTE, a.s., ČNB, ERÚ a PXE) a používám je s uvedením zdroje. Licence MIT v souboru [LICENSE](LICENSE) platí pro můj kód a dokumentaci, ne pro zdrojová data.
 
 ## Čištění dat
 
@@ -204,7 +205,7 @@ flowchart LR
 ```
 
 - Data jsou ve hvězdicovém schématu ([datový model](docs/data_model_cz.md)). Ceny OTE a simulovaný odběr mají jeden řádek na hodinu, kurzy ČNB jeden řádek na den a spojují je společné dimenze kalendáře a hodin. Regulované ceny a repo sazbu ukládám po obdobích platnosti. Granularitu každé tabulky, tedy co znamená jeden řádek, jsem si zapsal dřív, než jsem do ní nahrál data.
-- Power BI čte data z pohledů v SQL Serveru, to je moje vrstva gold. Náklady a MWh z nich jde sčítat za jakékoli období. Ceny nesčítám nikdy, počítám je jako podíl součtů.
+- Power BI čte data z pohledů v SQL Serveru (to je moje vrstva gold) a ze dvou tabulek dimenzí, kalendáře a hodin. Náklady a MWh z nich jde sčítat za jakékoli období. Ceny nesčítám nikdy, počítám je jako podíl součtů.
 - V modelu Power BI jsou dimenze napojené na fakta 1 : N a jedním směrem, víc tabulek faktů sdílí stejné dimenze (galaxy schema). Automatické datum a čas jsem vypnul a jako kalendář označil `dim_date`. Všech 64 měr DAX mám zapsaných se vzorcem a kontrolní hodnotou ([míry DAX](docs/kpi_definitions_cz.md#míry-dax-v-power-bi)).
 - Celou pipeline spustím jedním příkazem. Načítání je přírůstkové: skript najde nejvyšší už nahraný klíč a nahraje jen novější řádky, takže druhé spuštění nevloží nic. Každý běh se zapíše do tabulky `etl_run_log` ([sql/90_etl_infrastructure.sql](sql/90_etl_infrastructure.sql)). Část v Pythonu při každé změně kódu ověří i [GitHub Actions](.github/workflows/pipeline-check.yml), část se SQL Serverem běží jen u mě lokálně.
 - Report je uložený jako PBIP, tedy jako textové soubory, takže každá změna vizuálu nebo míry je vidět v historii gitu.
@@ -257,6 +258,7 @@ sqlcmd -S localhost -E -C -b -f 65001 -i sql/08_query_allin_price.sql     # dota
 py python/05_check_fx_api.py     # 6 hraničních dní, pro každý vypíše OK / DIFFERENCE
 
 # 6. Report: otevřete powerbi/energy_crisis_cost_analysis_report.pbip v Power BI Desktop a klikněte na Aktualizovat
+#    Při dotazu na přihlášení zvolte Windows. Když se Power BI nepřipojí šifrovaně, povolte nešifrované připojení (lokální server).
 ```
 
 Očekávané počty řádků po načtení: `dim_date` 1 827 · `dim_hour` 25 · `repo_rate` 22 · `regulated_price` 41 · `fact_energy_prices` 43 848 · `fact_fx` 1 827 · `fact_load` 43 848.
