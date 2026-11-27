@@ -57,7 +57,7 @@ Analýza odpovídá na otázky, které ve firmě řeší finanční ředitel a n
 
 ## Obchodní problém
 
-Firma je vymyšlená. Je to energeticky náročný výrobce s provozem, který běží 24 hodin denně celý rok. Od neděle 22:00 do pátku 22:00 k němu přibývá směnový provoz a v pracovní dny ráno kanceláře. Firma spotřebuje zhruba 28 GWh za rok a je připojená k síti ČEZ Distribuce na vysokém napětí (22 kV). Všechnu elektřinu kupuje za ceny denního trhu (spot), takže počítám s nejhorším případem.
+Pro analýzu jsem si vytvořil modelovou firmu: energeticky náročného výrobce s provozem, který běží 24 hodin denně celý rok. Její směny, odběr elektřiny i celkové fungování provozu jsem nastavil podle toho, co znám z 15 let praxe v průmyslové výrobě. Od neděle 22:00 do pátku 22:00 k nepřetržitému provozu přibývá směnový provoz a v pracovní dny ráno kanceláře. Firma spotřebuje zhruba 28 GWh za rok a je připojená k síti ČEZ Distribuce na vysokém napětí (22 kV). Všechnu elektřinu kupuje za ceny denního trhu (spot), takže počítám s nejhorším případem.
 
 Analýzu by četli finanční ředitel, který odpovídá za rozpočet, a energetik, který rozhoduje, jakou část spotřeby na příští rok koupit předem za pevnou cenu.
 

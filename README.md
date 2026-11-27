@@ -57,7 +57,7 @@ The analysis answers the questions a CFO and the energy purchasing manager deal 
 
 ## The business problem
 
-The company is fictional. It is an energy-intensive manufacturer with an operation that runs 24 hours a day all year. From Sunday 22:00 to Friday 22:00 shift work is added to it, and offices on weekday mornings. The company uses about 28 GWh a year and is connected to the ČEZ Distribuce grid at high voltage (22 kV). It buys all its electricity at day-ahead (spot) prices, so I calculate the worst case.
+For the analysis I created a model company: an energy-intensive manufacturer with an operation that runs 24 hours a day all year. I set its shifts, electricity load and the way the whole operation works based on what I know from 15 years of work in industrial production. From Sunday 22:00 to Friday 22:00 shift work is added to the non-stop operation, and offices on weekday mornings. The company uses about 28 GWh a year and is connected to the ČEZ Distribuce grid at high voltage (22 kV). It buys all its electricity at day-ahead (spot) prices, so I calculate the worst case.
 
 The analysis would be read by the CFO, who is responsible for the budget, and the energy manager, who decides what part of next year's consumption to buy in advance at a fixed price.
 
