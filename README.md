@@ -27,6 +27,8 @@ Electricity prices, exchange rates and regulated charges are real data from 2020
 3. [PDF with all 6 pages](docs/report/energy_crisis_cost_analysis_report_final.pdf)
 4. [.pbix file](https://github.com/DavidTejkl/energy-crisis-cost-analysis/releases/latest) (the free Power BI Desktop is enough, the data is inside the file, you do not need the database)
 
+https://github.com/user-attachments/assets/b589d228-a87d-4386-b068-cc21a584d698
+
 The report is in Czech. The documentation in `docs/` is in English and Czech, the code is in English.
 
 ---
