@@ -23,7 +23,7 @@ Electricity prices, exchange rates and regulated charges are real data from 2020
 **How to see the report:**
 
 1. [interactive report](https://app.powerbi.com/view?r=eyJrIjoiYWZjZGQ2NWMtYzYyMS00OGFjLWI0ZmQtOTcyYzM1Mzg2YTU5IiwidCI6ImRjZGU2NWY3LTMxZjctNGRhMC04MWViLTY4MTM1YjE3NjkwNCIsImMiOjl9) (Power BI, no sign-in, available until January 2027)
-2. [2-minute video](docs/report/energy_crisis_cost_analysis_demo_1920.mp4)
+2. [2-minute video](https://github.com/user-attachments/assets/b589d228-a87d-4386-b068-cc21a584d698)
 3. [PDF with all 6 pages](docs/report/energy_crisis_cost_analysis_report_final.pdf)
 4. [.pbix file](https://github.com/DavidTejkl/energy-crisis-cost-analysis/releases/latest) (the free Power BI Desktop is enough, the data is inside the file, you do not need the database)
 
