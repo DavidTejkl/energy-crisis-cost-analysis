@@ -1,9 +1,9 @@
--- Purpose : Creating new database for my analytical project Energy Crisis Cost Analysis
--- With IF condition we check if database is created or none 
--- This condition protects from building database if database is created once before
--- CZ: Účel: vytvoření nové databáze pro můj analytický projekt Energy Crisis Cost Analysis
--- Podmínkou IF kontrolujeme, jestli databáze už existuje, nebo ne
--- Tato podmínka brání vytvoření databáze, pokud už byla jednou vytvořena
+-- Purpose: create the database of the Energy Crisis Cost Analysis project.
+-- The IF condition checks whether the database already exists, so the script is safe to run again:
+-- it never drops or recreates a database that holds data.
+-- CZ: Účel: vytvořit databázi projektu Energy Crisis Cost Analysis.
+-- Podmínka IF zkontroluje, jestli databáze už existuje, takže skript jde spustit opakovaně:
+-- databázi s daty nikdy nesmaže ani nevytvoří znovu.
 
 IF DB_ID('EnergyCrisisCostAnalysis') IS NULL
 	CREATE DATABASE EnergyCrisisCostAnalysis;

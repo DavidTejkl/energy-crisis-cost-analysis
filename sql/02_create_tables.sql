@@ -1,5 +1,7 @@
--- ** This file is made for creating every table which we will need in our project - dim_date, dim_hour, fact_energy_prices, fact_fx, repo_rate **
--- CZ: ** Tento soubor vytváří všechny tabulky, které v projektu potřebujeme - dim_date, dim_hour, fact_energy_prices, fact_fx, repo_rate **
+-- Purpose: create the 7 tables of the star schema: dimensions dim_date and dim_hour, validity-period tables
+-- repo_rate and regulated_price, facts fact_energy_prices, fact_fx and fact_load. Grain and keys: docs/data_model.md.
+-- CZ: Účel: vytvořit 7 tabulek hvězdicového schématu: dimenze dim_date a dim_hour, tabulky s obdobím platnosti
+-- repo_rate a regulated_price, fakta fact_energy_prices, fact_fx a fact_load. Granularita a klíče: docs/data_model.md.
 
 USE [EnergyCrisisCostAnalysis]
 GO
