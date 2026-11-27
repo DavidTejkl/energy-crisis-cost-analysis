@@ -272,3 +272,75 @@ one-to-many and in one direction (5 relationships, a galaxy schema). The monthly
 Costs and MWh in the views can be summed over any period. Prices and rates are valid only for their own hour or
 year and are never summed: in Power BI they are set to "do not summarize", and every price in the report is a ratio
 of sums (`DIVIDE(SUM(cost), SUM(load))`), never an average of averages.
+
+### Columns of the four Power BI views
+
+The formats are the types SQL Server reports for the view columns (`sys.columns`). A sum over many rows gets
+precision 38 automatically.
+
+#### vw_hourly_cost
+
+| Column             | Format             | Description                                                                                       |
+| ------------------ | ------------------ | ------------------------------------------------------------------------------------------------- |
+| `date_key`         | integer (YYYYMMDD) | delivery day, links to `dim_date`                                                                  |
+| `hour_of_day`      | integer            | sequential hour of the delivery day (1–25), links to `dim_hour`                                    |
+| `price_eur_mwh`    | DECIMAL(7,2)       | OTE day-ahead price in EUR/MWh (from `fact_energy_prices`)                                         |
+| `rate_czk_per_eur` | DECIMAL(5,3)       | ČNB EUR/CZK rate of the day (from `fact_fx`, weekends and holidays filled by ADR-001)              |
+| `price_czk_mwh`    | DECIMAL(13,5)      | price in CZK/MWh = `price_eur_mwh × rate_czk_per_eur`, not rounded                                 |
+| `load_mwh`         | DECIMAL(5,3)       | company load in that hour, `SIMULATED` (from `fact_load`)                                          |
+| `power_cost_eur`   | DECIMAL(13,5)      | power cost of the hour in EUR = `load_mwh × price_eur_mwh`                                         |
+| `power_cost_czk`   | DECIMAL(19,8)      | power cost of the hour in CZK = `load_mwh × price_eur_mwh × rate_czk_per_eur`                      |
+| `price_band`       | NVARCHAR(8)        | [price band](kpi_definitions.md#price-band) of the hour in Czech: `záporná` (below 0), `nízká` (below 1,217), `běžná` (below 3,374), `vysoká` (below 5,821), `extrémní` (5,821 CZK/MWh and more) |
+| `price_band_order` | integer            | 1–5, sort order of `price_band` in Power BI (hidden there)                                         |
+
+#### vw_monthly_cost
+
+All amounts are in CZK for the whole month, without VAT and supplier margin ([ADR-005](decisions/ADR-005-all-in-price-scope.md)).
+
+| Column                  | Format             | Description                                                                              |
+| ----------------------- | ------------------ | ---------------------------------------------------------------------------------------- |
+| `date_key`              | integer (YYYYMMDD) | first day of the month (`year × 10000 + month × 100 + 1`), links to `dim_date`           |
+| `year`                  | integer            | year                                                                                     |
+| `month`                 | integer            | month 1–12                                                                               |
+| `load_mwh`              | DECIMAL(38,3)      | company load of the month, `SIMULATED`                                                    |
+| `power_cost_czk`        | DECIMAL(38,8)      | power cost = sum of the hourly load × price in CZK                                        |
+| `electricity_tax_czk`   | DECIMAL(38,5)      | electricity tax = load × rate in CZK/MWh                                                  |
+| `network_use_czk`       | DECIMAL(38,5)      | distribution, network use = load × rate in CZK/MWh                                        |
+| `system_services_czk`   | DECIMAL(38,5)      | system services = load × rate in CZK/MWh                                                  |
+| `reserved_capacity_czk` | DECIMAL(38,2)      | distribution, reserved capacity = monthly price per MW × 5 MW (`ASSUMPTION`)              |
+| `ote_fees_czk`          | DECIMAL(38,2)      | the two monthly OTE fees per supply point                                                 |
+| `poze_czk`              | DECIMAL(38,2)      | POZE (support of renewables) = the lower of price per MW × 5 MW and cap per MWh × load    |
+| `total_cost_czk`        | DECIMAL(38,2)      | sum of all components above = the monthly bill                                            |
+
+#### vw_yearly_hedging
+
+One row per delivery year 2021–2024, amounts in EUR ([ADR-003](decisions/ADR-003-forward-price-proxy.md)).
+
+| Column                 | Format             | Description                                                                                      |
+| ---------------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
+| `date_key`             | integer (YYYYMMDD) | 1 January of the year (`year × 10000 + 101`), links to `dim_date`                                 |
+| `year`                 | integer            | delivery year                                                                                    |
+| `volume_mwh`           | DECIMAL(38,3)      | yearly load, `SIMULATED`                                                                          |
+| `spot_cost_eur`        | DECIMAL(38,5)      | power cost with everything bought at spot = sum of the hourly load × price                        |
+| `market_price_eur_mwh` | DECIMAL(38,6)      | simple average of the hourly prices of the year (for display, never summed)                       |
+| `hedge_price_eur_mwh`  | DECIMAL(38,6)      | fixed price = simple average of the previous year (`ASSUMPTION`)                                  |
+| `pxe_price_eur_mwh`    | NUMERIC(5,2)       | PXE CZ base load year product, last trade of the previous year (`FACT`, PXE annual reports), NULL for 2021 |
+| `hedge_diff_proxy_eur` | DECIMAL(38,6)      | `volume_mwh × (hedge_price_eur_mwh − market_price_eur_mwh)`: how much more (+) or less (−) the whole yearly volume costs at the fixed price. Hedged cost at share *s* = `spot_cost_eur + s × hedge_diff_proxy_eur` |
+| `hedge_diff_pxe_eur`   | NUMERIC(38,6)      | the same with the PXE price, NULL for 2021                                                        |
+
+#### vw_cost_change_steps
+
+One row per year 2021–2024 and step, amounts in CZK ([ADR-004](decisions/ADR-004-cost-variance-split.md),
+[ADR-006](decisions/ADR-006-fx-effect-split.md)).
+
+| Column       | Format             | Description                                                                                           |
+| ------------ | ------------------ | ----------------------------------------------------------------------------------------------------- |
+| `date_key`   | integer (YYYYMMDD) | 1 January of the year, links to `dim_date`                                                             |
+| `year`       | integer            | year whose cost change is split                                                                        |
+| `step_order` | integer            | 1–5, sort order of the steps (hidden in Power BI)                                                      |
+| `step_name`  | NVARCHAR(17)       | step in Czech: `Náklad minulý rok`, `Spotřeba`, `Cena na trhu`, `Diagram odběru`, `Kurz EUR/CZK`       |
+| `amount_czk` | DECIMAL(38,6)      | step 1 = power cost of the previous year, steps 2–5 = effect of volume, market price, load profile and exchange rate. Previous year + the 4 steps = this year's power cost within 2 CZK (rounding of the rate) |
+
+Power BI adds two DAX calculated columns that are not in SQL: `dim_date[month_start]` (first day of the month, the
+axis of the monthly charts) and `vw_hourly_cost[hour_key]` (`date_key × 100 + hour_of_day`, a unique key of an hour
+for the top 5 table).

@@ -274,3 +274,75 @@ takže je výběr roku filtruje přes `dim_date` stejně jako hodinový pohled.
 Náklady a MWh z pohledů jde sčítat za libovolné období. Ceny a kurzy platí jen pro svou hodinu nebo rok a nikdy se
 nesčítají. V Power BI mají nastavené „nesumarizovat“ a každá cena v reportu je podíl součtů
 (`DIVIDE(SUM(náklad), SUM(odběr))`), nikdy průměr z průměrů.
+
+### Sloupce čtyř pohledů pro Power BI
+
+Formáty jsou typy, které pro sloupce pohledů hlásí SQL Server (`sys.columns`). Součet přes mnoho řádků dostane
+přesnost 38 automaticky.
+
+#### vw_hourly_cost
+
+| Sloupec            | Formát                | Popis                                                                                          |
+| ------------------ | --------------------- | ---------------------------------------------------------------------------------------------- |
+| `date_key`         | celé číslo (YYYYMMDD) | den dodávky, odkaz na `dim_date`                                                                |
+| `hour_of_day`      | celé číslo            | pořadová hodina dne dodávky (1–25), odkaz na `dim_hour`                                         |
+| `price_eur_mwh`    | DECIMAL(7,2)          | cena denního trhu OTE v EUR/MWh (z `fact_energy_prices`)                                        |
+| `rate_czk_per_eur` | DECIMAL(5,3)          | kurz ČNB EUR/CZK daného dne (z `fact_fx`, víkendy a svátky doplněné podle ADR-001)              |
+| `price_czk_mwh`    | DECIMAL(13,5)         | cena v Kč/MWh = `price_eur_mwh × rate_czk_per_eur`, nezaokrouhlená                              |
+| `load_mwh`         | DECIMAL(5,3)          | odběr firmy v dané hodině, `SIMULATED` (z `fact_load`)                                          |
+| `power_cost_eur`   | DECIMAL(13,5)         | náklad na silovou elektřinu v hodině v EUR = `load_mwh × price_eur_mwh`                         |
+| `power_cost_czk`   | DECIMAL(19,8)         | náklad na silovou elektřinu v hodině v Kč = `load_mwh × price_eur_mwh × rate_czk_per_eur`       |
+| `price_band`       | NVARCHAR(8)           | [cenové pásmo](kpi_definitions_cz.md#cenové-pásmo) hodiny: `záporná` (pod 0), `nízká` (pod 1 217), `běžná` (pod 3 374), `vysoká` (pod 5 821), `extrémní` (od 5 821 Kč/MWh) |
+| `price_band_order` | celé číslo            | 1–5, pořadí `price_band` v Power BI (tam je skrytý)                                             |
+
+#### vw_monthly_cost
+
+Všechny částky jsou v Kč za celý měsíc, bez DPH a marže dodavatele ([ADR-005](decisions/ADR-005-all-in-price-scope_cz.md)).
+
+| Sloupec                 | Formát                | Popis                                                                                  |
+| ----------------------- | --------------------- | -------------------------------------------------------------------------------------- |
+| `date_key`              | celé číslo (YYYYMMDD) | první den měsíce (`year × 10000 + month × 100 + 1`), odkaz na `dim_date`               |
+| `year`                  | celé číslo            | rok                                                                                    |
+| `month`                 | celé číslo            | měsíc 1–12                                                                             |
+| `load_mwh`              | DECIMAL(38,3)         | odběr firmy za měsíc, `SIMULATED`                                                       |
+| `power_cost_czk`        | DECIMAL(38,8)         | náklad na silovou elektřinu = součet hodinových odběrů × ceny v Kč                      |
+| `electricity_tax_czk`   | DECIMAL(38,5)         | daň z elektřiny = odběr × sazba v Kč/MWh                                                |
+| `network_use_czk`       | DECIMAL(38,5)         | distribuce, použití sítí = odběr × sazba v Kč/MWh                                       |
+| `system_services_czk`   | DECIMAL(38,5)         | systémové služby = odběr × sazba v Kč/MWh                                               |
+| `reserved_capacity_czk` | DECIMAL(38,2)         | distribuce, rezervovaná kapacita = měsíční cena za MW × 5 MW (`ASSUMPTION`)             |
+| `ote_fees_czk`          | DECIMAL(38,2)         | dva měsíční poplatky OTE za odběrné místo                                               |
+| `poze_czk`              | DECIMAL(38,2)         | POZE (podpora obnovitelných zdrojů) = nižší z ceny za MW × 5 MW a stropu za MWh × odběr |
+| `total_cost_czk`        | DECIMAL(38,2)         | součet všech složek výše = měsíční účet                                                 |
+
+#### vw_yearly_hedging
+
+Jeden řádek = jeden rok dodávky 2021–2024, částky v EUR ([ADR-003](decisions/ADR-003-forward-price-proxy_cz.md)).
+
+| Sloupec                | Formát                | Popis                                                                                         |
+| ---------------------- | --------------------- | --------------------------------------------------------------------------------------------- |
+| `date_key`             | celé číslo (YYYYMMDD) | 1. leden daného roku (`year × 10000 + 101`), odkaz na `dim_date`                              |
+| `year`                 | celé číslo            | rok dodávky                                                                                   |
+| `volume_mwh`           | DECIMAL(38,3)         | roční odběr, `SIMULATED`                                                                       |
+| `spot_cost_eur`        | DECIMAL(38,5)         | náklad na silovou elektřinu při nákupu všeho na spotu = součet hodinových odběrů × ceny        |
+| `market_price_eur_mwh` | DECIMAL(38,6)         | prostý průměr hodinových cen roku (jen pro zobrazení, nikdy se nesčítá)                        |
+| `hedge_price_eur_mwh`  | DECIMAL(38,6)         | pevná cena = prostý průměr předchozího roku (`ASSUMPTION`)                                     |
+| `pxe_price_eur_mwh`    | NUMERIC(5,2)          | roční produkt PXE CZ base load, poslední obchod předchozího roku (`FACT`, výroční zprávy PXE), pro rok 2021 NULL |
+| `hedge_diff_proxy_eur` | DECIMAL(38,6)         | `volume_mwh × (hedge_price_eur_mwh − market_price_eur_mwh)`: o kolik víc (+) nebo méně (−) stojí celý roční objem za pevnou cenu. Náklad se zajištěním podílu *s* = `spot_cost_eur + s × hedge_diff_proxy_eur` |
+| `hedge_diff_pxe_eur`   | NUMERIC(38,6)         | totéž s cenou PXE, pro rok 2021 NULL                                                           |
+
+#### vw_cost_change_steps
+
+Jeden řádek = jeden rok 2021–2024 a jeden krok, částky v Kč ([ADR-004](decisions/ADR-004-cost-variance-split_cz.md),
+[ADR-006](decisions/ADR-006-fx-effect-split_cz.md)).
+
+| Sloupec      | Formát                | Popis                                                                                                |
+| ------------ | --------------------- | ---------------------------------------------------------------------------------------------------- |
+| `date_key`   | celé číslo (YYYYMMDD) | 1. leden daného roku, odkaz na `dim_date`                                                             |
+| `year`       | celé číslo            | rok, jehož změnu nákladu rozkládám                                                                    |
+| `step_order` | celé číslo            | 1–5, pořadí kroků (v Power BI skrytý)                                                                 |
+| `step_name`  | NVARCHAR(17)          | krok: `Náklad minulý rok`, `Spotřeba`, `Cena na trhu`, `Diagram odběru`, `Kurz EUR/CZK`               |
+| `amount_czk` | DECIMAL(38,6)         | krok 1 = náklad na silovou elektřinu v předchozím roce, kroky 2–5 = vliv spotřeby, ceny na trhu, diagramu odběru a kurzu. Předchozí rok + 4 kroky = letošní náklad s rozdílem do 2 Kč (zaokrouhlení kurzu) |
+
+Power BI k tomu přidává dva počítané sloupce v DAX, které v SQL nejsou: `dim_date[month_start]` (první den měsíce,
+osa měsíčních grafů) a `vw_hourly_cost[hour_key]` (`date_key × 100 + hour_of_day`, jedinečný klíč hodiny pro tabulku
+pěti nejdražších hodin).
